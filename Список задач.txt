@@ -1,13 +1,6 @@
-AccauntLogic.Update
-AccauntLogic.Delete
-TaskInstance.Create
-TaskInstance.Read
-TaskInstance.Update
-TaskInstance.Delete
-Task.Create
-Task.Read
-Task.Update
-Task.Delete
+TaskLogic.Read
+TaskLogic.Update
+TaskLogic.Delete
 Реализация логики для аккаунта
 Привязка задачи к аккаунту
 Приложение на WPF
@@ -19,7 +12,7 @@ Task.Delete
 Сущность группа целей
 Реализация логики для цели
 Реализация логики для группы целей
-==================================================== Итерация 1
+==================================================== Итерация 2
 Определение первоначальных задач
 Сущность задача
 Сущность экземпляр задачи
@@ -31,3 +24,10 @@ Task.Delete
 Сохранение всего в файл
 AccauntLogic.Create
 AccauntLogic.Read
+AccauntLogic.Update
+AccauntLogic.Delete
+TaskInstanceLogic.Create
+TaskInstanceLogic.Read
+TaskInstanceLogic.Update
+TaskInstanceLogic.Delete
+TaskLogic.Create

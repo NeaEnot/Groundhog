@@ -12,22 +12,21 @@ namespace TelegramImplement.Implements
 
         public void Create(Accaunt model)
         {
-            try
+            if (context.Accaunts.Count(req => req.Name == model.Name) > 0)
             {
-                if (context.Accaunts.Count(req => req.Name == model.Name) > 0)
+                throw new Exception("Аккаунт с таким именем уже существует.");
+            }
+
+            model.Id = Guid.NewGuid().ToString();
+            context.Accaunts
+                .Add(new Accaunt
                 {
-                    throw new Exception("Аккаунт с таким именем уже существует.");
-                }
+                    Id = model.Id,
+                    Name = model.Name,
+                    ConnetionString = model.ConnetionString
+                });
 
-                model.Id = Guid.NewGuid().ToString();
-                context.Accaunts.Add(model);
-
-                context.Save();
-            }
-            catch
-            {
-                throw;
-            }
+            context.Save();
         }
 
         public List<Accaunt> Read()
@@ -45,12 +44,31 @@ namespace TelegramImplement.Implements
 
         public void Update(Accaunt model)
         {
-            throw new NotImplementedException();
+            Accaunt accaunt = context.Accaunts.FirstOrDefault(req => req.Id == model.Id);
+
+            if (accaunt == null)
+            {
+                throw new Exception("Аккаунта с данным Id не существует.");
+            }
+
+            accaunt.Name = model.Name;
+            accaunt.ConnetionString = model.ConnetionString;
+
+            context.Save();
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            Accaunt accaunt = context.Accaunts.FirstOrDefault(req => req.Id == id);
+
+            if (accaunt == null)
+            {
+                throw new Exception("Аккаунта с данным Id не существует.");
+            }
+
+            context.Accaunts.Remove(accaunt);
+
+            context.Save();
         }
     }
 }
