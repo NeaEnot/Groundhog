@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Interfaces
 {
-    public interface TaskInterface
+    public interface ITaskLogic
     {
         public void Create(Task model);
         public List<Task> Read();
