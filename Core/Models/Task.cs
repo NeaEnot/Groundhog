@@ -5,6 +5,7 @@ namespace Core.Models
     public class Task
     {
         public string Id { get; set; }
+        public string AccauntId { get; set; }
         public string Text { get; set; }
         public RepeatMode RepeatMode { get; set; }
         public int RepeatValue { get; set; }

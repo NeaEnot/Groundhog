@@ -4,9 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows"
+        xmlns:conv="clr-namespace:GroundhogWindows.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="445" Width="800">
+    <Window.Resources>
+        <conv:DateTimeConverter x:Key="converter"/>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
 
+        <TabControl>
+            <TabItem Header="Список">
+                <ScrollViewer>
+                    <ListBox Name="listBoxDates" Grid.Column="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5">
+                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=1}" FontSize="18"/>
+                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=0}" FontSize="14"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Календарь">
+                <Viewbox>
+                    <Calendar />
+                </Viewbox>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>
