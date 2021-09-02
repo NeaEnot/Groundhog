@@ -39,6 +39,20 @@ namespace TelegramImplement.Implements
                 .ToList();
         }
 
+        public List<TaskInstance> Read(string taskId)
+        {
+            return context.TaskInstances
+                .Where(req => req.TaskId == taskId)
+                .Select(req => new TaskInstance
+                {
+                    Id = req.Id,
+                    Date = req.Date,
+                    TaskId = req.TaskId,
+                    Completed = req.Completed
+                })
+                .ToList();
+        }
+
         public void Update(TaskInstance model)
         {
             TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == model.Id);

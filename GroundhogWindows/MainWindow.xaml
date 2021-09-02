@@ -42,23 +42,26 @@
             </TabItem>
             <TabItem Header="Календарь">
                 <Viewbox>
-                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
+                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate" />
                 </Viewbox>
             </TabItem>
         </TabControl>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
-            <ListBox Name="listBoxTasks">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
-                                <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
-                            </CheckBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <ScrollViewer Margin="0, 0, 0, 50">
+                <ListBox Name="listBoxTasks">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
+                                    <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
+                                </CheckBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+            <Button Content="Создать" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click"/>
+        </Grid>
     </Grid>
 </Window>

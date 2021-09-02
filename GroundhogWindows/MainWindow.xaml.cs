@@ -1,5 +1,4 @@
-﻿using Core.Models;
-using GroundhogWindows.Models;
+﻿using GroundhogWindows.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -59,6 +58,15 @@ namespace GroundhogWindows
         {
             AccauntsWindow nodeWindow = new AccauntsWindow();
             nodeWindow.ShowDialog();
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            TaskWindow window = new TaskWindow();
+            if (window.ShowDialog() == true)
+            {
+                
+            }
         }
     }
 }

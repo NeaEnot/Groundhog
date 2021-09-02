@@ -8,6 +8,7 @@ namespace Core.Interfaces
     {
         public void Create(TaskInstance model);
         public List<TaskInstance> Read(DateTime date);
+        public List<TaskInstance> Read(string taskId);
         public void Update(TaskInstance model);
         public void Delete(string id);
     }

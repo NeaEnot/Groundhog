@@ -19,6 +19,10 @@ namespace GroundhogWindows
                 textBoxName.Text = accaunt.Name;
                 textBoxConnection.Text = accaunt.ConnetionString;
             }
+            else
+            {
+                Accaunt = new Accaunt();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
