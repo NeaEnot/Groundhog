@@ -12,14 +12,25 @@ namespace GroundhogWindows
     {
         public Task Task { get; private set; }
 
-        public TaskWindow()
+        public TaskWindow(Task task)
         {
             InitializeComponent();
 
             comboBox.ItemsSource = Enum.GetValues(typeof(RepeatMode));
-            comboBox.SelectedItem = RepeatMode.Нет;
 
-            Task = new Task();
+            if (task != null)
+            {
+                Task = task;
+
+                textBoxText.Text = task.Text;
+                comboBox.SelectedItem = task.RepeatMode;
+                textBoxValue.Text = task.RepeatValue.ToString();
+            }
+            else
+            {
+                comboBox.SelectedItem = RepeatMode.Нет;
+                Task = new Task();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,7 +44,13 @@ namespace GroundhogWindows
                 if ((RepeatMode)comboBox.SelectedItem != RepeatMode.Нет)
                 {
                     if (!int.TryParse(textBoxValue.Text, out value))
-                        throw new Exception("Неверное значение");
+                        throw new Exception("Неверное значение.");
+
+                    if ((RepeatMode)comboBox.SelectedItem == RepeatMode.ЧислоМесяца && (value < 1 || value > 31))
+                        throw new Exception("Неверное число месяца.");
+
+                    if (value < 1)
+                        throw new Exception("Неверное число дней.");
                 }
 
                 Task.Text = textBoxText.Text;
