@@ -3,6 +3,8 @@ using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TelegramImplement.Implements
 {
@@ -17,7 +19,10 @@ namespace TelegramImplement.Implements
                 throw new Exception("Аккаунт с таким именем уже существует.");
             }
 
-            model.Id = Guid.NewGuid().ToString();
+            MD5 md5 = MD5.Create();
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.ConnetionString));
+            model.Id = Convert.ToBase64String(hash);
+
             context.Accaunts
                 .Add(new Accaunt
                 {

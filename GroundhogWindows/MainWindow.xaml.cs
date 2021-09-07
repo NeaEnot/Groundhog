@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace GroundhogWindows
 {
@@ -89,7 +90,8 @@ namespace GroundhogWindows
             {
                 App.TaskLogic.Create(window.Task);
 
-                if (window.Task.RepeatMode == RepeatMode.Нет)
+                //if (window.Task.RepeatMode == RepeatMode.Нет)
+                if (true)
                 {
                     App.TaskInstanceLogic
                         .Create(new TaskInstance
@@ -104,9 +106,20 @@ namespace GroundhogWindows
             }
         }
 
-        private void listBoxTasks_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void listBoxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((ListBox)sender).SelectedItem;
+            UpdateTask();
+        }
+
+        private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateTask();
+        }
+
+        private void UpdateTask()
+        {
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
+
             if (viewModel != null)
             {
                 Task task = App.TaskLogic.Read(viewModel.TaskId);
@@ -118,6 +131,33 @@ namespace GroundhogWindows
 
                     LoadTasks();
                 }
+            }
+        }
+
+        private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
+
+            if (viewModel != null)
+            {
+                App.TaskInstanceLogic.Delete(viewModel.Id);
+                LoadTasks();
+            }
+        }
+
+        private void ContextMenuDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
+
+            if (viewModel != null)
+            {
+                List<TaskInstance> instances = App.TaskInstanceLogic.Read(viewModel.TaskId);
+                foreach (TaskInstance instance in instances)
+                {
+                    App.TaskInstanceLogic.Delete(instance.Id);
+                }
+                App.TaskLogic.Delete(viewModel.TaskId);
+                LoadTasks();
             }
         }
     }
