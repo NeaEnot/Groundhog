@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core;
+using Core.Enums;
 using Core.Models;
 using GroundhogWindows.Models;
 using System;
@@ -32,8 +33,10 @@ namespace GroundhogWindows
 
         private void LoadTasks()
         {
+            GroundhogContext.FillRepeatedTasks();
+
             List<TaskInstanceViewModel> taskInstances =
-                App.TaskInstanceLogic.Read(selectedDate)
+                GroundhogContext.TaskInstanceLogic.Read(selectedDate)
                 .Select(req => new TaskInstanceViewModel
                 {
                     Id = req.Id,
@@ -72,7 +75,7 @@ namespace GroundhogWindows
                 TaskId = viewModel.TaskId
             };
 
-            App.TaskInstanceLogic.Update(model);
+            GroundhogContext.TaskInstanceLogic.Update(model);
 
             LoadTasks();
         }
@@ -88,19 +91,25 @@ namespace GroundhogWindows
             TaskWindow window = new TaskWindow(null);
             if (window.ShowDialog() == true)
             {
-                App.TaskLogic.Create(window.Task);
+                GroundhogContext.TaskLogic.Create(window.Task);
 
-                //if (window.Task.RepeatMode == RepeatMode.Нет)
-                if (true)
+                DateTime date = selectedDate;
+                if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца)
                 {
-                    App.TaskInstanceLogic
+                    int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+                    if (days < window.Task.RepeatValue)
+                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
+                    else
+                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, window.Task.RepeatValue);
+                }
+
+                GroundhogContext.TaskInstanceLogic
                         .Create(new TaskInstance
                         {
                             TaskId = window.Task.Id,
                             Completed = false,
-                            Date = selectedDate
+                            Date = date
                         });
-                }
 
                 LoadTasks();
             }
@@ -122,12 +131,12 @@ namespace GroundhogWindows
 
             if (viewModel != null)
             {
-                Task task = App.TaskLogic.Read(viewModel.TaskId);
+                Task task = GroundhogContext.TaskLogic.Read(viewModel.TaskId);
 
                 TaskWindow window = new TaskWindow(task);
                 if (window.ShowDialog() == true)
                 {
-                    App.TaskLogic.Update(window.Task);
+                    GroundhogContext.TaskLogic.Update(window.Task);
 
                     LoadTasks();
                 }
@@ -140,7 +149,7 @@ namespace GroundhogWindows
 
             if (viewModel != null)
             {
-                App.TaskInstanceLogic.Delete(viewModel.Id);
+                GroundhogContext.TaskInstanceLogic.Delete(viewModel.Id);
                 LoadTasks();
             }
         }
@@ -151,12 +160,12 @@ namespace GroundhogWindows
 
             if (viewModel != null)
             {
-                List<TaskInstance> instances = App.TaskInstanceLogic.Read(viewModel.TaskId);
+                List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(viewModel.TaskId);
                 foreach (TaskInstance instance in instances)
                 {
-                    App.TaskInstanceLogic.Delete(instance.Id);
+                    GroundhogContext.TaskInstanceLogic.Delete(instance.Id);
                 }
-                App.TaskLogic.Delete(viewModel.TaskId);
+                GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
                 LoadTasks();
             }
         }

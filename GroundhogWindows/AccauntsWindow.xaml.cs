@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,16 @@ namespace GroundhogWindows
 
         private void LoadData()
         {
-            List<Accaunt> list = App.AccauntLogic.Read();
+            List<Accaunt> list = GroundhogContext.AccauntLogic.Read();
 
             comboBox.ItemsSource = null;
             comboBox.ItemsSource = list;
 
-            if (App.Accaunt != null)
+            if (GroundhogContext.Accaunt != null)
             {
                 foreach (Accaunt acc in list)
                 {
-                    if (acc.Id == App.Accaunt.Id)
+                    if (acc.Id == GroundhogContext.Accaunt.Id)
                     {
                         comboBox.SelectedItem = acc;
                         break;
@@ -39,7 +40,7 @@ namespace GroundhogWindows
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (comboBox.SelectedItem != null)
-                App.Accaunt = (Accaunt)comboBox.SelectedItem;
+                GroundhogContext.Accaunt = (Accaunt)comboBox.SelectedItem;
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace GroundhogWindows
                 AccauntWindow window = new AccauntWindow(null);
                 if (window.ShowDialog() == true)
                 {
-                    App.AccauntLogic.Create(window.Accaunt);
+                    GroundhogContext.AccauntLogic.Create(window.Accaunt);
                     LoadData();
                 }
             }
@@ -70,7 +71,7 @@ namespace GroundhogWindows
                 AccauntWindow window = new AccauntWindow(model);
                 if (window.ShowDialog() == true)
                 {
-                    App.AccauntLogic.Update(window.Accaunt);
+                    GroundhogContext.AccauntLogic.Update(window.Accaunt);
                     LoadData();
                 }
             }
@@ -88,21 +89,21 @@ namespace GroundhogWindows
                 if (model == null)
                     throw new Exception("Не выбран аккаунт для изменения.");
 
-                App.Accaunt = null;
-                App.AccauntLogic.Delete(model.Id);
+                GroundhogContext.Accaunt = null;
+                GroundhogContext.AccauntLogic.Delete(model.Id);
 
-                List<Task> tasks = App.TaskLogic.Read(model);
+                List<Task> tasks = GroundhogContext.TaskLogic.Read(model);
 
                 foreach (Task task in tasks)
                 {
-                    List<TaskInstance> instances = App.TaskInstanceLogic.Read(task.Id);
+                    List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
 
                     foreach (TaskInstance instance in instances)
                     {
-                        App.TaskInstanceLogic.Delete(instance.Id);
+                        GroundhogContext.TaskInstanceLogic.Delete(instance.Id);
                     }
 
-                    App.TaskLogic.Delete(task.Id);
+                    GroundhogContext.TaskLogic.Delete(task.Id);
                 }
 
                 LoadData();

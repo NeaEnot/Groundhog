@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core;
+using Core.Enums;
 using Core.Models;
 using System;
 using System.Windows;
@@ -56,7 +57,7 @@ namespace GroundhogWindows
                 Task.Text = textBoxText.Text;
                 Task.RepeatMode = (RepeatMode)comboBox.SelectedItem;
                 Task.RepeatValue = value;
-                Task.AccauntId = App.Accaunt.Id;
+                Task.AccauntId = GroundhogContext.Accaunt.Id;
 
                 DialogResult = true;
             }
