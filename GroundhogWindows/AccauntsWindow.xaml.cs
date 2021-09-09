@@ -17,8 +17,12 @@ namespace GroundhogWindows
             LoadData();
         }
 
+        private bool loading;
+
         private void LoadData()
         {
+            loading = true;
+
             List<Accaunt> list = GroundhogContext.AccauntLogic.Read();
 
             comboBox.ItemsSource = null;
@@ -35,12 +39,18 @@ namespace GroundhogWindows
                     }
                 }
             }
+
+            loading = false;
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (comboBox.SelectedItem != null)
+            {
                 GroundhogContext.Accaunt = (Accaunt)comboBox.SelectedItem;
+                if (!loading)
+                    DialogResult = true;
+            }
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)

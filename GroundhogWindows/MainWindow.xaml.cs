@@ -35,8 +35,16 @@ namespace GroundhogWindows
         {
             GroundhogContext.FillRepeatedTasks();
 
-            List<TaskInstanceViewModel> taskInstances =
-                GroundhogContext.TaskInstanceLogic.Read(selectedDate)
+            List<string> tasksIds =
+                GroundhogContext.TaskLogic
+                .Read(GroundhogContext.Accaunt)
+                .Select(req => req.Id)
+                .ToList();
+
+            List <TaskInstanceViewModel> taskInstances =
+                GroundhogContext.TaskInstanceLogic
+                .Read(selectedDate)
+                .Where(req => tasksIds.Contains(req.TaskId))
                 .Select(req => new TaskInstanceViewModel
                 {
                     Id = req.Id,
@@ -82,36 +90,34 @@ namespace GroundhogWindows
 
         private void MenuItemAccaunts_Click(object sender, RoutedEventArgs e)
         {
-            AccauntsWindow nodeWindow = new AccauntsWindow();
-            nodeWindow.ShowDialog();
+            AccauntsWindow accauntsWindow = new AccauntsWindow();
+            if (accauntsWindow.ShowDialog() == true)
+                LoadTasks();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            TaskWindow window = new TaskWindow(null);
-            if (window.ShowDialog() == true)
+            if (GroundhogContext.Accaunt == null)
             {
-                GroundhogContext.TaskLogic.Create(window.Task);
-
-                DateTime date = selectedDate;
-                if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца)
+                MessageBox.Show("Пользователь не авторизирован.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                TaskWindow window = new TaskWindow(null);
+                if (window.ShowDialog() == true)
                 {
-                    int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-                    if (days < window.Task.RepeatValue)
-                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
-                    else
-                        date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, window.Task.RepeatValue);
+                    GroundhogContext.TaskLogic.Create(window.Task);
+
+                    GroundhogContext.TaskInstanceLogic
+                            .Create(new TaskInstance
+                            {
+                                TaskId = window.Task.Id,
+                                Completed = false,
+                                Date = GetDateForTask(window.Task)
+                            });
+
+                    LoadTasks();
                 }
-
-                GroundhogContext.TaskInstanceLogic
-                        .Create(new TaskInstance
-                        {
-                            TaskId = window.Task.Id,
-                            Completed = false,
-                            Date = date
-                        });
-
-                LoadTasks();
             }
         }
 
@@ -132,15 +138,66 @@ namespace GroundhogWindows
             if (viewModel != null)
             {
                 Task task = GroundhogContext.TaskLogic.Read(viewModel.TaskId);
+                RepeatMode repeatMode = task.RepeatMode;
 
                 TaskWindow window = new TaskWindow(task);
                 if (window.ShowDialog() == true)
                 {
-                    GroundhogContext.TaskLogic.Update(window.Task);
+                    if (repeatMode != window.Task.RepeatMode)
+                    {
+                        List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(window.Task.Id);
+                        instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
+
+                        for (int i = 1; i < instances.Count; i++)
+                            GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
+
+                        DateTime date = GetDateForTask(window.Task);
+
+                        if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
+                            instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
+                        {
+                            GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
+
+                            GroundhogContext.TaskInstanceLogic
+                                    .Create(new TaskInstance
+                                    {
+                                        TaskId = window.Task.Id,
+                                        Completed = false,
+                                        Date = date
+                                    });
+                        }
+
+                        GroundhogContext.TaskLogic.Update(window.Task);
+                    }
 
                     LoadTasks();
                 }
             }
+        }
+
+        private DateTime GetDateForTask(Task task)
+        {
+            DateTime date = selectedDate;
+
+            if (task.RepeatMode == RepeatMode.ЧислоМесяца)
+            {
+                int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+                if (days < task.RepeatValue)
+                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
+                else
+                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
+
+                if (date < DateTime.Now)
+                    date = date.AddMonths(1);
+
+                days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
+                if (days < task.RepeatValue)
+                    date = new DateTime(DateTime.Now.Year, date.Month, days);
+                else
+                    date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
+            }
+
+            return date;
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
