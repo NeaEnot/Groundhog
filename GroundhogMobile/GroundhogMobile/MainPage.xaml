@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GroundhogMobile;assembly=Groundhog"
+             x:Class="GroundhogMobile.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <TabbedPage.Children>
+        <local:DatesListPage Title="Список дат"/>
+        <local:CalendarPage Title="Календарь"/>
+    </TabbedPage.Children>
+
+</TabbedPage>

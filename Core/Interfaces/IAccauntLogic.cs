@@ -5,9 +5,9 @@ namespace Core.Interfaces
 {
     public interface IAccauntLogic
     {
-        public void Create(Accaunt model);
-        public List<Accaunt> Read();
-        public void Update(Accaunt model);
-        public void Delete(string id);
+        void Create(Accaunt model);
+        List<Accaunt> Read();
+        void Update(Accaunt model);
+        void Delete(string id);
     }
 }

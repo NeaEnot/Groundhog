@@ -6,10 +6,10 @@ namespace Core.Interfaces
 {
     public interface ITaskInstanceLogic
     {
-        public void Create(TaskInstance model);
-        public List<TaskInstance> Read(DateTime date);
-        public List<TaskInstance> Read(string taskId);
-        public void Update(TaskInstance model);
-        public void Delete(string id);
+        void Create(TaskInstance model);
+        List<TaskInstance> Read(DateTime date);
+        List<TaskInstance> Read(string taskId);
+        void Update(TaskInstance model);
+        void Delete(string id);
     }
 }
