@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker 
+                x:Name="accauntPicker" 
+                ItemDisplayBinding="{Binding Name}" 
+                Title="Выберите аккаунт" 
+                FontSize="20"
+                Margin="20, 50" 
+                SelectedIndexChanged="accauntPicker_SelectedIndexChanged"/>
+
+            <StackLayout Orientation="Horizontal" Margin="20, 50">
+                <Button Text="Создать" FontSize="20" Clicked="ButtonCreate_Clicked"/>
+                <Button Text="Изменить" FontSize="20" Clicked="ButtonUpdate_Clicked"/>
+                <Button Text="Удалить" FontSize="20" Clicked="ButtonDelete_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

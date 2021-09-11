@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.AccauntPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="nameEntry" Placeholder="Имя" FontSize="20" Margin="20, 50" Text="{Binding Name}"/>
+            <Entry x:Name="connectionEntry" Placeholder="Строка подключения" FontSize="20" Margin="20, 50" Text="{Binding ConnectionString}"/>
+            <Button Text="Сохранить" FontSize="20" Margin="20, 50" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

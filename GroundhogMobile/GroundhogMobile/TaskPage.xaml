@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.TaskPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="textEntry" Placeholder="Задача" FontSize="20" Text="{Binding Text}" Margin="10, 20"/>
+            <Picker 
+                x:Name="repeatModePicker"
+                Title="Режим повторения"
+                FontSize="20"
+                Margin="10, 20"
+                SelectedIndexChanged="repeatModePicker_SelectedIndexChanged"/>
+            <Entry x:Name="repeatValueEntry" Placeholder="Значение" FontSize="20" Text="{Binding RepeatValue}" IsVisible="{Binding Repeated}" Margin="10, 20"/>
+            <Button Text="Сохранить" FontSize="20" Margin="10, 20" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

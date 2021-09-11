@@ -11,5 +11,8 @@ namespace GroundhogMobile.Models
         public bool Completed { get; set; }
         //public string Text { get { return GroundhogContext.TaskLogic.Read(TaskId).Text; } }
         public string Text { get; set; }
+        //public bool Repeated { get { return GroundhogContext.TaskLogic.Read(TaskId).RepeatMode != RepeatMode.Нет; } }
+        public bool Repeated { get; set; }
+
     }
 }

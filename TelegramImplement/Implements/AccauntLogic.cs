@@ -20,7 +20,7 @@ namespace TelegramImplement.Implements
             }
 
             MD5 md5 = MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.ConnetionString));
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.ConnectionString));
             model.Id = Convert.ToBase64String(hash);
 
             context.Accaunts
@@ -28,7 +28,7 @@ namespace TelegramImplement.Implements
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    ConnetionString = model.ConnetionString
+                    ConnectionString = model.ConnectionString
                 });
 
             context.Save();
@@ -42,7 +42,7 @@ namespace TelegramImplement.Implements
                 {
                     Id = req.Id,
                     Name = req.Name,
-                    ConnetionString = req.ConnetionString
+                    ConnectionString = req.ConnectionString
                 })
                 .ToList();
         }
@@ -57,7 +57,7 @@ namespace TelegramImplement.Implements
             }
 
             accaunt.Name = model.Name;
-            accaunt.ConnetionString = model.ConnetionString;
+            accaunt.ConnectionString = model.ConnectionString;
 
             context.Save();
         }

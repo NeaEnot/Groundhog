@@ -17,7 +17,7 @@ namespace GroundhogWindows
             if (Accaunt != null)
             {
                 textBoxName.Text = accaunt.Name;
-                textBoxConnection.Text = accaunt.ConnetionString;
+                textBoxConnection.Text = accaunt.ConnectionString;
             }
             else
             {
@@ -33,7 +33,7 @@ namespace GroundhogWindows
                     throw new Exception("Поля должны быть заполнены.");
 
                 Accaunt.Name = textBoxName.Text;
-                Accaunt.ConnetionString = textBoxConnection.Text;
+                Accaunt.ConnectionString = textBoxConnection.Text;
 
                 DialogResult = true;
             }

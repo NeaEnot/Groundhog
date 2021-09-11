@@ -9,6 +9,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <xal:CalendarView x:Name="calendar" FirstDayOfWeek="Monday" Theme="{StaticResource PlanningTheme}" DaySelected="CalendarView_DaySelected" />
+        <xal:CalendarView FirstDayOfWeek="Monday" Theme="{StaticResource PlanningTheme}" DaySelected="CalendarView_DaySelected" />
     </ContentPage.Content>
 </ContentPage>
