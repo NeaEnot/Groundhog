@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using Core;
+using TelegramImplement.Implements;
+using Xamarin.Forms;
 
 namespace GroundhogMobile
 {
@@ -7,6 +9,10 @@ namespace GroundhogMobile
         public App()
         {
             InitializeComponent();
+
+            GroundhogContext.AccauntLogic = new AccauntLogic();
+            GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
+            GroundhogContext.TaskLogic = new TaskLogic();
 
             MainPage = new NavigationPage(new MainPage());
         }

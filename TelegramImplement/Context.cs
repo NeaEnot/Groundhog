@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -45,7 +46,7 @@ namespace TelegramImplement
 
         private void SaveToFile<T>(List<T> list)
         {
-            using (StreamWriter writer = new StreamWriter($"{typeof(T).Name}s.json"))
+            using (StreamWriter writer = new StreamWriter($"{GroundhogContext.StoragePath}\\{typeof(T).Name}s.json"))
             {
                 string json = JsonConvert.SerializeObject(list);
                 writer.Write(json);
@@ -56,7 +57,7 @@ namespace TelegramImplement
         {
             try
             {
-                using (StreamReader reader = new StreamReader($"{typeof(T).Name}s.json"))
+                using (StreamReader reader = new StreamReader($"{GroundhogContext.StoragePath}\\{typeof(T).Name}s.json"))
                 {
                     string json = reader.ReadToEnd();
                     List<T> restored = JsonConvert.DeserializeObject<List<T>>(json);

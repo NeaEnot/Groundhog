@@ -25,7 +25,7 @@ namespace Core
                 {
                     try
                     {
-                        using (StreamReader reader = new StreamReader($"AppSettings.json"))
+                        using (StreamReader reader = new StreamReader($"{StoragePath}\\AppSettings.json"))
                         {
                             string json = reader.ReadToEnd();
                             settings = JsonConvert.DeserializeObject<AppSettings>(json);
@@ -49,11 +49,31 @@ namespace Core
             set
             {
                 settings.AccauntId = value != null ? value.Id : null;
-                using (StreamWriter writer = new StreamWriter($"AppSettings.json"))
+                using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
                 {
                     string json = JsonConvert.SerializeObject(settings);
                     writer.Write(json);
                 }
+            }
+        }
+
+        public static string StoragePath
+        {
+            get
+            {
+                string system = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+                string storagePath;
+
+                if (system.Contains("Microsoft Windows"))
+                    storagePath = "storage";
+                else
+                    storagePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+                DirectoryInfo storage = new DirectoryInfo(storagePath);
+                if (!storage.Exists)
+                    storage.Create();
+
+                return storagePath;
             }
         }
 

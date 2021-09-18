@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core;
+using Core.Enums;
 using GroundhogMobile.Models;
 using System;
 
@@ -11,7 +12,7 @@ namespace GroundhogMobile
     public partial class TaskPage : ContentPage
     {
         public bool IsSuccess { get; private set; } = false;
-        private TaskViewModel model;
+        internal TaskViewModel Model { get; private set; }
 
         private bool isLoaded;
 
@@ -24,7 +25,7 @@ namespace GroundhogMobile
 
             InitializeComponent();
 
-            this.model = model;
+            Model = model;
             BindingContext = model;
 
             repeatModePicker.ItemsSource = Enum.GetValues(typeof(RepeatMode));
@@ -52,9 +53,10 @@ namespace GroundhogMobile
                 }
                 else
                 {
-                    model.Text = textEntry.Text;
-                    model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
-                    model.RepeatValue = int.Parse(repeatValueEntry.Text);
+                    Model.Text = textEntry.Text;
+                    Model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
+                    Model.RepeatValue = int.Parse(repeatValueEntry.Text);
+                    Model.AccauntId = GroundhogContext.Accaunt.Id;
                     IsSuccess = true;
 
                     await Navigation.PopAsync();

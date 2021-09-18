@@ -9,7 +9,7 @@ namespace GroundhogMobile
     public partial class AccauntPage : ContentPage
     {
         public bool IsSuccess { get; private set; } = false;
-        private Accaunt accaunt;
+        public Accaunt Model { get; private set; }
 
         public AccauntPage(Accaunt accaunt)
         {
@@ -18,7 +18,7 @@ namespace GroundhogMobile
 
             InitializeComponent();
 
-            this.accaunt = accaunt;
+            Model = accaunt;
             BindingContext = accaunt;
         }
 
@@ -30,8 +30,8 @@ namespace GroundhogMobile
             }
             else
             {
-                accaunt.Name = nameEntry.Text;
-                accaunt.ConnectionString = connectionEntry.Text;
+                Model.Name = nameEntry.Text;
+                Model.ConnectionString = connectionEntry.Text;
                 IsSuccess = true;
 
                 await Navigation.PopAsync();

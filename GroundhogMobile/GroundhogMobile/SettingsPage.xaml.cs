@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -16,27 +17,35 @@ namespace GroundhogMobile
             LoadData();
         }
 
+        private bool loading;
+
         private void LoadData()
         {
-            List<Accaunt> list = new List<Accaunt>();
+            loading = true;
 
-            for (int i = 0; i < 5; i++)
+            List<Accaunt> list = GroundhogContext.AccauntLogic.Read();
+            accauntPicker.ItemsSource = list;
+
+            if (GroundhogContext.Accaunt != null)
             {
-                list.Add(new Accaunt
+                foreach (Accaunt acc in list)
                 {
-                    Id = i.ToString(),
-                    Name = $"Аккаунт {i}",
-                    ConnectionString = $"Аккаунт {i}"
-                });
+                    if (acc.Id == GroundhogContext.Accaunt.Id)
+                    {
+                        accauntPicker.SelectedItem = acc;
+                        break;
+                    }
+                }
             }
 
-            accauntPicker.ItemsSource = list;
+            loading = false;
         }
 
         private void accauntPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             Accaunt accaunt = accauntPicker.SelectedItem as Accaunt;
-            // TODO
+            if (accaunt != null && !loading)
+                GroundhogContext.Accaunt = accaunt;
         }
 
         private async void ButtonCreate_Clicked(object sender, EventArgs e)
@@ -44,7 +53,14 @@ namespace GroundhogMobile
             Accaunt accaunt = new Accaunt();
 
             AccauntPage page = new AccauntPage(accaunt);
-            page.Disappearing += (sender2, e2) => { if (page.IsSuccess) LoadData(); };
+            page.Disappearing += (sender2, e2) => 
+            {
+                if (page.IsSuccess)
+                {
+                    GroundhogContext.AccauntLogic.Create(page.Model);
+                    LoadData();
+                }
+            };
 
             await Navigation.PushAsync(page);
         }
@@ -54,14 +70,26 @@ namespace GroundhogMobile
             Accaunt accaunt = accauntPicker.SelectedItem as Accaunt;
 
             AccauntPage page = new AccauntPage(accaunt);
-            page.Disappearing += (sender2, e2) => { if (page.IsSuccess) LoadData(); };
+            page.Disappearing += (sender2, e2) => 
+            { 
+                if (page.IsSuccess)
+                {
+                    GroundhogContext.AccauntLogic.Update(page.Model);
+                    LoadData();
+                }
+            };
 
             await Navigation.PushAsync(page);
         }
 
         private void ButtonDelete_Clicked(object sender, EventArgs e)
         {
-
+            Accaunt accaunt = accauntPicker.SelectedItem as Accaunt;
+            if (accaunt != null)
+            {
+                GroundhogContext.AccauntLogic.Delete(accaunt.Id);
+                LoadData();
+            }
         }
     }
 }
