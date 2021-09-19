@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using System;
 using System.Windows;
 
@@ -13,6 +14,8 @@ namespace GroundhogWindows
             InitializeComponent();
 
             Accaunt = accaunt;
+
+            textBoxConnection.ToolTip = GroundhogContext.AccauntLogic.ConnectionStringFormat;
 
             if (Accaunt != null)
             {

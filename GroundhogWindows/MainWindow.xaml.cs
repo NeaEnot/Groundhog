@@ -113,7 +113,7 @@ namespace GroundhogWindows
                             {
                                 TaskId = window.Task.Id,
                                 Completed = false,
-                                Date = GetDateForTask(window.Task)
+                                Date = GroundhogContext.GetDateForTask(window.Task, selectedDate)
                             });
 
                     LoadTasks();
@@ -151,7 +151,7 @@ namespace GroundhogWindows
                         for (int i = 1; i < instances.Count; i++)
                             GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
 
-                        DateTime date = GetDateForTask(window.Task);
+                        DateTime date = GroundhogContext.GetDateForTask(window.Task, selectedDate);
 
                         if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
                             instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
@@ -166,38 +166,13 @@ namespace GroundhogWindows
                                         Date = date
                                     });
                         }
-
-                        GroundhogContext.TaskLogic.Update(window.Task);
                     }
+
+                    GroundhogContext.TaskLogic.Update(window.Task);
 
                     LoadTasks();
                 }
             }
-        }
-
-        private DateTime GetDateForTask(Task task)
-        {
-            DateTime date = selectedDate;
-
-            if (task.RepeatMode == RepeatMode.ЧислоМесяца)
-            {
-                int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-                if (days < task.RepeatValue)
-                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
-                else
-                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
-
-                if (date < DateTime.Now)
-                    date = date.AddMonths(1);
-
-                days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
-                if (days < task.RepeatValue)
-                    date = new DateTime(DateTime.Now.Year, date.Month, days);
-                else
-                    date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
-            }
-
-            return date;
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)

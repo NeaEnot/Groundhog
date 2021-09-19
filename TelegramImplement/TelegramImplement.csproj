@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="TLSharp" Version="0.1.0.574" />
   </ItemGroup>
 
   <ItemGroup>

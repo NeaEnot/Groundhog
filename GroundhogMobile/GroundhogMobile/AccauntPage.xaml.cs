@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +18,8 @@ namespace GroundhogMobile
                 throw new ArgumentNullException("При создании нового аккаунта необходимо передавать новый объект с пустыми полями.");
 
             InitializeComponent();
+
+            connectionEntry.Placeholder = GroundhogContext.AccauntLogic.ConnectionStringFormat;
 
             Model = accaunt;
             BindingContext = accaunt;

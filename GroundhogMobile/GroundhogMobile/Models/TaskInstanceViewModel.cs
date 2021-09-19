@@ -35,7 +35,7 @@ namespace GroundhogMobile.Models
         public string TextColor { get { return Completed ? "Gray" : "Black"; } }
         public TextDecorations TextDecorations { get { return Completed ? TextDecorations.Strikethrough : TextDecorations.None; } }
 
-        public TaskInstanceViewModel(TaskInstance instance = null, Task task = null)
+        internal TaskInstanceViewModel(TaskInstance instance = null, Task task = null)
         {
             if (instance != null)
             {

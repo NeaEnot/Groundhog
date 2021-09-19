@@ -12,7 +12,7 @@ namespace GroundhogMobile.Models
         public int RepeatValue { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
 
-        public Task Task
+        internal Task Task
         { 
             get
             {
@@ -27,7 +27,7 @@ namespace GroundhogMobile.Models
             }
         }
 
-        public TaskViewModel(Task task = null)
+        internal TaskViewModel(Task task = null)
         {
             if (task != null)
             {

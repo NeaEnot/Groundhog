@@ -14,6 +14,7 @@ namespace Core
         public static IAccauntLogic AccauntLogic { get; set; }
         public static ITaskInstanceLogic TaskInstanceLogic  { get; set; }
         public static ITaskLogic TaskLogic { get; set; }
+        public static INetworkLogic NetworkLogic { get; set; }
 
         private static AppSettings settings;
 
@@ -112,6 +113,31 @@ namespace Core
                     }
                 }
             }
+        }
+
+        public static DateTime GetDateForTask(Task task, DateTime selectedDate)
+        {
+            DateTime date = selectedDate;
+
+            if (task.RepeatMode == RepeatMode.ЧислоМесяца)
+            {
+                int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+                if (days < task.RepeatValue)
+                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
+                else
+                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
+
+                if (date < DateTime.Now)
+                    date = date.AddMonths(1);
+
+                days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
+                if (days < task.RepeatValue)
+                    date = new DateTime(DateTime.Now.Year, date.Month, days);
+                else
+                    date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
+            }
+
+            return date;
         }
     }
 }

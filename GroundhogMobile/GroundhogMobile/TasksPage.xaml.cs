@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Enums;
 using Core.Models;
 using GroundhogMobile.Models;
 using System;
@@ -66,7 +67,7 @@ namespace GroundhogMobile
                                 {
                                     TaskId = task.Id,
                                     Completed = false,
-                                    Date = date
+                                    Date = GroundhogContext.GetDateForTask(task, date)
                                 });
                         LoadData();
                     }
@@ -79,12 +80,39 @@ namespace GroundhogMobile
         public ICommand MenuItemUpdate =>
             new Command<TaskInstanceViewModel>(async (instanceModel) =>
             {
-                TaskPage page = new TaskPage(new TaskViewModel(GroundhogContext.TaskLogic.Read(instanceModel.TaskId)));
+                Task task = GroundhogContext.TaskLogic.Read(instanceModel.TaskId);
+                TaskPage page = new TaskPage(new TaskViewModel(task));
+                RepeatMode repeatMode = task.RepeatMode;
 
                 page.Disappearing += (sender2, e2) =>
                 {
                     if (page.IsSuccess)
                     {
+                        if (repeatMode != page.Model.Task.RepeatMode)
+                        {
+                            List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(page.Model.Task.Id);
+                            instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
+
+                            for (int i = 1; i < instances.Count; i++)
+                                GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
+
+                            DateTime computedDate = GroundhogContext.GetDateForTask(page.Model.Task, date);
+
+                            if (page.Model.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
+                                instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
+                            {
+                                GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
+
+                                GroundhogContext.TaskInstanceLogic
+                                        .Create(new TaskInstance
+                                        {
+                                            TaskId = page.Model.Task.Id,
+                                            Completed = false,
+                                            Date = date
+                                        });
+                            }
+                        }
+
                         GroundhogContext.TaskLogic.Update(page.Model.Task);
                         LoadData();
                     }

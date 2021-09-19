@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TelegramImplement.Implements
 {
@@ -12,15 +13,18 @@ namespace TelegramImplement.Implements
     {
         private Context context = Context.Instanse;
 
+        public Regex ConnectionStringExpr => new Regex(@"^api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");
+        public string ConnectionStringFormat => "api_id=00000;api_hash=xx00x;channel=xxxxx";
+
         public void Create(Accaunt model)
         {
             if (context.Accaunts.Count(req => req.Name == model.Name) > 0)
-            {
                 throw new Exception("Аккаунт с таким именем уже существует.");
-            }
+            if (!ConnectionStringExpr.IsMatch(model.ConnectionString))
+                throw new Exception("Строка подключения не соответствует формату.");
 
             MD5 md5 = MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.ConnectionString));
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.Name + " " + model.ConnectionString));
             model.Id = Convert.ToBase64String(hash);
 
             context.Accaunts

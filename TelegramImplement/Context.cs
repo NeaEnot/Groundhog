@@ -3,6 +3,9 @@ using Core.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading;
+using TLSharp.Core;
 
 namespace TelegramImplement
 {
@@ -10,9 +13,11 @@ namespace TelegramImplement
     {
         private static Context instance;
 
-        public List<Accaunt> Accaunts { get; private set; }
-        public List<Task> Tasks { get; private set; }
-        public List<TaskInstance> TaskInstances { get; private set; }
+        private TelegramClient client;
+
+        internal List<Accaunt> Accaunts { get; private set; }
+        internal List<Task> Tasks { get; private set; }
+        internal List<TaskInstance> TaskInstances { get; private set; }
 
         private Context()
         {
@@ -37,11 +42,15 @@ namespace TelegramImplement
             SaveToFile(TaskInstances);
         }
 
-        internal void Load()
+        internal async void Load()
         {
             Accaunts = LoadFromFile<Accaunt>();
-            Tasks = LoadFromFile<Task>();
-            TaskInstances = LoadFromFile<TaskInstance>();
+            await System.Threading.Tasks.Task.Run(() =>
+            {
+                Thread.Sleep(500);
+                Tasks = LoadFromFile<Task>();
+                TaskInstances = LoadFromFile<TaskInstance>();
+            });
         }
 
         private void SaveToFile<T>(List<T> list)
@@ -69,5 +78,21 @@ namespace TelegramImplement
                 return new List<T>();
             }
         }
+
+        //private async System.Threading.Tasks.Task ConnectToTelegram()
+        //{
+        //    Accaunt accaunt = GroundhogContext.Accaunt;
+        //    if (accaunt != null)
+        //    {
+        //        GroupCollection groups = GroundhogContext.AccauntLogic.ConnectionStringExpr.Match(accaunt.ConnectionString).Groups;
+
+        //        int api_id = int.Parse(groups["api_id"].Value);
+        //        string api_hash = groups["api_hash"].Value;
+        //        string channel = groups["channel"].Value;
+
+        //        client = new TelegramClient(api_id, api_hash);
+        //        await client.ConnectAsync();
+        //    }
+        //}
     }
 }
