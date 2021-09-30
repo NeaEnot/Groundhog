@@ -13,8 +13,8 @@ namespace TelegramImplement.Implements
     {
         private Context context = Context.Instanse;
 
-        public Regex ConnectionStringExpr => new Regex(@"^api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");
-        public string ConnectionStringFormat => "api_id=00000;api_hash=xx00x;channel=xxxxx";
+        public Regex ConnectionStringExpr => new Regex(@"^phone=(?<phone>\d{11});api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");
+        public string ConnectionStringFormat => "phone=00000000000;api_id=00000;api_hash=xx00x;channel=xxxxx";
 
         public void Create(Accaunt model)
         {

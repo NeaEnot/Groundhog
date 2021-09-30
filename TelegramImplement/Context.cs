@@ -13,8 +13,6 @@ namespace TelegramImplement
     {
         private static Context instance;
 
-        private TelegramClient client;
-
         internal List<Accaunt> Accaunts { get; private set; }
         internal List<Task> Tasks { get; private set; }
         internal List<TaskInstance> TaskInstances { get; private set; }
@@ -37,62 +35,32 @@ namespace TelegramImplement
 
         internal void Save()
         {
-            SaveToFile(Accaunts);
-            SaveToFile(Tasks);
-            SaveToFile(TaskInstances);
-        }
-
-        internal async void Load()
-        {
-            Accaunts = LoadFromFile<Accaunt>();
-            await System.Threading.Tasks.Task.Run(() =>
+            using (StreamWriter writer = new StreamWriter($"{GroundhogContext.StoragePath}\\storage.json"))
             {
-                Thread.Sleep(500);
-                Tasks = LoadFromFile<Task>();
-                TaskInstances = LoadFromFile<TaskInstance>();
-            });
-        }
-
-        private void SaveToFile<T>(List<T> list)
-        {
-            using (StreamWriter writer = new StreamWriter($"{GroundhogContext.StoragePath}\\{typeof(T).Name}s.json"))
-            {
-                string json = JsonConvert.SerializeObject(list);
+                string json = JsonConvert.SerializeObject((Accaunts, Tasks, TaskInstances));
                 writer.Write(json);
             }
         }
 
-        private List<T> LoadFromFile<T>()
+        internal void Load()
         {
             try
             {
-                using (StreamReader reader = new StreamReader($"{GroundhogContext.StoragePath}\\{typeof(T).Name}s.json"))
+                using (StreamReader reader = new StreamReader($"{GroundhogContext.StoragePath}\\storage.json"))
                 {
                     string json = reader.ReadToEnd();
-                    List<T> restored = JsonConvert.DeserializeObject<List<T>>(json);
-                    return restored ?? new List<T>();
+                    (List<Accaunt>, List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Accaunt>, List<Task>, List<TaskInstance>)>(json);
+                    Accaunts = restored.Item1;
+                    Tasks = restored.Item2;
+                    TaskInstances = restored.Item3;
                 }
             }
             catch
             {
-                return new List<T>();
+                Accaunts = new List<Accaunt>();
+                Tasks = new List<Task>();
+                TaskInstances = new List<TaskInstance>();
             }
         }
-
-        //private async System.Threading.Tasks.Task ConnectToTelegram()
-        //{
-        //    Accaunt accaunt = GroundhogContext.Accaunt;
-        //    if (accaunt != null)
-        //    {
-        //        GroupCollection groups = GroundhogContext.AccauntLogic.ConnectionStringExpr.Match(accaunt.ConnectionString).Groups;
-
-        //        int api_id = int.Parse(groups["api_id"].Value);
-        //        string api_hash = groups["api_hash"].Value;
-        //        string channel = groups["channel"].Value;
-
-        //        client = new TelegramClient(api_id, api_hash);
-        //        await client.ConnectAsync();
-        //    }
-        //}
     }
 }
