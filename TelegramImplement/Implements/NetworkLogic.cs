@@ -11,7 +11,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using TeleSharp.TL;
 using TeleSharp.TL.Channels;
-using TeleSharp.TL.Contacts;
 using TeleSharp.TL.Messages;
 using TeleSharp.TL.Upload;
 using TLSharp.Core;
