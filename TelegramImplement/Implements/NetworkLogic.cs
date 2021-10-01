@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using TeleSharp.TL;
+using TeleSharp.TL.Channels;
 using TeleSharp.TL.Contacts;
 using TeleSharp.TL.Messages;
 using TeleSharp.TL.Upload;
@@ -24,6 +25,7 @@ namespace TelegramImplement.Implements
         private Context context = Context.Instanse;
         private TelegramClient client;
 
+        private Accaunt currentAccaunt = null;
         private TLChannel channel;
         private TLChannel Channel
         {
@@ -44,17 +46,28 @@ namespace TelegramImplement.Implements
 
                     Thread.Sleep(5100);
 
-                    channel = task.Result.Chats[0] as TLChannel;
+                    if (task.Result.Chats.Count > 0)
+                    {
+                        channel = task.Result.Chats[0] as TLChannel;
+                    }
+                    else
+                    {
+                        Task<TLUpdates> createTask = client.SendRequestAsync<TLUpdates>(new TLRequestCreateChannel
+                        {
+                            Title = channelName,
+                            About = "Частный канал для облачного хранения данных приложения Groundhog.",
+                            Broadcast = false,
+                            Megagroup = false
+                        });
+
+                        createTask.Wait();
+
+                        channel = createTask.Result.Chats[0] as TLChannel;
+                    }
                 }
 
                 return channel;
             }
-        }
-
-        public void Sinchronize(Accaunt accaunt)
-        {
-            if (client == null)
-                throw new Exception("Не было выполнено подключение.");
         }
 
         public void Connect(Func<string> getCode)
@@ -86,6 +99,7 @@ namespace TelegramImplement.Implements
                 }
 
                 this.client = client;
+                currentAccaunt = GroundhogContext.Accaunt;
             }
             catch (Exception ex)
             {
@@ -93,61 +107,87 @@ namespace TelegramImplement.Implements
             }
         }
 
-        private (List<Accaunt>, List<Task>, List<TaskInstance>) Load()
+        public bool IsConnected()
         {
-            Task<TLAbsMessages> msgsTask = client.GetHistoryAsync(new TLInputPeerChannel { ChannelId = Channel.Id, AccessHash = Channel.AccessHash.Value }, limit: 100);
-            msgsTask.Wait();
-            TLMessage msg = 
-                (msgsTask.Result as TLChannelMessages)
-                .Messages
-                .FirstOrDefault(req => 
-                    req is TLMessage && (req as TLMessage).Media is TLMessageMediaDocument)
-                as TLMessage;
+            return currentAccaunt != null && currentAccaunt.ConnectionString == GroundhogContext.Accaunt.ConnectionString;
+        }
 
-            Thread.Sleep(5100);
-
-            if (msg != null)
+        public void Load()
+        {
+            try
             {
-                TLDocument doc = (msg.Media as TLMessageMediaDocument).Document as TLDocument;
-                var response = client.GetFile(new TLInputDocumentFileLocation
+                if (client == null)
+                    throw new Exception("Не было выполнено подключение.");
+
+                Task<TLAbsMessages> msgsTask = client.GetHistoryAsync(new TLInputPeerChannel { ChannelId = Channel.Id, AccessHash = Channel.AccessHash.Value }, limit: 100);
+                msgsTask.Wait();
+                TLMessage msg =
+                    (msgsTask.Result as TLChannelMessages)
+                    .Messages
+                    .FirstOrDefault(req =>
+                        req is TLMessage && (req as TLMessage).Media is TLMessageMediaDocument)
+                    as TLMessage;
+
+                Thread.Sleep(5100);
+
+                if (msg != null)
                 {
-                    Id = doc.Id,
-                    AccessHash = doc.AccessHash
-                }, 1024 * 256);
+                    TLDocument doc = (msg.Media as TLMessageMediaDocument).Document as TLDocument;
+                    var response = client.GetFile(new TLInputDocumentFileLocation
+                    {
+                        Id = doc.Id,
+                        AccessHash = doc.AccessHash
+                    }, 1024 * 256);
 
-                response.Wait();
+                    response.Wait();
 
-                TLFile file = response.Result;
+                    TLFile file = response.Result;
 
-                string json = System.Text.Encoding.UTF8.GetString(file.Bytes);
+                    string json = System.Text.Encoding.UTF8.GetString(file.Bytes);
 
-                return JsonConvert.DeserializeObject<(List<Accaunt>, List<Task>, List<TaskInstance>)>(json);
+                    (List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>)>(json);
+                    context.Accaunts = restored.Item1;
+                    context.Tasks = restored.Item2;
+                    context.TaskInstances = restored.Item3;
+
+                    context.Save();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return (null, null, null);
+                throw new Exception("Не удалось загрузить данные: " + ex.Message);
             }
         }
 
-        private void Send()
+        public void Upload()
         {
-            Task<TLAbsInputFile> fileTask = client.UploadFile("storage.json", new StreamReader($"{GroundhogContext.StoragePath}\\storage.json"));
-            fileTask.Wait();
-            TLAbsInputFile fileResult = fileTask.Result;
+            try
+            {
+                if (client == null)
+                    throw new Exception("Не было выполнено подключение.");
 
-            Thread.Sleep(5100);
+                Task<TLAbsInputFile> fileTask = client.UploadFile("storage.json", new StreamReader($"{GroundhogContext.StoragePath}\\storage.json"));
+                fileTask.Wait();
+                TLAbsInputFile fileResult = fileTask.Result;
 
-            TLDocumentAttributeFilename attr = new TLDocumentAttributeFilename { FileName = "storage.json" };
+                Thread.Sleep(5100);
 
-            Task<TLAbsUpdates> responseDoc = client.SendUploadedDocument(
-                new TLInputPeerChannel { ChannelId = Channel.Id, AccessHash = Channel.AccessHash.Value },
-                fileResult,
-                "",
-                "text/json",
-                new TLVector<TLAbsDocumentAttribute> { attr });
-            responseDoc.Wait();
+                TLDocumentAttributeFilename attr = new TLDocumentAttributeFilename { FileName = "storage.json" };
 
-            Thread.Sleep(5100);
+                Task<TLAbsUpdates> responseDoc = client.SendUploadedDocument(
+                    new TLInputPeerChannel { ChannelId = Channel.Id, AccessHash = Channel.AccessHash.Value },
+                    fileResult,
+                    "",
+                    "text/json",
+                    new TLVector<TLAbsDocumentAttribute> { attr });
+                responseDoc.Wait();
+
+                Thread.Sleep(5100);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Не удалось отправить данные: " + ex.Message);
+            }
         }
     }
 }

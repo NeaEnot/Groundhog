@@ -1,11 +1,12 @@
-﻿using Core.Models;
-using System;
+﻿using System;
 
 namespace Core.Interfaces
 {
     public interface INetworkLogic
     {
-        void Sinchronize(Accaunt accaunt);
         void Connect(Func<string> getCode);
+        bool IsConnected();
+        void Load();
+        void Upload();
     }
 }

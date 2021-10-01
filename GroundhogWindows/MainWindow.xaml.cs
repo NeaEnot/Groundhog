@@ -201,5 +201,54 @@ namespace GroundhogWindows
                 LoadTasks();
             }
         }
+
+        private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (GroundhogContext.Accaunt == null)
+                    throw new Exception("Пользователь не авторизирован.");
+
+                ConnectIfNot();
+                GroundhogContext.NetworkLogic.Load();
+                LoadTasks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MenuItemUpload_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (GroundhogContext.Accaunt == null)
+                    throw new Exception("Пользователь не авторизирован.");
+
+                ConnectIfNot();
+                GroundhogContext.NetworkLogic.Upload();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ConnectIfNot()
+        {
+            if (!GroundhogContext.NetworkLogic.IsConnected())
+            {
+                Func<string> f = () =>
+                {
+                    CodeWindow window = new CodeWindow();
+                    if (window.ShowDialog() == true)
+                        return window.Code;
+                    throw new Exception("Код не получен.");
+                };
+
+                GroundhogContext.NetworkLogic.Connect(f);
+            }
+        }
     }
 }

@@ -13,9 +13,9 @@ namespace TelegramImplement
     {
         private static Context instance;
 
-        internal List<Accaunt> Accaunts { get; private set; }
-        internal List<Task> Tasks { get; private set; }
-        internal List<TaskInstance> TaskInstances { get; private set; }
+        internal List<Accaunt> Accaunts { get; set; }
+        internal List<Task> Tasks { get; set; }
+        internal List<TaskInstance> TaskInstances { get; set; }
 
         private Context()
         {
