@@ -36,19 +36,14 @@ namespace TelegramImplement.Implements
                     GroupCollection groups = GroundhogContext.AccauntLogic.ConnectionStringExpr.Match(GroundhogContext.Accaunt.ConnectionString).Groups;
                     string channelName = groups["channel"].Value;
 
-                    Task<TLResolvedPeer> task =
-                        client.SendRequestAsync<TLResolvedPeer>(
-                            new TLRequestResolveUsername
-                            {
-                                Username = channelName
-                            });
+                    Task<TLAbsDialogs> task = client.GetUserDialogsAsync();
                     task.Wait();
 
                     Thread.Sleep(5100);
 
-                    if (task.Result.Chats.Count > 0)
+                    if ((task.Result as TLDialogs).Chats.Count > 0)
                     {
-                        channel = task.Result.Chats[0] as TLChannel;
+                        channel = (task.Result as TLDialogs).Chats[0] as TLChannel;
                     }
                     else
                     {
