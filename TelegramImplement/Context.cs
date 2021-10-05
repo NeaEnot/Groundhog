@@ -3,9 +3,6 @@ using Core.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading;
-using TLSharp.Core;
 
 namespace TelegramImplement
 {
