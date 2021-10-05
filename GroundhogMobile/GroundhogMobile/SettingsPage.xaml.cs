@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Models;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -89,6 +90,61 @@ namespace GroundhogMobile
             {
                 GroundhogContext.AccauntLogic.Delete(accaunt.Id);
                 LoadData();
+            }
+        }
+
+        private async void ButtonLoad_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await System.Threading.Tasks.Task.Run(() =>
+                {
+                    if (GroundhogContext.Accaunt == null)
+                        throw new Exception("Пользователь не авторизирован.");
+
+                    ConnectIfNot();
+                    GroundhogContext.NetworkLogic.Load();
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", ex.Message, "Ок");
+            }
+        }
+
+        private async void ButtonSend_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await System.Threading.Tasks.Task.Run(() =>
+                {
+                    if (GroundhogContext.Accaunt == null)
+                        throw new Exception("Пользователь не авторизирован.");
+
+                    ConnectIfNot();
+                    GroundhogContext.NetworkLogic.Upload();
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", ex.Message, "Ок");
+            }
+        }
+
+        private async void ConnectIfNot()
+        {
+            if (!GroundhogContext.NetworkLogic.IsConnected())
+            {
+                Func<string> f = () =>
+                {
+                    CodePage page = new CodePage();
+                    Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
+                    string code = "";
+                    System.Threading.Tasks.Task.Run(async () => code = await page.Code).Wait();
+                    return code;
+                };
+
+                GroundhogContext.NetworkLogic.Connect(f);
             }
         }
     }

@@ -9,14 +9,17 @@
                 ItemDisplayBinding="{Binding Name}" 
                 Title="Выберите аккаунт" 
                 FontSize="20"
-                Margin="20, 50" 
+                Margin="20, 20" 
                 SelectedIndexChanged="accauntPicker_SelectedIndexChanged"/>
 
-            <StackLayout Orientation="Horizontal" Margin="20, 50">
+            <StackLayout Orientation="Horizontal" Margin="20, 20">
                 <Button Text="Создать" FontSize="20" Clicked="ButtonCreate_Clicked"/>
                 <Button Text="Изменить" FontSize="20" Clicked="ButtonUpdate_Clicked"/>
                 <Button Text="Удалить" FontSize="20" Clicked="ButtonDelete_Clicked"/>
             </StackLayout>
+
+            <Button Text="Загрузить" FontSize="20" Clicked="ButtonLoad_Clicked"/>
+            <Button Text="Отправить" FontSize="20" Clicked="ButtonSend_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

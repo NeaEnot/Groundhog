@@ -8,11 +8,17 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+//using TeleSharp.TL;
+//using TeleSharp.TL.Channels;
+//using TeleSharp.TL.Messages;
+//using TeleSharp.TL.Upload;
 using TLSchema;
 using TLSchema.Channels;
 using TLSchema.Messages;
 using TLSchema.Upload;
 using TLSharp;
+//using TLSharp.Core;
+//using TLSharp.Core.Utils;
 using TLSharp.Utils;
 using Task = System.Threading.Tasks.Task;
 
@@ -20,7 +26,7 @@ namespace TelegramImplement.Implements
 {
     public class NetworkLogic : INetworkLogic
     {
-        private int sleepTime = 1000;
+        private int sleepTime = 5000;
 
         private Context context = Context.Instanse;
         private TelegramClient client;
@@ -77,7 +83,7 @@ namespace TelegramImplement.Implements
                 int api_id = int.Parse(groups["api_id"].Value);
                 string api_hash = groups["api_hash"].Value;
 
-                TelegramClient client = new TelegramClient(api_id, api_hash);
+                TelegramClient client = new TelegramClient(api_id, api_hash, sessionUserId: GroundhogContext.StoragePath + "\\session");
                 Task.Run(() => client.ConnectAsync()).Wait();
 
                 if (!client.IsUserAuthorized())
@@ -143,7 +149,8 @@ namespace TelegramImplement.Implements
                         TLInputDocumentFileLocation input = new TLInputDocumentFileLocation
                         {
                             Id = doc.Id,
-                            AccessHash = doc.AccessHash
+                            AccessHash = doc.AccessHash,
+                            Version = doc.Version
                         };
 
                         file = await client.GetFile(input, 1024 * 256);
@@ -190,7 +197,7 @@ namespace TelegramImplement.Implements
                         new TLInputPeerChannel 
                         { 
                             ChannelId = Channel.Id, 
-                            AccessHash = Channel.AccessHash.Value 
+                            AccessHash = Channel.AccessHash.Value
                         },
                         file,
                         "",
