@@ -1,6 +1,6 @@
 ﻿using Core;
 using System.Windows;
-using TelegramImplement.Implements;
+using NetworkTelegram.Implements;
 
 namespace GroundhogWindows
 {

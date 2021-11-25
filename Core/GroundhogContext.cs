@@ -82,6 +82,8 @@ namespace Core
         {
             if (Accaunt != null)
             {
+                List<TaskInstance> models = new List<TaskInstance>();
+
                 List<Task> tasks = TaskLogic.Read(Accaunt);
                 foreach (Task task in tasks)
                 {
@@ -108,10 +110,12 @@ namespace Core
                                 Completed = false
                             };
 
-                            TaskInstanceLogic.Create(model);
+                            models.Add(model);
                         }
                     }
                 }
+
+                TaskInstanceLogic.Create(models);
             }
         }
 

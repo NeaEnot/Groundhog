@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TelegramImplement.Implements
+namespace NetworkTelegram.Implements
 {
     public class TaskInstanceLogic : ITaskInstanceLogic
     {
@@ -21,6 +21,24 @@ namespace TelegramImplement.Implements
                     TaskId = model.TaskId,
                     Completed = model.Completed
                 });
+
+            context.Save();
+        }
+
+        public void Create(List<TaskInstance> models)
+        {
+            foreach (TaskInstance model in models)
+            {
+                model.Id = Guid.NewGuid().ToString();
+                context.TaskInstances
+                    .Add(new TaskInstance
+                    {
+                        Id = model.Id,
+                        Date = model.Date,
+                        TaskId = model.TaskId,
+                        Completed = model.Completed
+                    });
+            }
 
             context.Save();
         }

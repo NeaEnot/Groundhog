@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TelegramImplement.Implements
+namespace NetworkTelegram.Implements
 {
     public class TaskLogic : ITaskLogic
     {

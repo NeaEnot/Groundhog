@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace TelegramImplement.Implements
+namespace NetworkTelegram.Implements
 {
     public class AccauntLogic : IAccauntLogic
     {

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31321.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroundhogWindows", "GroundhogWindows\GroundhogWindows.csproj", "{B2F13788-8A43-4E39-B5A7-36AA8C3973B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{6A23DAFB-535A-4B34-BFFD-2C94C3BFB6F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramImplement", "TelegramImplement\TelegramImplement.csproj", "{261CF039-7C93-4FCC-9333-207383F81E41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkTelegram", "NetworkTelegram\NetworkTelegram.csproj", "{261CF039-7C93-4FCC-9333-207383F81E41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroundhogMobile.Android", "GroundhogMobile\GroundhogMobile.Android\GroundhogMobile.Android.csproj", "{F1B3B09B-F05C-46B7-9B2C-8BABF810C79B}"
 EndProject

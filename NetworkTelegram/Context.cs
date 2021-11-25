@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace TelegramImplement
+namespace NetworkTelegram
 {
     internal class Context
     {

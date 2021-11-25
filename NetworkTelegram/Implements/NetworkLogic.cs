@@ -8,21 +8,15 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
-//using TeleSharp.TL;
-//using TeleSharp.TL.Channels;
-//using TeleSharp.TL.Messages;
-//using TeleSharp.TL.Upload;
 using TLSchema;
 using TLSchema.Channels;
 using TLSchema.Messages;
 using TLSchema.Upload;
 using TLSharp;
-//using TLSharp.Core;
-//using TLSharp.Core.Utils;
 using TLSharp.Utils;
 using Task = System.Threading.Tasks.Task;
 
-namespace TelegramImplement.Implements
+namespace NetworkTelegram.Implements
 {
     public class NetworkLogic : INetworkLogic
     {
