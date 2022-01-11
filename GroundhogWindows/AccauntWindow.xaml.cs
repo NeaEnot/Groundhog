@@ -15,7 +15,7 @@ namespace GroundhogWindows
 
             Accaunt = accaunt;
 
-            textBoxConnection.ToolTip = GroundhogContext.AccauntLogic.ConnectionStringFormat;
+            textBoxConnection.ToolTip = GroundhogContext.NetworkLogic.ConnectionStringFormat;
 
             if (Accaunt != null)
             {
@@ -34,6 +34,8 @@ namespace GroundhogWindows
             {
                 if (string.IsNullOrWhiteSpace(textBoxName.Text) || string.IsNullOrWhiteSpace(textBoxConnection.Text))
                     throw new Exception("Поля должны быть заполнены.");
+                if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(textBoxConnection.Text))
+                    throw new Exception("Строка подключения не соответствует формату.");
 
                 Accaunt.Name = textBoxName.Text;
                 Accaunt.ConnectionString = textBoxConnection.Text;

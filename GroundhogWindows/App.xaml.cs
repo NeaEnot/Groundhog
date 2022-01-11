@@ -1,6 +1,6 @@
 ﻿using Core;
 using System.Windows;
-using NetworkTelegram;
+using NetworkVk;
 using StorageFile.Implements;
 
 namespace GroundhogWindows

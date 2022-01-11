@@ -20,8 +20,6 @@ namespace StorageFile.Implements
         {
             if (context.Accaunts.Count(req => req.Name == model.Name) > 0)
                 throw new Exception("Аккаунт с таким именем уже существует.");
-            if (!ConnectionStringExpr.IsMatch(model.ConnectionString))
-                throw new Exception("Строка подключения не соответствует формату.");
 
             MD5 md5 = MD5.Create();
             byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(model.Name + " " + model.ConnectionString));

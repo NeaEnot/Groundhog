@@ -20,6 +20,11 @@ namespace NetworkTelegram
 {
     public class NetworkLogic : INetworkLogic
     {
+        private static Regex connectionStringExpr = new Regex(@"^phone=(?<phone>\d{11});api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");
+
+        public Regex ConnectionStringExpr => connectionStringExpr;
+        public string ConnectionStringFormat => "phone=00000000000;api_id=00000;api_hash=xx00x;channel=xxxxx";
+
         private int sleepTime = 5000;
 
         private TelegramClient client;
