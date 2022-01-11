@@ -16,13 +16,12 @@ using TLSharp;
 using TLSharp.Utils;
 using Task = System.Threading.Tasks.Task;
 
-namespace NetworkTelegram.Implements
+namespace NetworkTelegram
 {
     public class NetworkLogic : INetworkLogic
     {
         private int sleepTime = 5000;
 
-        private Context context = Context.Instanse;
         private TelegramClient client;
 
         private Accaunt currentAccaunt = null;
@@ -155,11 +154,13 @@ namespace NetworkTelegram.Implements
                     (List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>) restored = 
                         JsonConvert.DeserializeObject<(List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>)>(json);
 
-                    context.Accaunts = restored.Item1;
-                    context.Tasks = restored.Item2;
-                    context.TaskInstances = restored.Item3;
+                    //GroundhogContext.AccauntLogic.Delete();
+                    //context.Accaunts = restored.Item1;
 
-                    context.Save();
+                    GroundhogContext.TaskLogic.Delete(null);
+                    GroundhogContext.TaskLogic.Create(restored.Item2);
+                    GroundhogContext.TaskInstanceLogic.Delete(null);
+                    GroundhogContext.TaskInstanceLogic.Create(restored.Item3);
                 }
             }
             catch (Exception ex)

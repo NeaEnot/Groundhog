@@ -20,7 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
-    <ProjectReference Include="..\..\TelegramImplement\NetworkTelegram.csproj" />
+    <ProjectReference Include="..\..\NetworkTelegram\NetworkTelegram.csproj" />
+    <ProjectReference Include="..\..\StorageFile\StorageFile.csproj" />
   </ItemGroup>
 
   <ItemGroup>

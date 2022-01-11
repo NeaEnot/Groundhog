@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NetworkTelegram.Implements
+namespace StorageFile.Implements
 {
     public class TaskInstanceLogic : ITaskInstanceLogic
     {
@@ -89,14 +89,21 @@ namespace NetworkTelegram.Implements
 
         public void Delete(string id)
         {
-            TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == id);
-
-            if (instance == null)
+            if (id == null)
             {
-                throw new Exception("Экземпляра задачи с данным Id не существует.");
+                context.TaskInstances.Clear();
             }
+            else
+            {
+                TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == id);
 
-            context.TaskInstances.Remove(instance);
+                if (instance == null)
+                {
+                    throw new Exception("Экземпляра задачи с данным Id не существует.");
+                }
+
+                context.TaskInstances.Remove(instance);
+            }
 
             context.Save();
         }

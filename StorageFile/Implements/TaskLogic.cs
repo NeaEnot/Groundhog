@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace NetworkTelegram.Implements
+namespace StorageFile.Implements
 {
     public class TaskLogic : ITaskLogic
     {
@@ -22,6 +22,27 @@ namespace NetworkTelegram.Implements
                     RepeatMode = model.RepeatMode,
                     RepeatValue = model.RepeatValue,
                 });
+
+            context.Save();
+        }
+
+        public void Create(List<Task> models)
+        {
+            foreach (Task model in models)
+            {
+                if (string.IsNullOrEmpty(model.Id))
+                    model.Id = Guid.NewGuid().ToString();
+
+                context.Tasks
+                    .Add(new Task
+                    {
+                        Id = model.Id,
+                        AccauntId = model.AccauntId,
+                        Text = model.Text,
+                        RepeatMode = model.RepeatMode,
+                        RepeatValue = model.RepeatValue,
+                    });
+            }
 
             context.Save();
         }
@@ -76,14 +97,21 @@ namespace NetworkTelegram.Implements
 
         public void Delete(string id)
         {
-            Task task = context.Tasks.FirstOrDefault(req => req.Id == id);
-
-            if (task == null)
+            if (id == null)
             {
-                throw new Exception("Задачи с данным Id не существует.");
+                context.Tasks.Clear();
             }
+            else
+            {
+                Task task = context.Tasks.FirstOrDefault(req => req.Id == id);
 
-            context.Tasks.Remove(task);
+                if (task == null)
+                {
+                    throw new Exception("Задачи с данным Id не существует.");
+                }
+
+                context.Tasks.Remove(task);
+            }
 
             context.Save();
         }

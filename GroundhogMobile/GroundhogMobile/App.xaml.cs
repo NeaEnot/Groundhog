@@ -1,5 +1,6 @@
 ﻿using Core;
-using TelegramImplement.Implements;
+using NetworkTelegram;
+using StorageFile.Implements;
 using Xamarin.Forms;
 
 namespace GroundhogMobile

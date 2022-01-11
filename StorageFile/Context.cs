@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace NetworkTelegram
+namespace StorageFile
 {
     internal class Context
     {
