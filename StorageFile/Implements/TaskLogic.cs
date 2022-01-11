@@ -12,7 +12,7 @@ namespace StorageFile.Implements
 
         public void Create(Task model)
         {
-            model.Id = Guid.NewGuid().ToString();
+            model.Id = IdHelper.GetNextId(IdHelper.GetMaxId(context.Tasks.Select(req => req.Id).ToList()));
             context.Tasks
                 .Add(new Task
                 {
@@ -28,10 +28,15 @@ namespace StorageFile.Implements
 
         public void Create(List<Task> models)
         {
+            string currentId = IdHelper.GetMaxId(context.Tasks.Select(req => req.Id).ToList());
+
             foreach (Task model in models)
             {
                 if (string.IsNullOrEmpty(model.Id))
-                    model.Id = Guid.NewGuid().ToString();
+                {
+                    currentId = IdHelper.GetNextId(currentId);
+                    model.Id = currentId;
+                }
 
                 context.Tasks
                     .Add(new Task
