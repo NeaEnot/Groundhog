@@ -73,18 +73,42 @@ namespace NetworkVk
 
                     WallGetObject loaded = vk.Wall.Get(new WallGetParams { OwnerId = -long.Parse(groups["group_id"].Value), Count = 1 });
 
-                    string json = loaded.WallPosts[0].Text;
+                    string str = loaded.WallPosts[0].Text;
+                    string[] strs = str.Split('\n');
 
-                    (List<Accaunt>, List<Task>, List<TaskInstance>) restored =
-                        JsonConvert.DeserializeObject<(List<Accaunt>, List<Task>, List<TaskInstance>)>(json);
+                    List<Task> tasks = new List<Task>();
+                    List<TaskInstance> taskInstances = new List<TaskInstance>();
 
-                    //GroundhogContext.AccauntLogic.Delete();
-                    //context.Accaunts = restored.Item1;
+                    State state = State.none;
+
+                    foreach (string s in strs)
+                    {
+                        if (s == "=== Tasks ===")
+                        {
+                            state = State.tasks;
+                            continue;
+                        }
+                        if (s == "=== TaskInstances ===")
+                        {
+                            state = State.taskInstances;
+                            continue;
+                        }
+
+                        switch (state)
+                        {
+                            case State.tasks:
+                                tasks.Add(TaskSerializer.Deserialize(s));
+                                break;
+                            case State.taskInstances:
+                                taskInstances.Add(TaskInstanceSerializer.Deserialize(s));
+                                break;
+                        }
+                    }
 
                     GroundhogContext.TaskLogic.Delete(null);
-                    GroundhogContext.TaskLogic.Create(restored.Item2);
+                    GroundhogContext.TaskLogic.Create(tasks);
                     GroundhogContext.TaskInstanceLogic.Delete(null);
-                    GroundhogContext.TaskInstanceLogic.Create(restored.Item3);
+                    GroundhogContext.TaskInstanceLogic.Create(taskInstances);
                 }
             }
             catch (Exception ex)
@@ -118,9 +142,9 @@ namespace NetworkVk
                     foreach (Task task in tasks)
                         taskInstances.AddRange(GroundhogContext.TaskInstanceLogic.Read(task.Id));
 
-                    string json = JsonConvert.SerializeObject((accaunts, tasks, taskInstances));
+                    string str = "=== Tasks ===\n" + TaskSerializer.SerializeList(tasks) + "=== TaskInstances ===\n" + TaskInstanceSerializer.SerializeList(taskInstances);
 
-                    vk.Wall.Post(new WallPostParams { OwnerId = -long.Parse(groups["group_id"].Value), Message = json });
+                    vk.Wall.Post(new WallPostParams { OwnerId = -long.Parse(groups["group_id"].Value), Message = str });
                 }
             }
             catch (Exception ex)
@@ -131,6 +155,13 @@ namespace NetworkVk
             {
                 Thread.Sleep(SleepTime);
             }
+        }
+
+        private enum State
+        {
+            none,
+            tasks,
+            taskInstances
         }
     }
 }
