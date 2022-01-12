@@ -31,7 +31,7 @@ namespace GroundhogMobile
 
         private void LoadData()
         {
-            GroundhogContext.FillRepeatedTasks();
+            DateTimeHelper.FillRepeatedTasks();
 
             List<string> tasksIds =
                 GroundhogContext.TaskLogic
@@ -67,7 +67,7 @@ namespace GroundhogMobile
                                 {
                                     TaskId = task.Id,
                                     Completed = false,
-                                    Date = GroundhogContext.GetDateForTask(task, date)
+                                    Date = DateTimeHelper.GetDateForTask(task, date)
                                 });
                         LoadData();
                     }
@@ -96,7 +96,7 @@ namespace GroundhogMobile
                             for (int i = 1; i < instances.Count; i++)
                                 GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
 
-                            DateTime computedDate = GroundhogContext.GetDateForTask(page.Model.Task, date);
+                            DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Task, date);
 
                             if (page.Model.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
                                 instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
