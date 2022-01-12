@@ -131,11 +131,7 @@ namespace NetworkVk
                     if (vk == null)
                         throw new Exception("Не было выполнено подключение.");
 
-                    List<Accaunt> accaunts = GroundhogContext.AccauntLogic.Read();
-
-                    List<Task> tasks = new List<Task>();
-                    foreach (Accaunt accaunt in accaunts)
-                        tasks.AddRange(GroundhogContext.TaskLogic.Read(accaunt));
+                    List<Task> tasks = GroundhogContext.TaskLogic.Read();
 
                     List<TaskInstance> taskInstances = new List<TaskInstance>();
                     foreach (Task task in tasks)

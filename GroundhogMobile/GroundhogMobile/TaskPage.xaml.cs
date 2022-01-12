@@ -56,7 +56,6 @@ namespace GroundhogMobile
                     Model.Text = textEntry.Text;
                     Model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
                     Model.RepeatValue = int.Parse(repeatValueEntry.Text);
-                    Model.AccauntId = GroundhogContext.Accaunt.Id;
                     IsSuccess = true;
 
                     await Navigation.PopAsync();

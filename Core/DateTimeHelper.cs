@@ -10,43 +10,40 @@ namespace Core
     {
         public static void FillRepeatedTasks()
         {
-            if (GroundhogContext.Accaunt != null)
+            List<TaskInstance> models = new List<TaskInstance>();
+
+            List<Task> tasks = GroundhogContext.TaskLogic.Read();
+            foreach (Task task in tasks)
             {
-                List<TaskInstance> models = new List<TaskInstance>();
-
-                List<Task> tasks = GroundhogContext.TaskLogic.Read(GroundhogContext.Accaunt);
-                foreach (Task task in tasks)
+                if (task.RepeatMode != RepeatMode.Нет)
                 {
-                    if (task.RepeatMode != RepeatMode.Нет)
+                    List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
+                    DateTime lastDate = taskInstances.Max(req => req.Date);
+                    DateTime currentDate = lastDate;
+
+                    while ((currentDate - DateTime.Now).TotalDays <= 100)
                     {
-                        List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
-                        DateTime lastDate = taskInstances.Max(req => req.Date);
-                        DateTime currentDate = lastDate;
-
-                        while ((currentDate - DateTime.Now).TotalDays <= 100)
+                        currentDate = task.RepeatMode == RepeatMode.Дни ? currentDate.AddDays(task.RepeatValue) : currentDate.AddMonths(1);
+                        if (task.RepeatMode == RepeatMode.ЧислоМесяца &&
+                            task.RepeatValue > currentDate.Day &&
+                            DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
                         {
-                            currentDate = task.RepeatMode == RepeatMode.Дни ? currentDate.AddDays(task.RepeatValue) : currentDate.AddMonths(1);
-                            if (task.RepeatMode == RepeatMode.ЧислоМесяца &&
-                                task.RepeatValue > currentDate.Day &&
-                                DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
-                            {
-                                currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
-                            }
-
-                            TaskInstance model = new TaskInstance
-                            {
-                                TaskId = task.Id,
-                                Date = currentDate,
-                                Completed = false
-                            };
-
-                            models.Add(model);
+                            currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
                         }
+
+                        TaskInstance model = new TaskInstance
+                        {
+                            TaskId = task.Id,
+                            Date = currentDate,
+                            Completed = false
+                        };
+
+                        models.Add(model);
                     }
                 }
-
-                GroundhogContext.TaskInstanceLogic.Create(models);
             }
+
+            GroundhogContext.TaskInstanceLogic.Create(models);
         }
 
         public static DateTime GetDateForTask(Task task, DateTime selectedDate)

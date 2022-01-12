@@ -7,7 +7,7 @@ namespace Core.Interfaces
     {
         void Create(Task model);
         void Create(List<Task> models);
-        List<Task> Read(Accaunt accaunt);
+        List<Task> Read();
         Task Read(string id);
         void Update(Task model);
         void Delete(string id);

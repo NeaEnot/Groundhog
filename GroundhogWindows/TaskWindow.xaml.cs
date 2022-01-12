@@ -57,7 +57,6 @@ namespace GroundhogWindows
                 Task.Text = textBoxText.Text;
                 Task.RepeatMode = (RepeatMode)comboBox.SelectedItem;
                 Task.RepeatValue = value;
-                Task.AccauntId = GroundhogContext.Accaunt.Id;
 
                 DialogResult = true;
             }

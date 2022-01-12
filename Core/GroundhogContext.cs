@@ -11,7 +11,6 @@ namespace Core
 {
     public static class GroundhogContext
     {
-        public static IAccauntLogic AccauntLogic { get; set; }
         public static ITaskInstanceLogic TaskInstanceLogic  { get; set; }
         public static ITaskLogic TaskLogic { get; set; }
         public static INetworkLogic NetworkLogic { get; set; }
@@ -55,30 +54,6 @@ namespace Core
             set
             {
                 Settings.ConnectionString = value != null ? value : "";
-                using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
-                {
-                    string json = JsonConvert.SerializeObject(Settings);
-                    writer.Write(json);
-                }
-            }
-        }
-
-        public static Accaunt Accaunt 
-        { 
-            get
-            {
-                try
-                {
-                    return AccauntLogic.Read().First(req => req.Id == Settings.AccauntId);
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                Settings.AccauntId = value != null ? value.Id : null;
                 using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
                 {
                     string json = JsonConvert.SerializeObject(Settings);

@@ -35,7 +35,7 @@ namespace GroundhogMobile
 
             List<string> tasksIds =
                 GroundhogContext.TaskLogic
-                .Read(GroundhogContext.Accaunt)
+                .Read()
                 .Select(req => req.Id)
                 .ToList();
 
@@ -51,30 +51,25 @@ namespace GroundhogMobile
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (GroundhogContext.Accaunt == null)
-                await DisplayAlert("Ошибка", "Пользователь не авторизирован.", "Ок");
-            else
+            TaskPage page = new TaskPage(new TaskViewModel());
+            page.Disappearing += (sender2, e2) =>
             {
-                TaskPage page = new TaskPage(new TaskViewModel());
-                page.Disappearing += (sender2, e2) =>
+                if (page.IsSuccess)
                 {
-                    if (page.IsSuccess)
-                    {
-                        Task task = page.Model.Task;
-                        GroundhogContext.TaskLogic.Create(task);
-                        GroundhogContext.TaskInstanceLogic
-                                .Create(new TaskInstance
-                                {
-                                    TaskId = task.Id,
-                                    Completed = false,
-                                    Date = DateTimeHelper.GetDateForTask(task, date)
-                                });
-                        LoadData();
-                    }
-                };
+                    Task task = page.Model.Task;
+                    GroundhogContext.TaskLogic.Create(task);
+                    GroundhogContext.TaskInstanceLogic
+                            .Create(new TaskInstance
+                            {
+                                TaskId = task.Id,
+                                Completed = false,
+                                Date = DateTimeHelper.GetDateForTask(task, date)
+                            });
+                    LoadData();
+                }
+            };
 
-                await Navigation.PushAsync(page);
-            }
+            await Navigation.PushAsync(page);
         }
 
         public ICommand MenuItemUpdate =>

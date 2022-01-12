@@ -29,7 +29,7 @@ namespace NetworkTelegram
 
         private TelegramClient client;
 
-        private Accaunt currentAccaunt = null;
+        private string currentConnectionString = null;
         private TLChannel channel;
         private TLChannel Channel
         {
@@ -37,7 +37,7 @@ namespace NetworkTelegram
             {
                 if (channel == null)
                 {
-                    GroupCollection groups = GroundhogContext.AccauntLogic.ConnectionStringExpr.Match(GroundhogContext.Accaunt.ConnectionString).Groups;
+                    GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.ConnectionString).Groups;
                     string channelName = groups["channel"].Value;
 
                     TLDialogs dialogs = null;
@@ -75,7 +75,7 @@ namespace NetworkTelegram
         {
             try
             {
-                GroupCollection groups = GroundhogContext.AccauntLogic.ConnectionStringExpr.Match(GroundhogContext.Accaunt.ConnectionString).Groups;
+                GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.ConnectionString).Groups;
 
                 string phone = groups["phone"].Value;
                 int api_id = int.Parse(groups["api_id"].Value);
@@ -97,7 +97,7 @@ namespace NetworkTelegram
                 }
 
                 this.client = client;
-                currentAccaunt = GroundhogContext.Accaunt;
+                currentConnectionString = GroundhogContext.ConnectionString;
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace NetworkTelegram
 
         public bool IsConnected()
         {
-            return currentAccaunt != null && currentAccaunt.ConnectionString == GroundhogContext.Accaunt.ConnectionString;
+            return currentConnectionString != null && currentConnectionString == GroundhogContext.ConnectionString;
         }
 
         public void Load()
@@ -156,16 +156,16 @@ namespace NetworkTelegram
 
                     string json = System.Text.Encoding.UTF8.GetString(file.Bytes);
 
-                    (List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>) restored = 
-                        JsonConvert.DeserializeObject<(List<Accaunt>, List<Core.Models.Task>, List<TaskInstance>)>(json);
+                    (List<Core.Models.Task>, List<TaskInstance>) restored = 
+                        JsonConvert.DeserializeObject<(List<Core.Models.Task>, List<TaskInstance>)>(json);
 
                     //GroundhogContext.AccauntLogic.Delete();
                     //context.Accaunts = restored.Item1;
 
                     GroundhogContext.TaskLogic.Delete(null);
-                    GroundhogContext.TaskLogic.Create(restored.Item2);
+                    GroundhogContext.TaskLogic.Create(restored.Item1);
                     GroundhogContext.TaskInstanceLogic.Delete(null);
-                    GroundhogContext.TaskInstanceLogic.Create(restored.Item3);
+                    GroundhogContext.TaskInstanceLogic.Create(restored.Item2);
                 }
             }
             catch (Exception ex)

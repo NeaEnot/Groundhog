@@ -21,7 +21,7 @@ namespace NetworkVk
 
         public static string Serialize(Task task)
         {
-            return $"{task.Id}{separator}{task.AccauntId}{separator}{task.Text}{separator}{task.RepeatMode}{separator}{task.RepeatValue}\n";
+            return $"{task.Id}{separator}{task.Text}{separator}{task.RepeatMode}{separator}{task.RepeatValue}\n";
         }
 
         public static List<Task> DeserializeList(string str)
@@ -43,10 +43,9 @@ namespace NetworkVk
             Task task = new Task
             {
                 Id = strs[0],
-                AccauntId = strs[1],
-                Text = strs[2],
-                RepeatMode = (RepeatMode)Enum.Parse(typeof(RepeatMode), strs[3]),
-                RepeatValue = int.Parse(strs[4])
+                Text = strs[1],
+                RepeatMode = (RepeatMode)Enum.Parse(typeof(RepeatMode), strs[2]),
+                RepeatValue = int.Parse(strs[3])
             };
 
             return task;

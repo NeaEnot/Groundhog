@@ -9,7 +9,6 @@ namespace GroundhogWindows
     {
         public App()
         {
-            GroundhogContext.AccauntLogic = new AccauntLogic();
             GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
             GroundhogContext.TaskLogic = new TaskLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();

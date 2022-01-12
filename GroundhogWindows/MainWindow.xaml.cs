@@ -34,11 +34,11 @@ namespace GroundhogWindows
 
         private void LoadTasks()
         {
-            GroundhogContext.FillRepeatedTasks();
+            DateTimeHelper.FillRepeatedTasks();
 
             List<string> tasksIds =
                 GroundhogContext.TaskLogic
-                .Read(GroundhogContext.Accaunt)
+                .Read()
                 .Select(req => req.Id)
                 .ToList();
 
@@ -97,27 +97,20 @@ namespace GroundhogWindows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (GroundhogContext.Accaunt == null)
+            TaskWindow window = new TaskWindow(null);
+            if (window.ShowDialog() == true)
             {
-                MessageBox.Show("Пользователь не авторизирован.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                TaskWindow window = new TaskWindow(null);
-                if (window.ShowDialog() == true)
-                {
-                    GroundhogContext.TaskLogic.Create(window.Task);
+                GroundhogContext.TaskLogic.Create(window.Task);
 
-                    GroundhogContext.TaskInstanceLogic
-                            .Create(new TaskInstance
-                            {
-                                TaskId = window.Task.Id,
-                                Completed = false,
-                                Date = GroundhogContext.GetDateForTask(window.Task, selectedDate)
-                            });
+                GroundhogContext.TaskInstanceLogic
+                        .Create(new TaskInstance
+                        {
+                            TaskId = window.Task.Id,
+                            Completed = false,
+                            Date = DateTimeHelper.GetDateForTask(window.Task, selectedDate)
+                        });
 
-                    LoadTasks();
-                }
+                LoadTasks();
             }
         }
 
@@ -151,7 +144,7 @@ namespace GroundhogWindows
                         for (int i = 1; i < instances.Count; i++)
                             GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
 
-                        DateTime date = GroundhogContext.GetDateForTask(window.Task, selectedDate);
+                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate);
 
                         if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
                             instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
@@ -206,9 +199,6 @@ namespace GroundhogWindows
         {
             try
             {
-                if (GroundhogContext.Accaunt == null)
-                    throw new Exception("Пользователь не авторизирован.");
-
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Load();
                 LoadTasks();
@@ -223,9 +213,6 @@ namespace GroundhogWindows
         {
             try
             {
-                if (GroundhogContext.Accaunt == null)
-                    throw new Exception("Пользователь не авторизирован.");
-
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Upload();
             }

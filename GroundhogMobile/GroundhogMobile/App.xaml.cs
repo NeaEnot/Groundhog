@@ -11,7 +11,6 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
-            GroundhogContext.AccauntLogic = new AccauntLogic();
             GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
             GroundhogContext.TaskLogic = new TaskLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();

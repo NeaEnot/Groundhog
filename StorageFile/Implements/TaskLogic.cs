@@ -17,7 +17,6 @@ namespace StorageFile.Implements
                 .Add(new Task
                 {
                     Id = model.Id,
-                    AccauntId = model.AccauntId,
                     Text = model.Text,
                     RepeatMode = model.RepeatMode,
                     RepeatValue = model.RepeatValue,
@@ -42,7 +41,6 @@ namespace StorageFile.Implements
                     .Add(new Task
                     {
                         Id = model.Id,
-                        AccauntId = model.AccauntId,
                         Text = model.Text,
                         RepeatMode = model.RepeatMode,
                         RepeatValue = model.RepeatValue,
@@ -52,10 +50,9 @@ namespace StorageFile.Implements
             context.Save();
         }
 
-        public List<Task> Read(Accaunt accaunt)
+        public List<Task> Read()
         {
             return context.Tasks
-                .Where(req => req.AccauntId == accaunt.Id)
                 .Select(req => new Task
                 {
                     Id = req.Id,

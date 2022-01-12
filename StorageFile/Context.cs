@@ -10,7 +10,6 @@ namespace StorageFile
     {
         private static Context instance;
 
-        internal List<Accaunt> Accaunts { get; set; }
         internal List<Task> Tasks { get; set; }
         internal List<TaskInstance> TaskInstances { get; set; }
 
@@ -34,7 +33,7 @@ namespace StorageFile
         {
             using (StreamWriter writer = new StreamWriter($"{GroundhogContext.StoragePath}\\storage.json"))
             {
-                string json = JsonConvert.SerializeObject((Accaunts, Tasks, TaskInstances));
+                string json = JsonConvert.SerializeObject((Tasks, TaskInstances));
                 writer.Write(json);
             }
         }
@@ -46,15 +45,13 @@ namespace StorageFile
                 using (StreamReader reader = new StreamReader($"{GroundhogContext.StoragePath}\\storage.json"))
                 {
                     string json = reader.ReadToEnd();
-                    (List<Accaunt>, List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Accaunt>, List<Task>, List<TaskInstance>)>(json);
-                    Accaunts = restored.Item1;
-                    Tasks = restored.Item2;
-                    TaskInstances = restored.Item3;
+                    (List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Task>, List<TaskInstance>)>(json);
+                    Tasks = restored.Item1;
+                    TaskInstances = restored.Item2;
                 }
             }
             catch
             {
-                Accaunts = new List<Accaunt>();
                 Tasks = new List<Task>();
                 TaskInstances = new List<TaskInstance>();
             }

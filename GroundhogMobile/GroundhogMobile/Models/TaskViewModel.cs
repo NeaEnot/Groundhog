@@ -19,7 +19,6 @@ namespace GroundhogMobile.Models
                 return new Task
                 {
                     Id = Id,
-                    AccauntId = AccauntId,
                     Text = Text,
                     RepeatMode = RepeatMode,
                     RepeatValue = RepeatValue,
@@ -32,7 +31,6 @@ namespace GroundhogMobile.Models
             if (task != null)
             {
                 Id = task.Id;
-                AccauntId = task.AccauntId;
                 Text = task.Text;
                 RepeatMode = task.RepeatMode;
                 RepeatValue = task.RepeatValue;
