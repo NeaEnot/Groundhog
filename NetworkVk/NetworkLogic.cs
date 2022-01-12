@@ -1,7 +1,6 @@
 ﻿using Core;
 using Core.Interfaces;
 using Core.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -35,14 +34,14 @@ namespace NetworkVk
                         vk = new VkApi();
                     if (!vk.IsAuthorized)
                     {
-                        GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.Accaunt.ConnectionString).Groups;
+                        GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.ConnectionString).Groups;
                         vk.Authorize(new ApiAuthParams
                         {
                             AccessToken = groups["access_token"].Value
                         });
                     }
 
-                    currentConnectionString = GroundhogContext.Accaunt.ConnectionString;
+                    currentConnectionString = GroundhogContext.ConnectionString;
                 }
                 catch (Exception ex)
                 {
@@ -57,7 +56,7 @@ namespace NetworkVk
 
         public bool IsConnected()
         {
-            return vk != null && vk.IsAuthorized && currentConnectionString == GroundhogContext.Accaunt.ConnectionString;
+            return vk != null && vk.IsAuthorized && currentConnectionString == GroundhogContext.ConnectionString;
         }
 
         public void Load()

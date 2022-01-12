@@ -17,9 +17,7 @@ namespace Core
         public static INetworkLogic NetworkLogic { get; set; }
 
         private static AppSettings settings;
-
-        public static Accaunt Accaunt 
-        { 
+        private static AppSettings Settings { 
             get
             {
                 if (settings == null)
@@ -38,9 +36,16 @@ namespace Core
                     }
                 }
 
+                return settings;
+            }
+        }
+
+        public static string ConnectionString { 
+            get
+            {
                 try
                 {
-                    return AccauntLogic.Read().First(req => req.Id == settings.AccauntId);
+                    return Settings.ConnectionString;
                 }
                 catch
                 {
@@ -49,10 +54,34 @@ namespace Core
             }
             set
             {
-                settings.AccauntId = value != null ? value.Id : null;
+                Settings.ConnectionString = value != null ? value : "";
                 using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
                 {
-                    string json = JsonConvert.SerializeObject(settings);
+                    string json = JsonConvert.SerializeObject(Settings);
+                    writer.Write(json);
+                }
+            }
+        }
+
+        public static Accaunt Accaunt 
+        { 
+            get
+            {
+                try
+                {
+                    return AccauntLogic.Read().First(req => req.Id == Settings.AccauntId);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                Settings.AccauntId = value != null ? value.Id : null;
+                using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
+                {
+                    string json = JsonConvert.SerializeObject(Settings);
                     writer.Write(json);
                 }
             }

@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Аккаунты" Click="MenuItemAccaunts_Click"/>
+            <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
             <MenuItem Header="Синхронизация">
                 <MenuItem Header="Загрузить" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="Отправить" Click="MenuItemUpload_Click"/>

@@ -89,11 +89,10 @@ namespace GroundhogWindows
             LoadTasks();
         }
 
-        private void MenuItemAccaunts_Click(object sender, RoutedEventArgs e)
+        private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
         {
-            AccauntsWindow accauntsWindow = new AccauntsWindow();
-            if (accauntsWindow.ShowDialog() == true)
-                LoadTasks();
+            ConnectionWindow connectionWindow = new ConnectionWindow();
+            connectionWindow.ShowDialog();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
