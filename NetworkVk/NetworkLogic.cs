@@ -81,6 +81,7 @@ namespace NetworkVk
                     while (!downloaded)
                     {
                         wall = vk.Wall.Get(new WallGetParams { OwnerId = -long.Parse(groups["group_id"].Value), Count = 100, Offset = offset });
+                        Thread.Sleep(SleepTime);
 
                         if (wall.WallPosts.Count == 0)
                             throw new Exception("Данных нет");
@@ -99,7 +100,7 @@ namespace NetworkVk
                         }
                     }
 
-                    tobeParsed = tobeParsed.Replace("=== START ===\n", "").Replace("=== END ===\n", "");
+                    tobeParsed = tobeParsed.Replace("=== START ===\n", "").Replace("\n=== END ===\n", "");
 
                     string[] strs = tobeParsed.Split('\n');
 
