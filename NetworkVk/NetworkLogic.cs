@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using VkNet;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 
 namespace NetworkVk
@@ -70,10 +71,37 @@ namespace NetworkVk
                     if (vk == null)
                         throw new Exception("Не было выполнено подключение.");
 
-                    WallGetObject loaded = vk.Wall.Get(new WallGetParams { OwnerId = -long.Parse(groups["group_id"].Value), Count = 1 });
+                    WallGetObject wall = null;
+                    ulong offset = 0;
 
-                    string str = loaded.WallPosts[0].Text;
-                    string[] strs = str.Split('\n');
+                    string tobeParsed = "";
+
+                    bool downloaded = false;
+
+                    while (!downloaded)
+                    {
+                        wall = vk.Wall.Get(new WallGetParams { OwnerId = -long.Parse(groups["group_id"].Value), Count = 100, Offset = offset });
+
+                        if (wall.WallPosts.Count == 0)
+                            throw new Exception("Данных нет");
+
+                        foreach (Post post in wall.WallPosts)
+                        {
+                            tobeParsed += post.Text + '\n';
+
+                            if (tobeParsed.StartsWith("=== START ===") && tobeParsed.EndsWith("=== END ===\n"))
+                            {
+                                downloaded = true;
+                                break;
+                            }
+
+                            offset += 100;
+                        }
+                    }
+
+                    tobeParsed = tobeParsed.Replace("=== START ===\n", "").Replace("=== END ===\n", "");
+
+                    string[] strs = tobeParsed.Split('\n');
 
                     List<Task> tasks = new List<Task>();
                     List<TaskInstance> taskInstances = new List<TaskInstance>();
@@ -137,9 +165,21 @@ namespace NetworkVk
                     foreach (Task task in tasks)
                         taskInstances.AddRange(GroundhogContext.TaskInstanceLogic.Read(task.Id));
 
-                    string str = "=== Tasks ===\n" + TaskSerializer.SerializeList(tasks) + "=== TaskInstances ===\n" + TaskInstanceSerializer.SerializeList(taskInstances);
+                    string str = 
+                        "=== START ===\n" +
+                        "=== Tasks ===\n" + 
+                        TaskSerializer.SerializeList(tasks) + 
+                        "=== TaskInstances ===\n" + 
+                        TaskInstanceSerializer.SerializeList(taskInstances) +
+                        "=== END ===";
 
-                    vk.Wall.Post(new WallPostParams { OwnerId = -long.Parse(groups["group_id"].Value), Message = str });
+                    List<string> strs = Trim(str, 15000);
+                    strs.Reverse();
+                    foreach (string s in strs)
+                    {
+                        vk.Wall.Post(new WallPostParams { OwnerId = -long.Parse(groups["group_id"].Value), Message = s });
+                        Thread.Sleep(SleepTime);
+                    }
                 }
             }
             catch (Exception ex)
@@ -150,6 +190,34 @@ namespace NetworkVk
             {
                 Thread.Sleep(SleepTime);
             }
+        }
+
+        private List<string> Trim(string str, int length)
+        {
+            List<string> answer = new List<string>();
+
+            string[] strs = str.Split('\n');
+            string current = "";
+            
+            foreach (string s in strs)
+            {
+                string next = current + s + '\n';
+
+                if (next.Length < length)
+                {
+                    current = next;
+                }
+                else
+                {
+                    answer.Add(current);
+                    current = s + '\n';
+                }
+            }
+
+            if (current.Length > 0)
+                answer.Add(current);
+
+            return answer;
         }
 
         private enum State

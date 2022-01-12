@@ -10,6 +10,7 @@ namespace GroundhogWindows
         {
             InitializeComponent();
 
+            textBoxConnection.Text = GroundhogContext.ConnectionString;
             textBoxConnection.ToolTip = GroundhogContext.NetworkLogic.ConnectionStringFormat;
         }
 
