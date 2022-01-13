@@ -111,7 +111,7 @@ namespace StorageFile.Implements
 
         public void Delete(List<string> ids)
         {
-            IEnumerable<TaskInstance> instances = context.TaskInstances.Where(req => ids.Contains(req.Id));
+            IEnumerable<TaskInstance> instances = context.TaskInstances.Where(req => ids.Contains(req.Id)).ToList();
 
             foreach (TaskInstance instance in instances)
                 context.TaskInstances.Remove(instance);

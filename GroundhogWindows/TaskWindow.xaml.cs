@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.Models;
 using System;
 using System.Windows;

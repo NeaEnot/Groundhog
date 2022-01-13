@@ -94,7 +94,7 @@ namespace GroundhogMobile
                             DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Task, date);
 
                             if (page.Model.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
-                                instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
+                                instances[0].Date.Date != date.Date)
                             {
                                 GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
 

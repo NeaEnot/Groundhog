@@ -133,22 +133,24 @@ namespace GroundhogWindows
             {
                 Task task = GroundhogContext.TaskLogic.Read(viewModel.TaskId);
                 RepeatMode repeatMode = task.RepeatMode;
+                int repeatValue = task.RepeatValue;
 
                 TaskWindow window = new TaskWindow(task);
                 if (window.ShowDialog() == true)
                 {
-                    if (repeatMode != window.Task.RepeatMode)
+                    if (repeatMode != window.Task.RepeatMode || repeatValue != window.Task.RepeatValue)
                     {
                         List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(window.Task.Id);
                         instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
+                        List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > selectedDate.Date).ToList();
 
-                        for (int i = 1; i < instances.Count; i++)
-                            GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
+                        GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
+                        instances.RemoveAll(req => req.Date.Date > selectedDate.Date);
 
                         DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate);
 
                         if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
-                            instances[0].Date.ToString("yyyy.MM.dd") != date.ToString("yyyy.MM.dd"))
+                            instances[0].Date.Date != date.Date)
                         {
                             GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
 
