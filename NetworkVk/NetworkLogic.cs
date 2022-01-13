@@ -135,7 +135,7 @@ namespace NetworkVk
 
                     GroundhogContext.TaskLogic.Delete(null);
                     GroundhogContext.TaskLogic.Create(tasks);
-                    GroundhogContext.TaskInstanceLogic.Delete(null);
+                    GroundhogContext.TaskInstanceLogic.Delete();
                     GroundhogContext.TaskInstanceLogic.Create(taskInstances);
                 }
             }

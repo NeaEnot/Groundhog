@@ -11,6 +11,8 @@ namespace Core.Interfaces
         List<TaskInstance> Read(DateTime date);
         List<TaskInstance> Read(string taskId);
         void Update(TaskInstance model);
+        void Delete();
         void Delete(string id);
+        void Delete(List<string> ids);
     }
 }

@@ -46,6 +46,17 @@ namespace Core
             GroundhogContext.TaskInstanceLogic.Create(models);
         }
 
+        public static void DeleteOldTasks()
+        {
+            List<TaskInstance> models = new List<TaskInstance>();
+
+            List<Task> tasks = GroundhogContext.TaskLogic.Read();
+            foreach (Task task in tasks)
+                models.AddRange(GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => (DateTime.Now - req.Date).Days >= 100).ToList());
+
+            GroundhogContext.TaskInstanceLogic.Delete(models.Select(req => req.Id).ToList());
+        }
+
         public static DateTime GetDateForTask(Task task, DateTime selectedDate)
         {
             DateTime date = selectedDate;

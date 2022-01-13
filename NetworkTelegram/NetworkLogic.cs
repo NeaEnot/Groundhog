@@ -164,7 +164,7 @@ namespace NetworkTelegram
 
                     GroundhogContext.TaskLogic.Delete(null);
                     GroundhogContext.TaskLogic.Create(restored.Item1);
-                    GroundhogContext.TaskInstanceLogic.Delete(null);
+                    GroundhogContext.TaskInstanceLogic.Delete();
                     GroundhogContext.TaskInstanceLogic.Create(restored.Item2);
                 }
             }

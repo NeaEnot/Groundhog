@@ -91,23 +91,30 @@ namespace StorageFile.Implements
             context.Save();
         }
 
+        public void Delete()
+        {
+            context.TaskInstances.Clear();
+            context.Save();
+        }
+
         public void Delete(string id)
         {
-            if (id == null)
-            {
-                context.TaskInstances.Clear();
-            }
-            else
-            {
-                TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == id);
+            TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == id);
 
-                if (instance == null)
-                {
-                    throw new Exception("Экземпляра задачи с данным Id не существует.");
-                }
+            if (instance == null)
+                throw new Exception("Экземпляра задачи с данным Id не существует.");
 
+            context.TaskInstances.Remove(instance);
+
+            context.Save();
+        }
+
+        public void Delete(List<string> ids)
+        {
+            IEnumerable<TaskInstance> instances = context.TaskInstances.Where(req => ids.Contains(req.Id));
+
+            foreach (TaskInstance instance in instances)
                 context.TaskInstances.Remove(instance);
-            }
 
             context.Save();
         }
