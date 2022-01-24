@@ -84,7 +84,7 @@ namespace Core
 
         public static void ToNextDay()
         {
-            List<Task> tasks = GroundhogContext.TaskLogic.Read().Where(req => req.ToNextDay).ToList();
+            List<Task> tasks = GroundhogContext.TaskLogic.Read();
 
             foreach (Task task in tasks)
             {
@@ -93,7 +93,11 @@ namespace Core
 
                 foreach (TaskInstance instance in taskInstances)
                 {
-                    instance.Date = DateTime.Now.Date;
+                    if (task.ToNextDay)
+                        instance.Date = DateTime.Now.Date;
+                    else
+                        instance.Completed = true;
+
                     GroundhogContext.TaskInstanceLogic.Update(instance);
                 }
             }

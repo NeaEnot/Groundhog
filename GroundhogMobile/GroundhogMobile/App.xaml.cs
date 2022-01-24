@@ -1,5 +1,5 @@
 ﻿using Core;
-using NetworkTelegram;
+using NetworkVk;
 using StorageFile.Implements;
 using Xamarin.Forms;
 

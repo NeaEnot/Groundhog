@@ -1,8 +1,6 @@
-﻿using Core;
-using Core.Enums;
+﻿using Core.Enums;
 using GroundhogMobile.Models;
 using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -12,6 +12,10 @@
                 Margin="10, 20"
                 SelectedIndexChanged="repeatModePicker_SelectedIndexChanged"/>
             <Entry x:Name="repeatValueEntry" Placeholder="Значение" FontSize="20" Text="{Binding RepeatValue}" IsVisible="{Binding Repeated}" Margin="10, 20"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Перенос на след. день"/>
+                <Switch x:Name="switchToNextDay" IsToggled="{Binding ToNextDay}"/>
+            </StackLayout>
             <Button Text="Сохранить" FontSize="20" Margin="10, 20" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>

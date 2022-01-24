@@ -87,15 +87,16 @@ namespace GroundhogMobile
                     {
                         if (repeatMode != page.Model.Task.RepeatMode)
                         {
-                            List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(page.Model.Task.Id);
+                            List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(page.Model.Id);
                             instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
+                            List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > date.Date).ToList();
 
-                            for (int i = 1; i < instances.Count; i++)
-                                GroundhogContext.TaskInstanceLogic.Delete(instances[i].Id);
+                            GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
+                            instances.RemoveAll(req => req.Date.Date > date.Date);
 
                             DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Task, date);
 
-                            if (page.Model.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
+                            if (page.Model.RepeatMode == RepeatMode.ЧислоМесяца &&
                                 instances[0].Date.Date != date.Date)
                             {
                                 GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
@@ -129,8 +130,7 @@ namespace GroundhogMobile
             new Command<TaskInstanceViewModel>((instanceModel) => 
             {
                 List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(instanceModel.TaskId);
-                foreach (TaskInstance instance in instances)
-                    GroundhogContext.TaskInstanceLogic.Delete(instance.Id);
+                GroundhogContext.TaskInstanceLogic.Delete(instances.Select(req => req.Id).ToList());
                 GroundhogContext.TaskLogic.Delete(instanceModel.TaskId);
                 LoadData();
             });

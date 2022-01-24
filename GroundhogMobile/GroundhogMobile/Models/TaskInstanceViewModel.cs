@@ -32,7 +32,7 @@ namespace GroundhogMobile.Models
                 return task.RepeatMode != RepeatMode.Нет;
             }
         }
-        public string TextColor { get { return Completed ? "Gray" : "Black"; } }
+        public string TextColor { get { return Completed ? "Gray" : "White"; } }
         public TextDecorations TextDecorations { get { return Completed ? TextDecorations.Strikethrough : TextDecorations.None; } }
 
         internal TaskInstanceViewModel(TaskInstance instance = null, Task task = null)

@@ -1,8 +1,6 @@
 ﻿using Core;
-using Core.Models;
-using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,54 +12,12 @@ namespace GroundhogMobile
         public SettingsPage()
         {
             InitializeComponent();
-
-            LoadData();
         }
 
-        private bool loading;
-
-        private void LoadData()
+        private async void ButtonConnectString_Clicked(object sender, EventArgs e)
         {
-            loading = true;
-
-            //List<Accaunt> list = new List<Accaunt>();// GroundhogContext.AccauntLogic.Read();
-            //accauntPicker.ItemsSource = list;
-
-            //if (GroundhogContext.Accaunt != null)
-            //{
-            //    foreach (Accaunt acc in list)
-            //    {
-            //        if (acc.Id == GroundhogContext.Accaunt.Id)
-            //        {
-            //            accauntPicker.SelectedItem = acc;
-            //            break;
-            //        }
-            //    }
-            //}
-
-            loading = false;
-        }
-
-        private void accauntPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Accaunt accaunt = accauntPicker.SelectedItem as Accaunt;
-            //if (accaunt != null && !loading)
-            //    GroundhogContext.Accaunt = accaunt;
-        }
-
-        private async void ButtonCreate_Clicked(object sender, EventArgs e)
-        {
-            
-        }
-
-        private async void ButtonUpdate_Clicked(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ButtonDelete_Clicked(object sender, EventArgs e)
-        {
-            
+            ConnectionPage page = new ConnectionPage();
+            await Navigation.PushAsync(page);
         }
 
         private async void ButtonLoad_Clicked(object sender, EventArgs e)
@@ -72,6 +28,7 @@ namespace GroundhogMobile
                 {
                     ConnectIfNot();
                     GroundhogContext.NetworkLogic.Load();
+                    this.DisplayToastAsync("Данные загружены");
                 });
             }
             catch (Exception ex)
@@ -88,6 +45,7 @@ namespace GroundhogMobile
                 {
                     ConnectIfNot();
                     GroundhogContext.NetworkLogic.Upload();
+                    this.DisplayToastAsync("Данные отправлены");
                 });
             }
             catch (Exception ex)
@@ -96,21 +54,10 @@ namespace GroundhogMobile
             }
         }
 
-        private async void ConnectIfNot()
+        private void ConnectIfNot()
         {
             if (!GroundhogContext.NetworkLogic.IsConnected())
-            {
-                Func<string> f = () =>
-                {
-                    CodePage page = new CodePage();
-                    Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
-                    string code = "";
-                    System.Threading.Tasks.Task.Run(async () => code = await page.Code).Wait();
-                    return code;
-                };
-
-                GroundhogContext.NetworkLogic.Connect(f);
-            }
+                GroundhogContext.NetworkLogic.Connect(() => "");
         }
     }
 }
