@@ -35,16 +35,9 @@ namespace GroundhogMobile
             DateTimeHelper.ToNextDay();
             DateTimeHelper.DeleteOldTasks();
 
-            List<string> tasksIds =
-                GroundhogContext.TaskLogic
-                .Read()
-                .Select(req => req.Id)
-                .ToList();
-
             List<TaskInstanceViewModel> list =
                 GroundhogContext.TaskInstanceLogic
                 .Read(date)
-                .Where(req => tasksIds.Contains(req.TaskId))
                 .Select(req => new TaskInstanceViewModel(req))
                 .ToList();
 
@@ -148,7 +141,7 @@ namespace GroundhogMobile
 
             GroundhogContext.TaskInstanceLogic.Update(model);
 
-            LoadData();
+            //LoadData();
         }
     }
 }
