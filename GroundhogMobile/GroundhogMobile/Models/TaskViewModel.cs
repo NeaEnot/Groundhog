@@ -10,6 +10,7 @@ namespace GroundhogMobile.Models
         public string Text { get; set; }
         public RepeatMode RepeatMode { get; set; }
         public int RepeatValue { get; set; }
+        public bool ToNextDay { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
 
         internal Task Task
@@ -22,6 +23,7 @@ namespace GroundhogMobile.Models
                     Text = Text,
                     RepeatMode = RepeatMode,
                     RepeatValue = RepeatValue,
+                    ToNextDay = ToNextDay
                 };
             }
         }
@@ -34,6 +36,7 @@ namespace GroundhogMobile.Models
                 Text = task.Text;
                 RepeatMode = task.RepeatMode;
                 RepeatValue = task.RepeatValue;
+                ToNextDay = task.ToNextDay;
             }
         }
     }

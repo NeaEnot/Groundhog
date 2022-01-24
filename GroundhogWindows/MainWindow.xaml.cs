@@ -35,6 +35,7 @@ namespace GroundhogWindows
         private void LoadTasks()
         {
             DateTimeHelper.FillRepeatedTasks();
+            DateTimeHelper.ToNextDay();
             DateTimeHelper.DeleteOldTasks();
 
             List<string> tasksIds =

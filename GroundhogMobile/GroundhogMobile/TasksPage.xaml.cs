@@ -32,6 +32,8 @@ namespace GroundhogMobile
         private void LoadData()
         {
             DateTimeHelper.FillRepeatedTasks();
+            DateTimeHelper.ToNextDay();
+            DateTimeHelper.DeleteOldTasks();
 
             List<string> tasksIds =
                 GroundhogContext.TaskLogic

@@ -20,6 +20,7 @@ namespace StorageFile.Implements
                     Text = model.Text,
                     RepeatMode = model.RepeatMode,
                     RepeatValue = model.RepeatValue,
+                    ToNextDay = model.ToNextDay
                 });
 
             context.Save();
@@ -44,6 +45,7 @@ namespace StorageFile.Implements
                         Text = model.Text,
                         RepeatMode = model.RepeatMode,
                         RepeatValue = model.RepeatValue,
+                        ToNextDay = model.ToNextDay
                     });
             }
 
@@ -58,7 +60,8 @@ namespace StorageFile.Implements
                     Id = req.Id,
                     Text = req.Text,
                     RepeatMode = req.RepeatMode,
-                    RepeatValue = req.RepeatValue
+                    RepeatValue = req.RepeatValue,
+                    ToNextDay = req.ToNextDay
                 })
                 .ToList();
         }
@@ -78,6 +81,7 @@ namespace StorageFile.Implements
                 Text = task.Text,
                 RepeatMode = task.RepeatMode,
                 RepeatValue = task.RepeatValue,
+                ToNextDay = task.ToNextDay
             };
         }
 
@@ -93,6 +97,7 @@ namespace StorageFile.Implements
             task.Text = model.Text;
             task.RepeatMode = model.RepeatMode;
             task.RepeatValue = model.RepeatValue;
+            task.ToNextDay = model.ToNextDay;
 
             context.Save();
         }

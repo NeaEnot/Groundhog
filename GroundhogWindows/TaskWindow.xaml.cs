@@ -25,6 +25,7 @@ namespace GroundhogWindows
                 textBoxText.Text = task.Text;
                 comboBox.SelectedItem = task.RepeatMode;
                 textBoxValue.Text = task.RepeatValue.ToString();
+                checkBoxToNextDay.IsChecked = task.ToNextDay;
             }
             else
             {
@@ -56,6 +57,7 @@ namespace GroundhogWindows
                 Task.Text = textBoxText.Text;
                 Task.RepeatMode = (RepeatMode)comboBox.SelectedItem;
                 Task.RepeatValue = value;
+                Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
 
                 DialogResult = true;
             }

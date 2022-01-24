@@ -81,5 +81,22 @@ namespace Core
 
             return date;
         }
+
+        public static void ToNextDay()
+        {
+            List<Task> tasks = GroundhogContext.TaskLogic.Read().Where(req => req.ToNextDay).ToList();
+
+            foreach (Task task in tasks)
+            {
+                List<TaskInstance> taskInstances = 
+                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < DateTime.Now.Date).ToList();
+
+                foreach (TaskInstance instance in taskInstances)
+                {
+                    instance.Date = DateTime.Now.Date;
+                    GroundhogContext.TaskInstanceLogic.Update(instance);
+                }
+            }
+        }
     }
 }

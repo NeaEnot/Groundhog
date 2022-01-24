@@ -8,5 +8,6 @@ namespace Core.Models
         public string Text { get; set; }
         public RepeatMode RepeatMode { get; set; }
         public int RepeatValue { get; set; }
+        public bool ToNextDay { get; set; }
     }
 }

@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
-        Title="TaskWindow" Height="130" Width="348" MinHeight="140" MinWidth="360">
+        Title="TaskWindow" Height="152" Width="348" MinHeight="152" MinWidth="360">
     <Grid>
         <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <ComboBox Name="comboBox" Margin="149,33,91,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged"/>
-        <TextBox x:Name="textBoxValue" IsEnabled="False" Margin="0,35,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="58"/>
+        <TextBox Name="textBoxValue" IsEnabled="False" Margin="0,35,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="58"/>
         <Label Content="Задача" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
         <Label Content="Режим повторения" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
         <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Bottom" Height="24" Width="80" Click="Button_Click"/>
+        <CheckBox Name="checkBoxToNextDay" Content="Переносить задачу на следующий день" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
