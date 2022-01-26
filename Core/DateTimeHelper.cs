@@ -89,7 +89,7 @@ namespace Core
             foreach (Task task in tasks)
             {
                 List<TaskInstance> taskInstances = 
-                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < DateTime.Now.Date).ToList();
+                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < DateTime.Now.Date && !req.Completed).ToList();
 
                 foreach (TaskInstance instance in taskInstances)
                 {
