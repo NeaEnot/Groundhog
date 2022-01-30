@@ -35,9 +35,16 @@ namespace GroundhogMobile
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
 
+            List<Task> tasks =
+                GroundhogContext.TaskLogic
+                .Read()
+                .ToList();
+
             List<TaskInstanceViewModel> list =
                 GroundhogContext.TaskInstanceLogic
                 .Read(date)
+                .OrderByDescending(req => TaskRare(req, tasks))
+                .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel(req))
                 .ToList();
 
@@ -142,6 +149,28 @@ namespace GroundhogMobile
             GroundhogContext.TaskInstanceLogic.Update(model);
 
             //LoadData();
+        }
+
+        private int TaskRare(TaskInstance instance, List<Task> tasks)
+        {
+            Task task = tasks.First(req => req.Id == instance.TaskId);
+
+            int answer = 0;
+
+            switch (task.RepeatMode)
+            {
+                case RepeatMode.Нет:
+                    answer = int.MaxValue;
+                    break;
+                case RepeatMode.Дни:
+                    answer = task.RepeatValue;
+                    break;
+                case RepeatMode.ЧислоМесяца:
+                    answer = 31;
+                    break;
+            }
+
+            return answer;
         }
     }
 }
