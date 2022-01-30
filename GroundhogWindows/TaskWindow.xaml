@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
-        Title="TaskWindow" Height="165" Width="348" MinHeight="152" MinWidth="360">
+        Title="TaskWindow" Height="165" Width="459" MinHeight="152" MinWidth="360">
     <Grid>
-        <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
         <ComboBox Name="comboBox" Margin="149,33,91,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged"/>
         <TextBox Name="textBoxValue" IsEnabled="False" Margin="0,35,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="58"/>
         <Label Content="Задача" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
