@@ -5,7 +5,6 @@ using GroundhogWindows.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,7 +34,7 @@ namespace GroundhogWindows
         private void LoadTasks()
         {
             DateTimeHelper.FillRepeatedTasks();
-            DateTimeHelper.ToNextDay();
+            DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
 
             List<string> tasksIds =

@@ -32,7 +32,7 @@ namespace GroundhogMobile
         private void LoadData()
         {
             DateTimeHelper.FillRepeatedTasks();
-            DateTimeHelper.ToNextDay();
+            DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
 
             List<TaskInstanceViewModel> list =

@@ -49,12 +49,21 @@ namespace Core
         public static void DeleteOldTasks()
         {
             List<TaskInstance> models = new List<TaskInstance>();
+            List<Task> tasksToDelete = new List<Task>();
 
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
             foreach (Task task in tasks)
-                models.AddRange(GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => (DateTime.Now - req.Date).Days >= 100).ToList());
+            {
+                List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => (DateTime.Now - req.Date).Days >= 100).ToList();
+                models.AddRange(instances);
+
+                if (task.RepeatMode == RepeatMode.Нет && instances.Count == 1)
+                    tasksToDelete.Add(task);
+            }
 
             GroundhogContext.TaskInstanceLogic.Delete(models.Select(req => req.Id).ToList());
+            foreach (Task task in tasksToDelete)
+                GroundhogContext.TaskLogic.Delete(task.Id);
         }
 
         public static DateTime GetDateForTask(Task task, DateTime selectedDate)
@@ -82,19 +91,19 @@ namespace Core
             return date;
         }
 
-        public static void ToNextDay()
+        public static void ToDay(DateTime day)
         {
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
 
             foreach (Task task in tasks)
             {
                 List<TaskInstance> taskInstances = 
-                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < DateTime.Now.Date && !req.Completed).ToList();
+                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < day.Date && !req.Completed).ToList();
 
                 foreach (TaskInstance instance in taskInstances)
                 {
                     if (task.ToNextDay)
-                        instance.Date = DateTime.Now.Date;
+                        instance.Date = day.Date;
                     else
                         instance.Completed = true;
 
