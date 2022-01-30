@@ -12,7 +12,7 @@ namespace StorageFile.Implements
 
         public void Create(Task model)
         {
-            model.Id = IdHelper.GetNextId(IdHelper.GetMaxId(context.Tasks.Select(req => req.Id).ToList()));
+            model.Id = "t_" + IdHelper.GetId();
             context.Tasks
                 .Add(new Task
                 {
@@ -34,7 +34,7 @@ namespace StorageFile.Implements
             {
                 if (string.IsNullOrEmpty(model.Id))
                 {
-                    currentId = IdHelper.GetNextId(currentId);
+                    currentId = "t_" + IdHelper.GetId();
                     model.Id = currentId;
                 }
 
