@@ -40,8 +40,8 @@ namespace StorageFile
 
                 answer = builder.ToString();
 
-                if (Context.Instanse.TaskInstances.Count(req => req.Id.Contains(answer)) == 0 &&
-                    Context.Instanse.Tasks.Count(req => req.Id.Contains(answer)) == 0)
+                if (Context.Instanse.TaskInstances.Count(req => req.Id == "ti_" + answer) == 0 &&
+                    Context.Instanse.Tasks.Count(req => req.Id == "t_" + answer) == 0)
                     break;
 
                 i++;
