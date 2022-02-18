@@ -13,33 +13,44 @@ namespace Core
             List<TaskInstance> models = new List<TaskInstance>();
 
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
-            foreach (Task task in tasks)
+            foreach (Task task in tasks.Where(t => t.RepeatMode != RepeatMode.Нет))
             {
-                if (task.RepeatMode != RepeatMode.Нет)
+                List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
+                DateTime lastDate = taskInstances.Max(req => req.Date);
+                DateTime currentDate = lastDate;
+
+                while ((currentDate - DateTime.Now).TotalDays <= 100)
                 {
-                    List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
-                    DateTime lastDate = taskInstances.Max(req => req.Date);
-                    DateTime currentDate = lastDate;
-
-                    while ((currentDate - DateTime.Now).TotalDays <= 100)
+                    switch (task.RepeatMode)
                     {
-                        currentDate = task.RepeatMode == RepeatMode.Дни ? currentDate.AddDays(task.RepeatValue) : currentDate.AddMonths(1);
-                        if (task.RepeatMode == RepeatMode.ЧислоМесяца &&
-                            task.RepeatValue > currentDate.Day &&
-                            DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
-                        {
-                            currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
-                        }
+                        case RepeatMode.Дни:
+                            currentDate = currentDate.AddDays(task.RepeatValue);
+                            break;
+                        case RepeatMode.ЧислоМесяца:
+                            currentDate = currentDate.AddMonths(1);
 
-                        TaskInstance model = new TaskInstance
-                        {
-                            TaskId = task.Id,
-                            Date = currentDate,
-                            Completed = false
-                        };
+                            if (task.RepeatValue > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
+                                currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
 
-                        models.Add(model);
+                            break;
+                        case RepeatMode.ДеньГода:
+                            currentDate = currentDate.AddYears(1);
+
+                            // Обработка задачи на 29 февраля
+                            if (task.RepeatValue == 229 && currentDate.Month == 3 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
+                                currentDate = new DateTime(currentDate.Year, 2, 29);
+
+                            break;
                     }
+
+                    TaskInstance model = new TaskInstance
+                    {
+                        TaskId = task.Id,
+                        Date = currentDate,
+                        Completed = false
+                    };
+
+                    models.Add(model);
                 }
             }
 
@@ -68,25 +79,41 @@ namespace Core
 
         public static DateTime GetDateForTask(Task task, DateTime selectedDate)
         {
+            switch (task.RepeatMode)
+            {
+                case RepeatMode.ЧислоМесяца:
+                    return GetDateForMounth(task, selectedDate);
+                case RepeatMode.ДеньГода:
+                    int mounth = task.RepeatValue / 100;
+                    int day = task.RepeatValue % 100;
+
+                    if (task.RepeatValue == 229 && DateTime.DaysInMonth(selectedDate.Year, 2) == 28)
+                        return new DateTime(selectedDate.Year, 3, 1);
+                    else
+                        return new DateTime(selectedDate.Year, mounth, day);
+                default:
+                    return selectedDate;
+            }
+        }
+
+        private static DateTime GetDateForMounth(Task task, DateTime selectedDate)
+        {
             DateTime date = selectedDate;
 
-            if (task.RepeatMode == RepeatMode.ЧислоМесяца)
-            {
-                int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-                if (days < task.RepeatValue)
-                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
-                else
-                    date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
+            int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            if (days < task.RepeatValue)
+                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
+            else
+                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
 
-                if (date < DateTime.Now)
-                    date = date.AddMonths(1);
+            if (date < DateTime.Now)
+                date = date.AddMonths(1);
 
-                days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
-                if (days < task.RepeatValue)
-                    date = new DateTime(DateTime.Now.Year, date.Month, days);
-                else
-                    date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
-            }
+            days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
+            if (days < task.RepeatValue)
+                date = new DateTime(DateTime.Now.Year, date.Month, days);
+            else
+                date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
 
             return date;
         }
