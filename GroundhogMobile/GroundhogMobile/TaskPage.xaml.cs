@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core;
+using Core.Enums;
 using GroundhogMobile.Models;
 using System;
 using Xamarin.Forms;
@@ -47,17 +48,17 @@ namespace GroundhogMobile
                 if (string.IsNullOrWhiteSpace(textEntry.Text) ||
                     (RepeatMode)repeatModePicker.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
                 {
-                    throw new Exception("Одно из полей не заполнено.");
+                    throw new Exception("Поля должны быть заполнены.");
                 }
-                else
-                {
-                    Model.Text = textEntry.Text;
-                    Model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
-                    Model.RepeatValue = repeatValueEntry.Text;
-                    IsSuccess = true;
 
-                    await Navigation.PopAsync();
-                }
+                DateTimeHelper.CheckIsValueCorrect(repeatValueEntry.Text, (RepeatMode)repeatModePicker.SelectedItem);
+
+                Model.Text = textEntry.Text;
+                Model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
+                Model.RepeatValue = repeatValueEntry.Text;
+                IsSuccess = true;
+
+                await Navigation.PopAsync();
             }
             catch (Exception ex)
             {
