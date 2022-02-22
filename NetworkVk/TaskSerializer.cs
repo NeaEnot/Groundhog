@@ -45,7 +45,7 @@ namespace NetworkVk
                 Id = strs[0],
                 Text = strs[1],
                 RepeatMode = (RepeatMode)Enum.Parse(typeof(RepeatMode), strs[2]),
-                RepeatValue = int.Parse(strs[3]),
+                RepeatValue = strs[3],
                 ToNextDay = bool.Parse(strs[4]),
             };
 

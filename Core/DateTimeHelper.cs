@@ -24,12 +24,14 @@ namespace Core
                     switch (task.RepeatMode)
                     {
                         case RepeatMode.Дни:
-                            currentDate = currentDate.AddDays(task.RepeatValue);
+                            int days = int.Parse(task.RepeatValue);
+                            currentDate = currentDate.AddDays(days);
                             break;
                         case RepeatMode.ЧислоМесяца:
+                            int day = int.Parse(task.RepeatValue);
                             currentDate = currentDate.AddMonths(1);
 
-                            if (task.RepeatValue > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
+                            if (day > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
                                 currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
 
                             break;
@@ -37,7 +39,7 @@ namespace Core
                             currentDate = currentDate.AddYears(1);
 
                             // Обработка задачи на 29 февраля
-                            if (task.RepeatValue == 229 && currentDate.Month == 3 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
+                            if (task.RepeatValue == "02.29" && currentDate.Month == 3 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
                                 currentDate = new DateTime(currentDate.Year, 2, 29);
 
                             break;
@@ -84,10 +86,10 @@ namespace Core
                 case RepeatMode.ЧислоМесяца:
                     return GetDateForMounth(task, selectedDate);
                 case RepeatMode.ДеньГода:
-                    int mounth = task.RepeatValue / 100;
-                    int day = task.RepeatValue % 100;
+                    int mounth = int.Parse(task.RepeatValue.Split('.')[0]);
+                    int day = int.Parse(task.RepeatValue.Split('.')[1]);
 
-                    if (task.RepeatValue == 229 && DateTime.DaysInMonth(selectedDate.Year, 2) == 28)
+                    if (task.RepeatValue == "02.29" && DateTime.DaysInMonth(selectedDate.Year, 2) == 28)
                         return new DateTime(selectedDate.Year, 3, 1);
                     else
                         return new DateTime(selectedDate.Year, mounth, day);
@@ -99,21 +101,22 @@ namespace Core
         private static DateTime GetDateForMounth(Task task, DateTime selectedDate)
         {
             DateTime date = selectedDate;
+            int value = int.Parse(task.RepeatValue);
 
             int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            if (days < task.RepeatValue)
+            if (days < value)
                 date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
             else
-                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, task.RepeatValue);
+                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, value);
 
             if (date < DateTime.Now)
                 date = date.AddMonths(1);
 
             days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
-            if (days < task.RepeatValue)
+            if (days < value)
                 date = new DateTime(DateTime.Now.Year, date.Month, days);
             else
-                date = new DateTime(DateTime.Now.Year, date.Month, task.RepeatValue);
+                date = new DateTime(DateTime.Now.Year, date.Month, value);
 
             return date;
         }
@@ -137,6 +140,31 @@ namespace Core
                     GroundhogContext.TaskInstanceLogic.Update(instance);
                 }
             }
+        }
+
+        public static int TaskRare(TaskInstance instance, List<Task> tasks)
+        {
+            Task task = tasks.First(req => req.Id == instance.TaskId);
+
+            int answer = 0;
+
+            switch (task.RepeatMode)
+            {
+                case RepeatMode.Нет:
+                    answer = int.MaxValue;
+                    break;
+                case RepeatMode.Дни:
+                    answer = int.Parse(task.RepeatValue);
+                    break;
+                case RepeatMode.ЧислоМесяца:
+                    answer = 31;
+                    break;
+                case RepeatMode.ДеньГода:
+                    answer = 366;
+                    break;
+            }
+
+            return answer;
         }
     }
 }

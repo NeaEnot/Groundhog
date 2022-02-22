@@ -9,7 +9,7 @@ namespace GroundhogMobile.Models
         public string AccauntId { get; set; }
         public string Text { get; set; }
         public RepeatMode RepeatMode { get; set; }
-        public int RepeatValue { get; set; }
+        public string RepeatValue { get; set; }
         public bool ToNextDay { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
 
