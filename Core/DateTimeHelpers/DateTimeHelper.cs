@@ -8,13 +8,14 @@ namespace Core.DateTimeHelpers
 {
     public static class DateTimeHelper
     {
-        private static Dictionary<RepeatMode, IDTHelper> helpers = new Dictionary<RepeatMode, IDTHelper>()
+        private static readonly Dictionary<RepeatMode, IDTHelper> helpers = new Dictionary<RepeatMode, IDTHelper>()
         {
             { RepeatMode.Нет, new NotHelper() },
             { RepeatMode.Дни, new DaysHelper() },
             { RepeatMode.ЧислоМесяца, new DayOfMounthHelper() },
             { RepeatMode.ДеньГода, new DayOfYearHelper() },
-            { RepeatMode.ДниНедели, new DaysOfWeekHelper() }
+            { RepeatMode.ДниНедели, new DaysOfWeekHelper() },
+            { RepeatMode.Вахты, new WatchesHelper() }
         };
 
         public static void FillRepeatedTasks()
@@ -22,7 +23,7 @@ namespace Core.DateTimeHelpers
             List<TaskInstance> models = new List<TaskInstance>();
 
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
-            foreach (Task task in tasks.Where(t => t.RepeatMode != RepeatMode.Нет))
+            foreach (Task task in tasks)
                 models.AddRange(helpers[task.RepeatMode].FillRepeatedTasks(task));
 
             GroundhogContext.TaskInstanceLogic.Create(models);
