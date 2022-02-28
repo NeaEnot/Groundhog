@@ -118,3 +118,4 @@ TaskLogic
 Ежегодные задачи
 Сохранять Task.RepeatValue как строку
 Задачи по дням недели
+Разбить DateTimeHelper на разные классы для каждого значения RepeatMode

@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.DateTimeHelpers;
 using Core.Enums;
 using Core.Models;
 using GroundhogWindows.Models;
@@ -45,7 +46,7 @@ namespace GroundhogWindows
             List <TaskInstanceViewModel> taskInstances =
                 GroundhogContext.TaskInstanceLogic
                 .Read(selectedDate)
-                .OrderByDescending(req => DateTimeHelper.TaskRare(req, tasks))
+                .OrderByDescending(req => tasks.First(t => t.Id == req.TaskId))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel
                 {
