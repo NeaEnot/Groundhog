@@ -21,7 +21,10 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
+                <MenuItem Header="Дальность планирования и оптимизации" Click="MenuItemPlanning_Click"/>
+            </MenuItem>
             <MenuItem Header="Синхронизация">
                 <MenuItem Header="Загрузить" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="Отправить" Click="MenuItemUpload_Click"/>

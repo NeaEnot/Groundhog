@@ -97,6 +97,12 @@ namespace GroundhogWindows
             connectionWindow.ShowDialog();
         }
 
+        private void MenuItemPlanning_Click(object sender, RoutedEventArgs e)
+        {
+            PlanningWindow planningWindow = new PlanningWindow();
+            planningWindow.ShowDialog();
+        }
+
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             TaskWindow window = new TaskWindow(null);
