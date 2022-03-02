@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using Core.Enums;
+using Core.Interfaces;
 using Core.Models;
 using Newtonsoft.Json;
 using System;
@@ -57,6 +58,16 @@ namespace Core
                     writer.Write(json);
                 }
             }
+        }
+
+        public static int GetPlanningRange(RepeatMode mode)
+        {
+            return Settings.PlanningRanges[mode];
+        }
+
+        public static void SetPlanningRange(RepeatMode mode, int value)
+        {
+            Settings.PlanningRanges[mode] = value;
         }
 
         public static string StoragePath
