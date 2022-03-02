@@ -37,7 +37,11 @@ namespace Core.DateTimeHelpers
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
             foreach (Task task in tasks)
             {
-                List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => (DateTime.Now - req.Date).Days >= 100).ToList();
+                List<TaskInstance> instances = 
+                    GroundhogContext.TaskInstanceLogic
+                    .Read(task.Id)
+                    .Where(req => (DateTime.Now - req.Date).Days >= GroundhogContext.OptimizationRange)
+                    .ToList();
                 models.AddRange(instances);
 
                 if (task.RepeatMode == RepeatMode.Нет && instances.Count == 1)

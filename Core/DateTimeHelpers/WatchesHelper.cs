@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.Enums;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace Core.DateTimeHelpers
             foreach (string s in strs)
                 sum += int.Parse(s);
 
-            while ((currentDate - DateTime.Now).TotalDays + sum <= 100)
+            while ((currentDate - DateTime.Now).TotalDays + sum <= GroundhogContext.GetPlanningRange(RepeatMode.Вахты))
             {
                 for (int i = 0; i < strs.Length; i += 2)
                 {

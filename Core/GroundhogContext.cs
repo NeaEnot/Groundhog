@@ -37,26 +37,29 @@ namespace Core
             }
         }
 
-        public static string ConnectionString { 
+        public static string ConnectionString
+        { 
             get
             {
-                try
-                {
-                    return Settings.ConnectionString;
-                }
-                catch
-                {
-                    return null;
-                }
+                return Settings.ConnectionString;
             }
             set
             {
                 Settings.ConnectionString = value != null ? value : "";
-                using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
-                {
-                    string json = JsonConvert.SerializeObject(Settings);
-                    writer.Write(json);
-                }
+                SaveSettings();
+            }
+        }
+
+        public static int OptimizationRange
+        {
+            get
+            {
+                return Settings.OptimizationRange;
+            }
+            set
+            {
+                Settings.OptimizationRange = value;
+                SaveSettings();
             }
         }
 
@@ -68,6 +71,7 @@ namespace Core
         public static void SetPlanningRange(RepeatMode mode, int value)
         {
             Settings.PlanningRanges[mode] = value;
+            SaveSettings();
         }
 
         public static string StoragePath
@@ -87,6 +91,15 @@ namespace Core
                     storage.Create();
 
                 return storagePath;
+            }
+        }
+
+        private static void SaveSettings()
+        {
+            using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
+            {
+                string json = JsonConvert.SerializeObject(Settings);
+                writer.Write(json);
             }
         }
     }

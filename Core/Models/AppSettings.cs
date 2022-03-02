@@ -8,6 +8,7 @@ namespace Core.Models
         public string ConnectionString { get; set; }
 
         public Dictionary<RepeatMode, int> PlanningRanges { get; set; }
+        public int OptimizationRange { get; set; }
 
         public AppSettings()
         {
