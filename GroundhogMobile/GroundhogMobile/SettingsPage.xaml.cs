@@ -59,5 +59,11 @@ namespace GroundhogMobile
             if (!GroundhogContext.NetworkLogic.IsConnected())
                 GroundhogContext.NetworkLogic.Connect(() => "");
         }
+
+        private async void ButtonPlanning_Clicked(object sender, EventArgs e)
+        {
+            PlanningPage page = new PlanningPage();
+            await Navigation.PushAsync(page);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.DateTimeHelpers;
+﻿using Core.DateTimeHelpers;
 using Core.Enums;
 using GroundhogMobile.Models;
 using System;

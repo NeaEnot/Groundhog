@@ -5,6 +5,7 @@
     <ContentPage.Content>
         <StackLayout x:Name="layout" VerticalOptions="Center">
             <Button Text="Строка подключения" FontSize="20" Clicked="ButtonConnectString_Clicked"/>
+            <Button Text="Планирование" FontSize="20" Clicked="ButtonPlanning_Clicked"/>
             <Button Text="Загрузить" FontSize="20" Clicked="ButtonLoad_Clicked"/>
             <Button Text="Отправить" FontSize="20" Clicked="ButtonSend_Clicked"/>
         </StackLayout>
