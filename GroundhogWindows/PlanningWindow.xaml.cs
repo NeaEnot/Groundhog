@@ -20,7 +20,7 @@ namespace GroundhogWindows
             tbOptimization.Text = GroundhogContext.OptimizationRange.ToString();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -39,6 +39,8 @@ namespace GroundhogWindows
                 GroundhogContext.SetPlanningRange(RepeatMode.ДеньГода, dayOfYear);
 
                 GroundhogContext.OptimizationRange = optimization;
+
+                DialogResult = true;
             }
             catch (Exception ex)
             {

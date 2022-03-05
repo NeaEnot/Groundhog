@@ -49,7 +49,7 @@ namespace StorageFile.Implements
 
         public List<TaskInstance> Read(DateTime date)
         {
-            return context.TaskInstances
+            List<TaskInstance> models = context.TaskInstances
                 .Where(req => req.Date.ToString("dd.MM.yyyy") == date.ToString("dd.MM.yyyy"))
                 .Select(req => new TaskInstance
                 {
@@ -59,6 +59,8 @@ namespace StorageFile.Implements
                     Completed = req.Completed
                 })
                 .ToList();
+
+            return models;
         }
 
         public List<TaskInstance> Read(string taskId)

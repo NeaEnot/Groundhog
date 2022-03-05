@@ -21,6 +21,8 @@ namespace Core.Models
                 { RepeatMode.ДниНедели, 100 },
                 { RepeatMode.Вахты, 100 }
             };
+
+            OptimizationRange = 50;
         }
     }
 }

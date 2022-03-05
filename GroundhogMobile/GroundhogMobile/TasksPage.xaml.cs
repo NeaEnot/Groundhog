@@ -44,7 +44,7 @@ namespace GroundhogMobile
             List<TaskInstanceViewModel> list =
                 GroundhogContext.TaskInstanceLogic
                 .Read(date)
-                .OrderByDescending(req => tasks.First(t => t.Id == req.TaskId))
+                .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel(req))
                 .ToList();
