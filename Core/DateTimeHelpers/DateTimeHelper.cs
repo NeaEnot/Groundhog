@@ -84,7 +84,6 @@ namespace Core.DateTimeHelpers
             return helpers[task.RepeatMode].TaskRare(task);
         }
 
-
         public static void CheckIsValueCorrect(string text, RepeatMode mode)
         {
             helpers[mode].CheckIsValueCorrect(text);

@@ -47,7 +47,7 @@ namespace Core.DateTimeHelpers
 
         public DateTime GetDateForTask(Task task, DateTime selectedDate)
         {
-            throw new NotImplementedException();
+            return selectedDate;
         }
 
         public int TaskRare(Task task)
