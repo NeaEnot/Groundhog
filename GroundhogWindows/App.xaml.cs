@@ -1,7 +1,7 @@
 ﻿using Core;
 using System.Windows;
-using NetworkVk;
 using StorageFile.Implements;
+using YandexDisk;
 
 namespace GroundhogWindows
 {

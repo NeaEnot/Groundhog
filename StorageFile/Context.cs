@@ -31,7 +31,7 @@ namespace StorageFile
 
         internal void Save()
         {
-            using (StreamWriter writer = new StreamWriter($"{GroundhogContext.StoragePath}\\storage.json"))
+            using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\storage.json"))
             {
                 string json = JsonConvert.SerializeObject((Tasks, TaskInstances));
                 writer.Write(json);
@@ -42,7 +42,7 @@ namespace StorageFile
         {
             try
             {
-                using (StreamReader reader = new StreamReader($"{GroundhogContext.StoragePath}\\storage.json"))
+                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\storage.json"))
                 {
                     string json = reader.ReadToEnd();
                     (List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Task>, List<TaskInstance>)>(json);

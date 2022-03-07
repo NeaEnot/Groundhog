@@ -1,7 +1,7 @@
 ﻿using Core;
-using NetworkVk;
 using StorageFile.Implements;
 using Xamarin.Forms;
+using YandexDisk;
 
 namespace GroundhogMobile
 {

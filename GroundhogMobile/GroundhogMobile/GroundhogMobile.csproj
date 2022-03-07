@@ -21,8 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
-    <ProjectReference Include="..\..\NetworkVk\NetworkVk.csproj" />
     <ProjectReference Include="..\..\StorageFile\StorageFile.csproj" />
+    <ProjectReference Include="..\..\YandexDisk\YandexDisk.csproj" />
   </ItemGroup>
 
   <ItemGroup>
