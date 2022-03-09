@@ -27,12 +27,9 @@ namespace StorageFile.Implements
 
         public void Create(List<TaskInstance> models)
         {
-            string currentId = IdHelper.GetMaxId(context.TaskInstances.Select(req => req.Id).ToList());
-
             foreach (TaskInstance model in models)
             {
-                currentId = "ti_" + IdHelper.GetId();
-                model.Id = currentId;
+                model.Id = "ti_" + IdHelper.GetId();
 
                 context.TaskInstances
                     .Add(new TaskInstance

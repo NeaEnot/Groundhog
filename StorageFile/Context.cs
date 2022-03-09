@@ -12,6 +12,7 @@ namespace StorageFile
 
         internal List<Task> Tasks { get; set; }
         internal List<TaskInstance> TaskInstances { get; set; }
+        internal List<Purpose> Purposes { get; set; }
 
         private Context()
         {
