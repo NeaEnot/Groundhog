@@ -12,7 +12,7 @@ namespace StorageFile.Implements
 
         public void Create(Purpose model)
         {
-            model.Id = "p_" + IdHelper.GetId();
+            model.Id = IdHelper.GetId("p_");
             context.Purposes
                 .Add(new Purpose
                 {
@@ -29,7 +29,7 @@ namespace StorageFile.Implements
         {
             foreach (Purpose model in models)
             {
-                model.Id = "p_" + IdHelper.GetId();
+                model.Id = IdHelper.GetId("p_");
 
                 context.Purposes
                     .Add(new Purpose

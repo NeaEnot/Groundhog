@@ -12,7 +12,7 @@ namespace StorageFile.Implements
 
         public void Create(TaskInstance model)
         {
-            model.Id = "ti_" + IdHelper.GetId();
+            model.Id = IdHelper.GetId("ti_");
             context.TaskInstances
                 .Add(new TaskInstance
                 {
@@ -29,7 +29,7 @@ namespace StorageFile.Implements
         {
             foreach (TaskInstance model in models)
             {
-                model.Id = "ti_" + IdHelper.GetId();
+                model.Id = IdHelper.GetId("ti_");
 
                 context.TaskInstances
                     .Add(new TaskInstance
