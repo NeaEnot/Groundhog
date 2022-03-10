@@ -63,9 +63,7 @@ namespace StorageFile.Implements
             Purpose purpose = context.Purposes.FirstOrDefault(req => req.Id == model.Id);
 
             if (purpose == null)
-            {
                 throw new Exception("Цели с данным Id не существует.");
-            }
 
             purpose.GroupId = model.GroupId;
             purpose.Text = model.Text;

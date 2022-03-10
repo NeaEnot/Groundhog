@@ -79,9 +79,7 @@ namespace StorageFile.Implements
             TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == model.Id);
 
             if (instance == null)
-            {
                 throw new Exception("Экземпляра задачи с данным Id не существует.");
-            }
 
             instance.Date = model.Date;
             instance.TaskId = model.TaskId;

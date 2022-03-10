@@ -68,9 +68,7 @@ namespace StorageFile.Implements
             Task task = context.Tasks.FirstOrDefault(req => req.Id == id);
 
             if (task == null)
-            {
                 throw new Exception("Задачи с данным id не существует.");
-            }
 
             return new Task
             {
