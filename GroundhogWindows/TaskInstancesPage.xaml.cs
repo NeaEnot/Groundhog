@@ -12,9 +12,6 @@ using System.Windows.Input;
 
 namespace GroundhogWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskInstancesPage.xaml
-    /// </summary>
     public partial class TaskInstancesPage : Page
     {
         private MainWindow windowContext;
@@ -39,7 +36,7 @@ namespace GroundhogWindows
 
             List<TaskInstanceViewModel> taskInstances =
                 GroundhogContext.TaskInstanceLogic
-                .Read(windowContext.selectedDate)
+                .Read(windowContext.SelectedDate)
                 .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel
@@ -67,7 +64,7 @@ namespace GroundhogWindows
                         {
                             TaskId = window.Task.Id,
                             Completed = false,
-                            Date = DateTimeHelper.GetDateForTask(window.Task, windowContext.selectedDate)
+                            Date = DateTimeHelper.GetDateForTask(window.Task, windowContext.SelectedDate)
                         });
                 LoadTasks();
             }
@@ -116,12 +113,12 @@ namespace GroundhogWindows
                     {
                         List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(window.Task.Id);
                         instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
-                        List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > windowContext.selectedDate.Date).ToList();
+                        List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > windowContext.SelectedDate.Date).ToList();
 
                         GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
-                        instances.RemoveAll(req => req.Date.Date > windowContext.selectedDate.Date);
+                        instances.RemoveAll(req => req.Date.Date > windowContext.SelectedDate.Date);
 
-                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, windowContext.selectedDate);
+                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, windowContext.SelectedDate);
 
                         if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
                             instances[0].Date.Date != date.Date)

@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GroundhogWindows"
-        xmlns:conv="clr-namespace:GroundhogWindows.Converters"
         mc:Ignorable="d"
-        Title="Groundhog" Height="445" Width="800">
-    <Window.Resources>
-        <conv:DateTimeConverter x:Key="converter"/>
-    </Window.Resources>
+        WindowState="Maximized"
+        d:DesignHeight="445"
+        d:DesignWidth="800"
+        Title="Groundhog">
+    
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
@@ -31,28 +31,7 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
-            <TabItem Header="Список">
-                <ScrollViewer>
-                    <ListBox Name="listBoxDates" SelectionChanged="DateSelected">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="5">
-                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=1}" FontSize="18"/>
-                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=0}" FontSize="14"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="Календарь">
-                <Viewbox>
-                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate" />
-                </Viewbox>
-            </TabItem>
-        </TabControl>
-
+        <Frame Name="fDates" Margin="0,0,0,00" Grid.Column="0" Grid.Row="1"/>
         <Frame Name="fInstances" Margin="0,0,0,10" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>

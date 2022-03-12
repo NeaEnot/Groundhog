@@ -1,49 +1,28 @@
 ﻿using Core;
 using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace GroundhogWindows
 {
     public partial class MainWindow : Window
     {
-        public DateTime selectedDate;
-
         private TaskInstancesPage tiPage;
+        private SelectDatePage sdPage;
+
+        internal DateTime SelectedDate => sdPage.SelectedDate;
+        internal Action LoadTasks;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            sdPage = new SelectDatePage(this);
+            fDates.Content = sdPage;
+
             tiPage = new TaskInstancesPage(this);
             fInstances.Content = tiPage;
 
-            LoadDates();
-        }
-
-        private void LoadDates()
-        {
-            List<DateTime> dates = new List<DateTime>();
-            for (int i = 0; i < 20; i++)
-            {
-                dates.Add(DateTime.Now.AddDays(i));
-            }
-            listBoxDates.ItemsSource = dates;
-        }
-
-        private void DateSelected(object sender, RoutedEventArgs e)
-        {
-            if (sender is ListBox)
-            {
-                selectedDate = (DateTime)((ListBox)sender).SelectedItem;
-            }
-            if (sender is Calendar)
-            {
-                selectedDate = (DateTime)((Calendar)sender).SelectedDate;
-            }
-
-            tiPage.LoadTasks();
+            LoadTasks = tiPage.LoadTasks;
         }
 
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
