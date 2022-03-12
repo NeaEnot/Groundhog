@@ -38,6 +38,13 @@ namespace Core.DateTimeHelpers
             string[] strs = task.RepeatValue.Split('-');
             int sum = 0;
 
+            int skip = int.Parse(strs[1]);
+            bool first = false;
+            if (taskInstances.Count == 1)
+                first = true;
+            else
+                currentDate = currentDate.AddDays(skip);
+
             foreach (string s in strs)
                 sum += int.Parse(s);
 
@@ -51,6 +58,12 @@ namespace Core.DateTimeHelpers
                     for (int j = 0; j < work; j++)
                     {
                         currentDate = currentDate.AddDays(1);
+
+                        if (first)
+                        {
+                            first = false;
+                            continue;
+                        }
 
                         TaskInstance model = new TaskInstance
                         {
