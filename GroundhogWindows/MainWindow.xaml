@@ -53,26 +53,6 @@
             </TabItem>
         </TabControl>
 
-        <ScrollViewer Margin="0,0,0,10" Grid.Column="1" Grid.Row="1">
-            <ListBox Name="listBoxTasks" MouseDoubleClick="listBoxTasks_MouseDoubleClick">
-                <ListBox.ContextMenu>
-                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
-                        <MenuItem Header="Удалить все подобные задачи" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=SelectedItem.Repeated}"/>
-                    </ContextMenu>
-                </ListBox.ContextMenu>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
-                                <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
-                            </CheckBox>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
-        <Button Content="Создать" Margin="0,0,25,18" VerticalAlignment="Bottom" Height="35" Click="ButtonAdd_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="84"/>
+        <Frame Name="fInstances" Margin="0,0,0,10" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>
