@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkVk", "NetworkVk\Netw
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Network", "Network", "{00F7B056-2634-4D81-8B30-CD28EE9B0C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YandexDisk", "YandexDisk\YandexDisk.csproj", "{9643DB13-9959-4F30-BD19-386441AA3809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YandexDisk", "YandexDisk\YandexDisk.csproj", "{9643DB13-9959-4F30-BD19-386441AA3809}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2046F16-E669-4E26-B327-16611B481D08}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

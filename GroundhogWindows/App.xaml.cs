@@ -11,6 +11,8 @@ namespace GroundhogWindows
         {
             GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
             GroundhogContext.TaskLogic = new TaskLogic();
+            GroundhogContext.PurposeLogic = new PurposeLogic();
+            GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();
         }
     }

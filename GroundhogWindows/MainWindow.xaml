@@ -10,15 +10,11 @@
         Title="Groundhog">
     
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="40*"/>
-        </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="Настройки">
@@ -31,7 +27,30 @@
             </MenuItem>
         </Menu>
 
-        <Frame Name="fDates" Margin="0,0,0,00" Grid.Column="0" Grid.Row="1"/>
-        <Frame Name="fInstances" Margin="0,0,0,10" Grid.Column="1" Grid.Row="1"/>
+        <TabControl Name="tc" Grid.Row="1" Margin="0,0,0,0" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="Задачи">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Name="fDates" Grid.Column="0"/>
+                    <Frame Name="fInstances" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Цели">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Name="fGroups" Grid.Column="0"/>
+                    <Frame Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>

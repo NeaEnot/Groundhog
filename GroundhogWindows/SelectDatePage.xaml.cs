@@ -20,7 +20,7 @@ namespace GroundhogWindows
             LoadDates();
         }
 
-        private void LoadDates()
+        internal void LoadDates()
         {
             List<DateTime> dates = new List<DateTime>();
 

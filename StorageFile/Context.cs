@@ -1,6 +1,8 @@
 ﻿using Core;
 using Core.Models;
 using Newtonsoft.Json;
+using StorageFile.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,11 +11,12 @@ namespace StorageFile
     internal class Context
     {
         private static Context instance;
+        private static StorageModel storage;
 
-        internal List<Task> Tasks { get; set; }
-        internal List<TaskInstance> TaskInstances { get; set; }
-        internal List<Purpose> Purposes { get; set; }
-        internal List<PurposeGroup> PurposeGroups { get; set; }
+        internal List<Task> Tasks => storage.Tasks;
+        internal List<TaskInstance> TaskInstances => storage.TaskInstances;
+        internal List<Purpose> Purposes => storage.Purposes;
+        internal List<PurposeGroup> PurposeGroups => storage.PurposeGroups;
 
         private Context()
         {
@@ -35,28 +38,31 @@ namespace StorageFile
         {
             using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\storage.json"))
             {
-                string json = JsonConvert.SerializeObject((Tasks, TaskInstances));
+                string json = JsonConvert.SerializeObject(storage);
                 writer.Write(json);
             }
         }
 
         internal void Load()
         {
+            if (storage == null)
+                storage = new StorageModel();
+
             try
             {
                 using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\storage.json"))
                 {
                     string json = reader.ReadToEnd();
-                    (List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Task>, List<TaskInstance>)>(json);
-                    Tasks = restored.Item1;
-                    TaskInstances = restored.Item2;
+                    StorageModel restored = JsonConvert.DeserializeObject<StorageModel>(json);
+
+                    storage.Tasks = restored.Tasks;
+                    storage.TaskInstances = restored.TaskInstances;
+                    storage.Purposes = restored.Purposes;
+                    storage.PurposeGroups = restored.PurposeGroups;
                 }
             }
-            catch
-            {
-                Tasks = new List<Task>();
-                TaskInstances = new List<TaskInstance>();
-            }
+            catch (Exception ex)
+            { }
         }
     }
 }

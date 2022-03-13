@@ -1,6 +1,7 @@
 ﻿using Core;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GroundhogWindows
 {
@@ -9,8 +10,11 @@ namespace GroundhogWindows
         private TaskInstancesPage tiPage;
         private SelectDatePage sdPage;
 
+        private SelectGroupPage sgPage;
+
         internal DateTime SelectedDate => sdPage.SelectedDate;
         internal Action LoadTasks;
+        internal Action LoadPurposes;
 
         public MainWindow()
         {
@@ -21,6 +25,9 @@ namespace GroundhogWindows
 
             tiPage = new TaskInstancesPage(this);
             fInstances.Content = tiPage;
+
+            sgPage = new SelectGroupPage(this);
+            fGroups.Content = sgPage;
 
             LoadTasks = tiPage.LoadTasks;
         }
@@ -77,6 +84,19 @@ namespace GroundhogWindows
                 };
 
                 GroundhogContext.NetworkLogic.Connect(f);
+            }
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((tc.SelectedItem as TabItem).Header == "Задачи")
+            {
+                sdPage.LoadDates();
+                tiPage.LoadTasks();
+            }
+            if ((tc.SelectedItem as TabItem).Header == "Цели")
+            {
+                sgPage.LoadGroups();
             }
         }
     }
