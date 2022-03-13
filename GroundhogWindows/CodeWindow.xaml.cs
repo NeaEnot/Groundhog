@@ -3,9 +3,6 @@ using System.Windows;
 
 namespace GroundhogWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для CodeWindow.xaml
-    /// </summary>
     public partial class CodeWindow : Window
     {
         public string Code { get; private set; }

@@ -39,13 +39,7 @@ namespace GroundhogWindows
                 .Read(windowContext.SelectedDate)
                 .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
-                .Select(req => new TaskInstanceViewModel
-                {
-                    Id = req.Id,
-                    Date = req.Date,
-                    Completed = req.Completed,
-                    TaskId = req.TaskId
-                })
+                .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
                 .ToList();
 
             listBoxTasks.ItemsSource = null;
@@ -73,13 +67,7 @@ namespace GroundhogWindows
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((CheckBox)sender).DataContext;
-            TaskInstance model = new TaskInstance
-            {
-                Id = viewModel.Id,
-                Completed = ((CheckBox)sender).IsChecked.Value,
-                Date = viewModel.Date,
-                TaskId = viewModel.TaskId
-            };
+            TaskInstance model = viewModel.Convert();
 
             GroundhogContext.TaskInstanceLogic.Update(model);
 

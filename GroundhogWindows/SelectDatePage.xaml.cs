@@ -16,6 +16,7 @@ namespace GroundhogWindows
             InitializeComponent();
 
             this.contextWindow = contextWindow;
+            SelectedDate = DateTime.Now;
 
             LoadDates();
         }

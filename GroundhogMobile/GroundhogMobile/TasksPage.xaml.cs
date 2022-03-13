@@ -46,7 +46,7 @@ namespace GroundhogMobile
                 .Read(date)
                 .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
-                .Select(req => new TaskInstanceViewModel(req))
+                .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
                 .ToList();
 
             tasksList.ItemsSource = list;
@@ -139,13 +139,7 @@ namespace GroundhogMobile
         private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((CheckBox)sender).BindingContext;
-            TaskInstance model = new TaskInstance
-            {
-                Id = viewModel.Id,
-                Completed = ((CheckBox)sender).IsChecked,
-                Date = viewModel.Date,
-                TaskId = viewModel.TaskId
-            };
+            TaskInstance model = viewModel.Convert();
 
             GroundhogContext.TaskInstanceLogic.Update(model);
 

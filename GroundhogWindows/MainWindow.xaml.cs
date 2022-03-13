@@ -11,8 +11,11 @@ namespace GroundhogWindows
         private SelectDatePage sdPage;
 
         private SelectGroupPage sgPage;
+        private PurposesPage pPage;
 
         internal DateTime SelectedDate => sdPage.SelectedDate;
+        internal string SelectedGroupId => sgPage.SelectedGroup.Id;
+
         internal Action LoadTasks;
         internal Action LoadPurposes;
 
@@ -21,15 +24,17 @@ namespace GroundhogWindows
             InitializeComponent();
 
             sdPage = new SelectDatePage(this);
-            fDates.Content = sdPage;
-
             tiPage = new TaskInstancesPage(this);
-            fInstances.Content = tiPage;
-
             sgPage = new SelectGroupPage(this);
+            pPage = new PurposesPage(this);
+
+            fDates.Content = sdPage;
+            fInstances.Content = tiPage;
             fGroups.Content = sgPage;
+            fPurposes.Content = pPage;
 
             LoadTasks = tiPage.LoadTasks;
+            LoadPurposes = pPage.LoadPurposes;
         }
 
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
@@ -97,6 +102,7 @@ namespace GroundhogWindows
             if ((tc.SelectedItem as TabItem).Header == "Цели")
             {
                 sgPage.LoadGroups();
+                pPage.LoadPurposes();
             }
         }
     }

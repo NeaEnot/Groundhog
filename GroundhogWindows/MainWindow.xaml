@@ -47,7 +47,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Frame Name="fGroups" Grid.Column="0"/>
-                    <Frame Grid.Column="1"/>
+                    <Frame Name="fPurposes" Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.DateTimeHelpers;
+﻿using Core.DateTimeHelpers;
 using Core.Enums;
 using Core.Models;
 using System;
@@ -7,9 +6,6 @@ using System.Windows;
 
 namespace GroundhogWindows
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskWindow.xaml
-    /// </summary>
     public partial class TaskWindow : Window
     {
         public Task Task { get; private set; }

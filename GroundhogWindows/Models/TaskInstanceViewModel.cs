@@ -1,5 +1,4 @@
-﻿using Core;
-using Core.Enums;
+﻿using Core.Enums;
 using Core.Models;
 using System;
 
@@ -13,25 +12,35 @@ namespace GroundhogWindows.Models
         public DateTime Date { get; set; }
         public string TaskId { get; set; }
         public bool Completed { get; set; }
-        public string Text 
+
+        public string Text => task.Text;
+        public bool Repeated => task.RepeatMode != RepeatMode.Нет;
+
+        public string TextColor => Completed ? "Gray" : "Black";
+        public string TextDecorations => Completed ? "Strikethrough" : "None";
+
+        internal TaskInstanceViewModel(TaskInstance instance, Task task)
         {
-            get 
+            if (instance != null)
             {
-                if (task == null)
-                    task = GroundhogContext.TaskLogic.Read(TaskId);
-                return task.Text;
-            } 
-        }
-        public bool Repeated 
-        { 
-            get
-            {
-                if (task == null)
-                    task = GroundhogContext.TaskLogic.Read(TaskId);
-                return task.RepeatMode != RepeatMode.Нет; 
+                Id = instance.Id;
+                Date = instance.Date;
+                TaskId = instance.TaskId;
+                Completed = instance.Completed;
             }
+
+            this.task = task;
         }
-        public string TextColor { get { return Completed ? "Gray" : "Black"; } }
-        public string TextDecorations { get { return Completed ? "Strikethrough" : "None"; } }
+
+        internal TaskInstance Convert()
+        {
+            return new TaskInstance
+            {
+                Id = Id,
+                Date = Date,
+                TaskId = TaskId,
+                Completed = Completed
+            };
+        }
     }
 }
