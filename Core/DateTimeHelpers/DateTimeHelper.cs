@@ -26,7 +26,8 @@ namespace Core.DateTimeHelpers
             foreach (Task task in tasks)
                 models.AddRange(helpers[task.RepeatMode].FillRepeatedTasks(task));
 
-            GroundhogContext.TaskInstanceLogic.Create(models);
+            if (models.Count > 0)
+                GroundhogContext.TaskInstanceLogic.Create(models);
         }
 
         public static void DeleteOldTasks()
@@ -48,7 +49,10 @@ namespace Core.DateTimeHelpers
                     tasksToDelete.Add(task);
             }
 
-            GroundhogContext.TaskInstanceLogic.Delete(models.Select(req => req.Id).ToList());
+            List<string> ids = models.Select(req => req.Id).ToList();
+            if (ids.Count > 0)
+                GroundhogContext.TaskInstanceLogic.Delete(ids);
+
             foreach (Task task in tasksToDelete)
                 GroundhogContext.TaskLogic.Delete(task.Id);
         }

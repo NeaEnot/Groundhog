@@ -51,6 +51,10 @@ namespace StorageFile
                     if (Context.Instanse.Purposes.Count(req => req.Id == prefix + id) == 0)
                         return true;
                     break;
+                case "pg_":
+                    if (Context.Instanse.PurposeGroups.Count(req => req.Id == prefix + id) == 0)
+                        return true;
+                    break;
             }
 
             return false;

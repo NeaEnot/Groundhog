@@ -38,7 +38,7 @@ namespace Core.DateTimeHelpers
             string[] strs = task.RepeatValue.Split('-');
             int sum = 0;
 
-            int skip = int.Parse(strs[1]);
+            int skip = int.Parse(strs[strs.Length - 1]);
             bool first = false;
             if (taskInstances.Count == 1)
                 first = true;

@@ -5,10 +5,10 @@ namespace StorageFile.Models
 {
     internal class StorageModel
     {
-        internal List<Task> Tasks { get; set; }
-        internal List<TaskInstance> TaskInstances { get; set; }
-        internal List<Purpose> Purposes { get; set; }
-        internal List<PurposeGroup> PurposeGroups { get; set; }
+        public List<Task> Tasks { get; set; }
+        public List<TaskInstance> TaskInstances { get; set; }
+        public List<Purpose> Purposes { get; set; }
+        public List<PurposeGroup> PurposeGroups { get; set; }
 
         internal StorageModel()
         {

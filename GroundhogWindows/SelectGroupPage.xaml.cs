@@ -36,13 +36,54 @@ namespace GroundhogWindows
 
         private void GroupSelected(object sender, SelectionChangedEventArgs e)
         {
-            SelectedGroup = (PurposeGroup)e.Source;
+            SelectedGroup = (PurposeGroup)((ListBox)e.Source).SelectedItem;
             contextWindow.LoadPurposes();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            PurposeGroupWindow window = new PurposeGroupWindow(null);
+            if (window.ShowDialog() == true)
+            {
+                GroundhogContext.PurposeGroupLogic.Create(window.Group);
+                LoadGroups();
+            }
+        }
 
+        private void listBoxGroups_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            UpdateTask();
+        }
+
+        private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateTask();
+        }
+
+        private void UpdateTask()
+        {
+            PurposeGroup group = (PurposeGroup)listBoxGroups.SelectedItem;
+
+            if (group != null)
+            {
+                PurposeGroupWindow window = new PurposeGroupWindow(group);
+                if (window.ShowDialog() == true)
+                {
+                    GroundhogContext.PurposeGroupLogic.Update(window.Group);
+                    LoadGroups();
+                }
+            }
+        }
+
+        private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
+        {
+            PurposeGroup group = (PurposeGroup)listBoxGroups.SelectedItem;
+
+            if (group != null)
+            {
+                GroundhogContext.PurposeGroupLogic.Delete(group.Id);
+                LoadGroups();
+            }
         }
     }
 }
