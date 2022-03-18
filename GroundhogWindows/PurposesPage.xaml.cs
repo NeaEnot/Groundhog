@@ -47,7 +47,20 @@ namespace GroundhogWindows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            Purpose model = new Purpose
+            {
+                GroupId = windowContext.SelectedGroupId,
+                Text = "",
+                Completed = false
+            };
 
+            PurposeWindow window = new PurposeWindow(model);
+
+            if (window.ShowDialog() == true)
+            {
+                GroundhogContext.PurposeLogic.Create(window.Purpose);
+                LoadPurposes();
+            }
         }
 
         private void listBoxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -62,7 +75,16 @@ namespace GroundhogWindows
 
         private void UpdatePurpose()
         {
-            
+            PurposeViewModel viewModel = (PurposeViewModel)listBoxTasks.SelectedItem;
+            Purpose model = viewModel.Convert();
+
+            PurposeWindow window = new PurposeWindow(model);
+
+            if (window.ShowDialog() == true)
+            {
+                GroundhogContext.PurposeLogic.Update(window.Purpose);
+                LoadPurposes();
+            }
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
