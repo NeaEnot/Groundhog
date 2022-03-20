@@ -6,8 +6,11 @@
              NavigationPage.HasNavigationBar="False">
 
     <TabbedPage.Children>
-        <local:DatesListPage Title="Список дат"/>
-        <local:CalendarPage Title="Календарь"/>
+        <TabbedPage Title="Задачи">
+            <local:DatesListPage Title="Список дат"/>
+            <local:CalendarPage Title="Календарь"/>
+        </TabbedPage>
+        <local:PurposeGroupsPage Title="Цели"/>
         <local:SettingsPage Title="Настройки"/>
     </TabbedPage.Children>
 
