@@ -3,18 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GroundhogMobile.PurposeGroupsPage">
     <ContentPage.Content>
-        <ScrollView>
-            <ListView x:Name="groupsList" RowHeight="80" SelectionMode="None" ItemTapped="groupsList_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <FlexLayout Direction="Column">
-                                <Label FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
-                            </FlexLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
+        <FlexLayout Direction="Column">
+            <ScrollView FlexLayout.Basis="90%">
+                <ListView x:Name="groupsList" RowHeight="80" SelectionMode="None" ItemTapped="groupsList_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <FlexLayout Direction="Column">
+                                    <Label FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
+                                </FlexLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <Button Text="Создать" FontSize="20" FlexLayout.Basis="10%"/>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -15,10 +15,10 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
-            LoadGroups();
+            LoadData();
         }
 
-        private void LoadGroups()
+        private void LoadData()
         {
             List<PurposeGroup> groups =
                 GroundhogContext.PurposeGroupLogic
@@ -32,7 +32,7 @@ namespace GroundhogMobile
 
         private void groupsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            //Navigation.PushAsync(new TasksPage((DateTime)e.Item));
+            Navigation.PushAsync(new PurposesPage((PurposeGroup)e.Item));
         }
     }
 }

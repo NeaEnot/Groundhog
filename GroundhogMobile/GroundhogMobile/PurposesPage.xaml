@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.PurposesPage">
+    <ContentPage.Content>
+        <FlexLayout Direction="Column">
+            <ScrollView FlexLayout.Basis="90%">
+                <ListView x:Name="purposesList" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Изменить" Command="{StaticResource MenuItemUpdate}" CommandParameter="{Binding}"/>
+                                    <MenuItem Text="Удалить" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}"/>
+                                </ViewCell.ContextActions>
+                                <ViewCell.View>
+                                    <FlexLayout Direction="Row" Margin="0, 10" JustifyContent="Center">
+                                        <CheckBox
+                                            BindingContext="{Binding}"
+                                            IsChecked="{Binding Completed}"
+                                            CheckedChanged="CheckBox_CheckedChanged"
+                                            FlexLayout.Basis="10%"/>
+                                        <Label
+                                            Text="{Binding Text}"
+                                            FontSize="20"
+                                            TextColor="{Binding TextColor}"
+                                            TextDecorations="{Binding TextDecorations}"
+                                            FlexLayout.Basis="90%"
+                                            Margin="0, 4, 0, 0"/>
+                                    </FlexLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <Button Text="Создать" FontSize="20" FlexLayout.Basis="10%"/>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
