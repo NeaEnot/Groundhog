@@ -1,5 +1,10 @@
 ﻿using Core.Models;
+using GroundhogMobile.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,22 +12,22 @@ using Xamarin.Forms.Xaml;
 namespace GroundhogMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PurposeGroupPage : ContentPage
+    public partial class PurposePage : ContentPage
     {
         public bool IsSuccess { get; private set; } = false;
-        internal PurposeGroup Group { get; private set; }
+        internal PurposeViewModel Model { get; private set; }
 
-        internal PurposeGroupPage(PurposeGroup group)
+        internal PurposePage(PurposeViewModel model)
         {
             InitializeComponent();
 
-            if (group == null)
-                throw new ArgumentNullException("При создании новой группы целей необходимо передавать новый объект с пустыми полями.");
+            if (model == null)
+                throw new ArgumentNullException("При создании новой цели необходимо передавать новый объект с пустыми полями.");
 
             InitializeComponent();
 
-            Group = group;
-            BindingContext = group;
+            Model = model;
+            BindingContext = model;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -32,7 +37,7 @@ namespace GroundhogMobile
                 if (string.IsNullOrWhiteSpace(textEntry.Text))
                     throw new Exception("Поле должно быть заполнено.");
 
-                Group.Name = textEntry.Text;
+                Model.Text = textEntry.Text;
                 IsSuccess = true;
 
                 await Navigation.PopAsync();

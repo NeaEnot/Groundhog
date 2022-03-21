@@ -13,12 +13,15 @@ namespace GroundhogMobile.Models
         public string TextColor => Completed ? "Gray" : "Black";
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;
 
-        internal PurposeViewModel(Purpose purpose)
+        internal PurposeViewModel(Purpose purpose = null)
         {
-            Id = purpose.Id;
-            GroupId = purpose.GroupId;
-            Text = purpose.Text;
-            Completed = purpose.Completed;
+            if (purpose != null)
+            {
+                Id = purpose.Id;
+                GroupId = purpose.GroupId;
+                Text = purpose.Text;
+                Completed = purpose.Completed;
+            }
         }
 
         internal Purpose Convert()

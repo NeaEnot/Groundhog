@@ -36,10 +36,38 @@ namespace GroundhogMobile
             purposesList.ItemsSource = purposes;
         }
 
-        public ICommand MenuItemUpdate =>
-            new Command<TaskInstanceViewModel>(async (instanceModel) =>
+        private async void Button_Clicked(object sender, System.EventArgs e)
+        {
+            PurposePage page = new PurposePage(new PurposeViewModel { GroupId = group.Id });
+            page.Disappearing += (sender2, e2) =>
             {
-                
+                if (page.IsSuccess)
+                {
+                    Purpose purpose = page.Model.Convert();
+                    GroundhogContext.PurposeLogic.Create(purpose);
+                    LoadData();
+                }
+            };
+
+            await Navigation.PushAsync(page);
+        }
+
+        public ICommand MenuItemUpdate =>
+            new Command<PurposeViewModel>(async (purposeModel) =>
+            {
+                PurposePage page = new PurposePage(purposeModel);
+
+                page.Disappearing += (sender2, e2) =>
+                {
+                    if (page.IsSuccess)
+                    {
+                        Purpose purpose = page.Model.Convert();
+                        GroundhogContext.PurposeLogic.Update(purpose);
+                        LoadData();
+                    }
+                };
+
+                await Navigation.PushAsync(page);
             });
 
         public ICommand MenuItemDelete =>
