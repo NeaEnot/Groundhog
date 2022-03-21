@@ -2,7 +2,7 @@
 using Core.Models;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,5 +34,45 @@ namespace GroundhogMobile
         {
             Navigation.PushAsync(new PurposesPage((PurposeGroup)e.Item));
         }
+
+        private async void Button_Clicked(object sender, System.EventArgs e)
+        {
+            PurposeGroupPage page = new PurposeGroupPage(new PurposeGroup());
+            page.Disappearing += (sender2, e2) =>
+            {
+                if (page.IsSuccess)
+                {
+                    PurposeGroup group = page.Group;
+                    GroundhogContext.PurposeGroupLogic.Create(group);
+                    LoadData();
+                }
+            };
+
+            await Navigation.PushAsync(page);
+        }
+
+        public ICommand MenuItemUpdate =>
+            new Command<PurposeGroup>(async (group) =>
+            {
+                PurposeGroupPage page = new PurposeGroupPage(group);
+
+                page.Disappearing += (sender2, e2) =>
+                {
+                    if (page.IsSuccess)
+                    {
+                        GroundhogContext.PurposeGroupLogic.Update(page.Group);
+                        LoadData();
+                    }
+                };
+
+                await Navigation.PushAsync(page);
+            });
+
+        public ICommand MenuItemDelete =>
+            new Command<PurposeGroup>((group) =>
+            {
+                GroundhogContext.PurposeGroupLogic.Delete(group.Id);
+                LoadData();
+            });
     }
 }

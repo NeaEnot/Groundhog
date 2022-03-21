@@ -59,7 +59,7 @@ namespace GroundhogMobile
             {
                 if (page.IsSuccess)
                 {
-                    Task task = page.Model.Task;
+                    Task task = page.Model.Convert();
                     GroundhogContext.TaskLogic.Create(task);
                     GroundhogContext.TaskInstanceLogic
                             .Create(new TaskInstance
@@ -86,7 +86,7 @@ namespace GroundhogMobile
                 {
                     if (page.IsSuccess)
                     {
-                        if (repeatMode != page.Model.Task.RepeatMode)
+                        if (repeatMode != page.Model.Convert().RepeatMode)
                         {
                             List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(page.Model.Id);
                             instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
@@ -95,7 +95,7 @@ namespace GroundhogMobile
                             GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
                             instances.RemoveAll(req => req.Date.Date > date.Date);
 
-                            DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Task, date);
+                            DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Convert(), date);
 
                             if (page.Model.RepeatMode == RepeatMode.ЧислоМесяца &&
                                 instances[0].Date.Date != date.Date)
@@ -105,14 +105,14 @@ namespace GroundhogMobile
                                 GroundhogContext.TaskInstanceLogic
                                         .Create(new TaskInstance
                                         {
-                                            TaskId = page.Model.Task.Id,
+                                            TaskId = page.Model.Convert().Id,
                                             Completed = false,
                                             Date = date
                                         });
                             }
                         }
 
-                        GroundhogContext.TaskLogic.Update(page.Model.Task);
+                        GroundhogContext.TaskLogic.Update(page.Model.Convert());
                         LoadData();
                     }
                 };

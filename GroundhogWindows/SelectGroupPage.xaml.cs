@@ -82,6 +82,15 @@ namespace GroundhogWindows
             if (group != null)
             {
                 GroundhogContext.PurposeGroupLogic.Delete(group.Id);
+
+                List<string> purposesIds =
+                    GroundhogContext.PurposeLogic
+                    .Read(group.Id)
+                    .Select(req => req.Id)
+                    .ToList();
+
+                GroundhogContext.PurposeLogic.Delete(purposesIds);
+
                 LoadGroups();
             }
         }

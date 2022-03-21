@@ -9,6 +9,10 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Изменить" Command="{StaticResource MenuItemUpdate}" CommandParameter="{Binding}"/>
+                                    <MenuItem Text="Удалить" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}"/>
+                                </ViewCell.ContextActions>
                                 <FlexLayout Direction="Column">
                                     <Label FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
                                 </FlexLayout>
@@ -17,7 +21,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-            <Button Text="Создать" FontSize="20" FlexLayout.Basis="10%"/>
+            <Button Text="Создать" FontSize="20" FlexLayout.Basis="10%" Clicked="Button_Clicked"/>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

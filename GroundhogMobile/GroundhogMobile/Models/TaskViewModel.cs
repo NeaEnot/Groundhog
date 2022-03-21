@@ -13,21 +13,6 @@ namespace GroundhogMobile.Models
         public bool ToNextDay { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
 
-        internal Task Task
-        { 
-            get
-            {
-                return new Task
-                {
-                    Id = Id,
-                    Text = Text,
-                    RepeatMode = RepeatMode,
-                    RepeatValue = RepeatValue,
-                    ToNextDay = ToNextDay
-                };
-            }
-        }
-
         internal TaskViewModel(Task task = null)
         {
             if (task != null)
@@ -38,6 +23,18 @@ namespace GroundhogMobile.Models
                 RepeatValue = task.RepeatValue;
                 ToNextDay = task.ToNextDay;
             }
+        }
+
+        internal Task Convert()
+        {
+            return new Task
+            {
+                Id = Id,
+                Text = Text,
+                RepeatMode = RepeatMode,
+                RepeatValue = RepeatValue,
+                ToNextDay = ToNextDay
+            };
         }
     }
 }
