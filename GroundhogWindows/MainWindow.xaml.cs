@@ -14,7 +14,7 @@ namespace GroundhogWindows
         private PurposesPage pPage;
 
         internal DateTime SelectedDate => sdPage.SelectedDate;
-        internal string SelectedGroupId => sgPage.SelectedGroup.Id;
+        internal string SelectedGroupId => sgPage.SelectedGroup != null ? sgPage.SelectedGroup.Id : "";
 
         internal Action LoadTasks;
         internal Action LoadPurposes;
@@ -56,6 +56,7 @@ namespace GroundhogWindows
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Load();
                 tiPage.LoadTasks();
+                pPage.LoadPurposes();
             }
             catch (Exception ex)
             {

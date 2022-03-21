@@ -14,6 +14,7 @@ namespace GroundhogMobile
             InitializeComponent();
 
             editor.Placeholder = GroundhogContext.NetworkLogic.ConnectionStringFormat;
+            editor.Text = GroundhogContext.ConnectionString;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

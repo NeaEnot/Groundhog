@@ -10,6 +10,7 @@ namespace GroundhogWindows
     public partial class SelectGroupPage : Page
     {
         private MainWindow contextWindow;
+        private bool loaded = false;
 
         internal PurposeGroup SelectedGroup { get; private set; }
 
@@ -24,6 +25,8 @@ namespace GroundhogWindows
 
         internal void LoadGroups()
         {
+            loaded = true;
+
             List<PurposeGroup> groups =
                 GroundhogContext.PurposeGroupLogic
                 .Read()
@@ -32,11 +35,38 @@ namespace GroundhogWindows
 
             listBoxGroups.ItemsSource = null;
             listBoxGroups.ItemsSource = groups;
+
+            loaded = false;
         }
 
         private void GroupSelected(object sender, SelectionChangedEventArgs e)
         {
-            SelectedGroup = (PurposeGroup)((ListBox)e.Source).SelectedItem;
+            if (loaded)
+                return;
+
+            PurposeGroup selected = (PurposeGroup)((ListBox)e.Source).SelectedItem;
+
+            if (selected != null)
+            {
+                SelectedGroup = selected;
+            }
+            else
+            {
+                bool exist = false;
+
+                foreach (PurposeGroup group in listBoxGroups.ItemsSource)
+                {
+                    if (group.Id == SelectedGroup.Id)
+                    {
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (!exist)
+                    SelectedGroup = new PurposeGroup { Id = "" };
+            }
+
             contextWindow.LoadPurposes();
         }
 

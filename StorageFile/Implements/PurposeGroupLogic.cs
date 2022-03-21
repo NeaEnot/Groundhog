@@ -65,12 +65,19 @@ namespace StorageFile.Implements
 
         public void Delete(string id)
         {
-            PurposeGroup group = context.PurposeGroups.FirstOrDefault(req => req.Id == id);
+            if (id == null)
+            {
+                context.PurposeGroups.Clear();
+            }
+            else
+            {
+                PurposeGroup group = context.PurposeGroups.FirstOrDefault(req => req.Id == id);
 
-            if (group == null)
-                throw new Exception("Группы с данным Id не существует.");
+                if (group == null)
+                    throw new Exception("Группы с данным Id не существует.");
 
-            context.PurposeGroups.Remove(group);
+                context.PurposeGroups.Remove(group);
+            }
 
             context.Save();
         }

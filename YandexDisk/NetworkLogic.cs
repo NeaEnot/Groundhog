@@ -32,23 +32,28 @@ namespace YandexDisk
         {
             try
             {
-                diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile);
+                FileInfo file = new FileInfo(cloudStorageFile);
+                if (file.Exists)
+                    file.Delete();
 
-                List<Task> tasks = new List<Task>();
-                List<TaskInstance> taskInstances = new List<TaskInstance>();
+                diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile).Wait();
+
+                StorageModel model = null;
 
                 using (StreamReader reader = new StreamReader(cloudStorageFile))
                 {
                     string json = reader.ReadToEnd();
-                    (List<Task>, List<TaskInstance>) restored = JsonConvert.DeserializeObject<(List<Task>, List<TaskInstance>)>(json);
-                    tasks = restored.Item1;
-                    taskInstances = restored.Item2;
+                    model = JsonConvert.DeserializeObject<StorageModel>(json);
                 }
 
                 GroundhogContext.TaskLogic.Delete(null);
-                GroundhogContext.TaskLogic.Create(tasks);
+                GroundhogContext.TaskLogic.Create(model.Tasks);
                 GroundhogContext.TaskInstanceLogic.Delete();
-                GroundhogContext.TaskInstanceLogic.Create(taskInstances);
+                GroundhogContext.TaskInstanceLogic.Create(model.TaskInstances);
+                GroundhogContext.PurposeGroupLogic.Delete(null);
+                GroundhogContext.PurposeGroupLogic.Create(model.PurposeGroups);
+                GroundhogContext.PurposeLogic.Delete();
+                GroundhogContext.PurposeLogic.Create(model.Purposes);
             }
             catch (Exception ex)
             {
@@ -62,10 +67,22 @@ namespace YandexDisk
             List<TaskInstance> taskInstances = new List<TaskInstance>();
             foreach (Task task in tasks)
                 taskInstances.AddRange(GroundhogContext.TaskInstanceLogic.Read(task.Id));
+            List<PurposeGroup> groups = GroundhogContext.PurposeGroupLogic.Read();
+            List<Purpose> purposes = new List<Purpose>();
+            foreach (PurposeGroup group in groups)
+                purposes.AddRange(GroundhogContext.PurposeLogic.Read(group.Id));
+
+            StorageModel model = new StorageModel
+            {
+                Tasks = tasks,
+                TaskInstances = taskInstances,
+                PurposeGroups = groups,
+                Purposes = purposes
+            };
 
             using (StreamWriter writer = new StreamWriter(cloudStorageFile))
             {
-                string json = JsonConvert.SerializeObject((tasks, taskInstances));
+                string json = JsonConvert.SerializeObject(model);
                 writer.Write(json);
             }
 
