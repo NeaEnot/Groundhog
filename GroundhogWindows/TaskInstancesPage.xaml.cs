@@ -148,10 +148,7 @@ namespace GroundhogWindows
             if (viewModel != null)
             {
                 List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(viewModel.TaskId);
-                foreach (TaskInstance instance in instances)
-                {
-                    GroundhogContext.TaskInstanceLogic.Delete(instance.Id);
-                }
+                GroundhogContext.TaskInstanceLogic.Delete(instances.Select(req => req.Id).ToList());
                 GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
                 LoadTasks();
             }
