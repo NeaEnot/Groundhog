@@ -27,8 +27,6 @@ namespace StorageFile.Implements
         {
             foreach (PurposeGroup model in models)
             {
-                model.Id = IdHelper.GetId("pg_");
-
                 context.PurposeGroups
                     .Add(new PurposeGroup
                     {

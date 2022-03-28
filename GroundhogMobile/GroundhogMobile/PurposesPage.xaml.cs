@@ -18,6 +18,9 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
+            Resources.Add("MenuItemUpdate", MenuItemUpdate);
+            Resources.Add("MenuItemDelete", MenuItemDelete);
+
             this.group = group;
 
             LoadData();
