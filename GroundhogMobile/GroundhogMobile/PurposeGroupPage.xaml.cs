@@ -14,8 +14,6 @@ namespace GroundhogMobile
 
         internal PurposeGroupPage(PurposeGroup group)
         {
-            InitializeComponent();
-
             if (group == null)
                 throw new ArgumentNullException("При создании новой группы целей необходимо передавать новый объект с пустыми полями.");
 
@@ -29,10 +27,10 @@ namespace GroundhogMobile
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(textEntry.Text))
+                if (string.IsNullOrWhiteSpace(textEntryGroup.Text))
                     throw new Exception("Поле должно быть заполнено.");
 
-                Group.Name = textEntry.Text;
+                Group.Name = textEntryGroup.Text;
                 IsSuccess = true;
 
                 await Navigation.PopAsync();

@@ -10,7 +10,7 @@ namespace GroundhogMobile.Models
         public string Text { get; set; }
         public bool Completed { get; set; }
 
-        public string TextColor => Completed ? "Gray" : "Black";
+        public string TextColor => Completed ? "Gray" : "White";
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;
 
         internal PurposeViewModel(Purpose purpose = null)

@@ -1,10 +1,5 @@
-﻿using Core.Models;
-using GroundhogMobile.Models;
+﻿using GroundhogMobile.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,8 +14,6 @@ namespace GroundhogMobile
 
         internal PurposePage(PurposeViewModel model)
         {
-            InitializeComponent();
-
             if (model == null)
                 throw new ArgumentNullException("При создании новой цели необходимо передавать новый объект с пустыми полями.");
 
@@ -34,10 +27,10 @@ namespace GroundhogMobile
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(textEntry.Text))
+                if (string.IsNullOrWhiteSpace(textEntryPurpose.Text))
                     throw new Exception("Поле должно быть заполнено.");
 
-                Model.Text = textEntry.Text;
+                Model.Text = textEntryPurpose.Text;
                 IsSuccess = true;
 
                 await Navigation.PopAsync();
