@@ -1,7 +1,9 @@
 ﻿using Core;
 using System;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace GroundhogWindows
 {
@@ -35,6 +37,18 @@ namespace GroundhogWindows
 
             LoadTasks = tiPage.LoadTasks;
             LoadPurposes = pPage.LoadPurposes;
+
+            int minutes = 1;
+
+            Timer timer = new Timer(minutes * 60 * 1000);
+
+            timer.Elapsed += (sender, e) =>
+            {
+                if (DateTime.Now.Date > DateTime.Now.AddMinutes(-minutes).Date)
+                    Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(LoadTasks));
+            };
+
+            timer.Start();
         }
 
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
@@ -55,8 +69,9 @@ namespace GroundhogWindows
             {
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Load();
-                tiPage.LoadTasks();
-                pPage.LoadPurposes();
+
+                LoadTasks();
+                LoadPurposes();
             }
             catch (Exception ex)
             {
