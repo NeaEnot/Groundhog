@@ -29,8 +29,9 @@ namespace Core.DateTimeHelpers
 
             while ((currentDate - DateTime.Now).TotalDays <= GroundhogContext.GetPlanningRange(RepeatMode.ДниНедели))
             {
-                while (!task.RepeatValue.Contains(currentDate.ToString("ddd")))
+                do
                     currentDate = currentDate.AddDays(1);
+                while (!task.RepeatValue.Contains(currentDate.ToString("ddd")));
 
                 TaskInstance model = new TaskInstance
                 {

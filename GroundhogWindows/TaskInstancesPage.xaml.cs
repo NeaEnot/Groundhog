@@ -46,6 +46,16 @@ namespace GroundhogWindows
             listBoxTasks.ItemsSource = taskInstances;
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((CheckBox)sender).DataContext;
+            TaskInstance model = viewModel.Convert();
+
+            GroundhogContext.TaskInstanceLogic.Update(model);
+
+            LoadTasks();
+        }
+
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             TaskWindow window = new TaskWindow(null);
@@ -62,16 +72,6 @@ namespace GroundhogWindows
                         });
                 LoadTasks();
             }
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((CheckBox)sender).DataContext;
-            TaskInstance model = viewModel.Convert();
-
-            GroundhogContext.TaskInstanceLogic.Update(model);
-
-            LoadTasks();
         }
 
         private void listBoxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
