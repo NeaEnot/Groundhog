@@ -1,18 +1,32 @@
 ﻿using Core.Enums;
 using Core.Models;
 using System;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace GroundhogMobile.Models
 {
-    internal class TaskInstanceViewModel
+    internal class TaskInstanceViewModel : INotifyPropertyChanged
     {
         private Task task;
+        private bool completed;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Id { get; set; }
         public DateTime Date { get; set; }
         public string TaskId { get; set; }
-        public bool Completed { get; set; }
+        public bool Completed
+        {
+            get => completed;
+            set
+            {
+                completed = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Completed"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TextColor"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TextDecorations"));
+            }
+        }
 
         public string Text => task.Text;
         public bool Repeated => task.RepeatMode != RepeatMode.Нет;
@@ -27,7 +41,7 @@ namespace GroundhogMobile.Models
                 Id = instance.Id;
                 Date = instance.Date;
                 TaskId = instance.TaskId;
-                Completed = instance.Completed;
+                completed = instance.Completed;
             }
 
             this.task = task;

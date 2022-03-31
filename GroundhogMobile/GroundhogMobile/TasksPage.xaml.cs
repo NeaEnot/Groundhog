@@ -142,8 +142,6 @@ namespace GroundhogMobile
             TaskInstance model = viewModel.Convert();
 
             GroundhogContext.TaskInstanceLogic.Update(model);
-
-            //LoadData();
         }
     }
 }

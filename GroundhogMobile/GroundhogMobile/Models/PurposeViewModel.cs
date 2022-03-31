@@ -1,14 +1,29 @@
 ﻿using Core.Models;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace GroundhogMobile.Models
 {
-    internal class PurposeViewModel
+    internal class PurposeViewModel : INotifyPropertyChanged
     {
+        private bool completed;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string Id { get; set; }
         public string GroupId { get; set; }
         public string Text { get; set; }
-        public bool Completed { get; set; }
+        public bool Completed
+        {
+            get => completed;
+            set
+            {
+                completed = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Completed"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TextColor"));
+                PropertyChanged(this, new PropertyChangedEventArgs("TextDecorations"));
+            }
+        }
 
         public string TextColor => Completed ? "Gray" : "White";
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;
@@ -20,7 +35,7 @@ namespace GroundhogMobile.Models
                 Id = purpose.Id;
                 GroupId = purpose.GroupId;
                 Text = purpose.Text;
-                Completed = purpose.Completed;
+                completed = purpose.Completed;
             }
         }
 

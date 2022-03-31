@@ -86,8 +86,6 @@ namespace GroundhogMobile
             Purpose model = viewModel.Convert();
 
             GroundhogContext.PurposeLogic.Update(model);
-
-            //LoadData();
         }
     }
 }
