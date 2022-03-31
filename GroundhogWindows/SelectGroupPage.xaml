@@ -11,15 +11,15 @@
     <Grid>
         <ScrollViewer>
             <ListBox Name="listBoxGroups" SelectionChanged="GroupSelected" MouseDoubleClick="listBoxGroups_MouseDoubleClick">
-                <ListBox.ContextMenu>
-                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
-                    </ContextMenu>
-                </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5">
+                            <StackPanel.ContextMenu>
+                                <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
+                                    <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
+                                    <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
                             <Label Content="{Binding Name}" FontSize="18"/>
                         </StackPanel>
                     </DataTemplate>

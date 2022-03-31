@@ -10,16 +10,16 @@
     <Grid>
         <ScrollViewer Margin="0,0,0,0" Grid.Column="1" Grid.Row="1">
             <ListBox Name="listBoxTasks" MouseDoubleClick="listBoxTasks_MouseDoubleClick">
-                <ListBox.ContextMenu>
-                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
-                        <MenuItem Header="Удалить все подобные задачи" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=SelectedItem.Repeated}"/>
-                    </ContextMenu>
-                </ListBox.ContextMenu>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5">
+                            <StackPanel.ContextMenu>
+                                <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
+                                    <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
+                                    <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
+                                    <MenuItem Header="Удалить все подобные задачи" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=Repeated}"/>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
                             <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
                                 <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
                             </CheckBox>
