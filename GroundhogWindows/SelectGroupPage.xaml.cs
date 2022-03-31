@@ -82,15 +82,15 @@ namespace GroundhogWindows
 
         private void listBoxGroups_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            UpdateTask();
+            UpdateGroup();
         }
 
         private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
         {
-            UpdateTask();
+            UpdateGroup();
         }
 
-        private void UpdateTask()
+        private void UpdateGroup()
         {
             PurposeGroup group = (PurposeGroup)listBoxGroups.SelectedItem;
 
@@ -111,6 +111,9 @@ namespace GroundhogWindows
 
             if (group != null)
             {
+                if (group.Id == SelectedGroup.Id)
+                    SelectedGroup = new PurposeGroup { Id = "" };
+
                 GroundhogContext.PurposeGroupLogic.Delete(group.Id);
 
                 List<string> purposesIds =
@@ -122,6 +125,7 @@ namespace GroundhogWindows
                 GroundhogContext.PurposeLogic.Delete(purposesIds);
 
                 LoadGroups();
+                contextWindow.LoadPurposes();
             }
         }
     }
