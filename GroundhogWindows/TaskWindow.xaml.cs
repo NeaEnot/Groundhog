@@ -2,6 +2,7 @@
 using Core.Enums;
 using Core.Models;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace GroundhogWindows
@@ -9,6 +10,16 @@ namespace GroundhogWindows
     public partial class TaskWindow : Window
     {
         public Task Task { get; private set; }
+
+        private Dictionary<RepeatMode, string> toolTips = new Dictionary<RepeatMode, string>()
+        {
+            { RepeatMode.Нет, "" },
+            { RepeatMode.Дни, "Число" },
+            { RepeatMode.ЧислоМесяца, "Число" },
+            { RepeatMode.ДеньГода, "мм.дд" },
+            { RepeatMode.ДниНедели, "Пн,Вт,..." },
+            { RepeatMode.Вахты, "'xx-xx', 'xx-xx-xx-xx' ..." },
+        };
 
         public TaskWindow(Task task)
         {
@@ -56,7 +67,9 @@ namespace GroundhogWindows
 
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            textBoxValue.IsEnabled = (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет;
+            RepeatMode selected = (RepeatMode)comboBox.SelectedItem;
+            textBoxValue.IsEnabled = selected != RepeatMode.Нет;
+            textBoxValue.ToolTip = toolTips[selected];
         }
     }
 }

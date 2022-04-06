@@ -2,6 +2,7 @@
 using Core.Enums;
 using GroundhogMobile.Models;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,16 @@ namespace GroundhogMobile
         internal TaskViewModel Model { get; private set; }
 
         private bool isLoaded;
+
+        private Dictionary<RepeatMode, string> placeholders = new Dictionary<RepeatMode, string>()
+        {
+            { RepeatMode.Нет, "" },
+            { RepeatMode.Дни, "Число" },
+            { RepeatMode.ЧислоМесяца, "Число" },
+            { RepeatMode.ДеньГода, "мм.дд" },
+            { RepeatMode.ДниНедели, "Пн,Вт,..." },
+            { RepeatMode.Вахты, "'xx-xx', 'xx-xx-xx-xx' ..." },
+        };
 
         internal TaskPage(TaskViewModel model)
         {
@@ -37,7 +48,9 @@ namespace GroundhogMobile
         {
             if (!isLoaded)
             {
-                repeatValueEntry.IsVisible = (RepeatMode)repeatModePicker.SelectedItem != RepeatMode.Нет;
+                RepeatMode selected = (RepeatMode)repeatModePicker.SelectedItem;
+                repeatValueEntry.IsVisible = selected != RepeatMode.Нет;
+                repeatValueEntry.Placeholder = placeholders[selected];
             }
         }
 
