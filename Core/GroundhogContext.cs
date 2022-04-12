@@ -66,6 +66,9 @@ namespace Core
             }
         }
 
+        public static bool IsColorSchemaExist =>
+            Settings.ColorSchema.Colors.Keys.Count != 0;
+
         public static int GetPlanningRange(RepeatMode mode)
         {
             return Settings.PlanningRanges[mode];
