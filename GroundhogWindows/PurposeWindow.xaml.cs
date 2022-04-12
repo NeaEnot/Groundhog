@@ -21,6 +21,8 @@ namespace GroundhogWindows
             {
                 Purpose = new Purpose();
             }
+
+            textBox.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

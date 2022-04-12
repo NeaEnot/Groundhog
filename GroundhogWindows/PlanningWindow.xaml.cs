@@ -18,6 +18,8 @@ namespace GroundhogWindows
             tbDayOfYear.Text = GroundhogContext.GetPlanningRange(RepeatMode.ДеньГода).ToString();
 
             tbOptimization.Text = GroundhogContext.OptimizationRange.ToString();
+
+            tbDays.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -11,6 +11,7 @@ namespace GroundhogWindows
         public PurposeGroupWindow(PurposeGroup group)
         {
             InitializeComponent();
+
             if (group != null)
             {
                 Group = group;
@@ -20,6 +21,8 @@ namespace GroundhogWindows
             {
                 Group = new PurposeGroup();
             }
+
+            textBoxName.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

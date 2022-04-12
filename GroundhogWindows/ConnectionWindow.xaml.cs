@@ -12,6 +12,8 @@ namespace GroundhogWindows
 
             textBoxConnection.Text = GroundhogContext.ConnectionString;
             textBoxConnection.ToolTip = GroundhogContext.NetworkLogic.ConnectionStringFormat;
+
+            textBoxConnection.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -10,6 +10,8 @@ namespace GroundhogWindows
         public CodeWindow()
         {
             InitializeComponent();
+
+            textBox.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -41,6 +41,8 @@ namespace GroundhogWindows
                 comboBox.SelectedItem = RepeatMode.Нет;
                 Task = new Task();
             }
+
+            textBoxText.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
