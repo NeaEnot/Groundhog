@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Enums;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace GroundhogWindows
@@ -34,12 +35,16 @@ namespace GroundhogWindows
 
                 int optimization = int.Parse(tbOptimization.Text);
 
-                GroundhogContext.SetPlanningRange(RepeatMode.Дни, days);
-                GroundhogContext.SetPlanningRange(RepeatMode.ДниНедели, daysOfWeek);
-                GroundhogContext.SetPlanningRange(RepeatMode.Вахты, watches);
-                GroundhogContext.SetPlanningRange(RepeatMode.ЧислоМесяца, dayOfMounth);
-                GroundhogContext.SetPlanningRange(RepeatMode.ДеньГода, dayOfYear);
+                Dictionary<RepeatMode, int> dict = new Dictionary<RepeatMode, int>()
+                {
+                    { RepeatMode.Дни, days },
+                    { RepeatMode.ДниНедели, daysOfWeek },
+                    { RepeatMode.Вахты, watches },
+                    { RepeatMode.ЧислоМесяца, dayOfMounth },
+                    { RepeatMode.ДеньГода, dayOfYear },
+                };
 
+                GroundhogContext.SetPlanningRanges(dict);
                 GroundhogContext.OptimizationRange = optimization;
 
                 DialogResult = true;

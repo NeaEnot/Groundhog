@@ -71,9 +71,11 @@ namespace Core
             return Settings.PlanningRanges[mode];
         }
 
-        public static void SetPlanningRange(RepeatMode mode, int value)
+        public static void SetPlanningRanges(Dictionary<RepeatMode, int> dict)
         {
-            Settings.PlanningRanges[mode] = value;
+            foreach (RepeatMode mode in Enum.GetValues(typeof(RepeatMode)))
+                Settings.PlanningRanges[mode] = dict[mode];
+
             SaveSettings();
         }
 
