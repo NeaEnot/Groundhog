@@ -3,6 +3,7 @@ using Core.Interfaces;
 using Core.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core
@@ -73,6 +74,17 @@ namespace Core
         public static void SetPlanningRange(RepeatMode mode, int value)
         {
             Settings.PlanningRanges[mode] = value;
+            SaveSettings();
+        }
+
+        public static string GetColor(string key)
+        {
+            return Settings.ColorSchema.Colors[key];
+        }
+
+        public static void SetColors(Dictionary<string, string> colors)
+        {
+            Settings.ColorSchema.Colors = colors;
             SaveSettings();
         }
 

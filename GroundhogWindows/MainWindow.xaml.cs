@@ -63,6 +63,12 @@ namespace GroundhogWindows
             planningWindow.ShowDialog();
         }
 
+        private void MenuItemColorSchema_Click(object sender, RoutedEventArgs e)
+        {
+            ColorsWindow colorsWindow = new ColorsWindow();
+            colorsWindow.ShowDialog();
+        }
+
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
         {
             try

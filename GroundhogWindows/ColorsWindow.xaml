@@ -1,0 +1,37 @@
+﻿<Window x:Class="GroundhogWindows.ColorsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GroundhogWindows"
+        xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+        mc:Ignorable="d"
+        Title="Цветовыя схема" MinHeight="380" MinWidth="611" Height="380" Width="611">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Content="Основной цвет" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+        <Label Grid.Column="0" Content="Дополнительный цвет" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="134"/>
+        <Label Grid.Column="0" Content="Основной текст" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <Label Grid.Column="0" Content="Дополнительный текст" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="136"/>
+        <Label Grid.Column="0" Content="Выделенный элемент" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
+        <Label Grid.Column="0" Content="Выделенный элемент (неактивный)" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Height="26" Width="205"/>
+        <Label Grid.Column="0" Content="Выбор элемента" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+
+        <TextBox Name="tbMainColor" Grid.Column="0" Margin="220,14,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbAdditionalColor" Grid.Column="0" Margin="220,45,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbMainText" Grid.Column="0" Margin="220,76,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbAdditionalText" Grid.Column="0" Margin="220,107,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbSelectedItem" Grid.Column="0" Margin="220,138,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbSelectedItemInactive" Grid.Column="0" Margin="220,169,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+        <TextBox Name="tbSelectItem" Grid.Column="0" Margin="220,200,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
+
+        <Button Content="Сохранить" HorizontalAlignment="Center" Height="35" Width="84" Margin="0,306,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+        <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Grid.Column="1" Margin="0,0,-2,0" ColorChanged="colorPicker_ColorChanged"/>
+
+    </Grid>
+</Window>

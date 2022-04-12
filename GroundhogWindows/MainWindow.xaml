@@ -20,6 +20,7 @@
             <MenuItem Header="Настройки">
                 <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
                 <MenuItem Header="Дальность планирования и оптимизации" Click="MenuItemPlanning_Click"/>
+                <MenuItem Header="Цветовая схема" Click="MenuItemColorSchema_Click"/>
             </MenuItem>
             <MenuItem Header="Синхронизация">
                 <MenuItem Header="Загрузить" Click="MenuItemLoad_Click"/>

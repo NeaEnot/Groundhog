@@ -13,6 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\StorageFile\StorageFile.csproj" />
     <ProjectReference Include="..\YandexDisk\YandexDisk.csproj" />
