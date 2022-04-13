@@ -9,15 +9,15 @@
         d:DesignWidth="800"
         Style="{DynamicResource ResourceKey='Window style'}"
         Title="Groundhog">
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+        <Menu Grid.Row="0">
             <MenuItem Header="Настройки">
                 <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
                 <MenuItem Header="Дальность планирования и оптимизации" Click="MenuItemPlanning_Click"/>
@@ -29,14 +29,14 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Name="tc" Grid.Row="1" Margin="0,0,0,0" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl Name="tc" Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Header="Задачи">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Frame Name="fDates" Grid.Column="0"/>
                     <Frame Name="fInstances" Grid.Column="1"/>
                 </Grid>
@@ -53,6 +53,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>

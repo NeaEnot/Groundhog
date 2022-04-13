@@ -20,13 +20,13 @@ namespace GroundhogWindows
             {
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {
-                    { "Main color", "#ffffff" },
-                    { "Additional color", "#f0f0f0" },
+                    { "Main color", "#FFFFFF" },
+                    { "Additional color", "#F0F0F0" },
                     { "Main text", "#000000" },
                     { "Additional text", "#818282" },
-                    { "Selected item", "#cbe8f6" },
-                    { "Selected item inactive", "#f6f6f6" },
-                    { "Select item", "#e5f3fb" },
+                    { "Selected item", "#CBE8F6" },
+                    { "Selected item inactive", "#F6F6F6" },
+                    { "Select item", "#E5F3FB" },
                 };
 
                 GroundhogContext.SetColors(colors);

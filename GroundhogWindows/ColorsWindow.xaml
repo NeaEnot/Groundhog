@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
         mc:Ignorable="d"
-        Title="Цветовыя схема" MinHeight="380" MinWidth="611" Height="380" Width="611">
+        Title="Цветовыя схема" MinHeight="389" MinWidth="611" Height="401" Width="611">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -29,9 +29,9 @@
         <TextBox Name="tbSelectedItemInactive" Grid.Column="0" Margin="220,169,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
         <TextBox Name="tbSelectItem" Grid.Column="0" Margin="220,200,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
 
-        <Button Content="Сохранить" HorizontalAlignment="Center" Height="35" Width="84" Margin="0,306,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Center" Height="35" Width="84" Margin="0,0,0,17" VerticalAlignment="Bottom" Click="Button_Click"/>
 
-        <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Grid.Column="1" Margin="0,0,-2,0" ColorChanged="colorPicker_ColorChanged"/>
+        <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Margin="349,0,-2,5" ColorChanged="colorPicker_ColorChanged" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

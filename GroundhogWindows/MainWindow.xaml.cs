@@ -3,6 +3,7 @@ using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace GroundhogWindows
@@ -24,6 +25,8 @@ namespace GroundhogWindows
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadResources();
 
             sdPage = new SelectDatePage(this);
             tiPage = new TaskInstancesPage(this);
@@ -53,7 +56,13 @@ namespace GroundhogWindows
 
         private void LoadResources()
         {
-
+            App.Current.Resources["Main color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Main color")));
+            App.Current.Resources["Additional color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Additional color")));
+            App.Current.Resources["Main text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Main text")));
+            App.Current.Resources["Additional text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Additional text")));
+            App.Current.Resources["Selected item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Selected item")));
+            App.Current.Resources["Selected item inactive"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Selected item inactive")));
+            App.Current.Resources["Select item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Select item")));
         }
 
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
@@ -71,7 +80,8 @@ namespace GroundhogWindows
         private void MenuItemColorSchema_Click(object sender, RoutedEventArgs e)
         {
             ColorsWindow colorsWindow = new ColorsWindow();
-            colorsWindow.ShowDialog();
+            if (colorsWindow.ShowDialog() == true)
+                LoadResources();
         }
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
