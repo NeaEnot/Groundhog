@@ -24,6 +24,8 @@ namespace Core.Models
             };
 
             OptimizationRange = 50;
+
+            ColorSchema = new ColorSchema();
         }
     }
 }

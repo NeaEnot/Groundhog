@@ -51,6 +51,11 @@ namespace GroundhogWindows
             timer.Start();
         }
 
+        private void LoadResources()
+        {
+
+        }
+
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
         {
             ConnectionWindow connectionWindow = new ConnectionWindow();

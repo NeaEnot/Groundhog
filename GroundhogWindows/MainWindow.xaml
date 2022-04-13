@@ -7,6 +7,7 @@
         WindowState="Maximized"
         d:DesignHeight="445"
         d:DesignWidth="800"
+        Style="{DynamicResource ResourceKey='Window style'}"
         Title="Groundhog">
     
     <Grid>

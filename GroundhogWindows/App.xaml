@@ -2,8 +2,83 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GroundhogWindows"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Brush x:Key="Main color">#999999</Brush>
+        <Brush x:Key="Additional color">#f0f0a9</Brush>
+        <Brush x:Key="Main text">#000000</Brush>
+        <Brush x:Key="Additional text">#818282</Brush>
+        <Brush x:Key="Selected item">#666666</Brush>
+        <Brush x:Key="Selected item inactive">#666666</Brush>
+        <Brush x:Key="Select item">#666666</Brush>
+
+        <Style TargetType="Window" x:Key="Window style">
+            <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+        </Style>
+
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid Name="Panel">
+                            <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    ContentSource="Header"
+                                    Margin="10,2"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Panel" Property="Background" Value="{DynamicResource ResourceKey='Main color'}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Panel" Property="Background" Value="{DynamicResource ResourceKey='Additional color'}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Menu">
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+            <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}"/>
+        </Style>
+
+        <Style TargetType="MenuItem" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border>
+                            <Grid>
+                                <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+                                <Popup Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True">
+                                    <Border SnapsToDevicePixels="True" Background="{DynamicResource ResourceKey='Additional color'}">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ResourceKey='Select item'}" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>
