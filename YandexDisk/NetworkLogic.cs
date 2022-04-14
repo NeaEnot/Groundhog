@@ -36,7 +36,8 @@ namespace YandexDisk
                 if (file.Exists)
                     file.Delete();
 
-                diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile).Wait();
+                System.Threading.Tasks.Task threadTask = diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile);
+                threadTask.Wait();
 
                 StorageModel model = null;
 

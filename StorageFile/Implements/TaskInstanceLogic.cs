@@ -29,7 +29,8 @@ namespace StorageFile.Implements
         {
             foreach (TaskInstance model in models)
             {
-                model.Id = IdHelper.GetId("ti_");
+                if (string.IsNullOrEmpty(model.Id))
+                    model.Id = IdHelper.GetId("ti_");
 
                 context.TaskInstances
                     .Add(new TaskInstance

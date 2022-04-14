@@ -31,9 +31,7 @@ namespace StorageFile.Implements
             foreach (Task model in models)
             {
                 if (string.IsNullOrEmpty(model.Id))
-                {
                     model.Id = IdHelper.GetId("t_");
-                }
 
                 context.Tasks
                     .Add(new Task

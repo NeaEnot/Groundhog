@@ -29,7 +29,8 @@ namespace StorageFile.Implements
         {
             foreach (Purpose model in models)
             {
-                model.Id = IdHelper.GetId("p_");
+                if (string.IsNullOrEmpty(model.Id))
+                    model.Id = IdHelper.GetId("p_");
 
                 context.Purposes
                     .Add(new Purpose
