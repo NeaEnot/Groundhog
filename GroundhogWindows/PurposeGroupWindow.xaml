@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
+        Style="{DynamicResource ResourceKey='Window style'}"
         Title="Группа целей" MinHeight="130" MinWidth="360" Height="130" Width="360">
     <Grid>
         <TextBox Name="textBoxName" Margin="121,14,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>

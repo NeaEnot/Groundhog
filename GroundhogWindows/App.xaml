@@ -84,5 +84,17 @@
             </Setter>
         </Style>
 
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey='Additional text'}"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey='Additional text'}"/>
+        </Style>
+
     </Application.Resources>
 </Application>

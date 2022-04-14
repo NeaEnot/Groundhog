@@ -37,6 +37,7 @@ namespace GroundhogWindows
         private void tb_GotFocus(object sender, RoutedEventArgs e)
         {
             tbCurrent = sender as TextBox;
+            colorPicker.SelectedColor = (Color)ColorConverter.ConvertFromString(tbCurrent.Text);
         }
 
         private void tb_TextChanged(object sender, TextChangedEventArgs e)

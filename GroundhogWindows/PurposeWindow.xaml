@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
+        Style="{DynamicResource ResourceKey='Window style'}"
         Title="Цель" Height="130" Width="312">
     <Grid>
         <TextBox Name="textBox" Margin="53,14,10,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>

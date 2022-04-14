@@ -1,13 +1,7 @@
-Применение цветовой схемы в WPF.CodeWindow
-Применение цветовой схемы в WPF.ColorsWindow
-Применение цветовой схемы в WPF.ConnectionWindow
-Применение цветовой схемы в WPF.PlanningWindow
-Применение цветовой схемы в WPF.PurposeGroupWindow
 Применение цветовой схемы в WPF.PurposesPage
-Применение цветовой схемы в WPF.PurposeWindow
 Применение цветовой схемы в WPF.SelectDatePage
 Применение цветовой схемы в WPF.SelectGroupPage
-Применение цветовой схемы в WPF.TaskInstances
+Применение цветовой схемы в WPF.TaskInstancesPage
 Применение цветовой схемы в WPF.TaskWindow
 Страница настройки цветовой схемы для XF
 Применение цветовой схемы в XF
@@ -162,3 +156,9 @@ WPF: Вынести логику работы с выбором даты в от
 Изменить логику работы GroundhogContext.SetPlanningRange чтобы он принимал словарь
 Инициализация цветовой схемы в WPF
 Применение цветовой схемы в WPF.MainWindow
+Применение цветовой схемы в WPF.CodeWindow
+Применение цветовой схемы в WPF.ColorsWindow
+Применение цветовой схемы в WPF.ConnectionWindow
+Применение цветовой схемы в WPF.PlanningWindow
+Применение цветовой схемы в WPF.PurposeGroupWindow
+Применение цветовой схемы в WPF.PurposeWindow
