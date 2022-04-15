@@ -63,11 +63,6 @@ namespace GroundhogWindows
             }
         }
 
-        private void listBoxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            UpdatePurpose();
-        }
-
         private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdatePurpose();

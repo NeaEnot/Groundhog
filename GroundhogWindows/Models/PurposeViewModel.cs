@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using System.Windows.Media;
 
 namespace GroundhogWindows.Models
 {
@@ -9,7 +10,7 @@ namespace GroundhogWindows.Models
         public string Text { get; set; }
         public bool Completed { get; set; }
 
-        public string TextColor => Completed ? "Gray" : "Black";
+        public string TextColor => Completed ? App.Current.Resources["Additional text"].ToString(): App.Current.Resources["Main text"].ToString();
         public string TextDecorations => Completed ? "Strikethrough" : "None";
 
         internal PurposeViewModel(Purpose purpose)
