@@ -50,7 +50,7 @@ namespace Core.DateTimeHelpers
             else
                 date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, value);
 
-            if (date < DateTime.Now)
+            if (date < DateTime.Now.Date)
                 date = date.AddMonths(1);
 
             days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
