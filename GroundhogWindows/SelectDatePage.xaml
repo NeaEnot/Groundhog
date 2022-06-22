@@ -17,15 +17,33 @@
         <TabControl Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
             <TabItem Header="Список">
                 <ScrollViewer>
-                    <ListBox Name="listBoxDates" SelectionChanged="DateSelected">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="5">
-                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=1}" FontSize="18"/>
-                                    <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=0}" FontSize="14"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
+                    <ListBox Name="listBoxDates" SelectionChanged="DateSelected" Margin="-1">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Grid>
+                                                <Border Name="border" Padding="7" Background="{DynamicResource ResourceKey='Main color'}">
+                                                    <StackPanel Margin="5">
+                                                        <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=1}" FontSize="18" Foreground="{DynamicResource ResourceKey='Main text'}"/>
+                                                        <Label Content="{Binding Converter={StaticResource converter}, ConverterParameter=0}" FontSize="14" Foreground="{DynamicResource ResourceKey='Main text'}"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey='Select item'}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey='Selected item'}"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
                     </ListBox>
                 </ScrollViewer>
             </TabItem>

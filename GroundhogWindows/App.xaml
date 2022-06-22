@@ -6,21 +6,21 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-        <!--<Brush x:Key="Main color">#ffffff</Brush>
+        <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
         <Brush x:Key="Main text">#000000</Brush>
         <Brush x:Key="Additional text">#818282</Brush>
         <Brush x:Key="Selected item">#cbe8f6</Brush>
         <Brush x:Key="Selected item inactive">#f6f6f6</Brush>
-        <Brush x:Key="Select item">#e5f3fb</Brush>-->
+        <Brush x:Key="Select item">#e5f3fb</Brush>
         
-        <Brush x:Key="Main color">#fe5690</Brush>
+        <!--<Brush x:Key="Main color">#fe5690</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
         <Brush x:Key="Main text">#000000</Brush>
         <Brush x:Key="Additional text">#818282</Brush>
         <Brush x:Key="Selected item">#ee11ee</Brush>
         <Brush x:Key="Selected item inactive">#f6f6f6</Brush>
-        <Brush x:Key="Select item">#e5f3fb</Brush>
+        <Brush x:Key="Select item">#e5f3fb</Brush>-->
 
         <Style TargetType="Window" x:Key="Window style">
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
@@ -37,7 +37,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TabItem">
                         <Grid Name="Panel">
-                            <Border x:Name="Border">
+                            <Border x:Name="Border" BorderThickness="1,1,1,1" BorderBrush="{DynamicResource ResourceKey='Additional text'}">
                             <ContentPresenter x:Name="ContentSite"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
@@ -53,6 +53,7 @@
                             </Trigger>
                             <Trigger Property="IsSelected" Value="False">
                                 <Setter TargetName="Panel" Property="Background" Value="{DynamicResource ResourceKey='Additional color'}" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,1" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -187,6 +188,95 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Canvas Height="18">
+                            <Polygon Fill="{DynamicResource ResourceKey='Selected item inactive'}" Points="5,13 13,13 9,5"></Polygon>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarLineButtonBottomStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Canvas Height="18">
+                            <Polygon Fill="{DynamicResource ResourceKey='Selected item inactive'}" Points="5,5 9,13 13,5"></Polygon>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarPageButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border BorderBrush="{DynamicResource ResourceKey='Selected item inactive'}"></Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumbStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Margin" Value="1,0,1,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle Fill="{DynamicResource ResourceKey='Additional text'}" Margin="2"></Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="18"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition MaxHeight="18"/>
+                </Grid.RowDefinitions>
+
+                <RepeatButton Grid.Row="0" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonStyle}"
+                          Command="ScrollBar.LineUpCommand" >
+                </RepeatButton>
+                <Track Name="PART_Track" Grid.Row="1" 
+                   IsDirectionReversed="True">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                        </RepeatButton>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumbStyle}">
+                        </Thumb>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource ScrollBarPageButtonStyle}">
+                        </RepeatButton>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3" Height="18"
+                          Style="{StaticResource ScrollBarLineButtonBottomStyle}"
+                          Command="ScrollBar.LineDownCommand">
+                </RepeatButton>
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Template" Value="{StaticResource VerticalScrollBar}"/>
         </Style>
 
     </Application.Resources>
