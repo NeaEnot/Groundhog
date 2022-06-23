@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="TaskWindow" Height="165" Width="459" MinHeight="152" MinWidth="360">
+        Title="TaskWindow" Height="184" Width="459" MinHeight="184" MinWidth="360">
     <Grid>
         <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
         <ComboBox Name="comboBox" Margin="149,33,0,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Left" Width="141"/>
@@ -14,7 +14,7 @@
         <Label Content="Задача" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
         <Label Content="Режим повторения" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
         <CheckBox Name="checkBoxToNextDay" Content="Переносить задачу на следующий день" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
-        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Bottom" Height="24" Width="80" Click="Button_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Bottom" Height="35" Width="80" Click="Button_Click"/>
 
     </Grid>
 </Window>

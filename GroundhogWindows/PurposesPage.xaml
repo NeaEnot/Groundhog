@@ -44,6 +44,6 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
         </ScrollViewer>
-        <Button Name="btnCreate" Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Click="ButtonAdd_Click" HorizontalAlignment="Right" Width="84" IsEnabled="False"/>
+        <Button Name="btnCreate" Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" HorizontalAlignment="Right" IsEnabled="False"/>
     </Grid>
 </Page>

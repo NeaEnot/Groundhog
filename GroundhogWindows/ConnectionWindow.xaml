@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Строка подключения" Height="240" Width="519">
+        Title="Строка подключения" Height="240" Width="519" MinHeight="150" MinWidth="200">
     <Grid>
         <TextBox Name="textBoxConnection" Margin="10,10,10,69" TextWrapping="Wrap"/>
-        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,19" Width="94" FontSize="16" Click="Button_Click" Height="36" VerticalAlignment="Bottom"/>
+        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,19" Height="35" Width="94" FontSize="16" Click="Button_Click" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

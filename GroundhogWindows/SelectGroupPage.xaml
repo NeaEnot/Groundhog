@@ -46,6 +46,6 @@
             </ListBox>
         </ScrollViewer>
 
-        <Button Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Click="ButtonAdd_Click"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="84"/>
+        <Button Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

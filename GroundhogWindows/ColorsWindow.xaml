@@ -7,7 +7,7 @@
         xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Цветовыя схема" MinHeight="389" MinWidth="611" Height="401" Width="611">
+        Title="Цветовыя схема" MinHeight="410" MinWidth="611" Height="410" Width="775">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -33,7 +33,7 @@
         <Button Content="Стандартная схема" HorizontalAlignment="Left" Height="35" Width="128" Margin="10,0,0,19" VerticalAlignment="Bottom" Click="ButtonStandart_Click"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Height="35" Width="84" Margin="255,0,0,19" VerticalAlignment="Bottom" Click="ButtonSave_Click"/>
 
-        <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Margin="349,0,-2,5" ColorChanged="colorPicker_ColorChanged" Grid.ColumnSpan="2"/>
+        <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Margin="0,0,-2,5" ColorChanged="colorPicker_ColorChanged" Grid.Column="1"/>
 
     </Grid>
 </Window>
