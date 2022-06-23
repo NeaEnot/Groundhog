@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.ColorsPage">
+
+    <ContentPage.Resources>
+
+        <Color x:Key="Main color page">#ffffff</Color>
+        <Color x:Key="Additional color page">#f0f0f0</Color>
+        <Color x:Key="Main text page">#000000</Color>
+        <Color x:Key="Additional text page">#818282</Color>
+        <Color x:Key="Selected item page">#cbe8f6</Color>
+        <Color x:Key="Selected item inactive page">#f6f6f6</Color>
+        <Color x:Key="Select item page">#e5f3fb</Color>
+        
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="stc" Orientation="Vertical">
+
+            <Button x:Name="btnMainColor" Text="Основной цвет" Background="{DynamicResource Key='Main color page'}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnAdditionalColor" Text="Дополнительный цвет" Background="{DynamicResource Key='Additional color page'}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnMainText" Text="Основной текст" Background="{DynamicResource Key='Main text page'}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnAdditionalText" Text="Дополнительный текст" Background="{DynamicResource Key='Additional text page'}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnSelectedItem" Text="Выделенный элемент" Background="{DynamicResource Key='Selected item page'}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnSelectItem" Text="Выбор элемента" Background="{DynamicResource Key='Select item page'}" Clicked="ButtonColor_Clicked"/>
+            
+            <Button Text="Стандартная схема" Margin="0,10" Clicked="ButtonStandart_Clicked"/>
+            <Button Text="Сохранить" Margin="0,10" Clicked="ButtonSave_Clicked"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

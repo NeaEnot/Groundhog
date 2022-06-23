@@ -65,5 +65,11 @@ namespace GroundhogMobile
             PlanningPage page = new PlanningPage();
             await Navigation.PushAsync(page);
         }
+
+        private async void ButtonColors_Clicked(object sender, EventArgs e)
+        {
+            ColorsPage page = new ColorsPage();
+            await Navigation.PushAsync(page);
+        }
     }
 }
