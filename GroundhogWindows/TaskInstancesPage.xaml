@@ -8,8 +8,8 @@
       Title="TaskInstancesPage">
 
     <Grid>
-        <ScrollViewer Margin="0,0,0,0" Grid.Column="1" Grid.Row="1">
-            <ListBox Name="listBoxTasks" MouseDoubleClick="listBoxTasks_MouseDoubleClick">
+        <ScrollViewer>
+            <ListBox Name="listBoxTasks" MouseDoubleClick="listBoxTasks_MouseDoubleClick" Margin="-1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="5">

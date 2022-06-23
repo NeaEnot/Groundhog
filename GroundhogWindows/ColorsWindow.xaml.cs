@@ -66,7 +66,7 @@ namespace GroundhogWindows
             colorChanged = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -115,6 +115,17 @@ namespace GroundhogWindows
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ButtonStandart_Click(object sender, RoutedEventArgs e)
+        {
+            tbMainColor.Text = "#ffffff";
+            tbAdditionalColor.Text = "#f0f0f0";
+            tbMainText.Text = "#000000";
+            tbAdditionalText.Text = "#818282";
+            tbSelectedItem.Text = "#cbe8f6";
+            tbSelectedItemInactive.Text = "#f6f6f6";
+            tbSelectItem.Text = "#e5f3fb";
         }
     }
 }

@@ -30,7 +30,8 @@
         <TextBox Name="tbSelectedItemInactive" Grid.Column="0" Margin="220,169,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
         <TextBox Name="tbSelectItem" Grid.Column="0" Margin="220,200,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
 
-        <Button Content="Сохранить" HorizontalAlignment="Center" Height="35" Width="84" Margin="0,0,0,17" VerticalAlignment="Bottom" Click="Button_Click"/>
+        <Button Content="Стандартная схема" HorizontalAlignment="Left" Height="35" Width="128" Margin="10,0,0,19" VerticalAlignment="Bottom" Click="ButtonStandart_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Height="35" Width="84" Margin="255,0,0,19" VerticalAlignment="Bottom" Click="ButtonSave_Click"/>
 
         <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Margin="349,0,-2,5" ColorChanged="colorPicker_ColorChanged" Grid.ColumnSpan="2"/>
 
