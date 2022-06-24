@@ -534,5 +534,11 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="Padding" Value="-1"/>
+            <Setter Property="Margin" Value="-1"/>
+            <Setter Property="Background" Value="{DynamicResource Additional color}"/>
+        </Style>
+
     </Application.Resources>
 </Application>
