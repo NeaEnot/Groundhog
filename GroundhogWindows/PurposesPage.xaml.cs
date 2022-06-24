@@ -29,8 +29,8 @@ namespace GroundhogWindows
                 .Select(req => new PurposeViewModel(req))
                 .ToList();
 
-            listBoxTasks.ItemsSource = null;
-            listBoxTasks.ItemsSource = purposes;
+            listBoxPurposes.ItemsSource = null;
+            listBoxPurposes.ItemsSource = purposes;
 
             btnCreate.IsEnabled = true;
         }
@@ -70,7 +70,7 @@ namespace GroundhogWindows
 
         private void UpdatePurpose()
         {
-            PurposeViewModel viewModel = (PurposeViewModel)listBoxTasks.SelectedItem;
+            PurposeViewModel viewModel = (PurposeViewModel)listBoxPurposes.SelectedItem;
             Purpose model = viewModel.Convert();
 
             PurposeWindow window = new PurposeWindow(model);
@@ -84,7 +84,7 @@ namespace GroundhogWindows
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
         {
-            PurposeViewModel viewModel = (PurposeViewModel)listBoxTasks.SelectedItem;
+            PurposeViewModel viewModel = (PurposeViewModel)listBoxPurposes.SelectedItem;
 
             if (viewModel != null)
             {

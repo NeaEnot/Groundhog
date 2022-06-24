@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="TaskWindow" Height="184" Width="459" MinHeight="184" MinWidth="360">
+        Title="TaskWindow" Height="184" Width="459" MinHeight="184" MinWidth="360"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+    
     <Grid>
         <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
         <ComboBox Name="comboBox" Margin="149,33,0,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Left" Width="141"/>
