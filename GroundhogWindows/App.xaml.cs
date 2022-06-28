@@ -26,7 +26,7 @@ namespace GroundhogWindows
                     { "Additional text", "#818282" },
                     { "Selected item", "#CBE8F6" },
                     { "Selected item inactive", "#F6F6F6" },
-                    { "Select item", "#E5F3FB" },
+                    { "Select item", "#E5F3FB" }
                 };
 
                 GroundhogContext.SetColors(colors);
