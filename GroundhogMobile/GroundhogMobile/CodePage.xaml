@@ -4,7 +4,7 @@
          x:Class="GroundhogMobile.CodePage"
          xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
     
-    <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="White" Margin="20" Padding="20">
+    <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{DynamicResource Main color}" Margin="20" Padding="20">
         
         <StackLayout>
             <Entry x:Name="textEntry" Placeholder="Введите код" FontSize="20" Text="" Margin="10, 20"/>

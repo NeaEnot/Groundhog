@@ -10,6 +10,18 @@
         <Color x:Key="Additional text">#818282</Color>
         <Color x:Key="Selected item">#cbe8f6</Color>
         <Color x:Key="Select item">#e5f3fb</Color>
+
+        <Style TargetType="{x:Type Entry}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
+            <Setter Property="BorderWidth" Value="1"/>
+            <Setter Property="BorderColor" Value="{DynamicResource Additional text}"/>
+        </Style>
         
     </Application.Resources>
 </Application>
