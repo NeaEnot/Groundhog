@@ -34,6 +34,15 @@ namespace Core.DateTimeHelpers
 
                 if (day > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
                     currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
+
+                TaskInstance model = new TaskInstance
+                {
+                    TaskId = task.Id,
+                    Date = currentDate,
+                    Completed = false
+                };
+
+                models.Add(model);
             }
 
             return models;
