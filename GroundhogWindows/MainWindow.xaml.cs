@@ -20,6 +20,7 @@ namespace GroundhogWindows
         internal string SelectedGroupId => sgPage.SelectedGroup != null ? sgPage.SelectedGroup.Id : "";
 
         internal Action LoadTasks;
+        internal Action LoadPurposeGroups;
         internal Action LoadPurposes;
 
         public MainWindow()
@@ -39,6 +40,7 @@ namespace GroundhogWindows
             fPurposes.Content = pPage;
 
             LoadTasks = tiPage.LoadTasks;
+            LoadPurposeGroups = sgPage.LoadGroups;
             LoadPurposes = pPage.LoadPurposes;
 
             int minutes = 1;
@@ -92,6 +94,7 @@ namespace GroundhogWindows
                 GroundhogContext.NetworkLogic.Load();
 
                 LoadTasks();
+                LoadPurposeGroups();
                 LoadPurposes();
             }
             catch (Exception ex)
