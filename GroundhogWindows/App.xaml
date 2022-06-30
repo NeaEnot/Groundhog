@@ -6,21 +6,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
-        <!--<Brush x:Key="Main color">#ffffff</Brush>
+        <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
         <Brush x:Key="Main text">#000000</Brush>
         <Brush x:Key="Additional text">#818282</Brush>
         <Brush x:Key="Selected item">#cbe8f6</Brush>
         <Brush x:Key="Selected item inactive">#f6f6f6</Brush>
-        <Brush x:Key="Select item">#e5f3fb</Brush>-->
-        
-        <Brush x:Key="Main color">#fe5690</Brush>
-        <Brush x:Key="Additional color">#b43a1f</Brush>
-        <Brush x:Key="Main text">#000000</Brush>
-        <Brush x:Key="Additional text">#cccccc</Brush>
-        <Brush x:Key="Selected item">#ee11ee</Brush>
-        <Brush x:Key="Selected item inactive">#0965ef</Brush>
-        <Brush x:Key="Select item">#f1a34b</Brush>
+        <Brush x:Key="Select item">#e5f3fb</Brush>
 
         <Style TargetType="Window" x:Key="Window style">
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
@@ -82,7 +74,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="true">
-                                <Setter Property="Background" TargetName="grid" Value="{DynamicResource ResourceKey='Selected item'}"/>
+                                <Setter Property="Background" TargetName="grid" Value="{DynamicResource ResourceKey='Select item'}"/>
                             </Trigger>
                             <Trigger Property="IsHighlighted" Value="False">
                                 <Setter Property="Background" TargetName="grid" Value="{DynamicResource ResourceKey='Additional color'}"/>
