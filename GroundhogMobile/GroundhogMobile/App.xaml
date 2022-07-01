@@ -22,6 +22,12 @@
             <Setter Property="BorderWidth" Value="1"/>
             <Setter Property="BorderColor" Value="{DynamicResource Additional text}"/>
         </Style>
+
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
+            <Setter Property="PlaceholderColor" Value="{DynamicResource Additional text}"/>
+        </Style>
         
     </Application.Resources>
 </Application>
