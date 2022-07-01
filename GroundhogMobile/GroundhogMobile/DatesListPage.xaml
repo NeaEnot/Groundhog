@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GroundhogMobile.DatesListPage">
+             x:Class="GroundhogMobile.DatesListPage"
+             BackgroundColor="{DynamicResource Main color}">
     <ContentPage.Content>
         <ScrollView>
             <ListView x:Name="datesList" RowHeight="80" SelectionMode="None" ItemTapped="datesList_ItemTapped">
@@ -9,8 +10,8 @@
                     <DataTemplate>
                         <ViewCell>
                             <FlexLayout Direction="Column">
-                                <Label FontSize="22" Text="{Binding StringFormat='{0:dddd, dd MMMM}'}" Margin="10, 10"/>
-                                <Label FontSize="18" Text="{Binding StringFormat='{0:dd.MM.yyyy}'}" Margin="10, 5"/>
+                                <Label TextColor="{DynamicResource Main text}" FontSize="22" Text="{Binding StringFormat='{0:dddd, dd MMMM}'}" Margin="10, 10"/>
+                                <Label TextColor="{DynamicResource Main text}" FontSize="18" Text="{Binding StringFormat='{0:dd.MM.yyyy}'}" Margin="10, 5"/>
                             </FlexLayout>
                         </ViewCell>
                     </DataTemplate>
