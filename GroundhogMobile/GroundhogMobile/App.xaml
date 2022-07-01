@@ -28,6 +28,12 @@
             <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
             <Setter Property="PlaceholderColor" Value="{DynamicResource Additional text}"/>
         </Style>
-        
+
+        <Style TargetType="{x:Type TabbedPage}">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource Additional color}"/>
+            <Setter Property="BarTextColor" Value="{DynamicResource Main text}"/>
+            <Setter Property="SelectedTabColor" Value="{DynamicResource Selected item}"/>
+        </Style>
+
     </Application.Resources>
 </Application>
