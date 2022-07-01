@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GroundhogMobile.PurposeGroupsPage">
+             x:Class="GroundhogMobile.PurposeGroupsPage"
+             BackgroundColor="{DynamicResource Main color}">
     <ContentPage.Content>
         <FlexLayout Direction="Column">
             <ScrollView FlexLayout.Basis="90%">
@@ -14,7 +15,7 @@
                                     <MenuItem Text="Удалить" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}"/>
                                 </ViewCell.ContextActions>
                                 <FlexLayout Direction="Column">
-                                    <Label FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
+                                    <Label TextColor="{DynamicResource Main text}" FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
                                 </FlexLayout>
                             </ViewCell>
                         </DataTemplate>
