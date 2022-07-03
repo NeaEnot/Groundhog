@@ -19,7 +19,7 @@ namespace GroundhogMobile
         private Dictionary<RepeatMode, string> placeholders = new Dictionary<RepeatMode, string>()
         {
             { RepeatMode.Нет, "" },
-            { RepeatMode.Дни, "Число" },
+            { RepeatMode.Дни, "Количество дней" },
             { RepeatMode.ЧислоМесяца, "Число" },
             { RepeatMode.ДеньГода, "мм.дд" },
             { RepeatMode.ДниНедели, "Пн,Вт,..." },
