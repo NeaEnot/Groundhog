@@ -38,7 +38,7 @@
 
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
-            <Setter Property="Color" Value="{DynamicResource Additional color}"/>
+            <Setter Property="Color" Value="{DynamicResource Additional text}"/>
         </Style>
 
     </Application.Resources>
