@@ -25,7 +25,7 @@ namespace GroundhogMobile.Models
             }
         }
 
-        public string TextColor => Completed ? "Gray" : "White";
+        public string TextColor => ((Color)(Completed ? App.Current.Resources["Additional text"] : App.Current.Resources["Main text"])).ToHex();
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;
 
         internal PurposeViewModel(Purpose purpose = null)

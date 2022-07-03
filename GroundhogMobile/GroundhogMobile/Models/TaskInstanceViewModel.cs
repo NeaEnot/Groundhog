@@ -31,7 +31,7 @@ namespace GroundhogMobile.Models
         public string Text => task.Text;
         public bool Repeated => task.RepeatMode != RepeatMode.Нет;
 
-        public string TextColor => Completed ? "Gray" : "White";
+        public string TextColor => Completed ? App.Current.Resources["Additional text"].ToString() : App.Current.Resources["Main text"].ToString();
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;
 
         internal TaskInstanceViewModel(TaskInstance instance, Task task)

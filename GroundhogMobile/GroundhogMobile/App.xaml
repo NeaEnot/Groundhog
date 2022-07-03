@@ -36,5 +36,10 @@
             <Setter Property="SelectedTabColor" Value="{DynamicResource Selected item}"/>
         </Style>
 
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="Color" Value="{DynamicResource Additional color}"/>
+        </Style>
+
     </Application.Resources>
 </Application>
