@@ -49,7 +49,7 @@
             </TabItem>
             <TabItem Header="Календарь">
                 <Viewbox>
-                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate" />
+                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
                 </Viewbox>
             </TabItem>
         </TabControl>
