@@ -18,6 +18,8 @@ namespace GroundhogMobile
             Resources.Add("MenuItemUpdate", MenuItemUpdate);
             Resources.Add("MenuItemDelete", MenuItemDelete);
 
+            SettingsPage.DownloadFinisfed += LoadData;
+
             LoadData();
         }
 

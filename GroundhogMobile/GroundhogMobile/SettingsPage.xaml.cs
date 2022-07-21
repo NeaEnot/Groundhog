@@ -9,6 +9,9 @@ namespace GroundhogMobile
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
+        public delegate void Processinisfed();
+        public static event Processinisfed DownloadFinisfed;
+
         public SettingsPage()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace GroundhogMobile
                     ConnectIfNot();
                     GroundhogContext.NetworkLogic.Load();
                     this.DisplayToastAsync("Данные загружены");
+                    DownloadFinisfed();
                 });
             }
             catch (Exception ex)
