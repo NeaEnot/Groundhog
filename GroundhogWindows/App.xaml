@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GroundhogWindows"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Royale"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
@@ -13,6 +14,8 @@
         <Brush x:Key="Selected item">#cbe8f6</Brush>
         <Brush x:Key="Selected item inactive">#f6f6f6</Brush>
         <Brush x:Key="Select item">#e5f3fb</Brush>
+
+        <Color x:Key="at">#818282</Color>
 
         <Style TargetType="Window" x:Key="Window style">
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
@@ -561,7 +564,6 @@
                                     <VisualState Name="Disabled">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="HighlightBackground" Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
-                                            <DoubleAnimation Storyboard.TargetName="NormalText" Storyboard.TargetProperty="Opacity" To=".35" Duration="0" />
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -608,7 +610,14 @@
                                         <VisualTransition GeneratedDuration="0" />
                                     </VisualStateGroup.Transitions>
                                     <VisualState Name="Active" />
-                                    <VisualState Name="Inactive"/>
+                                    <VisualState Name="Inactive">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0"
+                                                            Storyboard.TargetName="NormalText"
+                                                            Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" 
+                                                            To="{StaticResource at}"/>
+                                        </Storyboard>
+                                    </VisualState>
                                 </VisualStateGroup>
                                 <VisualStateGroup Name="DayStates">
                                     <VisualStateGroup.Transitions>
@@ -624,40 +633,18 @@
                                         <VisualTransition GeneratedDuration="0" />
                                     </VisualStateGroup.Transitions>
                                     <VisualState Name="NormalDay" />
-                                    <VisualState Name="BlackoutDay">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" Storyboard.TargetName="Blackout" Storyboard.TargetProperty="Opacity" To=".2" />
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState Name="BlackoutDay"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="TodayBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{DynamicResource Selected item inactive}">
-                            </Rectangle>
-                            <Rectangle x:Name="SelectedBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{DynamicResource Selected item}">
-                            </Rectangle>
+                            <Rectangle x:Name="TodayBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{DynamicResource Selected item inactive}"/>
+                            <Rectangle x:Name="SelectedBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{DynamicResource Selected item}"/>
                             <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" />
+
                             <Rectangle x:Name="HighlightBackground" RadiusX="1" RadiusY="1" Opacity="0" Fill="{DynamicResource Select item}"/>
                             <ContentPresenter x:Name="NormalText"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Margin="5,1,5,1"
-                                              TextElement.Foreground="{DynamicResource Main text}">
-                            </ContentPresenter>
-                            <Path x:Name="Blackout"
-                                  Opacity="0"
-                                  Margin="3"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  RenderTransformOrigin="0.5,0.5"
-                                  Fill="{DynamicResource Additional text}"
-                                  Stretch="Fill"
-                                  Data="M8.1772461,11.029181 L10.433105,
-                                    11.029181 L11.700684,12.801641 L12.973633,
-                                    11.029181 L15.191895,11.029181 L12.844727,
-                                    13.999395 L15.21875,17.060919 L12.962891,
-                                    17.060919 L11.673828,15.256231 L10.352539,
-                                    17.060919 L8.1396484,17.060919 L10.519043,
-                                    14.042364 z" />
+                                              Margin="5,1,5,1"/>
                             <Rectangle x:Name="DayButtonFocusVisual" Visibility="Collapsed" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="{DynamicResource Selected item}"/>
                         </Grid>
                     </ControlTemplate>
@@ -735,7 +722,7 @@
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               Margin="1,0,1,1"
-                                              TextElement.Foreground="{DynamicResource Additional text}"/>
+                                              TextElement.Foreground="{DynamicResource Main text}"/>
                             <Rectangle x:Name="CalendarButtonFocusVisual" Visibility="Collapsed" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="{DynamicResource Selected item}"/>
                         </Grid>
                     </ControlTemplate>
@@ -770,7 +757,7 @@
                           VerticalAlignment="Center"
                           Width="6"
                           Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
-                          Fill="{DynamicResource Additional text}"/>
+                          Fill="{DynamicResource Main text}"/>
                 </Grid>
             </Grid>
         </ControlTemplate>
@@ -812,26 +799,13 @@
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal" />
-                        <VisualState x:Name="MouseOver">
-                            <Storyboard>
-                                <ColorAnimation Duration="0"
-                                                To="#FF333333"
-                                                Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="buttonContent" />
-                            </Storyboard>
-                        </VisualState>
-                        <VisualState x:Name="Disabled">
-                            <Storyboard>
-                                <DoubleAnimation Duration="0" To=".5" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="buttonContent" />
-                            </Storyboard>
-                        </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <ContentPresenter x:Name="buttonContent"
                                   Margin="1,4,1,9"
                                   ContentTemplate="{TemplateBinding ContentTemplate}"
                                   Content="{TemplateBinding Content}"
-                                  TextElement.Foreground="{DynamicResource Main color}"
+                                  TextElement.Foreground="{DynamicResource Main text}"
                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
             </Grid>

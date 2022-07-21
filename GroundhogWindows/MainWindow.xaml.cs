@@ -67,6 +67,13 @@ namespace GroundhogWindows
             App.Current.Resources["Select item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Select item")));
         }
 
+        private void RestartWindow()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
         {
             ConnectionWindow connectionWindow = new ConnectionWindow();
@@ -83,7 +90,7 @@ namespace GroundhogWindows
         {
             ColorsWindow colorsWindow = new ColorsWindow();
             if (colorsWindow.ShowDialog() == true)
-                LoadResources();
+                RestartWindow();
         }
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)

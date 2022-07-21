@@ -1,5 +1,4 @@
 ﻿using Core.Models;
-using System.Windows.Media;
 
 namespace GroundhogWindows.Models
 {
