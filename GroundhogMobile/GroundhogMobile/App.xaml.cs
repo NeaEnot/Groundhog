@@ -34,6 +34,18 @@ namespace GroundhogMobile
 
                 GroundhogContext.SetColors(colors);
             }
+
+            LoadResources();
+        }
+
+        public static void LoadResources()
+        {
+            App.Current.Resources["Main color"] = Color.FromHex(GroundhogContext.GetColor("Main color"));
+            App.Current.Resources["Additional color"] = Color.FromHex(GroundhogContext.GetColor("Additional color"));
+            App.Current.Resources["Main text"] = Color.FromHex(GroundhogContext.GetColor("Main text"));
+            App.Current.Resources["Additional text"] = Color.FromHex(GroundhogContext.GetColor("Additional text"));
+            App.Current.Resources["Selected item"] = Color.FromHex(GroundhogContext.GetColor("Selected item"));
+            App.Current.Resources["Select item"] = Color.FromHex(GroundhogContext.GetColor("Select item"));
         }
 
         protected override void OnStart()
