@@ -4,7 +4,8 @@
              xmlns:xal="http://xalendar.com/schemas/xaml"
              xmlns:formatters="clr-namespace:GroundhogMobile.Formatters"
              x:Class="GroundhogMobile.CalendarPage"
-             BackgroundColor="{DynamicResource Key='Main color'}">
+             BackgroundColor="{DynamicResource Key='Main color'}"
+             NavigationPage.HasNavigationBar="False">
     
     <ContentPage.Resources>
         <ResourceDictionary>
