@@ -3,6 +3,7 @@ using Core.DateTimeHelpers;
 using Core.Enums;
 using Core.Models;
 using GroundhogMobile.Models;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,6 +144,24 @@ namespace GroundhogMobile
             TaskInstance model = viewModel.Convert();
 
             GroundhogContext.TaskInstanceLogic.Update(model);
+        }
+
+        private async void tasksList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Dictionary<string, ICommand> commands =
+                new Dictionary<string, ICommand>
+                {
+                    { "Изменить", MenuItemUpdate },
+                    { "Удалить", MenuItemDelete },
+                    { "Удалить все подобные задачи", MenuItemDeleteAll }
+                };
+
+            CommandPage page = new CommandPage("Действие с элементом", commands.Keys);
+            Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
+
+            object obj = await page.Result;
+            if (obj != null)
+                commands[obj as string].Execute(e.Item as TaskInstanceViewModel);
         }
     }
 }

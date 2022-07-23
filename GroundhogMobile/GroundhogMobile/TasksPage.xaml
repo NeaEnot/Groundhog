@@ -8,15 +8,15 @@
         <FlexLayout Direction="Column">
             <Label x:Name="lblDate" FontSize="30" TextColor="{DynamicResource Main text}" FlexLayout.Basis="7%" Margin="10, 10, 0, 0"/>
             <ScrollView FlexLayout.Basis="83%">
-                <ListView x:Name="tasksList" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None">
+                <ListView x:Name="tasksList" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None" ItemTapped="tasksList_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <ViewCell.ContextActions>
+                                <!--<ViewCell.ContextActions>
                                     <MenuItem Text="Изменить" Command="{StaticResource MenuItemUpdate}" CommandParameter="{Binding}"/>
                                     <MenuItem Text="Удалить" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}"/>
                                     <MenuItem Text="Удалить все" Command="{StaticResource MenuItemDeleteAll}" CommandParameter="{Binding}"/>
-                                </ViewCell.ContextActions>
+                                </ViewCell.ContextActions>-->
                                 <ViewCell.View>
                                     <FlexLayout Direction="Row" Margin="0, 10" JustifyContent="Center">
                                         <CheckBox
