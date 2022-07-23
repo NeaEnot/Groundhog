@@ -1,4 +1,3 @@
-Рендер Switch в XF
 Рендер ContextMenu в XF
 Рендер Курсора в XF
 Рендер диалогового окна для Picker в XF
@@ -198,3 +197,4 @@ WPF: Вынести логику работы с выбором даты в от
 Рендер Picker в XF
 Показывать дату в XF.TasksPage
 Показывать название группы в XF.PurposesPage
+Заменить Switch на CheckBox в XF

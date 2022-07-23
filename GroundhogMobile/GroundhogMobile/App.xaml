@@ -47,10 +47,5 @@
             <Setter Property="TitleColor" Value="{DynamicResource Additional text}"/>
         </Style>
 
-        <Style TargetType="{x:Type Switch}">
-            <Setter Property="ThumbColor" Value="{DynamicResource Additional text}"/>
-            <Setter Property="OnColor" Value="{DynamicResource Additional color}"/>
-        </Style>
-
     </Application.Resources>
 </Application>

@@ -7,7 +7,7 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(Editor), typeof(GroundhogMobile.Droid.Renderers.EditorRenderer))]
 namespace GroundhogMobile.Droid.Renderers
 {
-    class EditorRenderer : Xamarin.Forms.Platform.Android.EditorRenderer
+    public class EditorRenderer : Xamarin.Forms.Platform.Android.EditorRenderer
     {
         [Obsolete]
         public EditorRenderer(Context context)
