@@ -41,11 +41,5 @@
             <Setter Property="Color" Value="{DynamicResource Additional text}"/>
         </Style>
 
-        <Style TargetType="{x:Type Picker}">
-            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
-            <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
-            <Setter Property="TitleColor" Value="{DynamicResource Additional text}"/>
-        </Style>
-
     </Application.Resources>
 </Application>

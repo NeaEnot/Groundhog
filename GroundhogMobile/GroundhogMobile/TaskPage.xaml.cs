@@ -1,6 +1,7 @@
 ﻿using Core.DateTimeHelpers;
 using Core.Enums;
 using GroundhogMobile.Models;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -14,7 +15,7 @@ namespace GroundhogMobile
         public bool IsSuccess { get; private set; } = false;
         internal TaskViewModel Model { get; private set; }
 
-        private bool isLoaded;
+        private RepeatMode repeatMode;
 
         private Dictionary<RepeatMode, string> placeholders = new Dictionary<RepeatMode, string>()
         {
@@ -26,10 +27,18 @@ namespace GroundhogMobile
             { RepeatMode.Вахты, "'xx-xx', 'xx-xx-xx-xx' ..." },
         };
 
+        private Dictionary<RepeatMode, string> buttonText = new Dictionary<RepeatMode, string>()
+        {
+            { RepeatMode.Нет, "Нет" },
+            { RepeatMode.Дни, "Дни" },
+            { RepeatMode.ЧислоМесяца, "Число месяца" },
+            { RepeatMode.ДеньГода, "День года" },
+            { RepeatMode.ДниНедели, "Дни недели" },
+            { RepeatMode.Вахты, "Вахты" },
+        };
+
         internal TaskPage(TaskViewModel model)
         {
-            isLoaded = true;
-
             if (model == null)
                 throw new ArgumentNullException("При создании новой задачи необходимо передавать новый объект с пустыми полями.");
 
@@ -38,20 +47,9 @@ namespace GroundhogMobile
             Model = model;
             BindingContext = model;
 
-            repeatModePicker.ItemsSource = Enum.GetValues(typeof(RepeatMode));
-            repeatModePicker.SelectedItem = model.RepeatMode;
+            repeatMode = model.RepeatMode;
 
-            isLoaded = false;
-        }
-
-        private void repeatModePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!isLoaded)
-            {
-                RepeatMode selected = (RepeatMode)repeatModePicker.SelectedItem;
-                repeatValueEntry.IsVisible = selected != RepeatMode.Нет;
-                repeatValueEntry.Placeholder = placeholders[selected];
-            }
+            buttonMode.Text = buttonText[Model.RepeatMode];
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -59,15 +57,15 @@ namespace GroundhogMobile
             try
             {
                 if (string.IsNullOrWhiteSpace(textEntry.Text) ||
-                    (RepeatMode)repeatModePicker.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
+                    repeatMode != RepeatMode.Нет && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
                 {
                     throw new Exception("Поля должны быть заполнены.");
                 }
 
-                DateTimeHelper.CheckIsValueCorrect(repeatValueEntry.Text, (RepeatMode)repeatModePicker.SelectedItem);
+                DateTimeHelper.CheckIsValueCorrect(repeatValueEntry.Text, repeatMode);
 
                 Model.Text = textEntry.Text;
-                Model.RepeatMode = (RepeatMode)repeatModePicker.SelectedItem;
+                Model.RepeatMode = repeatMode;
                 Model.RepeatValue = repeatValueEntry.Text;
                 IsSuccess = true;
 
@@ -76,6 +74,21 @@ namespace GroundhogMobile
             catch (Exception ex)
             {
                 await DisplayAlert("Ошибка", ex.Message, "Ок");
+            }
+        }
+
+        private async void buttonMode_Clicked(object sender, EventArgs e)
+        {
+            CommandPage page = new CommandPage("Режим повторения", Enum.GetValues(typeof(RepeatMode)));
+            Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
+
+            object obj = await page.Result;
+            if (obj != null)
+            {
+                repeatMode = (RepeatMode)obj;
+                buttonMode.Text = buttonText[repeatMode];
+                repeatValueEntry.IsVisible = repeatMode != RepeatMode.Нет;
+                repeatValueEntry.Placeholder = placeholders[repeatMode];
             }
         }
     }
