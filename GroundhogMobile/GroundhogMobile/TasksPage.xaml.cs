@@ -26,6 +26,7 @@ namespace GroundhogMobile
             Resources.Add("MenuItemDeleteAll", MenuItemDeleteAll);
 
             this.date = date;
+            lblDate.Text = date.ToString("dddd, dd.MM.yyyy");
 
             LoadData();
         }

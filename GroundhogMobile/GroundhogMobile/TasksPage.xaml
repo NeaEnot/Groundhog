@@ -6,7 +6,8 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <FlexLayout Direction="Column">
-            <ScrollView FlexLayout.Basis="90%">
+            <Label x:Name="lblDate" FontSize="30" TextColor="{DynamicResource Main text}" FlexLayout.Basis="7%" Margin="10, 10, 0, 0"/>
+            <ScrollView FlexLayout.Basis="83%">
                 <ListView x:Name="tasksList" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
