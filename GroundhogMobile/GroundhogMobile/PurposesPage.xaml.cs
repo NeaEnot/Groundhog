@@ -22,6 +22,7 @@ namespace GroundhogMobile
             Resources.Add("MenuItemDelete", MenuItemDelete);
 
             this.group = group;
+            lblGroupName.Text = group.Name;
 
             LoadData();
         }
