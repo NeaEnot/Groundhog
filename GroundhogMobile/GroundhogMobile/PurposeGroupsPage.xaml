@@ -11,12 +11,10 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem Text="Изменить" Command="{StaticResource MenuItemUpdate}" CommandParameter="{Binding}"/>
-                                    <MenuItem Text="Удалить" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}"/>
-                                </ViewCell.ContextActions>
-                                <FlexLayout Direction="Column">
-                                    <Label TextColor="{DynamicResource Main text}" FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
+                                <FlexLayout Direction="Row">
+                                    <Label FlexLayout.Basis="70%" TextColor="{DynamicResource Main text}" FontSize="22" Text="{Binding Name}" Margin="10, 10"/>
+                                    <Button FlexLayout.Basis="15%" x:Name="btnUpdate" Text="Upd" Command="{StaticResource MenuItemUpdate}" CommandParameter="{Binding}" HeightRequest="40" Margin="1, 5"/>
+                                    <Button FlexLayout.Basis="15%" x:Name="btnDelete" Text="Del" Command="{StaticResource MenuItemDelete}" CommandParameter="{Binding}" HeightRequest="40" Margin="1, 5"/>
                                 </FlexLayout>
                             </ViewCell>
                         </DataTemplate>

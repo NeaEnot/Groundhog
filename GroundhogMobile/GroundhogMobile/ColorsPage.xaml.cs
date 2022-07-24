@@ -60,6 +60,7 @@ namespace GroundhogMobile
                     EditorsColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
                     TextColor = Color.FromHex(GroundhogContext.GetColor("Main text")),
                     DialogColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
+                    ColorPreviewBorderColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
                     ARGBEditorsWidth = 50,
                     SliderWidth = 200
                 };
