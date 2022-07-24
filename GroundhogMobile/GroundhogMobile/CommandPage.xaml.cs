@@ -30,9 +30,9 @@ namespace GroundhogMobile
             await PopupNavigation.Instance.PopAsync();
         }
 
-        private async void list_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void list_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            tcs.SetResult(list.SelectedItem);
+            tcs.SetResult(e.Item);
             await PopupNavigation.Instance.PopAsync();
         }
     }
