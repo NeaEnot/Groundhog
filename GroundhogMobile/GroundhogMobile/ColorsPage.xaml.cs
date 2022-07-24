@@ -56,14 +56,15 @@ namespace GroundhogMobile
                     EditAlfa = false,
                     OkButtonText = "Принять",
                     CancelButtonText = "Отмена",
-                    BackgroundColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
-                    EditorsColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
+                    BackgroundColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
+                    EditorsColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
                     TextColor = Color.FromHex(GroundhogContext.GetColor("Main text")),
+                    DialogColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
                     ARGBEditorsWidth = 50,
                     SliderWidth = 200
                 };
 
-            Xamarin.Forms.Color color = 
+            Color color = 
                 await ColorPickerDialog.Show(stc, names[schemaColor], currentColor, settings);
 
             Resources[schemaColor + " page"] = color;

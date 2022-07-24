@@ -8,7 +8,7 @@
     <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{DynamicResource Additional color}" Margin="20" Padding="20">
 
         <FlexLayout Direction="Column">
-            <Label x:Name="lblTitle" FontSize="25" TextColor="{DynamicResource Main text}" FlexLayout.Basis="7%" Margin="10, 10, 10, 10"/>
+            <Label x:Name="lblTitle" FontSize="20" TextColor="{DynamicResource Main text}" FlexLayout.Basis="7%" LineBreakMode="TailTruncation" Margin="10, 10, 10, 10"/>
             <ScrollView FlexLayout.Basis="83%">
                 <ListView x:Name="list" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="Single" ItemSelected="list_ItemSelected">
                     <ListView.ItemTemplate>

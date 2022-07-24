@@ -22,10 +22,6 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
-            Resources.Add("MenuItemUpdate", MenuItemUpdate);
-            Resources.Add("MenuItemDelete", MenuItemDelete);
-            Resources.Add("MenuItemDeleteAll", MenuItemDeleteAll);
-
             this.date = date;
             lblDate.Text = date.ToString("dddd, dd.MM.yyyy");
 
@@ -156,7 +152,7 @@ namespace GroundhogMobile
                     { "Удалить все подобные задачи", MenuItemDeleteAll }
                 };
 
-            CommandPage page = new CommandPage("Действие с элементом", commands.Keys);
+            CommandPage page = new CommandPage((e.Item as TaskInstanceViewModel).Text, commands.Keys);
             Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
 
             object obj = await page.Result;

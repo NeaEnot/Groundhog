@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Models;
 using GroundhogMobile.Models;
+using Rg.Plugins.Popup.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -17,9 +18,6 @@ namespace GroundhogMobile
         public PurposesPage(PurposeGroup group)
         {
             InitializeComponent();
-
-            Resources.Add("MenuItemUpdate", MenuItemUpdate);
-            Resources.Add("MenuItemDelete", MenuItemDelete);
 
             this.group = group;
             lblGroupName.Text = group.Name;
@@ -87,6 +85,23 @@ namespace GroundhogMobile
             Purpose model = viewModel.Convert();
 
             GroundhogContext.PurposeLogic.Update(model);
+        }
+
+        private async void purposesList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Dictionary<string, ICommand> commands =
+                new Dictionary<string, ICommand>
+                {
+                    { "Изменить", MenuItemUpdate },
+                    { "Удалить", MenuItemDelete }
+                };
+
+            CommandPage page = new CommandPage((e.Item as PurposeViewModel).Text, commands.Keys);
+            Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
+
+            object obj = await page.Result;
+            if (obj != null)
+                commands[obj as string].Execute(e.Item as PurposeViewModel);
         }
     }
 }
