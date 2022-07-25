@@ -57,9 +57,9 @@ namespace GroundhogMobile
                     OkButtonText = "Принять",
                     CancelButtonText = "Отмена",
                     BackgroundColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
-                    EditorsColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
+                    EditorsColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
                     TextColor = Color.FromHex(GroundhogContext.GetColor("Main text")),
-                    DialogColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
+                    DialogColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
                     ColorPreviewBorderColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
                     ARGBEditorsWidth = 50,
                     SliderWidth = 200
