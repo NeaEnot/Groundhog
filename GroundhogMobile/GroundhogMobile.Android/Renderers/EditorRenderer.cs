@@ -20,6 +20,10 @@ namespace GroundhogMobile.Droid.Renderers
             if (Control != null)
             {
                 Control.BackgroundTintList = ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Additional text"]));
+                Control.SetHighlightColor(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"]));
+                Control.TextSelectHandle.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
+                Control.TextSelectHandleLeft.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
+                Control.TextSelectHandleRight.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
                 Control.SetTextCursorDrawable(0);
             }
         }

@@ -13,6 +13,7 @@ namespace GroundhogMobile.Droid.Renderers
         public EntryRenderer(Context context)
         { }
 
+        [Obsolete]
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
@@ -20,6 +21,10 @@ namespace GroundhogMobile.Droid.Renderers
             if (Control != null)
             {
                 Control.BackgroundTintList = ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Additional text"]));
+                Control.SetHighlightColor(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"]));
+                Control.TextSelectHandle.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
+                Control.TextSelectHandleLeft.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
+                Control.TextSelectHandleRight.SetTintList(ColorStateList.ValueOf(ColorConverter.ToAndroidColor((Color)App.Current.Resources["Selected item"])));
                 Control.SetTextCursorDrawable(0);
             }
         }
