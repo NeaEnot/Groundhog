@@ -22,7 +22,6 @@ namespace GroundhogMobile
             Resources["Main text page"] = Color.FromHex(GroundhogContext.GetColor("Main text"));
             Resources["Additional text page"] = Color.FromHex(GroundhogContext.GetColor("Additional text"));
             Resources["Selected item page"] = Color.FromHex(GroundhogContext.GetColor("Selected item"));
-            Resources["Select item page"] = Color.FromHex(GroundhogContext.GetColor("Select item"));
 
             btns = new Dictionary<Button, string>
             {
@@ -30,8 +29,7 @@ namespace GroundhogMobile
                 { btnAdditionalColor, "Additional color" },
                 { btnMainText, "Main text" },
                 { btnAdditionalText, "Additional text" },
-                { btnSelectedItem, "Selected item" },
-                { btnSelectItem, "Select item" }
+                { btnSelectedItem, "Selected item" }
             };
 
             names = new Dictionary<string, string>
@@ -40,8 +38,7 @@ namespace GroundhogMobile
                 { "Additional color", "Дополнительный цвет" },
                 { "Main text", "Основной текст" },
                 { "Additional text", "Дополнительный текст" },
-                { "Selected item", "Выделенный элемент" },
-                { "Select item", "Выбор элемента" }
+                { "Selected item", "Выделенный элемент" }
             };
         }
 
@@ -78,7 +75,6 @@ namespace GroundhogMobile
             Resources["Main text page"] = Color.FromHex("#000000");
             Resources["Additional text page"] = Color.FromHex("#818282");
             Resources["Selected item page"] = Color.FromHex("#cbe8f6");
-            Resources["Select item page"] = Color.FromHex("#e5f3fb");
         }
 
         private void ButtonSave_Clicked(object sender, EventArgs e)
@@ -89,8 +85,7 @@ namespace GroundhogMobile
                 { "Additional color", ((Color)Resources["Additional color page"]).ToHex() },
                 { "Main text", ((Color)Resources["Main text page"]).ToHex() },
                 { "Additional text", ((Color)Resources["Additional text page"]).ToHex() },
-                { "Selected item", ((Color)Resources["Selected item page"]).ToHex() },
-                { "Select item", ((Color)Resources["Select item page"]).ToHex() },
+                { "Selected item", ((Color)Resources["Selected item page"]).ToHex() }
             };
 
             GroundhogContext.SetColors(colors);

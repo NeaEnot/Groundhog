@@ -9,7 +9,6 @@
         <Color x:Key="Main text">#000000</Color>
         <Color x:Key="Additional text">#818282</Color>
         <Color x:Key="Selected item">#cbe8f6</Color>
-        <Color x:Key="Select item">#e5f3fb</Color>
 
         <Style TargetType="{x:Type Entry}">
             <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>

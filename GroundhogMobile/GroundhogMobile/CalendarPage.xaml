@@ -177,7 +177,7 @@
             <Style Class="CalendarDayEvent" TargetType="BoxView">
                 <Setter Property="FlexLayout.AlignSelf" Value="Center" />
                 <Setter Property="Margin" Value="0,0,0,8" />
-                <Setter Property="BackgroundColor" Value="{DynamicResource Select item}" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource Selected item}" />
                 <Setter Property="CornerRadius" Value="2" />
                 <Setter Property="HeightRequest" Value="4" />
                 <Setter Property="HorizontalOptions" Value="Center" />
