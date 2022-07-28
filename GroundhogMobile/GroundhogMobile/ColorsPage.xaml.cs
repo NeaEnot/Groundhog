@@ -42,8 +42,13 @@ namespace GroundhogMobile
             };
         }
 
+        private bool iscolorDialogOpen = false;
+
         private async void ButtonColor_Clicked(object sender, EventArgs e)
         {
+            if (iscolorDialogOpen)
+                return;
+
             string schemaColor = btns[sender as Button];
 
             Color currentColor = Color.FromHex(GroundhogContext.GetColor(schemaColor));
@@ -62,8 +67,9 @@ namespace GroundhogMobile
                     SliderWidth = 200
                 };
 
-            Color color = 
-                await ColorPickerDialog.Show(stc, names[schemaColor], currentColor, settings);
+            iscolorDialogOpen = true;
+            Color color = await ColorPickerDialog.Show(stc, names[schemaColor], currentColor, settings);
+            iscolorDialogOpen = false;
 
             Resources[schemaColor + " page"] = color;
         }
