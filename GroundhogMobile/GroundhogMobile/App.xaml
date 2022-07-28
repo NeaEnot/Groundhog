@@ -11,20 +11,20 @@
         <Color x:Key="Selected item">#cbe8f6</Color>
 
         <Style TargetType="{x:Type Entry}">
-            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
             <Setter Property="PlaceholderColor" Value="{DynamicResource Additional text}"/>
         </Style>
 
         <Style TargetType="{x:Type Button}">
-            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="BackgroundColor" Value="{DynamicResource Additional color}"/>
             <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
             <Setter Property="BorderWidth" Value="1"/>
             <Setter Property="BorderColor" Value="{DynamicResource Additional text}"/>
         </Style>
 
         <Style TargetType="{x:Type Editor}">
-            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="TextColor" Value="{DynamicResource Main text}"/>
             <Setter Property="PlaceholderColor" Value="{DynamicResource Additional text}"/>
         </Style>
@@ -36,7 +36,7 @@
         </Style>
 
         <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="BackgroundColor" Value="{DynamicResource Main color}"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
             <Setter Property="Color" Value="{DynamicResource Additional text}"/>
         </Style>
 

@@ -24,8 +24,8 @@
             <Button x:Name="btnAdditionalText" Text="Дополнительный текст" BorderWidth="5" BorderColor="{DynamicResource Additional text page}" Clicked="ButtonColor_Clicked"/>
             <Button x:Name="btnSelectedItem" Text="Выделенный элемент" BorderWidth="5" BorderColor="{DynamicResource Selected item page}" Clicked="ButtonColor_Clicked"/>
 
-            <Button Text="Стандартная схема" Margin="0,20" Clicked="ButtonStandart_Clicked"/>
-            <Button Text="Сохранить" Margin="0,20" Clicked="ButtonSave_Clicked"/>
+            <Button Text="Стандартная схема" Margin="0,30" Clicked="ButtonStandart_Clicked"/>
+            <Button Text="Сохранить" Margin="0,30" Clicked="ButtonSave_Clicked"/>
             
         </StackLayout>
     </ContentPage.Content>
