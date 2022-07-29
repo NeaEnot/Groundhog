@@ -17,6 +17,10 @@
 
         <Color x:Key="at">#818282</Color>
 
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
+        </Style>
+        
         <Style TargetType="Window" x:Key="Window style">
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
             <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
@@ -184,6 +188,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style x:Key="ScrollBarLineButtonStyle" TargetType="{x:Type RepeatButton}">
@@ -534,6 +539,7 @@
             <Setter Property="Padding" Value="-1"/>
             <Setter Property="Margin" Value="-1"/>
             <Setter Property="Background" Value="{DynamicResource Additional color}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="CalendarDayButton" x:Key="CalendarDayButtonStyle">
@@ -653,7 +659,6 @@
             </Setter>
         </Style>
 
-        <!--Style for the months of a year and years of a decade.-->
         <Style TargetType="CalendarButton" x:Key="CalendarButtonStyle">
             <Setter Property="MinWidth" Value="40" />
             <Setter Property="MinHeight" Value="42" />
@@ -732,7 +737,6 @@
             <Setter Property="Background" Value="{DynamicResource Main color}"/>
         </Style>
 
-        <!--Button to go to the previous month or year.-->
         <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
             <Grid Cursor="Hand">
                 <VisualStateManager.VisualStateGroups>
@@ -763,7 +767,6 @@
             </Grid>
         </ControlTemplate>
 
-        <!--Button to go to the next month or year.-->
         <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
             <Grid Cursor="Hand">
                 <VisualStateManager.VisualStateGroups>
@@ -794,7 +797,6 @@
             </Grid>
         </ControlTemplate>
 
-        <!--Button to go up a level to the year or decade.-->
         <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
             <Grid Cursor="Hand">
                 <VisualStateManager.VisualStateGroups>
