@@ -126,6 +126,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="ListBox">

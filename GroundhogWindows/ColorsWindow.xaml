@@ -14,13 +14,13 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Content="Основной цвет" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-        <Label Grid.Column="0" Content="Дополнительный цвет" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="134"/>
-        <Label Grid.Column="0" Content="Основной текст" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
-        <Label Grid.Column="0" Content="Дополнительный текст" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="136"/>
-        <Label Grid.Column="0" Content="Выделенный элемент" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
-        <Label Grid.Column="0" Content="Выделенный элемент (неактивный)" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Height="26" Width="205"/>
-        <Label Grid.Column="0" Content="Выбор элемента" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Grid.Column="0" Content="Основной цвет" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+        <Label Grid.Column="0" Content="Дополнительный цвет" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="134"/>
+        <Label Grid.Column="0" Content="Основной текст" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <Label Grid.Column="0" Content="Дополнительный текст" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="136"/>
+        <Label Grid.Column="0" Content="Выделенный элемент" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
+        <Label Grid.Column="0" Content="Выделенный элемент (неактивный)" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Height="26" Width="205"/>
+        <Label Grid.Column="0" Content="Выбор элемента" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
 
         <TextBox Name="tbMainColor" Grid.Column="0" Margin="220,14,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
         <TextBox Name="tbAdditionalColor" Grid.Column="0" Margin="220,45,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
