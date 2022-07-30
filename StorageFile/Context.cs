@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Models;
 using Newtonsoft.Json;
+using StorageFile.Extensions;
 using StorageFile.Models;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ namespace StorageFile
 
         private void Save<T>(List<T> models)
         {
+            int hash = models.GetHash();
             using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json"))
             {
                 string json = JsonConvert.SerializeObject(models);

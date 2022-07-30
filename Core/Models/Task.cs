@@ -9,5 +9,10 @@ namespace Core.Models
         public RepeatMode RepeatMode { get; set; }
         public string RepeatValue { get; set; }
         public bool ToNextDay { get; set; }
+
+        public override int GetHashCode()
+        {
+            return (Id + Text + RepeatMode + RepeatValue + ToNextDay).GetHashCode();
+        }
     }
 }
