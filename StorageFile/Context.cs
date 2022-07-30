@@ -13,14 +13,19 @@ namespace StorageFile
         private static Context instance;
         private static StorageModel storage;
 
-        internal List<Task> Tasks => storage.Tasks;
-        internal List<TaskInstance> TaskInstances => storage.TaskInstances;
-        internal List<Purpose> Purposes => storage.Purposes;
-        internal List<PurposeGroup> PurposeGroups => storage.PurposeGroups;
+        internal List<Task> Tasks { get => storage.Tasks; set { storage.Tasks = value; Save(storage.Tasks); } }
+        internal List<TaskInstance> TaskInstances { get => storage.TaskInstances; set { storage.TaskInstances = value; Save(storage.TaskInstances); } }
+        internal List<Purpose> Purposes { get => storage.Purposes; set { storage.Purposes = value; Save(storage.Purposes); } }
+        internal List<PurposeGroup> PurposeGroups { get => storage.PurposeGroups; set { storage.PurposeGroups = value; Save(storage.PurposeGroups); } }
 
         private Context()
         {
-            Load();
+            //Load();
+            storage = new StorageModel();
+            Tasks = Load<Task>();
+            TaskInstances = Load<TaskInstance>();
+            Purposes = Load<Purpose>();
+            PurposeGroups = Load<PurposeGroup>();
         }
 
         internal static Context Instanse
@@ -31,6 +36,33 @@ namespace StorageFile
                     instance = new Context();
 
                 return instance;
+            }
+        }
+
+        private void Save<T>(List<T> models)
+        {
+            using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json"))
+            {
+                string json = JsonConvert.SerializeObject(models);
+                writer.Write(json);
+            }
+        }
+
+        private List<T> Load<T>()
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json"))
+                {
+                    string json = reader.ReadToEnd();
+                    List<T> restored = JsonConvert.DeserializeObject<List<T>>(json);
+
+                    return restored;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
             }
         }
 

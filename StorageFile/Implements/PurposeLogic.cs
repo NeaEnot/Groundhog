@@ -22,7 +22,7 @@ namespace StorageFile.Implements
                     Completed = model.Completed
                 });
 
-            context.Save();
+            context.Purposes = context.Purposes;
         }
 
         public void Create(List<Purpose> models)
@@ -42,7 +42,7 @@ namespace StorageFile.Implements
                     });
             }
 
-            context.Save();
+            context.Purposes = context.Purposes;
         }
 
         public List<Purpose> Read(string groupId)
@@ -70,13 +70,13 @@ namespace StorageFile.Implements
             purpose.Text = model.Text;
             purpose.Completed = model.Completed;
 
-            context.Save();
+            context.Purposes = context.Purposes;
         }
 
         public void Delete()
         {
             context.Purposes.Clear();
-            context.Save();
+            context.Purposes = context.Purposes;
         }
 
         public void Delete(string id)
@@ -88,7 +88,7 @@ namespace StorageFile.Implements
 
             context.Purposes.Remove(purpose);
 
-            context.Save();
+            context.Purposes = context.Purposes;
         }
 
         public void Delete(List<string> ids)
@@ -98,7 +98,7 @@ namespace StorageFile.Implements
             foreach (Purpose purpose in purposes)
                 context.Purposes.Remove(purpose);
 
-            context.Save();
+            context.Purposes = context.Purposes;
         }
     }
 }
