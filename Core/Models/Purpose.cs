@@ -1,13 +1,15 @@
-﻿namespace Core.Models
+﻿using Core.Interfaces;
+
+namespace Core.Models
 {
-    public class Purpose
+    public class Purpose : IHashable
     {
         public string Id { get; set; }
         public string GroupId { get; set; }
         public string Text { get; set; }
         public bool Completed { get; set; }
 
-        public override int GetHashCode()
+        public int GetHash()
         {
             return (Id + GroupId + Text + Completed).GetHashCode();
         }

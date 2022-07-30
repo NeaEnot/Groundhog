@@ -1,11 +1,13 @@
-﻿namespace Core.Models
+﻿using Core.Interfaces;
+
+namespace Core.Models
 {
-    public class Note
+    public class Note : IHashable
     {
         public string Id { get; set; }
         public string Text { get; set; }
 
-        public override int GetHashCode()
+        public int GetHash()
         {
             return (Id + Text).GetHashCode();
         }

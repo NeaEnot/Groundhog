@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Core.Interfaces
+namespace Core.Interfaces.Storage
 {
     public interface ITaskInstanceLogic
     {

@@ -1,7 +1,7 @@
 ﻿using Core.Models;
 using System.Collections.Generic;
 
-namespace Core.Interfaces
+namespace Core.Interfaces.Storage
 {
     public interface IPurposeGroupLogic
     {

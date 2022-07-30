@@ -1,5 +1,6 @@
 ﻿using Core.Enums;
 using Core.Interfaces;
+using Core.Interfaces.Storage;
 using Core.Models;
 using Newtonsoft.Json;
 using System;

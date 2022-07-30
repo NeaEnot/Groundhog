@@ -1,4 +1,4 @@
-﻿using Core.Interfaces;
+﻿using Core.Interfaces.Storage;
 using Core.Models;
 using System;
 using System.Collections.Generic;
