@@ -9,6 +9,7 @@ namespace YandexDisk
         public List<TaskInstance> TaskInstances { get; set; }
         public List<Purpose> Purposes { get; set; }
         public List<PurposeGroup> PurposeGroups { get; set; }
+        public List<Note> Notes { get; set; }
 
         internal StorageModel()
         {
@@ -16,6 +17,7 @@ namespace YandexDisk
             TaskInstances = new List<TaskInstance>();
             Purposes = new List<Purpose>();
             PurposeGroups = new List<PurposeGroup>();
+            Notes = new List<Note>();
         }
     }
 }

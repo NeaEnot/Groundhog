@@ -55,6 +55,8 @@ namespace YandexDisk
                 GroundhogContext.PurposeGroupLogic.Create(model.PurposeGroups);
                 GroundhogContext.PurposeLogic.Delete();
                 GroundhogContext.PurposeLogic.Create(model.Purposes);
+                GroundhogContext.NoteLogic.Delete(null);
+                GroundhogContext.NoteLogic.Create(model.Notes);
             }
             catch (Exception ex)
             {
@@ -72,13 +74,15 @@ namespace YandexDisk
             List<Purpose> purposes = new List<Purpose>();
             foreach (PurposeGroup group in groups)
                 purposes.AddRange(GroundhogContext.PurposeLogic.Read(group.Id));
+            List<Note> notes = GroundhogContext.NoteLogic.Read();
 
             StorageModel model = new StorageModel
             {
                 Tasks = tasks,
                 TaskInstances = taskInstances,
                 PurposeGroups = groups,
-                Purposes = purposes
+                Purposes = purposes,
+                Notes = notes
             };
 
             using (StreamWriter writer = new StreamWriter(cloudStorageFile))

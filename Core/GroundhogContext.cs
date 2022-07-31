@@ -15,6 +15,8 @@ namespace Core
         public static ITaskLogic TaskLogic { get; set; }
         public static IPurposeLogic PurposeLogic { get; set; }
         public static IPurposeGroupLogic PurposeGroupLogic { get; set; }
+        public static INoteLogic NoteLogic { get; set; }
+
         public static INetworkLogic NetworkLogic { get; set; }
 
         private static AppSettings settings;
