@@ -22,7 +22,7 @@ namespace StorageFile.Implements
                     Completed = model.Completed
                 });
 
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
 
         public void Create(List<TaskInstance> models)
@@ -42,7 +42,7 @@ namespace StorageFile.Implements
                     });
             }
 
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
 
         public List<TaskInstance> Read(DateTime date)
@@ -86,13 +86,13 @@ namespace StorageFile.Implements
             instance.TaskId = model.TaskId;
             instance.Completed = model.Completed;
 
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
 
         public void Delete()
         {
             context.TaskInstances.Clear();
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
 
         public void Delete(string id)
@@ -104,7 +104,7 @@ namespace StorageFile.Implements
 
             context.TaskInstances.Remove(instance);
 
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
 
         public void Delete(List<string> ids)
@@ -114,7 +114,7 @@ namespace StorageFile.Implements
             foreach (TaskInstance instance in instances)
                 context.TaskInstances.Remove(instance);
 
-            context.TaskInstances = context.TaskInstances;
+            context.Save();
         }
     }
 }

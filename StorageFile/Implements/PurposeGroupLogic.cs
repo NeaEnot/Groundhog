@@ -20,7 +20,7 @@ namespace StorageFile.Implements
                     Name = model.Name
                 });
 
-            context.PurposeGroups = context.PurposeGroups;
+            context.Save();
         }
 
         public void Create(List<PurposeGroup> models)
@@ -38,7 +38,7 @@ namespace StorageFile.Implements
                     });
             }
 
-            context.PurposeGroups = context.PurposeGroups;
+            context.Save();
         }
 
         public List<PurposeGroup> Read()
@@ -61,7 +61,7 @@ namespace StorageFile.Implements
 
             group.Name = model.Name;
 
-            context.PurposeGroups = context.PurposeGroups;
+            context.Save();
         }
 
         public void Delete(string id)
@@ -80,7 +80,7 @@ namespace StorageFile.Implements
                 context.PurposeGroups.Remove(group);
             }
 
-            context.PurposeGroups = context.PurposeGroups;
+            context.Save();
         }
     }
 }

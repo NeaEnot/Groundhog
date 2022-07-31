@@ -1,11 +1,10 @@
-﻿using Core.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace StorageFile.Extensions
 {
     internal static class ListExtension
     {
-        public static int GetHash<T>(this List<T> list) where T : IHashable
+        public static int GetHash<T>(this List<T> list)
         {
             string hashs = "";
 

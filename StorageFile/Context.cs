@@ -1,38 +1,35 @@
 ﻿using Core;
-using Core.Interfaces;
 using Core.Models;
 using Newtonsoft.Json;
 using StorageFile.Extensions;
-using StorageFile.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Threading;
 
 namespace StorageFile
 {
     internal class Context
     {
         private static Context instance;
-        private static StorageModel storage;
 
-        internal List<Task> Tasks { get => storage.Tasks; set { storage.Tasks = value; Save(storage.Tasks); } }
-        internal List<TaskInstance> TaskInstances { get => storage.TaskInstances; set { storage.TaskInstances = value; Save(storage.TaskInstances); } }
-        internal List<Purpose> Purposes { get => storage.Purposes; set { storage.Purposes = value; Save(storage.Purposes); } }
-        internal List<PurposeGroup> PurposeGroups { get => storage.PurposeGroups; set { storage.PurposeGroups = value; Save(storage.PurposeGroups); } }
+        internal List<Task> Tasks { get; set; }
+        internal List<TaskInstance> TaskInstances { get; set; }
+        internal List<Purpose> Purposes { get; set; }
+        internal List<PurposeGroup> PurposeGroups { get; set; }
 
-        private Dictionary<object, int> hashes;
+        private Dictionary<string, int> hashes;
 
         private Context()
         {
             Load();
 
-            hashes = new Dictionary<object, int>
+            hashes = new Dictionary<string, int>
             {
-                { Tasks, Tasks.GetHash() },
-                { TaskInstances, TaskInstances.GetHash() },
-                { Purposes, Purposes.GetHash() },
-                { PurposeGroups, PurposeGroups.GetHash() },
+                { "Tasks", Tasks.GetHash() },
+                { "TaskInstances", TaskInstances.GetHash() },
+                { "Purposes", Purposes.GetHash() },
+                { "PurposeGroups", PurposeGroups.GetHash() },
             };
         }
 
@@ -47,26 +44,27 @@ namespace StorageFile
             }
         }
 
-        private void Save<T>(List<T> models) where T : IHashable
+        private void Save<T>(List<T> models)
         {
-            int hash = models.GetHash();
-            using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json"))
+            string path = $@"{GroundhogContext.StoragePath}{typeof(T).Name}s.json";
+            using (StreamWriter writer = new StreamWriter(path))
             {
                 string json = JsonConvert.SerializeObject(models);
                 writer.Write(json);
             }
         }
 
-        private List<T> Load<T>() where T : IHashable
+        private List<T> Load<T>()
         {
             try
             {
-                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json"))
+                string path = $@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json";
+                using (StreamReader reader = new StreamReader(path))
                 {
                     string json = reader.ReadToEnd();
                     List<T> restored = JsonConvert.DeserializeObject<List<T>>(json);
 
-                    return restored;
+                    return restored ?? new List<T>();
                 }
             }
             catch (Exception ex)
@@ -75,26 +73,32 @@ namespace StorageFile
             }
         }
 
-        internal void Save()
+        internal async void Save()
         {
-            foreach (object key in hashes.Keys)
+            if (Tasks.GetHash() != hashes["Tasks"])
             {
-                List<IHashable> list = key as List<IHashable>;
-                int hash = list.GetHash();
-
-                if (hash != hashes[key])
-                {
-                    Save(list);
-                    hashes[key] = hash;
-                }
+                hashes["Tasks"] = Tasks.GetHash();
+                Save(Tasks);
+            }
+            if (TaskInstances.GetHash() != hashes["TaskInstances"])
+            {
+                hashes["TaskInstances"] = TaskInstances.GetHash();
+                Save(TaskInstances);
+            }
+            if (PurposeGroups.GetHash() != hashes["PurposeGroups"])
+            {
+                hashes["PurposeGroups"] = PurposeGroups.GetHash();
+                Save(PurposeGroups);
+            }
+            if (Purposes.GetHash() != hashes["Purposes"])
+            {
+                hashes["Purposes"] = Purposes.GetHash();
+                Save(Purposes);
             }
         }
 
         internal void Load()
         {
-            if (storage == null)
-                storage = new StorageModel();
-
             Tasks = Load<Task>();
             TaskInstances = Load<TaskInstance>();
             Purposes = Load<Purpose>();

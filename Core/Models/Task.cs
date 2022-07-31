@@ -1,9 +1,8 @@
 ﻿using Core.Enums;
-using Core.Interfaces;
 
 namespace Core.Models
 {
-    public class Task : IHashable
+    public class Task
     {
         public string Id { get; set; }
         public string Text { get; set; }
@@ -11,7 +10,7 @@ namespace Core.Models
         public string RepeatValue { get; set; }
         public bool ToNextDay { get; set; }
 
-        public  int GetHash()
+        public override int GetHashCode()
         {
             return (Id + Text + RepeatMode + RepeatValue + ToNextDay).GetHashCode();
         }

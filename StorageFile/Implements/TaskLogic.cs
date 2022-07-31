@@ -23,7 +23,7 @@ namespace StorageFile.Implements
                     ToNextDay = model.ToNextDay
                 });
 
-            context.Tasks = context.Tasks;
+            context.Save();
         }
 
         public void Create(List<Task> models)
@@ -44,7 +44,7 @@ namespace StorageFile.Implements
                     });
             }
 
-            context.Tasks = context.Tasks;
+            context.Save();
         }
 
         public List<Task> Read()
@@ -92,7 +92,7 @@ namespace StorageFile.Implements
             task.RepeatValue = model.RepeatValue;
             task.ToNextDay = model.ToNextDay;
 
-            context.Tasks = context.Tasks;
+            context.Save();
         }
 
         public void Delete(string id)
@@ -113,7 +113,7 @@ namespace StorageFile.Implements
                 context.Tasks.Remove(task);
             }
 
-            context.Tasks = context.Tasks;
+            context.Save();
         }
     }
 }
