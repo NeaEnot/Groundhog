@@ -5,7 +5,6 @@ using StorageFile.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 
 namespace StorageFile
 {
@@ -17,6 +16,7 @@ namespace StorageFile
         internal List<TaskInstance> TaskInstances { get; set; }
         internal List<Purpose> Purposes { get; set; }
         internal List<PurposeGroup> PurposeGroups { get; set; }
+        internal List<Note> Notes { get; set; }
 
         private Dictionary<string, int> hashes;
 
@@ -30,6 +30,7 @@ namespace StorageFile
                 { "TaskInstances", TaskInstances.GetHash() },
                 { "Purposes", Purposes.GetHash() },
                 { "PurposeGroups", PurposeGroups.GetHash() },
+                { "Notes", Notes.GetHash() }
             };
         }
 
@@ -95,6 +96,11 @@ namespace StorageFile
                 hashes["Purposes"] = Purposes.GetHash();
                 Save(Purposes);
             }
+            if (Notes.GetHash() != hashes["Notes"])
+            {
+                hashes["Notes"] = Notes.GetHash();
+                Save(Notes);
+            }
         }
 
         internal void Load()
@@ -103,6 +109,7 @@ namespace StorageFile
             TaskInstances = Load<TaskInstance>();
             Purposes = Load<Purpose>();
             PurposeGroups = Load<PurposeGroup>();
+            Notes = Load<Note>();
         }
     }
 }

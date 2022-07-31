@@ -8,7 +8,6 @@ namespace Core.Interfaces.Storage
         void Create(Note model);
         void Create(List<Note> models);
         List<Note> Read();
-        Note Read(string id);
         void Update(Note model);
         void Delete(string id);
     }
