@@ -73,7 +73,7 @@ namespace StorageFile
             }
         }
 
-        internal async void Save()
+        internal void Save()
         {
             if (Tasks.GetHash() != hashes["Tasks"])
             {
