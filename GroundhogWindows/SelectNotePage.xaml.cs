@@ -69,12 +69,12 @@ namespace GroundhogWindows
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            //PurposeGroupWindow window = new PurposeGroupWindow(null);
-            //if (window.ShowDialog() == true)
-            //{
-            //    GroundhogContext.PurposeGroupLogic.Create(window.Group);
-            //    LoadNotes();
-            //}
+            NoteWindow window = new NoteWindow(null);
+            if (window.ShowDialog() == true)
+            {
+                GroundhogContext.NoteLogic.Create(window.Note);
+                LoadNotes();
+            }
         }
 
         private void listNotes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -91,15 +91,15 @@ namespace GroundhogWindows
         {
             Note note = (Note)listBoxNotes.SelectedItem;
 
-            //if (note != null)
-            //{
-            //    PurposeGroupWindow window = new PurposeGroupWindow(note);
-            //    if (window.ShowDialog() == true)
-            //    {
-            //        GroundhogContext.PurposeGroupLogic.Update(window.Group);
-            //        LoadNotes();
-            //    }
-            //}
+            if (note != null)
+            {
+                NoteWindow window = new NoteWindow(note);
+                if (window.ShowDialog() == true)
+                {
+                    GroundhogContext.NoteLogic.Update(window.Note);
+                    LoadNotes();
+                }
+            }
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)

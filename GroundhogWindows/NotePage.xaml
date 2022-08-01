@@ -1,0 +1,27 @@
+﻿<Page x:Class="GroundhogWindows.NotePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GroundhogWindows"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="480">
+
+    <Grid>
+        <ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="18*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0"/>
+
+                <TextBox Name="tbNote" TextChanged="tbNote_TextChanged" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1"/>
+
+            </Grid>
+        </ScrollViewer>
+
+        <Button Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click"  HorizontalAlignment="Right" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84"/>
+    </Grid>
+</Page>
