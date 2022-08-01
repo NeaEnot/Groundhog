@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:GroundhogWindows"
       xmlns:conv="clr-namespace:GroundhogWindows.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
-      Title="SelectDatePage">
+      d:DesignHeight="450" d:DesignWidth="400">
 
     <Page.Resources>
         <conv:DateTimeConverter x:Key="converter"/>

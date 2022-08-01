@@ -1,15 +1,15 @@
-﻿<Page x:Class="GroundhogWindows.PurposesPage"
+﻿<Page x:Class="GroundhogWindows.SelectNotePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GroundhogWindows"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="398">
+      d:DesignHeight="450" d:DesignWidth="320">
 
     <Grid>
-        <ScrollViewer Margin="0,0,0,0" Grid.Column="1" Grid.Row="1">
-            <ListBox Name="listBoxPurposes" Margin="0,-0.5,-1,-0.5">
+        <ScrollViewer>
+            <ListBox Name="listBoxNotes" SelectionChanged="NoteSelected"  MouseDoubleClick="listNotes_MouseDoubleClick"  Margin="-1,-0.5,-1,-0.5">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
                         <Setter Property="Template">
@@ -17,15 +17,15 @@
                                 <ControlTemplate TargetType="ListBoxItem">
                                     <Grid>
                                         <Border Name="border" Padding="7" Background="{DynamicResource ResourceKey='Main color'}">
-                                            <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
-                                                <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
-                                                <CheckBox.ContextMenu>
+                                            <StackPanel Margin="5">
+                                                <StackPanel.ContextMenu>
                                                     <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
                                                         <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
                                                         <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
-                                                </CheckBox.ContextMenu>
-                                            </CheckBox>
+                                                </StackPanel.ContextMenu>
+                                                <Label Content="{Binding Name}" FontSize="14" Foreground="{DynamicResource ResourceKey='Main text'}"/>
+                                            </StackPanel>
                                         </Border>
                                     </Grid>
                                     <ControlTemplate.Triggers>
@@ -41,8 +41,10 @@
                         </Setter>
                     </Style>
                 </ListBox.ItemContainerStyle>
+
             </ListBox>
         </ScrollViewer>
-        <Button Name="btnCreate" Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" HorizontalAlignment="Right" IsEnabled="False"/>
+
+        <Button Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click"  HorizontalAlignment="Right"/>
     </Grid>
 </Page>

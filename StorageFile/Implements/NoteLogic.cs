@@ -17,6 +17,7 @@ namespace StorageFile.Implements
                 .Add(new Note
                 {
                     Id = model.Id,
+                    Name = model.Name,
                     Text = model.Text
                 });
 
@@ -34,6 +35,7 @@ namespace StorageFile.Implements
                     .Add(new Note
                     {
                         Id = model.Id,
+                        Name = model.Name,
                         Text = model.Text
                     });
             }
@@ -47,6 +49,7 @@ namespace StorageFile.Implements
                 .Select(req => new Note
                 {
                     Id = req.Id,
+                    Name = req.Name,
                     Text = req.Text
                 })
                 .ToList();
@@ -59,6 +62,7 @@ namespace StorageFile.Implements
             if (note == null)
                 throw new Exception("Заметки с данным Id не существует.");
 
+            note.Name = model.Name;
             note.Text = model.Text;
 
             context.Save();
