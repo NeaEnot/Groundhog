@@ -17,7 +17,7 @@
 
                 <StackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0"/>
 
-                <TextBox Name="tbNote" TextChanged="tbNote_TextChanged" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1"/>
+                <TextBox Name="tbNote" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1"/>
 
             </Grid>
         </ScrollViewer>

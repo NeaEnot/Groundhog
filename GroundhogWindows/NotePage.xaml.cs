@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Core;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -6,22 +7,36 @@ namespace GroundhogWindows
 {
     public partial class NotePage : Page
     {
+        private MainWindow windowContext;
         private Stack<Label> labels;
 
-        public NotePage()
+        public NotePage(MainWindow windowContext)
         {
             InitializeComponent();
+
+            this.windowContext = windowContext;
         }
 
-        private void LoadText()
+        public void LoadText()
         {
-            //tbNote.Text = windowContext.SelectedNote.Text;
+            if (windowContext.SelectedNote != null)
+            {
+                tbNote.Text = windowContext.SelectedNote.Text;
+                tbNote.IsEnabled = true;
+                btnSave.IsEnabled = true;
+            }
+            else
+            {
+                tbNote.Text = "";
+                tbNote.IsEnabled = false;
+                btnSave.IsEnabled = false;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //windowContext.SelectedNote.Text = tbNote.Text;
-            //GroundhogContext.NoteLogic.Update(windowContext.SelectedNote);
+            windowContext.SelectedNote.Text = tbNote.Text;
+            GroundhogContext.NoteLogic.Update(windowContext.SelectedNote);
         }
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Models;
 using System;
 using System.Timers;
 using System.Windows;
@@ -16,12 +17,18 @@ namespace GroundhogWindows
         private SelectGroupPage sgPage;
         private PurposesPage pPage;
 
+        private SelectNotePage snPage;
+        private NotePage nPage;
+
         internal DateTime SelectedDate => sdPage.SelectedDate;
         internal string SelectedGroupId => sgPage.SelectedGroup != null ? sgPage.SelectedGroup.Id : "";
+        internal Note SelectedNote => snPage.SelectedNote;
 
         internal Action LoadTasks;
         internal Action LoadPurposeGroups;
         internal Action LoadPurposes;
+        internal Action LoadNotes;
+        internal Action LoadNote;
 
         public MainWindow()
         {
@@ -33,15 +40,21 @@ namespace GroundhogWindows
             tiPage = new TaskInstancesPage(this);
             sgPage = new SelectGroupPage(this);
             pPage = new PurposesPage(this);
+            snPage = new SelectNotePage(this);
+            nPage = new NotePage(this);
 
             fDates.Content = sdPage;
             fInstances.Content = tiPage;
             fGroups.Content = sgPage;
             fPurposes.Content = pPage;
+            fNotes.Content = snPage;
+            fNote.Content = nPage;
 
             LoadTasks = tiPage.LoadTasks;
             LoadPurposeGroups = sgPage.LoadGroups;
             LoadPurposes = pPage.LoadPurposes;
+            LoadNotes = snPage.LoadNotes;
+            LoadNote = nPage.LoadText;
 
             int minutes = 1;
 
@@ -71,7 +84,7 @@ namespace GroundhogWindows
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            this.Close();
+            Close();
         }
 
         private void MenuItemConnection_Click(object sender, RoutedEventArgs e)
@@ -103,6 +116,8 @@ namespace GroundhogWindows
                 LoadTasks();
                 LoadPurposeGroups();
                 LoadPurposes();
+                LoadNotes();
+                LoadNote();
             }
             catch (Exception ex)
             {
@@ -150,6 +165,11 @@ namespace GroundhogWindows
             {
                 sgPage.LoadGroups();
                 pPage.LoadPurposes();
+            }
+            if ((tc.SelectedItem as TabItem).Header == "Заметки")
+            {
+                snPage.LoadNotes();
+                nPage.LoadText();
             }
         }
     }

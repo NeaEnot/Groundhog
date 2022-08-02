@@ -52,6 +52,17 @@
                     <Frame Name="fPurposes" Grid.Column="1"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Заметки">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Name="fNotes" Grid.Column="0"/>
+                    <Frame Name="fNote" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>

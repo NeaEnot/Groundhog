@@ -9,16 +9,16 @@ namespace GroundhogWindows
 {
     public partial class SelectGroupPage : Page
     {
-        private MainWindow contextWindow;
+        private MainWindow windowContext;
         private bool loaded = false;
 
         internal PurposeGroup SelectedGroup { get; private set; }
 
-        public SelectGroupPage(MainWindow contextWindow)
+        public SelectGroupPage(MainWindow windowContext)
         {
             InitializeComponent();
 
-            this.contextWindow = contextWindow;
+            this.windowContext = windowContext;
 
             LoadGroups();
         }
@@ -67,7 +67,7 @@ namespace GroundhogWindows
                     SelectedGroup = new PurposeGroup { Id = "" };
             }
 
-            contextWindow.LoadPurposes();
+            windowContext.LoadPurposes();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -125,7 +125,7 @@ namespace GroundhogWindows
                 GroundhogContext.PurposeLogic.Delete(purposesIds);
 
                 LoadGroups();
-                contextWindow.LoadPurposes();
+                windowContext.LoadPurposes();
             }
         }
     }

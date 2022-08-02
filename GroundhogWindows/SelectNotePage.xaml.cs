@@ -10,17 +10,19 @@ namespace GroundhogWindows
 {
     public partial class SelectNotePage : Page
     {
-        private MainWindow contextWindow;
+        private MainWindow windowContext;
         private bool loaded = false;
 
         internal Note SelectedNote { get; private set; }
 
-        public SelectNotePage()
+        public SelectNotePage(MainWindow windowContext)
         {
             InitializeComponent();
+
+            this.windowContext = windowContext;
         }
 
-        private void LoadNotes()
+        public void LoadNotes()
         {
             loaded = true;
 
@@ -64,7 +66,7 @@ namespace GroundhogWindows
                     SelectedNote = new Note { Id = "" };
             }
 
-            //contextWindow.LoadPurposes();
+            windowContext.LoadNote();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -114,7 +116,7 @@ namespace GroundhogWindows
                 GroundhogContext.NoteLogic.Delete(note.Id);
 
                 LoadNotes();
-                contextWindow.LoadPurposes();
+                windowContext.LoadPurposes();
             }
         }
     }
