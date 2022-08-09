@@ -1,5 +1,6 @@
 ﻿using Core;
 using Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -40,7 +41,7 @@ namespace GroundhogMobile
             Navigation.PushAsync(new PurposesPage((PurposeGroup)e.Item));
         }
 
-        private async void Button_Clicked(object sender, System.EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             PurposeGroupPage page = new PurposeGroupPage(new PurposeGroup());
             page.Disappearing += (sender2, e2) =>
