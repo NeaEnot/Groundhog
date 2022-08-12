@@ -35,9 +35,11 @@ namespace GroundhogMobile
             notesList.ItemsSource = notes;
         }
 
-        private void notesList_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void notesList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            //Navigation.PushAsync(new PurposesPage((PurposeGroup)e.Item));
+            NotePage page = new NotePage((Note)e.Item);
+            page.Disappearing += (sender2, e2) => SaveNote(page);
+            await Navigation.PushAsync(page);
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -46,7 +48,9 @@ namespace GroundhogMobile
             GroundhogContext.NoteLogic.Create(note);
             LoadData();
 
-            //await Navigation.PushAsync(page);
+            NotePage page = new NotePage(note);
+            page.Disappearing += (sender2, e2) => SaveNote(page);
+            await Navigation.PushAsync(page);
         }
 
         public ICommand MenuItemDelete =>
@@ -55,5 +59,14 @@ namespace GroundhogMobile
                 GroundhogContext.NoteLogic.Delete(note.Id);
                 LoadData();
             });
+
+        private void SaveNote(NotePage page)
+        {
+            if (page.IsSuccess)
+            {
+                GroundhogContext.NoteLogic.Update(page.Note);
+                LoadData();
+            }
+        }
     }
 }

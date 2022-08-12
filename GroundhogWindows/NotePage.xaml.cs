@@ -15,6 +15,8 @@ namespace GroundhogWindows
             InitializeComponent();
 
             this.windowContext = windowContext;
+
+            labels = new Stack<Label>();
         }
 
         public void LoadText()
