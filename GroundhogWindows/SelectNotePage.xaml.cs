@@ -20,6 +20,8 @@ namespace GroundhogWindows
             InitializeComponent();
 
             this.windowContext = windowContext;
+
+            LoadNotes();
         }
 
         public void LoadNotes()

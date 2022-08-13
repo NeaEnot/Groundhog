@@ -47,7 +47,7 @@ namespace StorageFile
 
         private void Save<T>(List<T> models)
         {
-            string path = $@"{GroundhogContext.StoragePath}{typeof(T).Name}s.json";
+            string path = $@"{GroundhogContext.StoragePath}\{typeof(T).Name}s.json";
             using (StreamWriter writer = new StreamWriter(path))
             {
                 string json = JsonConvert.SerializeObject(models);

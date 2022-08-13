@@ -11,11 +11,11 @@
         <ScrollViewer>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="40px"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0"/>
+                <StackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0" Margin="0"/>
 
                 <TextBox Name="tbNote" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1"/>
 

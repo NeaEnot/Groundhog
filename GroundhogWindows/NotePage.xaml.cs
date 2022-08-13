@@ -51,7 +51,8 @@ namespace GroundhogWindows
                 {
                     Content = labels.Count + 1,
                     HorizontalAlignment = HorizontalAlignment.Right,
-                    Margin = new Thickness(0, 0, 4, 0)
+                    Padding = new Thickness(0, 0.66335, 4, 0),
+                    FontSize = 11.5
                 };
 
                 labels.Push(label);
