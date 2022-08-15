@@ -57,6 +57,8 @@ namespace YandexDisk
                 GroundhogContext.PurposeLogic.Create(model.Purposes);
                 GroundhogContext.NoteLogic.Delete(null);
                 GroundhogContext.NoteLogic.Create(model.Notes);
+
+                GroundhogContext.Settings = model.AppSettings;
             }
             catch (Exception ex)
             {
@@ -82,7 +84,8 @@ namespace YandexDisk
                 TaskInstances = taskInstances,
                 PurposeGroups = groups,
                 Purposes = purposes,
-                Notes = notes
+                Notes = notes,
+                AppSettings = GroundhogContext.Settings
             };
 
             using (StreamWriter writer = new StreamWriter(cloudStorageFile))

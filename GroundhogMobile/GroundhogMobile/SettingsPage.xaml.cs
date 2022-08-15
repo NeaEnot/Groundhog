@@ -33,6 +33,8 @@ namespace GroundhogMobile
                     GroundhogContext.NetworkLogic.Load();
                     this.DisplayToastAsync("Данные загружены");
                     DownloadFinisfed();
+
+                    App.LoadResources();
                 });
             }
             catch (Exception ex)

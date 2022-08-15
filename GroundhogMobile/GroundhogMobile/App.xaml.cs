@@ -20,7 +20,7 @@ namespace GroundhogMobile
 
             MainPage = new NavigationPage(new MainPage());
 
-            if (!GroundhogContext.IsColorSchemaExist)
+            if (!GroundhogContext.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item" }))
             {
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {

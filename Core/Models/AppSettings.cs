@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Models
 {
-    internal class AppSettings
+    public class AppSettings
     {
         public string ConnectionString { get; set; }
 

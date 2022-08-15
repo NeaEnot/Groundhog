@@ -20,7 +20,7 @@ namespace Core
         public static INetworkLogic NetworkLogic { get; set; }
 
         private static AppSettings settings;
-        private static AppSettings Settings { 
+        public static AppSettings Settings { 
             get
             {
                 if (settings == null)
@@ -40,6 +40,11 @@ namespace Core
                 }
 
                 return settings;
+            }
+            set
+            {
+                settings = value;
+                SaveSettings();
             }
         }
 
@@ -69,8 +74,14 @@ namespace Core
             }
         }
 
-        public static bool IsColorSchemaExist =>
-            Settings.ColorSchema.Colors.Keys.Count != 0;
+        public static bool IsColorSchemaExist (List<string> keys)
+        {
+            foreach (string key in keys)
+                if (!Settings.ColorSchema.Colors.ContainsKey(key))
+                    return false;
+
+            return true;
+        }
 
         public static int GetPlanningRange(RepeatMode mode)
         {
@@ -92,7 +103,14 @@ namespace Core
 
         public static void SetColors(Dictionary<string, string> colors)
         {
-            Settings.ColorSchema.Colors = colors;
+            foreach (string key in colors.Keys)
+            {
+                if (Settings.ColorSchema.Colors.ContainsKey(key))
+                    Settings.ColorSchema.Colors[key] = colors[key];
+                else
+                    Settings.ColorSchema.Colors.Add(key, colors[key]);
+            }
+
             SaveSettings();
         }
 

@@ -17,7 +17,7 @@ namespace GroundhogWindows
             GroundhogContext.NoteLogic = new NoteLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();
 
-            if (!GroundhogContext.IsColorSchemaExist)
+            if (!GroundhogContext.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item inactive", "Selected item" }))
             {
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {

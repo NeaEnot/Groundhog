@@ -118,6 +118,8 @@ namespace GroundhogWindows
                 LoadPurposes();
                 LoadNotes();
                 LoadNote();
+
+                RestartWindow();
             }
             catch (Exception ex)
             {
