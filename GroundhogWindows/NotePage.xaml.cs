@@ -28,12 +28,14 @@ namespace GroundhogWindows
             {
                 tbNote.Text = windowContext.SelectedNote.Text;
                 tbNote.IsEnabled = true;
+
                 btnSave.IsEnabled = true;
             }
             else
             {
                 tbNote.Text = "";
                 tbNote.IsEnabled = false;
+
                 btnSave.IsEnabled = false;
             }
         }
@@ -46,19 +48,17 @@ namespace GroundhogWindows
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int lines = tbNote.Text.Split('\n').Length;
-
             Task.Run(() =>
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {
                     int n = 0;
-                    for (int i = lines; i > 0; i /= 10)
+                    for (int i = tbNote.Text.Split('\n').Length; i > 0; i /= 10)
                         n++;
 
                     numbersColumn.Width = new GridLength(n * 8);
 
-                    while (labels.Count < lines)
+                    while (labels.Count < tbNote.Text.Split('\n').Length)
                     {
                         Label label = new Label
                         {
@@ -72,7 +72,7 @@ namespace GroundhogWindows
                         spNumbers.Children.Add(label);
                     }
 
-                    while (labels.Count > lines)
+                    while (labels.Count > tbNote.Text.Split('\n').Length)
                     {
                         Label label = labels.Pop();
                         spNumbers.Children.Remove(label);
