@@ -1,7 +1,10 @@
 ﻿using Core;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace GroundhogWindows
 {
@@ -45,25 +48,31 @@ namespace GroundhogWindows
         {
             int lines = tbNote.Text.Split('\n').Length;
 
-            while (labels.Count < lines)
+            Task.Run(() =>
             {
-                Label label = new Label
+                Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {
-                    Content = labels.Count + 1,
-                    HorizontalAlignment = HorizontalAlignment.Right,
-                    Padding = new Thickness(0, 0.66335, 4, 0),
-                    FontSize = 11.5
-                };
+                    while (labels.Count < lines)
+                    {
+                        Label label = new Label
+                        {
+                            Content = labels.Count + 1,
+                            HorizontalAlignment = HorizontalAlignment.Right,
+                            Padding = new Thickness(0, 0.66335, 4, 0),
+                            FontSize = 11.5
+                        };
 
-                labels.Push(label);
-                spNumbers.Children.Add(label);
-            }
+                        labels.Push(label);
+                        spNumbers.Children.Add(label);
+                    }
 
-            while (labels.Count > lines)
-            {
-                Label label = labels.Pop();
-                spNumbers.Children.Remove(label);
-            }
+                    while (labels.Count > lines)
+                    {
+                        Label label = labels.Pop();
+                        spNumbers.Children.Remove(label);
+                    }
+                }));
+            });
         }
     }
 }
