@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="480">
 
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Name="numbersColumn" Width="10px"/>
@@ -17,11 +17,12 @@
 
                 <VirtualizingStackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0" Margin="0"/>
 
-                <TextBox Name="tbNote" IsUndoEnabled="False" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="NoWrap" AcceptsReturn="True" Grid.Column="1"/>
-
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Column="1">
+                    <TextBox Name="tbNote" IsUndoEnabled="False" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="NoWrap" AcceptsReturn="True"/>
+                </ScrollViewer>
             </Grid>
         </ScrollViewer>
 
-        <Button Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click"  HorizontalAlignment="Right" Margin="0,0,25,25" VerticalAlignment="Bottom" Height="35" Width="84"/>
+        <Button Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click" HorizontalAlignment="Right" Margin="0,0,25,25" VerticalAlignment="Bottom" Height="35" Width="84"/>
     </Grid>
 </Page>
