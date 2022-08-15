@@ -52,6 +52,12 @@ namespace GroundhogWindows
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {
+                    int n = 0;
+                    for (int i = lines; i > 0; i /= 10)
+                        n++;
+
+                    numbersColumn.Width = new GridLength(n * 8);
+
                     while (labels.Count < lines)
                     {
                         Label label = new Label
