@@ -74,17 +74,36 @@ namespace GroundhogWindows
             }
         }
 
-        private void listBoxTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ContextMenuClone_Click(object sender, RoutedEventArgs e)
         {
-            UpdateTask();
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
+
+            if (viewModel != null)
+            {
+                Task task = GroundhogContext.TaskLogic.Read(viewModel.TaskId);
+                Task cloneTask = new Task
+                {
+                    Id = null,
+                    Text = task.Text,
+                    RepeatMode = task.RepeatMode,
+                    RepeatValue = task.RepeatValue,
+                    ToNextDay = task.ToNextDay
+                };
+
+                GroundhogContext.TaskLogic.Create(cloneTask);
+
+                GroundhogContext.TaskInstanceLogic
+                        .Create(new TaskInstance
+                        {
+                            TaskId = cloneTask.Id,
+                            Completed = false,
+                            Date = viewModel.Date
+                        });
+                LoadTasks();
+            }
         }
 
         private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateTask();
-        }
-
-        private void UpdateTask()
         {
             TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
 
@@ -128,6 +147,11 @@ namespace GroundhogWindows
                     LoadTasks();
                 }
             }
+        }
+
+        private void UpdateTask()
+        {
+            
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)

@@ -21,6 +21,7 @@
                                                 <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
                                                 <CheckBox.ContextMenu>
                                                     <ContextMenu Margin="0" DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
+                                                        <MenuItem Header="Дублировать" Click="ContextMenuClone_Click"/>
                                                         <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
                                                         <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
                                                         <MenuItem Header="Удалить все подобные задачи" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=Repeated}"/>
