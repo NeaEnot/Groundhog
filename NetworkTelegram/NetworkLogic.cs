@@ -37,7 +37,7 @@ namespace NetworkTelegram
             {
                 if (channel == null)
                 {
-                    GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.ConnectionString).Groups;
+                    GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.Settings.ConnectionString).Groups;
                     string channelName = groups["channel"].Value;
 
                     TLDialogs dialogs = null;
@@ -75,7 +75,7 @@ namespace NetworkTelegram
         {
             try
             {
-                GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.ConnectionString).Groups;
+                GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.Settings.ConnectionString).Groups;
 
                 string phone = groups["phone"].Value;
                 int api_id = int.Parse(groups["api_id"].Value);
@@ -97,7 +97,7 @@ namespace NetworkTelegram
                 }
 
                 this.client = client;
-                currentConnectionString = GroundhogContext.ConnectionString;
+                currentConnectionString = GroundhogContext.Settings.ConnectionString;
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace NetworkTelegram
 
         public bool IsConnected()
         {
-            return currentConnectionString != null && currentConnectionString == GroundhogContext.ConnectionString;
+            return currentConnectionString != null && currentConnectionString == GroundhogContext.Settings.ConnectionString;
         }
 
         public void Load()

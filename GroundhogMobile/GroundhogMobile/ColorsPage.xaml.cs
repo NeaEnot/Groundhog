@@ -17,11 +17,11 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
-            Resources["Main color page"] = Color.FromHex(GroundhogContext.GetColor("Main color"));
-            Resources["Additional color page"] = Color.FromHex(GroundhogContext.GetColor("Additional color"));
-            Resources["Main text page"] = Color.FromHex(GroundhogContext.GetColor("Main text"));
-            Resources["Additional text page"] = Color.FromHex(GroundhogContext.GetColor("Additional text"));
-            Resources["Selected item page"] = Color.FromHex(GroundhogContext.GetColor("Selected item"));
+            Resources["Main color page"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]);
+            Resources["Additional color page"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]);
+            Resources["Main text page"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main text"]);
+            Resources["Additional text page"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional text"]);
+            Resources["Selected item page"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Selected item"]);
 
             btns = new Dictionary<Button, string>
             {
@@ -51,18 +51,18 @@ namespace GroundhogMobile
 
             string schemaColor = btns[sender as Button];
 
-            Color currentColor = Color.FromHex(GroundhogContext.GetColor(schemaColor));
+            Color currentColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors[schemaColor]);
             ColorDialogSettings settings =
                 new ColorDialogSettings
                 {
                     EditAlfa = false,
                     OkButtonText = "Принять",
                     CancelButtonText = "Отмена",
-                    BackgroundColor = Color.FromHex(GroundhogContext.GetColor("Additional color")),
-                    EditorsColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
-                    TextColor = Color.FromHex(GroundhogContext.GetColor("Main text")),
-                    DialogColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
-                    ColorPreviewBorderColor = Color.FromHex(GroundhogContext.GetColor("Main color")),
+                    BackgroundColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]),
+                    EditorsColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]),
+                    TextColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main text"]),
+                    DialogColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]),
+                    ColorPreviewBorderColor = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]),
                     ARGBEditorsWidth = 50,
                     SliderWidth = 200
                 };
@@ -94,7 +94,15 @@ namespace GroundhogMobile
                 { "Selected item", ((Color)Resources["Selected item page"]).ToHex() }
             };
 
-            GroundhogContext.SetColors(colors);
+            foreach (string key in colors.Keys)
+            {
+                if (GroundhogContext.Settings.ColorSchema.Colors.ContainsKey(key))
+                    GroundhogContext.Settings.ColorSchema.Colors[key] = colors[key];
+                else
+                    GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
+            }
+
+            GroundhogContext.SaveSettings();
 
             App.LoadResources();
         }

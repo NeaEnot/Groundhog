@@ -21,13 +21,13 @@ namespace GroundhogWindows
 
             colorChanged = true;
 
-            tbMainColor.Text = GroundhogContext.GetColor("Main color");
-            tbAdditionalColor.Text = GroundhogContext.GetColor("Additional color");
-            tbMainText.Text = GroundhogContext.GetColor("Main text");
-            tbAdditionalText.Text = GroundhogContext.GetColor("Additional text");
-            tbSelectedItem.Text = GroundhogContext.GetColor("Selected item");
-            tbSelectedItemInactive.Text = GroundhogContext.GetColor("Selected item inactive");
-            tbSelectItem.Text = GroundhogContext.GetColor("Select item");
+            tbMainColor.Text = GroundhogContext.Settings.ColorSchema.Colors["Main color"];
+            tbAdditionalColor.Text = GroundhogContext.Settings.ColorSchema.Colors["Additional color"];
+            tbMainText.Text = GroundhogContext.Settings.ColorSchema.Colors["Main text"];
+            tbAdditionalText.Text = GroundhogContext.Settings.ColorSchema.Colors["Additional text"];
+            tbSelectedItem.Text = GroundhogContext.Settings.ColorSchema.Colors["Selected item"];
+            tbSelectedItemInactive.Text = GroundhogContext.Settings.ColorSchema.Colors["Selected item inactive"];
+            tbSelectItem.Text = GroundhogContext.Settings.ColorSchema.Colors["Select item"];
 
             colorChanged = false;
 
@@ -107,7 +107,15 @@ namespace GroundhogWindows
                     { "Select item", tbSelectItem.Text.ToUpper() },
                 };
 
-                GroundhogContext.SetColors(colors);
+                foreach (string key in colors.Keys)
+                {
+                    if (GroundhogContext.Settings.ColorSchema.Colors.ContainsKey(key))
+                        GroundhogContext.Settings.ColorSchema.Colors[key] = colors[key];
+                    else
+                        GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
+                }
+
+                GroundhogContext.SaveSettings();
 
                 DialogResult = true;
             }

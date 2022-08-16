@@ -12,13 +12,13 @@ namespace GroundhogWindows
         {
             InitializeComponent();
 
-            tbDays.Text = GroundhogContext.GetPlanningRange(RepeatMode.Дни).ToString();
-            tbDaysOfWeek.Text = GroundhogContext.GetPlanningRange(RepeatMode.ДниНедели).ToString();
-            tbWatches.Text = GroundhogContext.GetPlanningRange(RepeatMode.Вахты).ToString();
-            tbDayOfMounth.Text = GroundhogContext.GetPlanningRange(RepeatMode.ЧислоМесяца).ToString();
-            tbDayOfYear.Text = GroundhogContext.GetPlanningRange(RepeatMode.ДеньГода).ToString();
+            tbDays.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Дни].ToString();
+            tbDaysOfWeek.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДниНедели].ToString();
+            tbWatches.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Вахты].ToString();
+            tbDayOfMounth.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ЧислоМесяца].ToString();
+            tbDayOfYear.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДеньГода].ToString();
 
-            tbOptimization.Text = GroundhogContext.OptimizationRange.ToString();
+            tbOptimization.Text = GroundhogContext.Settings.OptimizationRange.ToString();
 
             tbDays.Focus();
         }
@@ -44,8 +44,10 @@ namespace GroundhogWindows
                     { RepeatMode.ДеньГода, dayOfYear },
                 };
 
-                GroundhogContext.SetPlanningRanges(dict);
-                GroundhogContext.OptimizationRange = optimization;
+                foreach (RepeatMode mode in dict.Keys)
+                    GroundhogContext.Settings.PlanningRanges[mode] = dict[mode];
+                GroundhogContext.Settings.OptimizationRange = optimization;
+                GroundhogContext.SaveSettings();
 
                 DialogResult = true;
             }

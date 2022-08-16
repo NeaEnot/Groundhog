@@ -27,7 +27,7 @@ namespace Core.DateTimeHelpers
             DateTime lastDate = taskInstances.Max(req => req.Date);
             DateTime currentDate = lastDate;
 
-            while ((currentDate - DateTime.Now).TotalDays <= GroundhogContext.GetPlanningRange(RepeatMode.ДниНедели))
+            while ((currentDate - DateTime.Now).TotalDays <= GroundhogContext.Settings.PlanningRanges[RepeatMode.ДниНедели])
             {
                 do
                     currentDate = currentDate.AddDays(1);

@@ -10,5 +10,14 @@ namespace Core.Models
         {
             Colors = new Dictionary<string, string>();
         }
+
+        public bool IsColorSchemaExist(List<string> keys)
+        {
+            foreach (string key in keys)
+                if (!Colors.ContainsKey(key))
+                    return false;
+
+            return true;
+        }
     }
 }

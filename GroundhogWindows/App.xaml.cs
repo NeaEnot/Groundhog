@@ -17,7 +17,7 @@ namespace GroundhogWindows
             GroundhogContext.NoteLogic = new NoteLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();
 
-            if (!GroundhogContext.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item inactive", "Selected item" }))
+            if (!GroundhogContext.Settings.ColorSchema.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item inactive", "Selected item" }))
             {
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {
@@ -30,7 +30,15 @@ namespace GroundhogWindows
                     { "Select item", "#E5F3FB" }
                 };
 
-                GroundhogContext.SetColors(colors);
+                foreach (string key in colors.Keys)
+                {
+                    if (GroundhogContext.Settings.ColorSchema.Colors.ContainsKey(key))
+                        GroundhogContext.Settings.ColorSchema.Colors[key] = colors[key];
+                    else
+                        GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
+                }
+
+                GroundhogContext.SaveSettings();
             }
         }
     }

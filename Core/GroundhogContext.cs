@@ -1,10 +1,8 @@
-﻿using Core.Enums;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Interfaces.Storage;
 using Core.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Core
@@ -48,72 +46,6 @@ namespace Core
             }
         }
 
-        public static string ConnectionString
-        { 
-            get
-            {
-                return Settings.ConnectionString;
-            }
-            set
-            {
-                Settings.ConnectionString = value != null ? value : "";
-                SaveSettings();
-            }
-        }
-
-        public static int OptimizationRange
-        {
-            get
-            {
-                return Settings.OptimizationRange;
-            }
-            set
-            {
-                Settings.OptimizationRange = value;
-                SaveSettings();
-            }
-        }
-
-        public static bool IsColorSchemaExist (List<string> keys)
-        {
-            foreach (string key in keys)
-                if (!Settings.ColorSchema.Colors.ContainsKey(key))
-                    return false;
-
-            return true;
-        }
-
-        public static int GetPlanningRange(RepeatMode mode)
-        {
-            return Settings.PlanningRanges[mode];
-        }
-
-        public static void SetPlanningRanges(Dictionary<RepeatMode, int> dict)
-        {
-            foreach (RepeatMode mode in Enum.GetValues(typeof(RepeatMode)))
-                Settings.PlanningRanges[mode] = dict[mode];
-
-            SaveSettings();
-        }
-
-        public static string GetColor(string key)
-        {
-            return Settings.ColorSchema.Colors[key];
-        }
-
-        public static void SetColors(Dictionary<string, string> colors)
-        {
-            foreach (string key in colors.Keys)
-            {
-                if (Settings.ColorSchema.Colors.ContainsKey(key))
-                    Settings.ColorSchema.Colors[key] = colors[key];
-                else
-                    Settings.ColorSchema.Colors.Add(key, colors[key]);
-            }
-
-            SaveSettings();
-        }
-
         public static string StoragePath
         {
             get
@@ -134,7 +66,7 @@ namespace Core
             }
         }
 
-        private static void SaveSettings()
+        public static void SaveSettings()
         {
             using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
             {

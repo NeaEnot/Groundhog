@@ -48,7 +48,7 @@ namespace Core.DateTimeHelpers
             foreach (string s in strs)
                 sum += int.Parse(s);
 
-            while ((currentDate - DateTime.Now).TotalDays + sum <= GroundhogContext.GetPlanningRange(RepeatMode.Вахты))
+            while ((currentDate - DateTime.Now).TotalDays + sum <= GroundhogContext.Settings.PlanningRanges[RepeatMode.Вахты])
             {
                 for (int i = 0; i < strs.Length; i += 2)
                 {

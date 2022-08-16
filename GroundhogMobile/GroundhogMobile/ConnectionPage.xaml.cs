@@ -14,7 +14,7 @@ namespace GroundhogMobile
             InitializeComponent();
 
             editor.Placeholder = GroundhogContext.NetworkLogic.ConnectionStringFormat;
-            editor.Text = GroundhogContext.ConnectionString;
+            editor.Text = GroundhogContext.Settings.ConnectionString;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -24,7 +24,8 @@ namespace GroundhogMobile
                 if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(editor.Text))
                     throw new Exception("Строка подключения не соответствует формату.");
 
-                GroundhogContext.ConnectionString = editor.Text;
+                GroundhogContext.Settings.ConnectionString = editor.Text;
+                GroundhogContext.SaveSettings();
 
                 await Navigation.PopAsync();
             }

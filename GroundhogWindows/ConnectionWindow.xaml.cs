@@ -10,7 +10,7 @@ namespace GroundhogWindows
         {
             InitializeComponent();
 
-            textBoxConnection.Text = GroundhogContext.ConnectionString;
+            textBoxConnection.Text = GroundhogContext.Settings.ConnectionString;
             textBoxConnection.ToolTip = GroundhogContext.NetworkLogic.ConnectionStringFormat;
 
             textBoxConnection.Focus();
@@ -23,7 +23,8 @@ namespace GroundhogWindows
                 if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(textBoxConnection.Text))
                     throw new Exception("Строка подключения не соответствует формату.");
 
-                GroundhogContext.ConnectionString = textBoxConnection.Text;
+                GroundhogContext.Settings.ConnectionString = textBoxConnection.Text;
+                GroundhogContext.SaveSettings();
 
                 DialogResult = true;
             }

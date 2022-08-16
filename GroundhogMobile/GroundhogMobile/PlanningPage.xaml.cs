@@ -17,12 +17,12 @@ namespace GroundhogMobile
 
             PlanningSettings settings = new PlanningSettings
             {
-                Days = GroundhogContext.GetPlanningRange(RepeatMode.Дни),
-                DaysOfWeek = GroundhogContext.GetPlanningRange(RepeatMode.ДниНедели),
-                Watches = GroundhogContext.GetPlanningRange(RepeatMode.Вахты),
-                DayOfMounth = GroundhogContext.GetPlanningRange(RepeatMode.ЧислоМесяца),
-                DayOfYear = GroundhogContext.GetPlanningRange(RepeatMode.ДеньГода),
-                Optimization = GroundhogContext.OptimizationRange,
+                Days = GroundhogContext.Settings.PlanningRanges[RepeatMode.Дни],
+                DaysOfWeek = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДниНедели],
+                Watches = GroundhogContext.Settings.PlanningRanges[RepeatMode.Вахты],
+                DayOfMounth = GroundhogContext.Settings.PlanningRanges[RepeatMode.ЧислоМесяца],
+                DayOfYear = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДеньГода],
+                Optimization = GroundhogContext.Settings.OptimizationRange,
             };
 
             BindingContext = settings;
@@ -49,8 +49,10 @@ namespace GroundhogMobile
                     { RepeatMode.ДеньГода, dayOfYear },
                 };
 
-                GroundhogContext.SetPlanningRanges(dict);
-                GroundhogContext.OptimizationRange = optimization;
+                foreach (RepeatMode mode in dict.Keys)
+                    GroundhogContext.Settings.PlanningRanges[mode] = dict[mode];
+                GroundhogContext.Settings.OptimizationRange = optimization;
+                GroundhogContext.SaveSettings();
 
                 await Navigation.PopAsync();
             }

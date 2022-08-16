@@ -71,13 +71,13 @@ namespace GroundhogWindows
 
         private void LoadResources()
         {
-            App.Current.Resources["Main color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Main color")));
-            App.Current.Resources["Additional color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Additional color")));
-            App.Current.Resources["Main text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Main text")));
-            App.Current.Resources["Additional text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Additional text")));
-            App.Current.Resources["Selected item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Selected item")));
-            App.Current.Resources["Selected item inactive"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Selected item inactive")));
-            App.Current.Resources["Select item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.GetColor("Select item")));
+            App.Current.Resources["Main color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Main color"]));
+            App.Current.Resources["Additional color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]));
+            App.Current.Resources["Main text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Main text"]));
+            App.Current.Resources["Additional text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Additional text"]));
+            App.Current.Resources["Selected item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Selected item"]));
+            App.Current.Resources["Selected item inactive"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Selected item inactive"]));
+            App.Current.Resources["Select item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Select item"]));
         }
 
         private void RestartWindow()

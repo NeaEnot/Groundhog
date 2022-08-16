@@ -20,7 +20,7 @@ namespace GroundhogMobile
 
             MainPage = new NavigationPage(new MainPage());
 
-            if (!GroundhogContext.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item" }))
+            if (!GroundhogContext.Settings.ColorSchema.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item" }))
             {
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {
@@ -31,7 +31,15 @@ namespace GroundhogMobile
                     { "Selected item", "#CBE8F6" }
                 };
 
-                GroundhogContext.SetColors(colors);
+                foreach (string key in colors.Keys)
+                {
+                    if (GroundhogContext.Settings.ColorSchema.Colors.ContainsKey(key))
+                        GroundhogContext.Settings.ColorSchema.Colors[key] = colors[key];
+                    else
+                        GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
+                }
+
+                GroundhogContext.SaveSettings();
             }
 
             LoadResources();
@@ -39,11 +47,11 @@ namespace GroundhogMobile
 
         public static void LoadResources()
         {
-            App.Current.Resources["Main color"] = Color.FromHex(GroundhogContext.GetColor("Main color"));
-            App.Current.Resources["Additional color"] = Color.FromHex(GroundhogContext.GetColor("Additional color"));
-            App.Current.Resources["Main text"] = Color.FromHex(GroundhogContext.GetColor("Main text"));
-            App.Current.Resources["Additional text"] = Color.FromHex(GroundhogContext.GetColor("Additional text"));
-            App.Current.Resources["Selected item"] = Color.FromHex(GroundhogContext.GetColor("Selected item"));
+            App.Current.Resources["Main color"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]);
+            App.Current.Resources["Additional color"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]);
+            App.Current.Resources["Main text"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main text"]);
+            App.Current.Resources["Additional text"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional text"]);
+            App.Current.Resources["Selected item"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Selected item"]);
         }
 
         protected override void OnStart()
