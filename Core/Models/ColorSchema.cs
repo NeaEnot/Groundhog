@@ -11,13 +11,15 @@ namespace Core.Models
             Colors = new Dictionary<string, string>();
         }
 
-        public bool IsColorSchemaExist(List<string> keys)
+        public List<string> ColorSchemaAbsent(List<string> keys)
         {
+            List<string> absent = new List<string>();
+
             foreach (string key in keys)
                 if (!Colors.ContainsKey(key))
-                    return false;
+                    absent.Add(key);
 
-            return true;
+            return absent;
         }
     }
 }

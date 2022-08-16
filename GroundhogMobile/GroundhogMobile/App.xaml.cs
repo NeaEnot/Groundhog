@@ -1,6 +1,7 @@
 ﻿using Core;
 using StorageFile.Implements;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using YandexDisk;
 
@@ -20,24 +21,21 @@ namespace GroundhogMobile
 
             MainPage = new NavigationPage(new MainPage());
 
-            if (!GroundhogContext.Settings.ColorSchema.IsColorSchemaExist(new List<string> { "Main color", "Additional color", "Main text", "Additional text", "Selected item" }))
+            Dictionary<string, string> colors = new Dictionary<string, string>()
             {
-                Dictionary<string, string> colors = new Dictionary<string, string>()
-                {
-                    { "Main color", "#FFFFFF" },
-                    { "Additional color", "#F0F0F0" },
-                    { "Main text", "#000000" },
-                    { "Additional text", "#818282" },
-                    { "Selected item", "#CBE8F6" }
-                };
+                { "Main color", "#FFFFFF" },
+                { "Additional color", "#F0F0F0" },
+                { "Main text", "#000000" },
+                { "Additional text", "#818282" },
+                { "Selected item", "#CBE8F6" }
+            };
 
-                foreach (string key in colors.Keys)
-                {
-                    if (GroundhogContext.Settings.ColorSchema.Colors.ContainsKey(key))
-                        GroundhogContext.Settings.ColorSchema.Colors[key] = colors[key];
-                    else
-                        GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
-                }
+            List<string> absentColors = GroundhogContext.Settings.ColorSchema.ColorSchemaAbsent(colors.Keys.ToList());
+
+            if (absentColors.Count > 0)
+            {
+                foreach (string key in absentColors)
+                    GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
 
                 GroundhogContext.SaveSettings();
             }
