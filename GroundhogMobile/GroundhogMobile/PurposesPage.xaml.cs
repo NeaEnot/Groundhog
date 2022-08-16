@@ -53,6 +53,20 @@ namespace GroundhogMobile
 
             await Navigation.PushAsync(page);
         }
+        public ICommand MenuItemClone =>
+           new Command<PurposeViewModel>((purposeModel) =>
+           {
+               Purpose clone = new Purpose
+               {
+                   Id = null,
+                   GroupId = purposeModel.GroupId,
+                   Text = purposeModel.Text,
+                   Completed = false
+               };
+
+               GroundhogContext.PurposeLogic.Create(clone);
+               LoadData();
+           });
 
         public ICommand MenuItemUpdate =>
             new Command<PurposeViewModel>(async (purposeModel) =>
@@ -93,7 +107,8 @@ namespace GroundhogMobile
                 new Dictionary<string, ICommand>
                 {
                     { "Изменить", MenuItemUpdate },
-                    { "Удалить", MenuItemDelete }
+                    { "Удалить", MenuItemDelete },
+                    { "Дублировать", MenuItemClone }
                 };
 
             CommandPage page = new CommandPage((e.Item as PurposeViewModel).Text, commands.Keys);

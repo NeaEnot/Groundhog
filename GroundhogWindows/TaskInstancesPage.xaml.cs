@@ -149,11 +149,6 @@ namespace GroundhogWindows
             }
         }
 
-        private void UpdateTask()
-        {
-            
-        }
-
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
         {
             TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;

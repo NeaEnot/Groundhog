@@ -17,7 +17,7 @@
                                 <ViewCell.View>
                                     <Label Text="{Binding}"
                                            FontSize="20"
-                                           TextColor="{DynamicResource Additional text}"
+                                           TextColor="{DynamicResource Main text}"
                                            Margin="0, 15, 0, 15"/>
                                 </ViewCell.View>
                             </ViewCell>
