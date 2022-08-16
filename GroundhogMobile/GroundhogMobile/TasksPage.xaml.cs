@@ -73,6 +73,32 @@ namespace GroundhogMobile
             await Navigation.PushAsync(page);
         }
 
+        public ICommand MenuItemClone =>
+            new Command<TaskInstanceViewModel>((instanceModel) =>
+            {
+                Task task = GroundhogContext.TaskLogic.Read(instanceModel.TaskId);
+                Task cloneTask = new Task
+                {
+                    Id = null,
+                    Text = task.Text,
+                    RepeatMode = task.RepeatMode,
+                    RepeatValue = task.RepeatValue,
+                    ToNextDay = task.ToNextDay
+                };
+
+                GroundhogContext.TaskLogic.Create(cloneTask);
+
+                GroundhogContext.TaskInstanceLogic
+                        .Create(new TaskInstance
+                        {
+                            TaskId = cloneTask.Id,
+                            Completed = false,
+                            Date = instanceModel.Date
+                        });
+
+                LoadData();
+            });
+
         public ICommand MenuItemUpdate =>
             new Command<TaskInstanceViewModel>(async (instanceModel) =>
             {
