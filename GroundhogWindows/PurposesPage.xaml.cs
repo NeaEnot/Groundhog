@@ -62,12 +62,24 @@ namespace GroundhogWindows
             }
         }
 
-        private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
+        private void ContextMenuClone_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePurpose();
+            PurposeViewModel viewModel = (PurposeViewModel)listBoxPurposes.SelectedItem;
+            Purpose model = viewModel.Convert();
+
+            Purpose clone = new Purpose
+            {
+                Id = null,
+                GroupId = model.GroupId,
+                Text = model.Text,
+                Completed = false
+            };
+
+            GroundhogContext.PurposeLogic.Create(clone);
+            LoadPurposes();
         }
 
-        private void UpdatePurpose()
+        private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
         {
             PurposeViewModel viewModel = (PurposeViewModel)listBoxPurposes.SelectedItem;
             Purpose model = viewModel.Convert();
