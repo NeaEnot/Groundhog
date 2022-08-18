@@ -22,8 +22,8 @@
         </Style>
         
         <Style TargetType="Window" x:Key="Window style">
-            <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
-            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
+            <Setter Property="Background" Value="{DynamicResource Main color}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="TabControl">
@@ -93,10 +93,25 @@
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="Background" Value="{DynamicResource ResourceKey='Main color'}"/>
-            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey='Additional text'}"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" Background="{DynamicResource Main color}" BorderBrush="{DynamicResource Additional text}" BorderThickness="1" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource Selected item}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="Button">
