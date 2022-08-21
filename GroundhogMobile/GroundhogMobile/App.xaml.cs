@@ -17,6 +17,7 @@ namespace GroundhogMobile
             GroundhogContext.TaskLogic = new TaskLogic();
             GroundhogContext.PurposeLogic = new PurposeLogic();
             GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
+            GroundhogContext.NoteLogic = new NoteLogic();
             GroundhogContext.NetworkLogic = new NetworkLogic();
 
             MainPage = new NavigationPage(new MainPage());

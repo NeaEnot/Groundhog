@@ -8,7 +8,7 @@
         <ScrollView>
             <StackLayout>
                 <Entry x:Name="nameEntry" Placeholder="Задача" FontSize="20" Text="{Binding Name}" Margin="10, 20"/>
-                <Editor x:Name="textEditor" Text="{Binding Text}"/>
+                <Editor x:Name="textEditor" Text="{Binding Text}" AutoSize="TextChanges"/>
                 <Button Text="Сохранить" FontSize="20" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>

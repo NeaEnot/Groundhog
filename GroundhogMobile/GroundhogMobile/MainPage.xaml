@@ -13,6 +13,7 @@
             <local:CalendarPage Title="Календарь"/>
         </TabbedPage>
         <local:PurposeGroupsPage Title="Цели"/>
+        <local:NotesPage Title="Заметки"/>
         <local:SettingsPage Title="Настройки"/>
     </TabbedPage.Children>
 
