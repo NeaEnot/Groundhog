@@ -27,15 +27,12 @@ namespace GroundhogMobile
         {
             try
             {
-                await System.Threading.Tasks.Task.Run(() =>
-                {
-                    ConnectIfNot();
-                    GroundhogContext.NetworkLogic.Load();
-                    this.DisplayToastAsync("Данные загружены");
-                    DownloadFinisfed();
+                ConnectIfNot();
+                GroundhogContext.NetworkLogic.Load();
+                this.DisplayToastAsync("Данные загружены");
+                DownloadFinisfed();
 
-                    App.LoadResources();
-                });
+                App.LoadResources();
             }
             catch (Exception ex)
             {
