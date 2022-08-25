@@ -48,7 +48,7 @@
             </TabItem>
             <TabItem Header="Календарь">
                 <Viewbox>
-                    <Calendar SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
+                    <Calendar Name="calendar" SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
                 </Viewbox>
             </TabItem>
         </TabControl>

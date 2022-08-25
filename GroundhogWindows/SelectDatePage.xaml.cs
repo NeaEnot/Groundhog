@@ -33,18 +33,28 @@ namespace GroundhogWindows
             listBoxDates.ItemsSource = dates;
         }
 
+        private bool selectionChanged = false;
         private void DateSelected(object sender, RoutedEventArgs e)
         {
+            if (selectionChanged)
+                return;
+
+            selectionChanged = true;
+
             if (sender is ListBox)
             {
                 SelectedDate = (DateTime)((ListBox)sender).SelectedItem;
+                calendar.SelectedDate = null;
             }
             if (sender is Calendar)
             {
                 SelectedDate = (DateTime)((Calendar)sender).SelectedDate;
+                listBoxDates.SelectedIndex = -1;
             }
 
             contextWindow.LoadTasks();
+
+            selectionChanged = false;
         }
     }
 }
