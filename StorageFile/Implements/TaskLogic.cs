@@ -20,7 +20,10 @@ namespace StorageFile.Implements
                     Text = model.Text,
                     RepeatMode = model.RepeatMode,
                     RepeatValue = model.RepeatValue,
-                    ToNextDay = model.ToNextDay
+                    ToNextDay = model.ToNextDay,
+                    OffsetAll = model.OffsetAll,
+                    PlanningRange = model.PlanningRange,
+                    OptimizationRange = model.OptimizationRange
                 });
 
             context.Save();
@@ -40,7 +43,10 @@ namespace StorageFile.Implements
                         Text = model.Text,
                         RepeatMode = model.RepeatMode,
                         RepeatValue = model.RepeatValue,
-                        ToNextDay = model.ToNextDay
+                        ToNextDay = model.ToNextDay,
+                        OffsetAll = model.OffsetAll,
+                        PlanningRange = model.PlanningRange,
+                        OptimizationRange = model.OptimizationRange
                     });
             }
 
@@ -56,7 +62,10 @@ namespace StorageFile.Implements
                     Text = req.Text,
                     RepeatMode = req.RepeatMode,
                     RepeatValue = req.RepeatValue,
-                    ToNextDay = req.ToNextDay
+                    ToNextDay = req.ToNextDay,
+                    OffsetAll = req.OffsetAll,
+                    PlanningRange = req.PlanningRange,
+                    OptimizationRange = req.OptimizationRange
                 })
                 .ToList();
         }
@@ -74,7 +83,10 @@ namespace StorageFile.Implements
                 Text = task.Text,
                 RepeatMode = task.RepeatMode,
                 RepeatValue = task.RepeatValue,
-                ToNextDay = task.ToNextDay
+                ToNextDay = task.ToNextDay,
+                OffsetAll = task.OffsetAll,
+                PlanningRange = task.PlanningRange,
+                OptimizationRange = task.OptimizationRange
             };
         }
 
@@ -91,6 +103,9 @@ namespace StorageFile.Implements
             task.RepeatMode = model.RepeatMode;
             task.RepeatValue = model.RepeatValue;
             task.ToNextDay = model.ToNextDay;
+            task.OffsetAll = model.OffsetAll;
+            task.PlanningRange = model.PlanningRange;
+            task.OptimizationRange = model.OptimizationRange;
 
             context.Save();
         }

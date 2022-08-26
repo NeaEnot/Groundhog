@@ -89,6 +89,23 @@ namespace StorageFile.Implements
             context.Save();
         }
 
+        public void Update(List<TaskInstance> models)
+        {
+            foreach (TaskInstance model in models)
+            {
+                TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == model.Id);
+
+                if (instance == null)
+                    throw new Exception("Экземпляра задачи с данным Id не существует.");
+
+                instance.Date = model.Date;
+                instance.TaskId = model.TaskId;
+                instance.Completed = model.Completed;
+            }
+
+            context.Save();
+        }
+
         public void Delete()
         {
             context.TaskInstances.Clear();

@@ -65,11 +65,15 @@ namespace Core.DateTimeHelpers
         public static void ToDay(DateTime day)
         {
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
+            HashSet<TaskInstance> toUpdate = new HashSet<TaskInstance>();
 
             foreach (Task task in tasks)
             {
                 List<TaskInstance> taskInstances = 
                     GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < day.Date && !req.Completed).ToList();
+
+                DateTime firstDate = taskInstances.Min(req => req.Date);
+                int offsetDays = (day - firstDate).Days;
 
                 foreach (TaskInstance instance in taskInstances)
                 {
@@ -78,8 +82,22 @@ namespace Core.DateTimeHelpers
                     else
                         instance.Completed = true;
 
-                    GroundhogContext.TaskInstanceLogic.Update(instance);
+                    toUpdate.Add(instance);
                 }
+
+                if (task.OffsetAll)
+                {
+                    foreach (TaskInstance instance in taskInstances.Where(req => req.Date > day))
+                    {
+                        if (!instance.Completed)
+                        {
+                            instance.Date = instance.Date.AddDays(offsetDays);
+                            toUpdate.Add(instance);
+                        }
+                    }
+                }
+
+                GroundhogContext.TaskInstanceLogic.Update(toUpdate.ToList());
             }
         }
 

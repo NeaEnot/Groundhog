@@ -11,6 +11,7 @@ namespace Core.Interfaces.Storage
         List<TaskInstance> Read(DateTime date);
         List<TaskInstance> Read(string taskId);
         void Update(TaskInstance model);
+        void Update(List<TaskInstance> models);
         void Delete();
         void Delete(string id);
         void Delete(List<string> ids);
