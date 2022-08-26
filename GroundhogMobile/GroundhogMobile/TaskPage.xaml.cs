@@ -67,6 +67,10 @@ namespace GroundhogMobile
                 Model.Text = textEntry.Text;
                 Model.RepeatMode = repeatMode;
                 Model.RepeatValue = repeatValueEntry.Text;
+
+                if (!Model.ToNextDay)
+                    Model.OffsetAll = false;
+
                 IsSuccess = true;
 
                 await Navigation.PopAsync();

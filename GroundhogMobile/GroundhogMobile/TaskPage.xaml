@@ -14,7 +14,11 @@
             <Entry x:Name="repeatValueEntry" Placeholder="Значение" FontSize="20" Text="{Binding RepeatValue}" IsVisible="{Binding Repeated}" Margin="10, 20"/>
             <StackLayout Orientation="Horizontal">
                 <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Перенос на след. день"/>
-                <CheckBox IsChecked="{Binding ToNextDay}" Margin="0, -3, 0, 0"/>
+                <CheckBox x:Name="chbToNextDay" IsChecked="{Binding ToNextDay}" Margin="0, -3, 0, 0"/>
+            </StackLayout>
+            <StackLayout x:Name="slOffsetAll" Orientation="Horizontal" IsVisible="{Binding Source=chbToNextDay, Path=IsChecked}">
+                <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Сместить послед. задачи"/>
+                <CheckBox IsChecked="{Binding OffsetAll}" Margin="0, -3, 0, 0"/>
             </StackLayout>
             <Button Text="Сохранить" FontSize="20" Margin="10, 20" Clicked="Button_Clicked"/>
         </StackLayout>

@@ -11,6 +11,9 @@ namespace GroundhogMobile.Models
         public RepeatMode RepeatMode { get; set; }
         public string RepeatValue { get; set; }
         public bool ToNextDay { get; set; }
+        public bool OffsetAll { get; set; }
+        public int PlanningRange { get; set; }
+        public int OptimizationRange { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
 
         internal TaskViewModel(Task task = null)
@@ -22,6 +25,9 @@ namespace GroundhogMobile.Models
                 RepeatMode = task.RepeatMode;
                 RepeatValue = task.RepeatValue;
                 ToNextDay = task.ToNextDay;
+                OffsetAll = task.OffsetAll;
+                PlanningRange = task.PlanningRange;
+                OptimizationRange = task.OptimizationRange;
             }
         }
 
@@ -33,7 +39,10 @@ namespace GroundhogMobile.Models
                 Text = Text,
                 RepeatMode = RepeatMode,
                 RepeatValue = RepeatValue,
-                ToNextDay = ToNextDay
+                ToNextDay = ToNextDay,
+                OffsetAll = OffsetAll,
+                PlanningRange = PlanningRange,
+                OptimizationRange = OptimizationRange
             };
         }
     }
