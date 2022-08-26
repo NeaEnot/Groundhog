@@ -35,6 +35,8 @@ namespace GroundhogWindows
                 comboBox.SelectedItem = task.RepeatMode;
                 textBoxValue.Text = task.RepeatValue.ToString();
                 checkBoxToNextDay.IsChecked = task.ToNextDay;
+                checkBoxOffsetAll.IsEnabled = task.ToNextDay == true;
+                checkBoxOffsetAll.IsChecked = task.ToNextDay && task.OffsetAll;
             }
             else
             {
@@ -58,6 +60,7 @@ namespace GroundhogWindows
                 Task.RepeatMode = (RepeatMode)comboBox.SelectedItem;
                 Task.RepeatValue = textBoxValue.Text;
                 Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
+                Task.OffsetAll = checkBoxOffsetAll.IsChecked.Value;
 
                 DialogResult = true;
             }
@@ -72,6 +75,13 @@ namespace GroundhogWindows
             RepeatMode selected = (RepeatMode)comboBox.SelectedItem;
             textBoxValue.IsEnabled = selected != RepeatMode.Нет;
             textBoxValue.ToolTip = toolTips[selected];
+        }
+
+        private void checkBoxToNextDay_Checked(object sender, RoutedEventArgs e)
+        {
+            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true;
+            if (!checkBoxOffsetAll.IsEnabled)
+                checkBoxOffsetAll.IsChecked = false;
         }
     }
 }
