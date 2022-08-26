@@ -9,6 +9,9 @@ namespace Core.Models
         public RepeatMode RepeatMode { get; set; }
         public string RepeatValue { get; set; }
         public bool ToNextDay { get; set; }
+        public bool OffsetAll { get; set; }
+        public int PlanningRange { get; set; }
+        public int OptimizationRange { get; set; }
 
         public override int GetHashCode()
         {
