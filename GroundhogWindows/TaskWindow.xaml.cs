@@ -1,4 +1,5 @@
-﻿using Core.DateTimeHelpers;
+﻿using Core;
+using Core.DateTimeHelpers;
 using Core.Enums;
 using Core.Models;
 using System;
@@ -33,14 +34,16 @@ namespace GroundhogWindows
 
                 textBoxText.Text = task.Text;
                 comboBox.SelectedItem = task.RepeatMode;
-                textBoxValue.Text = task.RepeatValue.ToString();
+                textBoxValue.Text = task.RepeatValue;
                 checkBoxToNextDay.IsChecked = task.ToNextDay;
                 checkBoxOffsetAll.IsEnabled = task.ToNextDay == true;
                 checkBoxOffsetAll.IsChecked = task.ToNextDay && task.OffsetAll;
+                textBoxOptimizationRange.Text = task.OptimizationRange.ToString();
             }
             else
             {
                 comboBox.SelectedItem = RepeatMode.Нет;
+                textBoxOptimizationRange.Text = GroundhogContext.Settings.OptimizationRange.ToString();
                 Task = new Task();
             }
 
@@ -51,7 +54,10 @@ namespace GroundhogWindows
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(textBoxText.Text) || (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(textBoxValue.Text))
+                if (string.IsNullOrWhiteSpace(textBoxText.Text) || 
+                    (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(textBoxValue.Text) ||
+                    (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(textBoxPlanningRange.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxOptimizationRange.Text))
                     throw new Exception("Поля должны быть заполнены.");
 
                 DateTimeHelper.CheckIsValueCorrect(textBoxValue.Text, (RepeatMode)comboBox.SelectedItem);
@@ -61,6 +67,8 @@ namespace GroundhogWindows
                 Task.RepeatValue = textBoxValue.Text;
                 Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
                 Task.OffsetAll = checkBoxOffsetAll.IsChecked.Value;
+                Task.PlanningRange = int.Parse(textBoxPlanningRange.Text);
+                Task.OptimizationRange = int.Parse(textBoxOptimizationRange.Text);
 
                 DialogResult = true;
             }
@@ -73,8 +81,15 @@ namespace GroundhogWindows
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             RepeatMode selected = (RepeatMode)comboBox.SelectedItem;
+
             textBoxValue.IsEnabled = selected != RepeatMode.Нет;
             textBoxValue.ToolTip = toolTips[selected];
+
+            textBoxPlanningRange.IsEnabled = selected != RepeatMode.Нет;
+            if (textBoxPlanningRange.IsEnabled)
+                textBoxPlanningRange.Text = GroundhogContext.Settings.PlanningRanges[selected].ToString();
+            else
+                textBoxPlanningRange.Text = "";
         }
 
         private void checkBoxToNextDay_Checked(object sender, RoutedEventArgs e)

@@ -6,17 +6,25 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="TaskWindow" Height="184" Width="459" MinHeight="184" MinWidth="360">
+        Title="TaskWindow" Height="222" Width="459" MinHeight="184" MinWidth="360">
 
     <Grid>
-        <TextBox Name="textBoxText" Margin="149,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
-        <ComboBox Name="comboBox" Margin="149,33,0,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Left" Width="141"/>
-        <TextBox Name="textBoxValue" IsEnabled="False" Margin="295,35,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Задача" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <Label Content="Режим повторения" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="textBoxText" Margin="165,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
+
+        <Label Content="Режим повторения" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="comboBox" Margin="165,33,0,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Left" Width="141"/>
+        <TextBox Name="textBoxValue" IsEnabled="False" Margin="311,35,28,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
         <CheckBox Name="checkBoxToNextDay" Content="Переносить задачу на следующий день" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Checked="checkBoxToNextDay_Checked" Unchecked="checkBoxToNextDay_Checked"/>
         <CheckBox Name="checkBoxOffsetAll" Content="Сместить последующие задачи" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top"/>
-        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Bottom" Height="35" Width="80" Click="Button_Click"/>
 
+        <Label Content="Дальность планирования" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="textBoxPlanningRange" Margin="165,102,28,0" Text="" IsEnabled="False" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
+
+        <Label Content="Дальность оптимизации" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="textBoxOptimizationRange" Margin="165,125,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
+
+        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Bottom" Height="35" Width="80" Click="Button_Click"/>
     </Grid>
 </Window>
