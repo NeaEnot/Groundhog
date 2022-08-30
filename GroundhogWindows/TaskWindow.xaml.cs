@@ -90,11 +90,18 @@ namespace GroundhogWindows
                 textBoxPlanningRange.Text = GroundhogContext.Settings.PlanningRanges[selected].ToString();
             else
                 textBoxPlanningRange.Text = "";
+
+            EnableOffset();
         }
 
         private void checkBoxToNextDay_Checked(object sender, RoutedEventArgs e)
         {
-            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true;
+            EnableOffset();
+        }
+
+        private void EnableOffset()
+        {
+            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true && (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет;
             if (!checkBoxOffsetAll.IsEnabled)
                 checkBoxOffsetAll.IsChecked = false;
         }
