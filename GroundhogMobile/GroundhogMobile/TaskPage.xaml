@@ -16,7 +16,7 @@
                 <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Перенос на след. день"/>
                 <CheckBox x:Name="chbToNextDay" IsChecked="{Binding ToNextDay}" Margin="0, -3, 0, 0"/>
             </StackLayout>
-            <StackLayout x:Name="slOffsetAll" Orientation="Horizontal" IsVisible="{Binding Source=chbToNextDay, Path=IsChecked}">
+            <StackLayout x:Name="slOffsetAll" Orientation="Horizontal" IsVisible="{Binding RepeatedAndMoved}">
                 <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Сместить послед. задачи"/>
                 <CheckBox IsChecked="{Binding OffsetAll}" Margin="0, -3, 0, 0"/>
             </StackLayout>

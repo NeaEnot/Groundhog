@@ -15,6 +15,7 @@ namespace GroundhogMobile.Models
         public int PlanningRange { get; set; }
         public int OptimizationRange { get; set; }
         public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
+        public bool RepeatedAndMoved { get { return Repeated && ToNextDay; } }
 
         internal TaskViewModel(Task task = null)
         {
