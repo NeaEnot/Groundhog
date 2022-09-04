@@ -41,7 +41,7 @@ namespace Core.DateTimeHelpers
                 List<TaskInstance> instances = 
                     GroundhogContext.TaskInstanceLogic
                     .Read(task.Id)
-                    .Where(req => (DateTime.Now - req.Date).Days >= GroundhogContext.Settings.OptimizationRange)
+                    .Where(req => (DateTime.Now - req.Date).Days >= task.OptimizationRange)
                     .ToList();
                 models.AddRange(instances);
 
