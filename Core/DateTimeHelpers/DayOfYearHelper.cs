@@ -1,5 +1,4 @@
-﻿using Core.Enums;
-using Core.Models;
+﻿using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +37,7 @@ namespace Core.DateTimeHelpers
             DateTime lastDate = taskInstances.Max(req => req.Date);
             DateTime currentDate = lastDate;
 
-            while ((currentDate - DateTime.Now).TotalDays <= GroundhogContext.Settings.PlanningRanges[RepeatMode.ДеньГода])
+            while ((currentDate - DateTime.Now).TotalDays <= task.PlanningRange)
             {
                 currentDate = currentDate.AddYears(1);
 
