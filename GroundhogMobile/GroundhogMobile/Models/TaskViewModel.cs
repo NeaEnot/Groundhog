@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core;
+using Core.Enums;
 using Core.Models;
 
 namespace GroundhogMobile.Models
@@ -29,6 +30,10 @@ namespace GroundhogMobile.Models
                 OffsetAll = task.OffsetAll;
                 PlanningRange = task.PlanningRange;
                 OptimizationRange = task.OptimizationRange;
+            }
+            else
+            {
+                OptimizationRange = GroundhogContext.Settings.OptimizationRange;
             }
         }
 

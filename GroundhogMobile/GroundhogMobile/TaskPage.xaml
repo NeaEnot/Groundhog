@@ -16,11 +16,15 @@
                 <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Перенос на след. день"/>
                 <CheckBox x:Name="chbToNextDay" IsChecked="{Binding ToNextDay}" Margin="0, -3, 0, 0"/>
             </StackLayout>
-            <StackLayout x:Name="slOffsetAll" Orientation="Horizontal" IsVisible="{Binding RepeatedAndMoved}">
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding RepeatedAndMoved}">
                 <Label FontSize="20" TextColor="{DynamicResource Main text}" Text="Сместить послед. задачи"/>
                 <CheckBox IsChecked="{Binding OffsetAll}" Margin="0, -3, 0, 0"/>
             </StackLayout>
             <Button Text="Сохранить" FontSize="20" Margin="10, 20" Clicked="Button_Clicked"/>
+            <Label x:Name="planningRangeLabel" FontSize="20" TextColor="{DynamicResource Main text}" Text="Дальность планирования" IsVisible="{Binding Repeated}"/>
+            <Entry x:Name="planningRangeEntry" Placeholder="Дальность планирования" FontSize="20" Text="{Binding PlanningRange}" IsVisible="{Binding Repeated}" Margin="10, 20"/>
+            <Label x:Name="optimizationRangeLabel" FontSize="20" TextColor="{DynamicResource Main text}" Text="Дальность оптимизации"/>
+            <Entry x:Name="optimizationRangeEntry" Placeholder="Дальность оптимизации" FontSize="20" Text="{Binding OptimizationRange}" Margin="10, 20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

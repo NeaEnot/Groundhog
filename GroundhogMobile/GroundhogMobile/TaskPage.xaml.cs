@@ -1,4 +1,5 @@
-﻿using Core.DateTimeHelpers;
+﻿using Core;
+using Core.DateTimeHelpers;
 using Core.Enums;
 using GroundhogMobile.Models;
 using Rg.Plugins.Popup.Services;
@@ -93,6 +94,10 @@ namespace GroundhogMobile
                 buttonMode.Text = buttonText[repeatMode];
                 repeatValueEntry.IsVisible = repeatMode != RepeatMode.Нет;
                 repeatValueEntry.Placeholder = placeholders[repeatMode];
+
+                planningRangeLabel.IsVisible = repeatMode != RepeatMode.Нет;
+                planningRangeEntry.IsVisible = repeatMode != RepeatMode.Нет;
+                planningRangeEntry.Text = GroundhogContext.Settings.PlanningRanges[repeatMode].ToString();
             }
         }
     }
