@@ -2,6 +2,7 @@
 using Core.Models;
 using Newtonsoft.Json;
 using StorageFile.Extensions;
+using StorageFile.Migrations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +23,8 @@ namespace StorageFile
 
         private Context()
         {
+            MigrationController.DoMigrationIfNeed();
+
             Load();
 
             hashes = new Dictionary<string, int>
