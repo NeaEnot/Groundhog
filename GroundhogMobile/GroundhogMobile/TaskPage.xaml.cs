@@ -98,7 +98,19 @@ namespace GroundhogMobile
                 planningRangeLabel.IsVisible = repeatMode != RepeatMode.Нет;
                 planningRangeEntry.IsVisible = repeatMode != RepeatMode.Нет;
                 planningRangeEntry.Text = GroundhogContext.Settings.PlanningRanges[repeatMode].ToString();
+
+                ChangeOffsetVisible();
             }
+        }
+
+        private void chbToNextDay_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            ChangeOffsetVisible();
+        }
+
+        private void ChangeOffsetVisible()
+        {
+            slOffset.IsVisible = chbToNextDay.IsChecked && repeatMode != RepeatMode.Нет;
         }
     }
 }

@@ -23,10 +23,8 @@ namespace StorageFile
 
         private Context()
         {
-            MigrationController.DoMigrationIfNeed();
-
             Load();
-
+            
             hashes = new Dictionary<string, int>
             {
                 { "Tasks", Tasks.GetHash() },
@@ -42,7 +40,12 @@ namespace StorageFile
             get
             {
                 if (instance == null)
+                {
                     instance = new Context();
+
+                    if (MigrationController.DoMigrationIfNeed())
+                        instance.Save();
+                }
 
                 return instance;
             }

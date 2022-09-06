@@ -2,6 +2,7 @@
 using Core.Enums;
 using Core.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,39 +39,44 @@ namespace StorageFile.Migrations
             List<Purpose> purposes = new List<Purpose>();
             List<PurposeGroup> purposeGroups = new List<PurposeGroup>();
 
-            using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\storage.json"))
+            try
             {
-                string json = reader.ReadToEnd();
-                OldStorageModel restored = JsonConvert.DeserializeObject<OldStorageModel>(json);
+                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\storage.json"))
+                {
+                    string json = reader.ReadToEnd();
+                    OldStorageModel restored = JsonConvert.DeserializeObject<OldStorageModel>(json);
 
-                taskInstances = restored.TaskInstances;
-                purposes = restored.Purposes;
-                purposeGroups = restored.PurposeGroups;
+                    taskInstances = restored.TaskInstances;
+                    purposes = restored.Purposes;
+                    purposeGroups = restored.PurposeGroups;
 
-                tasks =
-                    restored.Tasks
-                    .Select(req => new Task
-                    {
-                        Id = req.Id,
-                        Text = req.Text,
-                        RepeatMode = req.RepeatMode,
-                        RepeatValue = req.RepeatValue,
-                        ToNextDay = req.ToNextDay,
-                        OffsetAll = false,
-                        PlanningRange = GroundhogContext.Settings.PlanningRanges[req.RepeatMode],
-                        OptimizationRange = GroundhogContext.Settings.OptimizationRange
-                    })
-                    .ToList();
+                    tasks =
+                        restored.Tasks
+                        .Select(req => new Task
+                        {
+                            Id = req.Id,
+                            Text = req.Text,
+                            RepeatMode = req.RepeatMode,
+                            RepeatValue = req.RepeatValue,
+                            ToNextDay = req.ToNextDay,
+                            OffsetAll = false,
+                            PlanningRange = GroundhogContext.Settings.PlanningRanges[req.RepeatMode],
+                            OptimizationRange = GroundhogContext.Settings.OptimizationRange
+                        })
+                        .ToList();
+                }
             }
+            catch (Exception ex)
+            { }
 
-            GroundhogContext.TaskLogic.Delete(null);
-            GroundhogContext.TaskLogic.Create(tasks);
-            GroundhogContext.TaskInstanceLogic.Delete();
-            GroundhogContext.TaskInstanceLogic.Create(taskInstances);
-            GroundhogContext.PurposeGroupLogic.Delete(null);
-            GroundhogContext.PurposeGroupLogic.Create(purposeGroups);
-            GroundhogContext.PurposeLogic.Delete();
-            GroundhogContext.PurposeLogic.Create(purposes);
+            Context.Instanse.Tasks.Clear();
+            Context.Instanse.Tasks.AddRange(tasks);
+            Context.Instanse.TaskInstances.Clear();
+            Context.Instanse.TaskInstances.AddRange(taskInstances);
+            Context.Instanse.PurposeGroups.Clear();
+            Context.Instanse.PurposeGroups.AddRange(purposeGroups);
+            Context.Instanse.Purposes.Clear();
+            Context.Instanse.Purposes.AddRange(purposes);
 
             using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\storageVersion.dat"))
                 writer.Write("7.0");

@@ -72,6 +72,9 @@ namespace Core.DateTimeHelpers
                 List<TaskInstance> taskInstances = 
                     GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < day.Date && !req.Completed).ToList();
 
+                if (taskInstances.Count == 0)
+                    continue;
+
                 DateTime firstDate = taskInstances.Min(req => req.Date);
                 int offsetDays = (day - firstDate).Days;
 

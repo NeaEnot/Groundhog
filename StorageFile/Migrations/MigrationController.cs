@@ -8,11 +8,20 @@
                 new MigrationV6to7()
             };
 
-        public static void DoMigrationIfNeed()
+        public static bool DoMigrationIfNeed()
         {
+            bool answer = false;
+
             foreach (IMigration migration in migrations)
+            {
                 if (migration.CheckNeedMigration())
+                {
                     migration.DoMigration();
+                    answer = true;
+                }
+            }
+
+            return answer;
         }
     }
 }
