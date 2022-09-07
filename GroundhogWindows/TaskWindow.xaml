@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="TaskWindow" Height="222" Width="459" MinHeight="184" MinWidth="360">
+        Title="TaskWindow" Height="250" Width="450" MinHeight="250" MinWidth="450">
 
     <Grid>
         <Label Content="Задача" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>

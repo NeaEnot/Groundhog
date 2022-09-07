@@ -30,7 +30,7 @@ namespace Core.DateTimeHelpers
             {
                 do
                     currentDate = currentDate.AddDays(1);
-                while (!task.RepeatValue.Contains(currentDate.ToString("ddd")));
+                while (!task.RepeatValue.ToLower().Contains(currentDate.ToString("ddd").ToLower()));
 
                 TaskInstance model = new TaskInstance
                 {
