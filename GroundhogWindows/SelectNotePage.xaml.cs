@@ -34,7 +34,7 @@ namespace GroundhogWindows
                 .OrderBy(req => req.Name)
                 .ToList();
 
-            listBoxNotes.ItemsSource = null;
+            //listBoxNotes.ItemsSource = null;
             listBoxNotes.ItemsSource = notes;
 
             loaded = false;
@@ -45,7 +45,7 @@ namespace GroundhogWindows
             if (loaded)
                 return;
 
-            Note selected = (Note)((ListBox)e.Source).SelectedItem;
+            Note selected = (Note)e.AddedItems[0];
 
             if (selected != null)
             {
@@ -113,7 +113,10 @@ namespace GroundhogWindows
             if (note != null)
             {
                 if (note.Id == SelectedNote.Id)
+                {
                     SelectedNote = new Note { Id = "" };
+                    windowContext.LoadNote();
+                }
 
                 GroundhogContext.NoteLogic.Delete(note.Id);
 

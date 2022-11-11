@@ -113,6 +113,7 @@
 
             <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
             <Setter Property="SelectionBrush" Value="{DynamicResource Select item}"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="Button">

@@ -67,7 +67,7 @@ namespace GroundhogWindows
                 Task.RepeatValue = textBoxValue.Text;
                 Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
                 Task.OffsetAll = checkBoxOffsetAll.IsChecked.Value;
-                Task.PlanningRange = int.Parse(textBoxPlanningRange.Text);
+                Task.PlanningRange = (RepeatMode)comboBox.SelectedItem == RepeatMode.Нет ? 0 : int.Parse(textBoxPlanningRange.Text);
                 Task.OptimizationRange = int.Parse(textBoxOptimizationRange.Text);
 
                 DialogResult = true;
