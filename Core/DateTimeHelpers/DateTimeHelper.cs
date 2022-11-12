@@ -69,16 +69,16 @@ namespace Core.DateTimeHelpers
 
             foreach (Task task in tasks)
             {
-                List<TaskInstance> taskInstances = 
-                    GroundhogContext.TaskInstanceLogic.Read(task.Id).Where(req => req.Date.Date < day.Date && !req.Completed).ToList();
+                List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
+                List<TaskInstance> oldTaskInstances = taskInstances.Where(req => req.Date.Date < day.Date && !req.Completed).ToList();
 
-                if (taskInstances.Count == 0)
+                if (oldTaskInstances.Count == 0)
                     continue;
 
-                DateTime firstDate = taskInstances.Min(req => req.Date);
-                int offsetDays = (day - firstDate).Days;
+                DateTime firstDate = oldTaskInstances.Min(req => req.Date);
+                int offsetDays = (day.Date - firstDate.Date).Days;
 
-                foreach (TaskInstance instance in taskInstances)
+                foreach (TaskInstance instance in oldTaskInstances)
                 {
                     if (task.ToNextDay)
                         instance.Date = day.Date;
@@ -99,9 +99,9 @@ namespace Core.DateTimeHelpers
                         }
                     }
                 }
-
-                GroundhogContext.TaskInstanceLogic.Update(toUpdate.ToList());
             }
+
+            GroundhogContext.TaskInstanceLogic.Update(toUpdate.ToList());
         }
 
         public static int TaskRare(Task task)
