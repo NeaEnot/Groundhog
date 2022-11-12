@@ -87,7 +87,10 @@ namespace GroundhogWindows
                     Text = task.Text,
                     RepeatMode = task.RepeatMode,
                     RepeatValue = task.RepeatValue,
-                    ToNextDay = task.ToNextDay
+                    ToNextDay = task.ToNextDay,
+                    OffsetAll = task.OffsetAll,
+                    OptimizationRange = task.OptimizationRange,
+                    PlanningRange = task.PlanningRange
                 };
 
                 GroundhogContext.TaskLogic.Create(cloneTask);

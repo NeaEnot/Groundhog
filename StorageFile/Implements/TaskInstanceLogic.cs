@@ -48,7 +48,7 @@ namespace StorageFile.Implements
         public List<TaskInstance> Read(DateTime date)
         {
             List<TaskInstance> models = context.TaskInstances
-                .Where(req => req.Date.ToString("dd.MM.yyyy") == date.ToString("dd.MM.yyyy"))
+                .Where(req => req.Date.Date == date.Date)
                 .Select(req => new TaskInstance
                 {
                     Id = req.Id,
