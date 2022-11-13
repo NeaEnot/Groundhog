@@ -11,8 +11,7 @@ namespace GroundhogWindows
     {
         private MainWindow windowContext;
         private bool loaded = false;
-
-        internal PurposeGroup SelectedGroup { get; private set; }
+        private string selectedGroupId;
 
         public SelectGroupPage(MainWindow windowContext)
         {
@@ -45,29 +44,8 @@ namespace GroundhogWindows
                 return;
 
             PurposeGroup selected = (PurposeGroup)((ListBox)e.Source).SelectedItem;
-
-            if (selected != null)
-            {
-                SelectedGroup = selected;
-            }
-            else
-            {
-                bool exist = false;
-
-                foreach (PurposeGroup group in listBoxGroups.ItemsSource)
-                {
-                    if (group.Id == SelectedGroup.Id)
-                    {
-                        exist = true;
-                        break;
-                    }
-                }
-
-                if (!exist)
-                    SelectedGroup = new PurposeGroup { Id = "" };
-            }
-
-            windowContext.LoadPurposes();
+            selectedGroupId = selected.Id;
+            windowContext.LoadPurposes(selectedGroupId);
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -111,9 +89,6 @@ namespace GroundhogWindows
 
             if (group != null)
             {
-                if (group.Id == SelectedGroup.Id)
-                    SelectedGroup = new PurposeGroup { Id = "" };
-
                 GroundhogContext.PurposeGroupLogic.Delete(group.Id);
 
                 List<string> purposesIds =
@@ -125,7 +100,9 @@ namespace GroundhogWindows
                 GroundhogContext.PurposeLogic.Delete(purposesIds);
 
                 LoadGroups();
-                windowContext.LoadPurposes();
+
+                if (group.Id == selectedGroupId)
+                    windowContext.LoadPurposes("");
             }
         }
     }

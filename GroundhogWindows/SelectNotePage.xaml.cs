@@ -11,9 +11,8 @@ namespace GroundhogWindows
     public partial class SelectNotePage : Page
     {
         private MainWindow windowContext;
+        private Note selectedNote;
         private bool loaded = false;
-
-        internal Note SelectedNote { get; private set; }
 
         public SelectNotePage(MainWindow windowContext)
         {
@@ -38,6 +37,9 @@ namespace GroundhogWindows
             listBoxNotes.ItemsSource = notes;
 
             loaded = false;
+
+            if (selectedNote != null)
+                listBoxNotes.SelectedItem = notes.First(req => req.Id == selectedNote.Id);
         }
 
         private void NoteSelected(object sender, SelectionChangedEventArgs e)
@@ -48,27 +50,9 @@ namespace GroundhogWindows
             Note selected = (Note)e.AddedItems[0];
 
             if (selected != null)
-            {
-                SelectedNote = selected;
-            }
-            else
-            {
-                bool exist = false;
+                selectedNote = selected;
 
-                foreach (Note note in listBoxNotes.ItemsSource)
-                {
-                    if (note.Id == SelectedNote.Id)
-                    {
-                        exist = true;
-                        break;
-                    }
-                }
-
-                if (!exist)
-                    SelectedNote = new Note { Id = "" };
-            }
-
-            windowContext.LoadNote();
+            windowContext.LoadNote(selectedNote);
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -101,6 +85,13 @@ namespace GroundhogWindows
                 if (window.ShowDialog() == true)
                 {
                     GroundhogContext.NoteLogic.Update(window.Note);
+
+                    if (window.Note.Id == selectedNote.Id)
+                    {
+                        selectedNote = window.Note;
+                        windowContext.LoadNote(selectedNote);
+                    }
+
                     LoadNotes();
                 }
             }
@@ -112,16 +103,9 @@ namespace GroundhogWindows
 
             if (note != null)
             {
-                if (note.Id == SelectedNote.Id)
-                {
-                    SelectedNote = new Note { Id = "" };
-                    windowContext.LoadNote();
-                }
-
                 GroundhogContext.NoteLogic.Delete(note.Id);
 
                 LoadNotes();
-                windowContext.LoadPurposes();
             }
         }
     }

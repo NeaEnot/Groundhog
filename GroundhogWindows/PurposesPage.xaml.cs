@@ -11,6 +11,7 @@ namespace GroundhogWindows
     public partial class PurposesPage : Page
     {
         private MainWindow windowContext;
+        private string groupId;
 
         public PurposesPage(MainWindow windowContext)
         {
@@ -19,11 +20,13 @@ namespace GroundhogWindows
             this.windowContext = windowContext;
         }
 
-        internal void LoadPurposes()
+        internal void LoadPurposes(string groupId)
         {
+            this.groupId = groupId;
+
             List<PurposeViewModel> purposes =
                 GroundhogContext.PurposeLogic
-                .Read(windowContext.SelectedGroupId)
+                .Read(groupId)
                 .OrderBy(req => req.Text)
                 .Select(req => new PurposeViewModel(req))
                 .ToList();
@@ -41,14 +44,14 @@ namespace GroundhogWindows
 
             GroundhogContext.PurposeLogic.Update(model);
 
-            LoadPurposes();
+            LoadPurposes(groupId);
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             Purpose model = new Purpose
             {
-                GroupId = windowContext.SelectedGroupId,
+                GroupId = groupId,
                 Text = "",
                 Completed = false
             };
@@ -58,7 +61,7 @@ namespace GroundhogWindows
             if (window.ShowDialog() == true)
             {
                 GroundhogContext.PurposeLogic.Create(window.Purpose);
-                LoadPurposes();
+                LoadPurposes(groupId);
             }
         }
 
@@ -76,7 +79,7 @@ namespace GroundhogWindows
             };
 
             GroundhogContext.PurposeLogic.Create(clone);
-            LoadPurposes();
+            LoadPurposes(groupId);
         }
 
         private void ContextMenuUpdate_Click(object sender, RoutedEventArgs e)
@@ -89,7 +92,7 @@ namespace GroundhogWindows
             if (window.ShowDialog() == true)
             {
                 GroundhogContext.PurposeLogic.Update(window.Purpose);
-                LoadPurposes();
+                LoadPurposes(groupId);
             }
         }
 
@@ -100,7 +103,7 @@ namespace GroundhogWindows
             if (viewModel != null)
             {
                 GroundhogContext.PurposeLogic.Delete(viewModel.Id);
-                LoadPurposes();
+                LoadPurposes(groupId);
             }
         }
     }

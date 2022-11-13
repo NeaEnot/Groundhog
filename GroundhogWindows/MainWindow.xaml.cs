@@ -3,7 +3,6 @@ using Core.Models;
 using System;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -20,15 +19,11 @@ namespace GroundhogWindows
         private SelectNotePage snPage;
         private NotePage nPage;
 
-        internal DateTime SelectedDate => sdPage.SelectedDate;
-        internal string SelectedGroupId => sgPage.SelectedGroup != null ? sgPage.SelectedGroup.Id : "";
-        internal Note SelectedNote => snPage.SelectedNote;
-
-        internal Action LoadTasks;
+        internal Action<DateTime> LoadTasks;
         internal Action LoadPurposeGroups;
-        internal Action LoadPurposes;
+        internal Action<string> LoadPurposes;
         internal Action LoadNotes;
-        internal Action LoadNote;
+        internal Action<Note> LoadNote;
 
         public MainWindow()
         {
@@ -37,11 +32,11 @@ namespace GroundhogWindows
             LoadResources();
 
             sdPage = new SelectDatePage(this);
-            tiPage = new TaskInstancesPage(this);
+            tiPage = new TaskInstancesPage();
             sgPage = new SelectGroupPage(this);
             pPage = new PurposesPage(this);
             snPage = new SelectNotePage(this);
-            nPage = new NotePage(this);
+            nPage = new NotePage();
 
             fDates.Content = sdPage;
             fInstances.Content = tiPage;
@@ -50,7 +45,7 @@ namespace GroundhogWindows
             fNotes.Content = snPage;
             fNote.Content = nPage;
 
-            LoadTasks = tiPage.LoadTasks;
+            LoadTasks = tiPage.LoadTasksInstances;
             LoadPurposeGroups = sgPage.LoadGroups;
             LoadPurposes = pPage.LoadPurposes;
             LoadNotes = snPage.LoadNotes;
@@ -63,7 +58,7 @@ namespace GroundhogWindows
             timer.Elapsed += (sender, e) =>
             {
                 if (DateTime.Now.Date > DateTime.Now.AddMinutes(-minutes).Date)
-                    Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(LoadTasks));
+                    Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(tiPage.LoadTasksInstances));
             };
 
             timer.Start();
@@ -113,12 +108,6 @@ namespace GroundhogWindows
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Load();
 
-                LoadTasks();
-                LoadPurposeGroups();
-                LoadPurposes();
-                LoadNotes();
-                LoadNote();
-
                 RestartWindow();
             }
             catch (Exception ex)
@@ -153,25 +142,6 @@ namespace GroundhogWindows
                 };
 
                 GroundhogContext.NetworkLogic.Connect(f);
-            }
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if ((tc.SelectedItem as TabItem).Header == "Задачи")
-            {
-                sdPage.LoadDates();
-                tiPage.LoadTasks();
-            }
-            if ((tc.SelectedItem as TabItem).Header == "Цели")
-            {
-                sgPage.LoadGroups();
-                pPage.LoadPurposes();
-            }
-            if ((tc.SelectedItem as TabItem).Header == "Заметки")
-            {
-                snPage.LoadNotes();
-                nPage.LoadText();
             }
         }
     }

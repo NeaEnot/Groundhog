@@ -1,7 +1,7 @@
 ﻿using Core;
+using Core.Models;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -10,23 +10,23 @@ namespace GroundhogWindows
 {
     public partial class NotePage : Page
     {
-        private MainWindow windowContext;
+        private Note note;
         private Stack<Label> labels;
 
-        public NotePage(MainWindow windowContext)
+        public NotePage()
         {
             InitializeComponent();
-
-            this.windowContext = windowContext;
 
             labels = new Stack<Label>();
         }
 
-        public void LoadText()
+        public void LoadText(Note note)
         {
-            if (windowContext.SelectedNote != null)
+            this.note = note;
+
+            if (note != null)
             {
-                tbNote.Text = windowContext.SelectedNote.Text;
+                tbNote.Text = note.Text;
                 tbNote.IsEnabled = true;
 
                 btnSave.IsEnabled = true;
@@ -42,13 +42,13 @@ namespace GroundhogWindows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            windowContext.SelectedNote.Text = tbNote.Text;
-            GroundhogContext.NoteLogic.Update(windowContext.SelectedNote);
+            note.Text = tbNote.Text;
+            GroundhogContext.NoteLogic.Update(note);
         }
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Task.Run(() =>
+            System.Threading.Tasks.Task.Run(() =>
             {
                 Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
                 {

@@ -7,7 +7,7 @@ namespace GroundhogWindows
 {
     public partial class SelectDatePage : Page
     {
-        internal DateTime SelectedDate { get; private set; }
+        internal DateTime selectedDate;
 
         private MainWindow contextWindow;
 
@@ -16,7 +16,7 @@ namespace GroundhogWindows
             InitializeComponent();
 
             this.contextWindow = contextWindow;
-            SelectedDate = DateTime.Now;
+            selectedDate = DateTime.Now;
 
             LoadDates();
         }
@@ -26,9 +26,7 @@ namespace GroundhogWindows
             List<DateTime> dates = new List<DateTime>();
 
             for (int i = 0; i < 20; i++)
-            {
                 dates.Add(DateTime.Now.AddDays(i));
-            }
 
             listBoxDates.ItemsSource = dates;
         }
@@ -43,16 +41,16 @@ namespace GroundhogWindows
 
             if (sender is ListBox)
             {
-                SelectedDate = (DateTime)((ListBox)sender).SelectedItem;
+                selectedDate = (DateTime)((ListBox)sender).SelectedItem;
                 calendar.SelectedDate = null;
             }
             if (sender is Calendar)
             {
-                SelectedDate = (DateTime)((Calendar)sender).SelectedDate;
+                selectedDate = (DateTime)((Calendar)sender).SelectedDate;
                 listBoxDates.SelectedIndex = -1;
             }
 
-            contextWindow.LoadTasks();
+            contextWindow.LoadTasks(selectedDate);
 
             selectionChanged = false;
         }

@@ -8,23 +8,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace GroundhogWindows
 {
     public partial class TaskInstancesPage : Page
     {
-        private MainWindow windowContext;
+        private DateTime selectedDate;
 
-        public TaskInstancesPage(MainWindow windowContext)
+        public TaskInstancesPage()
         {
             InitializeComponent();
-
-            this.windowContext = windowContext;
         }
 
-        internal void LoadTasks()
+        internal void LoadTasksInstances()
+            => LoadTasksInstances(selectedDate);
+
+        internal void LoadTasksInstances(DateTime date)
         {
+            selectedDate = date;
+
             DateTimeHelper.FillRepeatedTasks();
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
@@ -36,7 +38,7 @@ namespace GroundhogWindows
 
             List<TaskInstanceViewModel> taskInstances =
                 GroundhogContext.TaskInstanceLogic
-                .Read(windowContext.SelectedDate)
+                .Read(date)
                 .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
@@ -53,7 +55,7 @@ namespace GroundhogWindows
 
             GroundhogContext.TaskInstanceLogic.Update(model);
 
-            LoadTasks();
+            LoadTasksInstances(selectedDate);
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -68,9 +70,9 @@ namespace GroundhogWindows
                         {
                             TaskId = window.Task.Id,
                             Completed = false,
-                            Date = DateTimeHelper.GetDateForTask(window.Task, windowContext.SelectedDate)
+                            Date = DateTimeHelper.GetDateForTask(window.Task, selectedDate)
                         });
-                LoadTasks();
+                LoadTasksInstances(selectedDate);
             }
         }
 
@@ -102,7 +104,7 @@ namespace GroundhogWindows
                             Completed = false,
                             Date = viewModel.Date
                         });
-                LoadTasks();
+                LoadTasksInstances(selectedDate);
             }
         }
 
@@ -123,12 +125,12 @@ namespace GroundhogWindows
                     {
                         List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(window.Task.Id);
                         instances.Sort((a, b) => (a.Date - b.Date).Milliseconds);
-                        List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > windowContext.SelectedDate.Date).ToList();
+                        List<TaskInstance> instancesToDelete = instances.Where(req => req.Date.Date > selectedDate).ToList();
 
                         GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
-                        instances.RemoveAll(req => req.Date.Date > windowContext.SelectedDate.Date);
+                        instances.RemoveAll(req => req.Date.Date > selectedDate);
 
-                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, windowContext.SelectedDate);
+                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate);
 
                         if (window.Task.RepeatMode == RepeatMode.ЧислоМесяца &&
                             instances[0].Date.Date != date.Date)
@@ -147,7 +149,7 @@ namespace GroundhogWindows
 
                     GroundhogContext.TaskLogic.Update(window.Task);
 
-                    LoadTasks();
+                    LoadTasksInstances(selectedDate);
                 }
             }
         }
@@ -159,7 +161,7 @@ namespace GroundhogWindows
             if (viewModel != null)
             {
                 GroundhogContext.TaskInstanceLogic.Delete(viewModel.Id);
-                LoadTasks();
+                LoadTasksInstances(selectedDate);
             }
         }
 
@@ -172,7 +174,7 @@ namespace GroundhogWindows
                 List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(viewModel.TaskId);
                 GroundhogContext.TaskInstanceLogic.Delete(instances.Select(req => req.Id).ToList());
                 GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
-                LoadTasks();
+                LoadTasksInstances(selectedDate);
             }
         }
     }

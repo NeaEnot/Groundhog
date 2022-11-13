@@ -29,7 +29,7 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Name="tc" Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl Name="tc" Grid.Row="1">
             <TabItem Header="Задачи">
                 <Grid>
                     <Grid.ColumnDefinitions>
