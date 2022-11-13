@@ -65,6 +65,13 @@
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}"/>
         </Style>
 
+        <Style TargetType="{x:Type ContextMenu}">
+            <Setter Property="Padding" Value="-1"/>
+            <Setter Property="Margin" Value="-1"/>
+            <Setter Property="Background" Value="{DynamicResource Additional color}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
+        </Style>
+
         <Style TargetType="MenuItem" >
             <Setter Property="Template">
                 <Setter.Value>
@@ -85,6 +92,9 @@
                             </Trigger>
                             <Trigger Property="IsHighlighted" Value="False">
                                 <Setter Property="Background" TargetName="grid" Value="{DynamicResource ResourceKey='Additional color'}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Height" TargetName="grid" Value="0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -609,13 +619,6 @@
                     <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
                 </Trigger>
             </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type ContextMenu}">
-            <Setter Property="Padding" Value="-1"/>
-            <Setter Property="Margin" Value="-1"/>
-            <Setter Property="Background" Value="{DynamicResource Additional color}"/>
-            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
         <Style TargetType="CalendarDayButton" x:Key="CalendarDayButtonStyle">
