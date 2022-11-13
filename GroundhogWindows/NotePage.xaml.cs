@@ -56,7 +56,7 @@ namespace GroundhogWindows
                     for (int i = tbNote.Text.Split('\n').Length; i > 0; i /= 10)
                         n++;
 
-                    numbersColumn.Width = new GridLength(n * 8);
+                    numbersColumn.Width = new GridLength(n > 1 ? n * 8 : 16);
 
                     while (labels.Count < tbNote.Text.Split('\n').Length)
                     {
