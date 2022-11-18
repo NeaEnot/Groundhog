@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Models;
+using GroundhogWindows.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -11,7 +11,7 @@ namespace GroundhogWindows
     public partial class SelectNotePage : Page
     {
         private MainWindow windowContext;
-        private Note selectedNote;
+        private NoteViewModel selectedNote;
         private bool loaded = false;
 
         public SelectNotePage(MainWindow windowContext)
@@ -27,13 +27,13 @@ namespace GroundhogWindows
         {
             loaded = true;
 
-            List<Note> notes =
+            List<NoteViewModel> notes =
                 GroundhogContext.NoteLogic
                 .Read()
                 .OrderBy(req => req.Name)
+                .Select(req => new NoteViewModel(req))
                 .ToList();
 
-            //listBoxNotes.ItemsSource = null;
             listBoxNotes.ItemsSource = notes;
 
             loaded = false;
@@ -47,10 +47,14 @@ namespace GroundhogWindows
             if (loaded)
                 return;
 
-            Note selected = (Note)e.AddedItems[0];
+            NoteViewModel selected = (NoteViewModel)e.AddedItems[0];
 
             if (selected != null)
+            {
+                if (selectedNote != null)
+                    selectedNote.Name = selectedNote.Source.Name;
                 selectedNote = selected;
+            }
 
             windowContext.LoadNote(selectedNote);
         }
@@ -77,18 +81,18 @@ namespace GroundhogWindows
 
         private void UpdateNote()
         {
-            Note note = (Note)listBoxNotes.SelectedItem;
+            NoteViewModel model = (NoteViewModel)listBoxNotes.SelectedItem;
 
-            if (note != null)
+            if (model != null)
             {
-                NoteWindow window = new NoteWindow(note);
+                NoteWindow window = new NoteWindow(model.Source);
                 if (window.ShowDialog() == true)
                 {
                     GroundhogContext.NoteLogic.Update(window.Note);
 
                     if (window.Note.Id == selectedNote.Id)
                     {
-                        selectedNote = window.Note;
+                        selectedNote = new NoteViewModel(window.Note);
                         windowContext.LoadNote(selectedNote);
                     }
 
@@ -99,11 +103,11 @@ namespace GroundhogWindows
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
         {
-            Note note = (Note)listBoxNotes.SelectedItem;
+            NoteViewModel model = (NoteViewModel)listBoxNotes.SelectedItem;
 
-            if (note != null)
+            if (model != null)
             {
-                GroundhogContext.NoteLogic.Delete(note.Id);
+                GroundhogContext.NoteLogic.Delete(model.Id);
 
                 LoadNotes();
             }

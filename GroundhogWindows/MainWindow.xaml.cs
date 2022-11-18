@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Models;
+using GroundhogWindows.Models;
 using System;
 using System.Timers;
 using System.Windows;
@@ -23,7 +23,7 @@ namespace GroundhogWindows
         internal Action LoadPurposeGroups;
         internal Action<string> LoadPurposes;
         internal Action LoadNotes;
-        internal Action<Note> LoadNote;
+        internal Action<NoteViewModel> LoadNote;
 
         public MainWindow()
         {
