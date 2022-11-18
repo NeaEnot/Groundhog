@@ -13,6 +13,8 @@ namespace GroundhogWindows
         private Note note;
         private Stack<Label> labels;
 
+        private string originalText = "";
+
         public NotePage()
         {
             InitializeComponent();
@@ -23,13 +25,12 @@ namespace GroundhogWindows
         public void LoadText(Note note)
         {
             this.note = note;
+            originalText = note.Text;
 
             if (note != null)
             {
                 tbNote.Text = note.Text;
                 tbNote.IsEnabled = true;
-
-                btnSave.IsEnabled = true;
             }
             else
             {
@@ -79,6 +80,8 @@ namespace GroundhogWindows
                     }
                 }));
             });
+
+            btnSave.IsEnabled = tbNote.Text != originalText;
         }
     }
 }
