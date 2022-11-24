@@ -50,11 +50,7 @@ namespace GroundhogWindows
             NoteViewModel selected = (NoteViewModel)e.AddedItems[0];
 
             if (selected != null)
-            {
-                if (selectedNote != null)
-                    selectedNote.Name = selectedNote.Source.Name;
                 selectedNote = selected;
-            }
 
             windowContext.LoadNote(selectedNote);
         }

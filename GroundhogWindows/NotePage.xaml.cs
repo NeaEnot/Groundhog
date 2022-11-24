@@ -12,28 +12,42 @@ namespace GroundhogWindows
     {
         private NoteViewModel note;
         private Stack<Label> labels;
-
-        private string originalText = "";
+        private Dictionary<string, BufferCell> buffer;
 
         internal NotePage()
         {
             InitializeComponent();
 
             labels = new Stack<Label>();
+            buffer = new Dictionary<string, BufferCell>();
         }
 
         internal void LoadText(NoteViewModel note)
         {
-            this.note = note;
-            originalText = note.Text;
+            if (this.note != null)
+                buffer[this.note.Id].CurrentText = tbNote.Text;
 
             if (note != null)
             {
-                tbNote.Text = note.Text;
+                if (buffer.ContainsKey(note.Id))
+                {
+                    this.note = buffer[note.Id].Note;
+                    tbNote.Text = buffer[note.Id].CurrentText;
+                }
+                else
+                {
+                    buffer.Add(note.Id, new BufferCell { Note = note, CurrentText = note.Text });
+
+                    this.note = note;
+                    tbNote.Text = this.note.Text;
+                }
+
                 tbNote.IsEnabled = true;
 
                 tbFind.IsEnabled = true;
                 btnFind.IsEnabled = true;
+
+                btnSave.IsEnabled = tbNote.Text != buffer[note.Id].Note.Text;
             }
             else
             {
@@ -54,7 +68,6 @@ namespace GroundhogWindows
 
             note.Name = note.Source.Name;
             btnSave.IsEnabled = false;
-            originalText = note.Text;
         }
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
@@ -91,8 +104,8 @@ namespace GroundhogWindows
                 }));
             });
 
-            btnSave.IsEnabled = tbNote.Text != originalText;
-            note.Name = tbNote.Text == originalText ? note.Source.Name : note.Source.Name + "*";
+            btnSave.IsEnabled = tbNote.Text != buffer[note.Id].Note.Text;
+            note.Name = tbNote.Text == buffer[note.Id].Note.Text ? note.Source.Name : note.Source.Name + "*";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -115,6 +128,12 @@ namespace GroundhogWindows
             {
                 MessageBox.Show("Указанный текст не найден");
             }
+        }
+
+        private class BufferCell
+        {
+            internal NoteViewModel Note { get; set; }
+            internal string CurrentText { get; set; }
         }
     }
 }
