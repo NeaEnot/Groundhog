@@ -25,7 +25,10 @@ namespace GroundhogWindows
         internal void LoadText(NoteViewModel note)
         {
             if (this.note != null)
+            {
                 buffer[this.note.Id].CurrentText = tbNote.Text;
+                buffer[this.note.Id].Position = svText.VerticalOffset;
+            }
 
             if (note != null)
             {
@@ -33,6 +36,8 @@ namespace GroundhogWindows
                 {
                     this.note = buffer[note.Id].Note;
                     tbNote.Text = buffer[note.Id].CurrentText;
+
+                    svText.ScrollToVerticalOffset(buffer[note.Id].Position);
                 }
                 else
                 {
@@ -40,6 +45,8 @@ namespace GroundhogWindows
 
                     this.note = note;
                     tbNote.Text = this.note.Text;
+
+                    svText.ScrollToHome();
                 }
 
                 tbNote.IsEnabled = true;
@@ -134,6 +141,7 @@ namespace GroundhogWindows
         {
             internal NoteViewModel Note { get; set; }
             internal string CurrentText { get; set; }
+            internal double Position { get; set; }
         }
     }
 }
