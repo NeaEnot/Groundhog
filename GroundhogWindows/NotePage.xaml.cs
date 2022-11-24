@@ -31,11 +31,17 @@ namespace GroundhogWindows
             {
                 tbNote.Text = note.Text;
                 tbNote.IsEnabled = true;
+
+                tbFind.IsEnabled = true;
+                btnFind.IsEnabled = true;
             }
             else
             {
                 tbNote.Text = "";
                 tbNote.IsEnabled = false;
+
+                tbFind.IsEnabled = false;
+                btnFind.IsEnabled = false;
 
                 btnSave.IsEnabled = false;
             }
@@ -87,6 +93,28 @@ namespace GroundhogWindows
 
             btnSave.IsEnabled = tbNote.Text != originalText;
             note.Name = tbNote.Text == originalText ? note.Source.Name : note.Source.Name + "*";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string find = tbFind.Text;
+            string text = tbNote.Text;
+
+            int index = text.IndexOf(find, tbNote.CaretIndex + 1);
+
+            if (index == -1)
+                index = text.IndexOf(find);
+
+            if (index != -1)
+            {
+                tbNote.Focus();
+                tbNote.CaretIndex = index;
+                tbNote.Select(index, find.Length);
+            }
+            else
+            {
+                MessageBox.Show("Указанный текст не найден");
+            }
         }
     }
 }
