@@ -12,23 +12,20 @@ namespace GroundhogWindows
     {
         private NoteViewModel note;
         private Stack<Label> labels;
-        private Dictionary<string, BufferCell> buffer;
+        private Dictionary<string, NoteCell> buffer;
 
         internal NotePage()
         {
             InitializeComponent();
 
             labels = new Stack<Label>();
-            buffer = new Dictionary<string, BufferCell>();
+            buffer = new Dictionary<string, NoteCell>();
         }
 
         internal void LoadText(NoteViewModel note)
         {
             if (this.note != null)
-            {
-                buffer[this.note.Id].CurrentText = tbNote.Text;
                 buffer[this.note.Id].Position = svText.VerticalOffset;
-            }
 
             if (note != null)
             {
@@ -41,7 +38,7 @@ namespace GroundhogWindows
                 }
                 else
                 {
-                    buffer.Add(note.Id, new BufferCell { Note = note, CurrentText = note.Text });
+                    buffer.Add(note.Id, new NoteCell(note));
 
                     this.note = note;
                     tbNote.Text = this.note.Text;
@@ -111,11 +108,13 @@ namespace GroundhogWindows
                 }));
             });
 
-            btnSave.IsEnabled = tbNote.Text != buffer[note.Id].Note.Text;
-            note.Name = tbNote.Text == buffer[note.Id].Note.Text ? note.Source.Name : note.Source.Name + "*";
+            buffer[note.Id].CurrentText = tbNote.Text;
+
+            btnSave.IsEnabled = !buffer[note.Id].CanRedo;
+            note.Name = buffer[note.Id].CanRedo ? note.Source.Name + "*" : note.Source.Name;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             string find = tbFind.Text;
             string text = tbNote.Text;
@@ -135,13 +134,6 @@ namespace GroundhogWindows
             {
                 MessageBox.Show("Указанный текст не найден");
             }
-        }
-
-        private class BufferCell
-        {
-            internal NoteViewModel Note { get; set; }
-            internal string CurrentText { get; set; }
-            internal double Position { get; set; }
         }
     }
 }
