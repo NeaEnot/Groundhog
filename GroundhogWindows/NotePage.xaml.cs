@@ -1,9 +1,12 @@
 ﻿using Core;
 using GroundhogWindows.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace GroundhogWindows
@@ -14,12 +17,69 @@ namespace GroundhogWindows
         private Stack<Label> labels;
         private Dictionary<string, NoteCell> buffer;
 
+        private bool doundo = false;
+
         internal NotePage()
         {
             InitializeComponent();
 
             labels = new Stack<Label>();
             buffer = new Dictionary<string, NoteCell>();
+
+            Action<TextBox> redirectUndoRedo = new Action<TextBox>((element) =>
+            {
+                CommandManager.AddPreviewCanExecuteHandler(
+                    element,
+                    new CanExecuteRoutedEventHandler((sender, eventArgs) => {
+                        if (eventArgs.Command == ApplicationCommands.Undo ||
+                            eventArgs.Command == ApplicationCommands.Redo)
+                        {
+                            eventArgs.CanExecute = true;
+                        }
+                    }));
+                CommandManager.AddPreviewExecutedHandler(
+                    element,
+                    new ExecutedRoutedEventHandler((sender, eventArgs) => {
+                        if (note != null)
+                        {
+                            doundo = true;
+
+                            if (eventArgs.Command == ApplicationCommands.Undo ||
+                                eventArgs.Command == ApplicationCommands.Redo)
+                                eventArgs.Handled = true;
+                            if (eventArgs.Command == ApplicationCommands.Undo)
+                            {
+                                if (buffer[note.Id].CanUndo)
+                                {
+                                    int carretIndex = element.CaretIndex;
+
+                                    buffer[note.Id].Redo();
+                                    tbNote.Text = buffer[note.Id].CurrentText;
+
+                                    element.CaretIndex = carretIndex;
+                                }
+
+                                eventArgs.Handled = true;
+                            }
+                            else if (eventArgs.Command == ApplicationCommands.Redo)
+                            {
+                                if (buffer[note.Id].CanDo)
+                                {
+                                    int carretIndex = element.CaretIndex;
+
+                                    buffer[note.Id].Do();
+                                    tbNote.Text = buffer[note.Id].CurrentText;
+
+                                    element.CaretIndex = carretIndex;
+                                }
+                            }
+
+                            doundo = false;
+                        }
+                    }));
+            });
+
+            redirectUndoRedo(tbNote);
         }
 
         internal void LoadText(NoteViewModel note)
@@ -108,10 +168,11 @@ namespace GroundhogWindows
                 }));
             });
 
-            buffer[note.Id].CurrentText = tbNote.Text;
+            if (!doundo)
+                buffer[note.Id].CurrentText = tbNote.Text;
 
-            btnSave.IsEnabled = !buffer[note.Id].CanRedo;
-            note.Name = buffer[note.Id].CanRedo ? note.Source.Name + "*" : note.Source.Name;
+            btnSave.IsEnabled = buffer[note.Id].CanUndo;
+            note.Name = buffer[note.Id].CanUndo ? note.Source.Name + "*" : note.Source.Name;
         }
 
         private void btnFind_Click(object sender, RoutedEventArgs e)

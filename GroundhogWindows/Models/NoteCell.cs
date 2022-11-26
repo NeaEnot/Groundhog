@@ -14,21 +14,21 @@ namespace GroundhogWindows.Models
                 if (value == currentText)
                     return;
 
-                if (redoedStates.Count > 0)
-                    redoedStates.Clear();
+                if (undoedStates.Count > 0)
+                    undoedStates.Clear();
 
-                currentText = value;
                 states.Push(currentText);
+                currentText = value;
             }
         }
 
-        internal bool CanDo => redoedStates.Count > 0;
-        internal bool CanRedo => states.Count > 1;
+        internal bool CanDo => undoedStates.Count > 0;
+        internal bool CanUndo => states.Count > 0;
 
         private string currentText;
 
         private Stack<string> states;
-        private Stack<string> redoedStates;
+        private Stack<string> undoedStates;
 
         internal NoteCell(NoteViewModel note)
         {
@@ -36,20 +36,18 @@ namespace GroundhogWindows.Models
             currentText = note.Text;
 
             states = new Stack<string>();
-            redoedStates = new Stack<string>();
-
-            states.Push(currentText);
+            undoedStates = new Stack<string>();
         }
 
         internal void Do()
         {
-            currentText = redoedStates.Pop();
             states.Push(currentText);
+            currentText = undoedStates.Pop();
         }
 
         internal void Redo()
         {
-            redoedStates.Push(currentText);
+            undoedStates.Push(currentText);
             currentText = states.Pop();
         }
     }

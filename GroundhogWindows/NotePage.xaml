@@ -26,7 +26,7 @@
                 <VirtualizingStackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0" Margin="0"/>
 
                 <ScrollViewer Name="svText" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Column="1">
-                    <TextBox Margin="0,-1,0,-1" Name="tbNote" IsUndoEnabled="False" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="NoWrap" AcceptsReturn="True"/>
+                    <TextBox Margin="0,-1,0,-1" Name="tbNote" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="NoWrap" AcceptsReturn="True"/>
                 </ScrollViewer>
             </Grid>
         </ScrollViewer>
