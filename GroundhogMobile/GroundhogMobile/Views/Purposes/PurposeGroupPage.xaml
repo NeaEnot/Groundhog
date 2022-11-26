@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.Views.Purposes.PurposeGroupPage"
+             BackgroundColor="{DynamicResource Main color}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="textEntryGroup" Placeholder="Название группы" FontSize="20" Text="{Binding Name}" Margin="10, 20"/>
+            <Button Text="Сохранить" FontSize="20" Margin="10, 20" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

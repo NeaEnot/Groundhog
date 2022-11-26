@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="GroundhogMobile.Views.Services.CommandPage"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 NavigationPage.HasNavigationBar="False">
+
+    <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{DynamicResource Additional color}" Margin="20" Padding="20">
+
+        <FlexLayout Direction="Column">
+            <Label x:Name="lblTitle" FontSize="20" TextColor="{DynamicResource Main text}" FlexLayout.Basis="7%" LineBreakMode="TailTruncation" Margin="10, 10, 10, 10"/>
+            <ScrollView FlexLayout.Basis="83%">
+                <ListView x:Name="list" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="None" ItemTapped="list_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Label Text="{Binding}"
+                                           FontSize="20"
+                                           TextColor="{DynamicResource Main text}"
+                                           Margin="0, 15, 0, 15"/>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <Button Text="Отмена" FontSize="20" FlexLayout.Basis="10%" Clicked="Button_Clicked"/>
+        </FlexLayout>
+
+    </Frame>
+
+</pages:PopupPage>

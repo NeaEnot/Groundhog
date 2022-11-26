@@ -34,58 +34,58 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CommandPage.xaml.cs">
+    <Compile Update="Views\Services\CommandPage.xaml.cs">
       <DependentUpon>CommandPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CalendarPage.xaml">
+    <EmbeddedResource Update="Views\Tasks\CalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="CodePage.xaml">
+    <EmbeddedResource Update="Views\Services\CodePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ColorsPage.xaml">
+    <EmbeddedResource Update="Views\Settings\ColorsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ConnectionPage.xaml">
+    <EmbeddedResource Update="Views\Settings\ConnectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DatesListPage.xaml">
+    <EmbeddedResource Update="Views\Tasks\DatesListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="CommandPage.xaml">
+    <EmbeddedResource Update="Views\Services\CommandPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="NotePage.xaml">
+    <EmbeddedResource Update="Views\Notes\NotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="NotesPage.xaml">
+    <EmbeddedResource Update="Views\Notes\NotesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PlanningPage.xaml">
+    <EmbeddedResource Update="Views\Settings\PlanningPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PurposeGroupPage.xaml">
+    <EmbeddedResource Update="Views\Purposes\PurposeGroupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PurposeGroupsPage.xaml">
+    <EmbeddedResource Update="Views\Purposes\PurposeGroupsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PurposePage.xaml">
+    <EmbeddedResource Update="Views\Purposes\PurposePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PurposesPage.xaml">
+    <EmbeddedResource Update="Views\Purposes\PurposesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SettingsPage.xaml">
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TaskPage.xaml">
+    <EmbeddedResource Update="Views\Tasks\TaskPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TasksPage.xaml">
+    <EmbeddedResource Update="Views\Tasks\TasksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

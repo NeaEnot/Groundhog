@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tasks="clr-namespace:GroundhogMobile.Views.Tasks;assembly=Groundhog"
+             xmlns:purposes="clr-namespace:GroundhogMobile.Views.Purposes;assembly=Groundhog"
+             xmlns:notes="clr-namespace:GroundhogMobile.Views.Notes;assembly=Groundhog"
+             xmlns:settings="clr-namespace:GroundhogMobile.Views.Settings;assembly=Groundhog"
+             x:Class="GroundhogMobile.Views.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             BarBackgroundColor="{DynamicResource Additional color}"
+             BarTextColor="{DynamicResource Main text}">
+
+    <TabbedPage.Children>
+        <TabbedPage Title="Задачи">
+            <tasks:DatesListPage Title="Список дат"/>
+            <tasks:CalendarPage Title="Календарь"/>
+        </TabbedPage>
+        <purposes:PurposeGroupsPage Title="Цели"/>
+        <notes:NotesPage Title="Заметки"/>
+        <settings:SettingsPage Title="Настройки"/>
+    </TabbedPage.Children>
+
+</TabbedPage>

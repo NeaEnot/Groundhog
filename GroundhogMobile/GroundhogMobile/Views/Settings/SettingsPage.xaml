@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.Views.Settings.SettingsPage"
+             BackgroundColor="{DynamicResource Main color}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout x:Name="layout" VerticalOptions="Center">
+            <Button Text="Строка подключения" FontSize="20" Clicked="ButtonConnectString_Clicked"/>
+            <Button Text="Планирование" FontSize="20" Clicked="ButtonPlanning_Clicked"/>
+            <Button Text="Цветовая схема" FontSize="20" Clicked="ButtonColors_Clicked"/>
+            <Button Text="Загрузить" FontSize="20" Clicked="ButtonLoad_Clicked"/>
+            <Button Text="Отправить" FontSize="20" Clicked="ButtonSend_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

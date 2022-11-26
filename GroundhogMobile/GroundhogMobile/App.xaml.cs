@@ -1,4 +1,5 @@
 ﻿using Core;
+using GroundhogMobile.Views;
 using StorageFile.Implements;
 using System.Collections.Generic;
 using System.Linq;
