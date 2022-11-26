@@ -2,6 +2,7 @@
 using GroundhogWindows.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,26 +52,26 @@ namespace GroundhogWindows
                             {
                                 if (buffer[note.Id].CanUndo)
                                 {
-                                    int carretIndex = element.CaretIndex;
+                                    int currentCaretIndex = element.CaretIndex;
 
-                                    buffer[note.Id].Redo();
+                                    int? caretIndex = buffer[note.Id].Undo();
                                     tbNote.Text = buffer[note.Id].CurrentText;
 
-                                    element.CaretIndex = carretIndex;
+                                    element.CaretIndex = caretIndex ?? currentCaretIndex;
                                 }
 
                                 eventArgs.Handled = true;
                             }
                             else if (eventArgs.Command == ApplicationCommands.Redo)
                             {
-                                if (buffer[note.Id].CanDo)
+                                if (buffer[note.Id].CanRedo)
                                 {
-                                    int carretIndex = element.CaretIndex;
+                                    int currentCaretIndex = element.CaretIndex;
 
-                                    buffer[note.Id].Do();
+                                    int? caretIndex = buffer[note.Id].Redo();
                                     tbNote.Text = buffer[note.Id].CurrentText;
 
-                                    element.CaretIndex = carretIndex;
+                                    element.CaretIndex = caretIndex ?? currentCaretIndex;
                                 }
                             }
 

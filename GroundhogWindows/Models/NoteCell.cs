@@ -25,7 +25,7 @@ namespace GroundhogWindows.Models
             }
         }
 
-        internal bool CanDo => undoedStates.Count > 0;
+        internal bool CanRedo => undoedStates.Count > 0;
         internal bool CanUndo => states.Count > 0;
         internal bool IsSaved => states.Count == savedIndex;
 
@@ -44,21 +44,79 @@ namespace GroundhogWindows.Models
             undoedStates = new Stack<string>();
         }
 
-        internal void Do()
+        internal int? Redo()
         {
+            string stored = currentText;
+
             states.Push(currentText);
             currentText = undoedStates.Pop();
+
+            return FirstOccurence(stored, currentText);
         }
 
-        internal void Redo()
+        internal int? Undo()
         {
+            string stored = currentText;
+
             undoedStates.Push(currentText);
             currentText = states.Pop();
+
+            return FirstOccurence(stored, currentText);
         }
 
         internal void Save()
         {
             savedIndex = states.Count;
+        }
+
+        private static int? FirstOccurence(string str1, string str2)
+        {
+            if (ReferenceEquals(str1, str2))
+                return null;
+
+            int? startIndex = null;
+            int? endIndex = null;
+
+            for (int i = 0; i < str1.Length && i < str2.Length; i++)
+            {
+                if (str1[i] != str2[i])
+                {
+                    startIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 1; str1.Length - i >= 0 && str2.Length - i >= 0; i++)
+            {
+                if (str1[str1.Length - i] != str2[str2.Length - i])
+                {
+                    endIndex = str1.Length - i;
+                    break;
+                }
+            }
+
+            if (startIndex == null && endIndex == null)
+                return null;
+            if (startIndex == null && endIndex != null)
+                return str2.Length;
+            if (startIndex != null && endIndex == null)
+            {
+                if (str1.Length > str2.Length)
+                    return startIndex;
+                else
+                    return str2.Length - str1.Length;
+            }
+            if (startIndex != null && endIndex != null)
+            {
+                if (str1.Length > str2.Length)
+                    return startIndex;
+                else if (str1.Length < str2.Length)
+                    return str2.Length - str1.Length + startIndex;
+                else
+                    return startIndex + 1;
+            }
+
+            return null;
         }
     }
 }
