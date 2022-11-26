@@ -85,7 +85,12 @@ namespace GroundhogWindows
         internal void LoadText(NoteViewModel note)
         {
             if (this.note != null)
-                buffer[this.note.Id].Position = svText.VerticalOffset;
+            {
+                if (buffer[this.note.Id].IsSaved)
+                    buffer.Remove(this.note.Id);
+                else
+                    buffer[this.note.Id].Position = svText.VerticalOffset;
+            }
 
             if (note != null)
             {
@@ -132,6 +137,8 @@ namespace GroundhogWindows
 
             note.Name = note.Source.Name;
             btnSave.IsEnabled = false;
+
+            buffer[note.Id].Save();
         }
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
@@ -171,8 +178,8 @@ namespace GroundhogWindows
             if (!doundo)
                 buffer[note.Id].CurrentText = tbNote.Text;
 
-            btnSave.IsEnabled = buffer[note.Id].CanUndo;
-            note.Name = buffer[note.Id].CanUndo ? note.Source.Name + "*" : note.Source.Name;
+            btnSave.IsEnabled = !buffer[note.Id].IsSaved;
+            note.Name = buffer[note.Id].IsSaved ? note.Source.Name : note.Source.Name + "*";
         }
 
         private void btnFind_Click(object sender, RoutedEventArgs e)

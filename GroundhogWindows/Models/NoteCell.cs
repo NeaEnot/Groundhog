@@ -17,6 +17,9 @@ namespace GroundhogWindows.Models
                 if (undoedStates.Count > 0)
                     undoedStates.Clear();
 
+                if (savedIndex > states.Count)
+                    savedIndex = -1;
+
                 states.Push(currentText);
                 currentText = value;
             }
@@ -24,8 +27,10 @@ namespace GroundhogWindows.Models
 
         internal bool CanDo => undoedStates.Count > 0;
         internal bool CanUndo => states.Count > 0;
+        internal bool IsSaved => states.Count == savedIndex;
 
         private string currentText;
+        private int savedIndex = 0;
 
         private Stack<string> states;
         private Stack<string> undoedStates;
@@ -49,6 +54,11 @@ namespace GroundhogWindows.Models
         {
             undoedStates.Push(currentText);
             currentText = states.Pop();
+        }
+
+        internal void Save()
+        {
+            savedIndex = states.Count;
         }
     }
 }
