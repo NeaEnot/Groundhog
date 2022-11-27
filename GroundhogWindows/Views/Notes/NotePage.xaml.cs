@@ -13,7 +13,6 @@ namespace GroundhogWindows.Views.Notes
     public partial class NotePage : Page
     {
         private NoteViewModel note;
-        private Stack<Label> labels;
         private Dictionary<string, NoteCell> buffer;
 
         private bool doundo = false;
@@ -21,14 +20,12 @@ namespace GroundhogWindows.Views.Notes
         internal NotePage()
         {
             InitializeComponent();
+            frNumbers.Content = new LineNumberingPage();
 
-            labels = new Stack<Label>();
             buffer = new Dictionary<string, NoteCell>();
 
-            Action<TextBox> redirectUndoRedo = new Action<TextBox>((element) =>
-            {
-                CommandManager.AddPreviewCanExecuteHandler(
-                    element,
+            CommandManager.AddPreviewCanExecuteHandler(
+                    tbNote,
                     new CanExecuteRoutedEventHandler((sender, eventArgs) => {
                         if (eventArgs.Command == ApplicationCommands.Undo ||
                             eventArgs.Command == ApplicationCommands.Redo)
@@ -36,49 +33,46 @@ namespace GroundhogWindows.Views.Notes
                             eventArgs.CanExecute = true;
                         }
                     }));
-                CommandManager.AddPreviewExecutedHandler(
-                    element,
-                    new ExecutedRoutedEventHandler((sender, eventArgs) => {
-                        if (note != null)
+            CommandManager.AddPreviewExecutedHandler(
+                tbNote,
+                new ExecutedRoutedEventHandler((sender, eventArgs) => {
+                    if (note != null)
+                    {
+                        doundo = true;
+
+                        if (eventArgs.Command == ApplicationCommands.Undo ||
+                            eventArgs.Command == ApplicationCommands.Redo)
+                            eventArgs.Handled = true;
+                        if (eventArgs.Command == ApplicationCommands.Undo)
                         {
-                            doundo = true;
-
-                            if (eventArgs.Command == ApplicationCommands.Undo ||
-                                eventArgs.Command == ApplicationCommands.Redo)
-                                eventArgs.Handled = true;
-                            if (eventArgs.Command == ApplicationCommands.Undo)
+                            if (buffer[note.Id].CanUndo)
                             {
-                                if (buffer[note.Id].CanUndo)
-                                {
-                                    int currentCaretIndex = element.CaretIndex;
+                                int currentCaretIndex = tbNote.CaretIndex;
 
-                                    int? caretIndex = buffer[note.Id].Undo();
-                                    tbNote.Text = buffer[note.Id].CurrentText;
+                                int? caretIndex = buffer[note.Id].Undo();
+                                tbNote.Text = buffer[note.Id].CurrentText;
 
-                                    element.CaretIndex = caretIndex ?? currentCaretIndex;
-                                }
-
-                                eventArgs.Handled = true;
-                            }
-                            else if (eventArgs.Command == ApplicationCommands.Redo)
-                            {
-                                if (buffer[note.Id].CanRedo)
-                                {
-                                    int currentCaretIndex = element.CaretIndex;
-
-                                    int? caretIndex = buffer[note.Id].Redo();
-                                    tbNote.Text = buffer[note.Id].CurrentText;
-
-                                    element.CaretIndex = caretIndex ?? currentCaretIndex;
-                                }
+                                tbNote.CaretIndex = caretIndex ?? currentCaretIndex;
                             }
 
-                            doundo = false;
+                            eventArgs.Handled = true;
                         }
-                    }));
-            });
+                        else if (eventArgs.Command == ApplicationCommands.Redo)
+                        {
+                            if (buffer[note.Id].CanRedo)
+                            {
+                                int currentCaretIndex = tbNote.CaretIndex;
 
-            redirectUndoRedo(tbNote);
+                                int? caretIndex = buffer[note.Id].Redo();
+                                tbNote.Text = buffer[note.Id].CurrentText;
+
+                                tbNote.CaretIndex = caretIndex ?? currentCaretIndex;
+                            }
+                        }
+
+                        doundo = false;
+                    }
+                }));
         }
 
         internal void LoadText(NoteViewModel note)
@@ -142,37 +136,7 @@ namespace GroundhogWindows.Views.Notes
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
-            System.Threading.Tasks.Task.Run(() =>
-            {
-                Dispatcher.BeginInvoke(DispatcherPriority.Input, new ThreadStart(() =>
-                {
-                    int n = 0;
-                    for (int i = tbNote.Text.Split('\n').Length; i > 0; i /= 10)
-                        n++;
-
-                    numbersColumn.Width = new GridLength(n > 1 ? n * 8 : 16);
-
-                    while (labels.Count < tbNote.Text.Split('\n').Length)
-                    {
-                        Label label = new Label
-                        {
-                            Content = labels.Count + 1,
-                            HorizontalAlignment = HorizontalAlignment.Right,
-                            Padding = new Thickness(0, 0.66335, 4, 0),
-                            FontSize = 11.5
-                        };
-
-                        labels.Push(label);
-                        spNumbers.Children.Add(label);
-                    }
-
-                    while (labels.Count > tbNote.Text.Split('\n').Length)
-                    {
-                        Label label = labels.Pop();
-                        spNumbers.Children.Remove(label);
-                    }
-                }));
-            });
+            (frNumbers.Content as LineNumberingPage).GenerateNumbering(tbNote.Text.Split('\n').Length);
 
             if (!doundo)
                 buffer[note.Id].CurrentText = tbNote.Text;

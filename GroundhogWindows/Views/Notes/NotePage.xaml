@@ -19,11 +19,11 @@
         <ScrollViewer Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Name="numbersColumn" Width="10px"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <VirtualizingStackPanel Name="spNumbers" Orientation="Vertical" Grid.Column="0" Margin="0"/>
+                <Frame Grid.Column="0" Margin="0" Name="frNumbers"/>
 
                 <ScrollViewer Name="svText" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Column="1">
                     <TextBox Margin="0,-1,0,-1" Name="tbNote" IsEnabled="False" TextChanged="tbNote_TextChanged" TextWrapping="NoWrap" AcceptsReturn="True"/>
