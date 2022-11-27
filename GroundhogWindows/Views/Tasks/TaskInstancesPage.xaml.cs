@@ -138,12 +138,12 @@ namespace GroundhogWindows.Views.Tasks
                             GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
 
                             GroundhogContext.TaskInstanceLogic
-                                    .Create(new TaskInstance
-                                    {
-                                        TaskId = window.Task.Id,
-                                        Completed = false,
-                                        Date = date
-                                    });
+                                .Create(new TaskInstance
+                                {
+                                    TaskId = window.Task.Id,
+                                    Completed = false,
+                                    Date = date
+                                });
                         }
                     }
 
