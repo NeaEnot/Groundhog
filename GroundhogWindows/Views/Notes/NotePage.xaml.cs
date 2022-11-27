@@ -1,12 +1,9 @@
 ﻿using Core;
 using GroundhogWindows.Models;
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace GroundhogWindows.Views.Notes
 {
@@ -38,21 +35,24 @@ namespace GroundhogWindows.Views.Notes
                 new ExecutedRoutedEventHandler((sender, eventArgs) => {
                     if (note != null)
                     {
-                        doundo = true;
-
                         if (eventArgs.Command == ApplicationCommands.Undo ||
-                            eventArgs.Command == ApplicationCommands.Redo)
+                            eventArgs.Command == ApplicationCommands.Redo ||
+                            eventArgs.Command == ApplicationCommands.Find)
                             eventArgs.Handled = true;
                         if (eventArgs.Command == ApplicationCommands.Undo)
                         {
                             if (buffer[note.Id].CanUndo)
                             {
+                                doundo = true;
+
                                 int currentCaretIndex = tbNote.CaretIndex;
 
                                 int? caretIndex = buffer[note.Id].Undo();
                                 tbNote.Text = buffer[note.Id].CurrentText;
 
                                 tbNote.CaretIndex = caretIndex ?? currentCaretIndex;
+
+                                doundo = false;
                             }
 
                             eventArgs.Handled = true;
@@ -61,16 +61,22 @@ namespace GroundhogWindows.Views.Notes
                         {
                             if (buffer[note.Id].CanRedo)
                             {
+                                doundo = true;
+
                                 int currentCaretIndex = tbNote.CaretIndex;
 
                                 int? caretIndex = buffer[note.Id].Redo();
                                 tbNote.Text = buffer[note.Id].CurrentText;
 
                                 tbNote.CaretIndex = caretIndex ?? currentCaretIndex;
+
+                                doundo = false;
                             }
                         }
-
-                        doundo = false;
+                        else if (eventArgs.Command == ApplicationCommands.Find)
+                        {
+                            tbFind.Focus();
+                        }
                     }
                 }));
         }
@@ -82,17 +88,19 @@ namespace GroundhogWindows.Views.Notes
                 if (buffer[this.note.Id].IsSaved)
                     buffer.Remove(this.note.Id);
                 else
-                    buffer[this.note.Id].Position = svText.VerticalOffset;
+                    buffer[this.note.Id].Position = tbNote.CaretIndex;
             }
 
             if (note != null)
             {
+                tbNote.Focus();
+
                 if (buffer.ContainsKey(note.Id))
                 {
                     this.note = buffer[note.Id].Note;
                     tbNote.Text = buffer[note.Id].CurrentText;
 
-                    svText.ScrollToVerticalOffset(buffer[note.Id].Position);
+                    tbNote.CaretIndex = buffer[this.note.Id].Position;
                 }
                 else
                 {
@@ -101,7 +109,7 @@ namespace GroundhogWindows.Views.Notes
                     this.note = note;
                     tbNote.Text = this.note.Text;
 
-                    svText.ScrollToHome();
+                    tbNote.CaretIndex = 0;
                 }
 
                 tbNote.IsEnabled = true;
@@ -109,7 +117,7 @@ namespace GroundhogWindows.Views.Notes
                 tbFind.IsEnabled = true;
                 btnFind.IsEnabled = true;
 
-                btnSave.IsEnabled = tbNote.Text != buffer[note.Id].Note.Text;
+                btnSave.IsEnabled = !buffer[note.Id].IsSaved;
             }
             else
             {

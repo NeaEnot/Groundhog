@@ -5,7 +5,7 @@ namespace GroundhogWindows.Models
     internal class NoteCell
     {
         internal NoteViewModel Note { get; set; }
-        internal double Position { get; set; }
+        internal int Position { get; set; }
         internal string CurrentText
         {
             get => currentText;
