@@ -12,7 +12,7 @@ namespace Core.DateTimeHelpers
         {
             { RepeatMode.Нет, new NotHelper() },
             { RepeatMode.Дни, new DaysHelper() },
-            { RepeatMode.ЧислоМесяца, new DayOfMounthHelper() },
+            { RepeatMode.ЧислоМесяца, new DayOfMonthHelper() },
             { RepeatMode.ДеньГода, new DayOfYearHelper() },
             { RepeatMode.ДниНедели, new DaysOfWeekHelper() },
             { RepeatMode.Вахты, new WatchesHelper() }

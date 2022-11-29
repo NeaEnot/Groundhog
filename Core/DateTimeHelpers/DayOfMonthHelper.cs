@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Core.DateTimeHelpers
 {
-    class DayOfMounthHelper : IDTHelper
+    class DayOfMonthHelper : IDTHelper
     {
         public void CheckIsValueCorrect(string text)
         {
