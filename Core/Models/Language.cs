@@ -1,4 +1,8 @@
-﻿namespace Core.Models
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace Core.Models
 {
     public class Language
     {
@@ -15,7 +19,7 @@
         public string Task { get; set; }
         public string RepeatMode { get; set; }
         public string TransferTaskToNextDay { get; set; }
-        public string OffsetNextInstances { get; set; }
+        public string OffsetNextTasks { get; set; }
         public string PlanningRange { get; set; }
         public string OptimizationRange { get; set; }
         public string Save { get; set; }
@@ -47,5 +51,70 @@
         public string GroupName { get; set; }
         public string Note { get; set; }
         public string NoteName { get; set; }
+
+        internal static Language ReadFromFile(string path)
+        {
+            string[] lines = File.ReadAllLines(path);
+
+            IEnumerable<KeyValuePair<string, string>> pairs =
+                lines
+                .Where(req => !req.StartsWith("#"))
+                .Select(req => new KeyValuePair<string, string>(req.Split('=')[0], req.Split('=')[1]));
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, string> pair in pairs)
+                dict.Add(pair.Key, pair.Value);
+
+            Language language = new Language
+            {
+                Settings = dict["Settings"],
+                ConnectionString = dict["ConnectionString"],
+                PlanningAndOptimizationRange = dict["PlanningAndOptimizationRange"],
+                ColorSchema = dict["ColorSchema"],
+                Syncronization = dict["Syncronization"],
+                Download = dict["Download"],
+                Upload = dict["Upload"],
+                Tasks = dict["Tasks"],
+                Purposes = dict["Purposes"],
+                Notes = dict["Notes"],
+                Task = dict["Task"],
+                RepeatMode = dict["RepeatMode"],
+                TransferTaskToNextDay = dict["TransferTaskToNextDay"],
+                OffsetNextTasks = dict["OffsetNextTasks"],
+                PlanningRange = dict["PlanningRange"],
+                OptimizationRange = dict["OptimizationRange"],
+                Save = dict["Save"],
+                Duplicate = dict["Duplicate"],
+                Update = dict["Update"],
+                Delete = dict["Delete"],
+                DeleteAllInstances = dict["DeleteAllInstances"],
+                List = dict["List"],
+                Calendar = dict["Calendar"],
+                DaysPlanning = dict["DaysPlanning"],
+                DaysOfWeekPlanning = dict["DaysOfWeekPlanning"],
+                WatchesPlanning = dict["WatchesPlanning"],
+                DaysOfMonthPlanning = dict["DaysOfMonthPlanning"],
+                DaysOfYearPlanning = dict["DaysOfYearPlanning"],
+                Optimization = dict["Optimization"],
+                MainColor = dict["MainColor"],
+                AditionalColor = dict["AditionalColor"],
+                MainText = dict["MainText"],
+                AditionalText = dict["AditionalText"],
+                SelectedItem = dict["SelectedItem"],
+                SelectedItemInactive = dict["SelectedItemInactive"],
+                ChosenItem = dict["ChosenItem"],
+                StandartSchema = dict["StandartSchema"],
+                EnterCode = dict["EnterCode"],
+                Send = dict["Send"],
+                Create = dict["Create"],
+                Purpose = dict["Purpose"],
+                PurposesGroup = dict["PurposesGroup"],
+                GroupName = dict["GroupName"],
+                Note = dict["Note"],
+                NoteName = dict["NoteName"]
+            };
+
+            return language;
+        }
     }
 }
