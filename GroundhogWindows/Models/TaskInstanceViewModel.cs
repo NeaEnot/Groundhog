@@ -14,7 +14,7 @@ namespace GroundhogWindows.Models
         public bool Completed { get; set; }
 
         public string Text => task.Text;
-        public bool Repeated => task.RepeatMode != RepeatMode.Нет;
+        public bool Repeated => task.RepeatMode != RepeatMode.None;
 
         public string TextColor => Completed ? App.Current.Resources["Additional text"].ToString() : App.Current.Resources["Main text"].ToString();
         public string TextDecorations => Completed ? "Strikethrough" : "None";

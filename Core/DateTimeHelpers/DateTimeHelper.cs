@@ -10,12 +10,12 @@ namespace Core.DateTimeHelpers
     {
         private static readonly Dictionary<RepeatMode, IDTHelper> helpers = new Dictionary<RepeatMode, IDTHelper>()
         {
-            { RepeatMode.Нет, new NotHelper() },
-            { RepeatMode.Дни, new DaysHelper() },
-            { RepeatMode.ЧислоМесяца, new DayOfMonthHelper() },
-            { RepeatMode.ДеньГода, new DayOfYearHelper() },
-            { RepeatMode.ДниНедели, new DaysOfWeekHelper() },
-            { RepeatMode.Вахты, new WatchesHelper() }
+            { RepeatMode.None, new NotHelper() },
+            { RepeatMode.Days, new DaysHelper() },
+            { RepeatMode.DayOfMonth, new DayOfMonthHelper() },
+            { RepeatMode.DayOfYear, new DayOfYearHelper() },
+            { RepeatMode.DaysOfWeek, new DaysOfWeekHelper() },
+            { RepeatMode.Wathes, new WatchesHelper() }
         };
 
         public static void FillRepeatedTasks()
@@ -45,7 +45,7 @@ namespace Core.DateTimeHelpers
                     .ToList();
                 models.AddRange(instances);
 
-                if (task.RepeatMode == RepeatMode.Нет && instances.Count == 1)
+                if (task.RepeatMode == RepeatMode.None && instances.Count == 1)
                     tasksToDelete.Add(task);
             }
 

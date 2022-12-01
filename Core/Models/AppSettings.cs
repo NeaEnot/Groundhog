@@ -15,12 +15,12 @@ namespace Core.Models
         {
             PlanningRanges = new Dictionary<RepeatMode, int>
             {
-                { RepeatMode.Нет, 0 },
-                { RepeatMode.Дни, 100 },
-                { RepeatMode.ЧислоМесяца, 366 },
-                { RepeatMode.ДеньГода, 3660 },
-                { RepeatMode.ДниНедели, 100 },
-                { RepeatMode.Вахты, 100 }
+                { RepeatMode.None, 0 },
+                { RepeatMode.Days, 100 },
+                { RepeatMode.DayOfMonth, 366 },
+                { RepeatMode.DayOfYear, 3660 },
+                { RepeatMode.DaysOfWeek, 100 },
+                { RepeatMode.Wathes, 100 }
             };
 
             OptimizationRange = 50;

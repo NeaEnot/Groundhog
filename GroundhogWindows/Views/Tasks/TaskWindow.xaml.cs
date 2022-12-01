@@ -14,12 +14,12 @@ namespace GroundhogWindows.Views.Tasks
 
         private Dictionary<RepeatMode, string> toolTips = new Dictionary<RepeatMode, string>()
         {
-            { RepeatMode.Нет, "" },
-            { RepeatMode.Дни, "Число" },
-            { RepeatMode.ЧислоМесяца, "Число" },
-            { RepeatMode.ДеньГода, "мм.дд" },
-            { RepeatMode.ДниНедели, "Пн,Вт,..." },
-            { RepeatMode.Вахты, "'xx-xx', 'xx-xx-xx-xx' ..." },
+            { RepeatMode.None, "" },
+            { RepeatMode.Days, "Число" },
+            { RepeatMode.DayOfMonth, "Число" },
+            { RepeatMode.DayOfYear, "мм.дд" },
+            { RepeatMode.DaysOfWeek, "Пн,Вт,..." },
+            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." },
         };
 
         public TaskWindow(Task task)
@@ -42,7 +42,7 @@ namespace GroundhogWindows.Views.Tasks
             }
             else
             {
-                comboBox.SelectedItem = RepeatMode.Нет;
+                comboBox.SelectedItem = RepeatMode.None;
                 textBoxOptimizationRange.Text = GroundhogContext.Settings.OptimizationRange.ToString();
                 Task = new Task();
             }
@@ -55,8 +55,8 @@ namespace GroundhogWindows.Views.Tasks
             try
             {
                 if (string.IsNullOrWhiteSpace(textBoxText.Text) || 
-                    (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(textBoxValue.Text) ||
-                    (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет && string.IsNullOrWhiteSpace(textBoxPlanningRange.Text) ||
+                    (RepeatMode)comboBox.SelectedItem != RepeatMode.None && string.IsNullOrWhiteSpace(textBoxValue.Text) ||
+                    (RepeatMode)comboBox.SelectedItem != RepeatMode.None && string.IsNullOrWhiteSpace(textBoxPlanningRange.Text) ||
                     string.IsNullOrWhiteSpace(textBoxOptimizationRange.Text))
                     throw new Exception("Поля должны быть заполнены.");
 
@@ -67,7 +67,7 @@ namespace GroundhogWindows.Views.Tasks
                 Task.RepeatValue = textBoxValue.Text;
                 Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
                 Task.OffsetAll = checkBoxOffsetAll.IsChecked.Value;
-                Task.PlanningRange = (RepeatMode)comboBox.SelectedItem == RepeatMode.Нет ? 0 : int.Parse(textBoxPlanningRange.Text);
+                Task.PlanningRange = (RepeatMode)comboBox.SelectedItem == RepeatMode.None ? 0 : int.Parse(textBoxPlanningRange.Text);
                 Task.OptimizationRange = int.Parse(textBoxOptimizationRange.Text);
 
                 DialogResult = true;
@@ -82,10 +82,10 @@ namespace GroundhogWindows.Views.Tasks
         {
             RepeatMode selected = (RepeatMode)comboBox.SelectedItem;
 
-            textBoxValue.IsEnabled = selected != RepeatMode.Нет;
+            textBoxValue.IsEnabled = selected != RepeatMode.None;
             textBoxValue.ToolTip = toolTips[selected];
 
-            textBoxPlanningRange.IsEnabled = selected != RepeatMode.Нет;
+            textBoxPlanningRange.IsEnabled = selected != RepeatMode.None;
             if (textBoxPlanningRange.IsEnabled)
                 textBoxPlanningRange.Text = GroundhogContext.Settings.PlanningRanges[selected].ToString();
             else
@@ -101,7 +101,7 @@ namespace GroundhogWindows.Views.Tasks
 
         private void EnableOffset()
         {
-            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true && (RepeatMode)comboBox.SelectedItem != RepeatMode.Нет;
+            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true && (RepeatMode)comboBox.SelectedItem != RepeatMode.None;
             if (!checkBoxOffsetAll.IsEnabled)
                 checkBoxOffsetAll.IsChecked = false;
         }

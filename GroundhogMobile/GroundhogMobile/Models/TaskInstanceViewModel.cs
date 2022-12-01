@@ -29,7 +29,7 @@ namespace GroundhogMobile.Models
         }
 
         public string Text => task.Text;
-        public bool Repeated => task.RepeatMode != RepeatMode.Нет;
+        public bool Repeated => task.RepeatMode != RepeatMode.None;
 
         public string TextColor => ((Color)(Completed ? App.Current.Resources["Additional text"] : App.Current.Resources["Main text"])).ToHex();
         public TextDecorations TextDecorations => Completed ? TextDecorations.Strikethrough : TextDecorations.None;

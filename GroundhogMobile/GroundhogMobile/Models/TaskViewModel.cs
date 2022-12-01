@@ -15,7 +15,7 @@ namespace GroundhogMobile.Models
         public bool OffsetAll { get; set; }
         public int PlanningRange { get; set; }
         public int OptimizationRange { get; set; }
-        public bool Repeated { get { return RepeatMode != RepeatMode.Нет; } }
+        public bool Repeated { get { return RepeatMode != RepeatMode.None; } }
         public bool RepeatedAndMoved { get { return Repeated && ToNextDay; } }
 
         internal TaskViewModel(Task task = null)

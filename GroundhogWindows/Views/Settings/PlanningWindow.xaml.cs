@@ -12,11 +12,11 @@ namespace GroundhogWindows.Views.Settings
         {
             InitializeComponent();
 
-            tbDays.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Дни].ToString();
-            tbDaysOfWeek.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДниНедели].ToString();
-            tbWatches.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Вахты].ToString();
-            tbDayOfMounth.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ЧислоМесяца].ToString();
-            tbDayOfYear.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДеньГода].ToString();
+            tbDays.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Days].ToString();
+            tbDaysOfWeek.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.DaysOfWeek].ToString();
+            tbWatches.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.Wathes].ToString();
+            tbDayOfMounth.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.DayOfMonth].ToString();
+            tbDayOfYear.Text = GroundhogContext.Settings.PlanningRanges[RepeatMode.DayOfYear].ToString();
 
             tbOptimization.Text = GroundhogContext.Settings.OptimizationRange.ToString();
 
@@ -37,11 +37,11 @@ namespace GroundhogWindows.Views.Settings
 
                 Dictionary<RepeatMode, int> dict = new Dictionary<RepeatMode, int>()
                 {
-                    { RepeatMode.Дни, days },
-                    { RepeatMode.ДниНедели, daysOfWeek },
-                    { RepeatMode.Вахты, watches },
-                    { RepeatMode.ЧислоМесяца, dayOfMounth },
-                    { RepeatMode.ДеньГода, dayOfYear },
+                    { RepeatMode.Days, days },
+                    { RepeatMode.DaysOfWeek, daysOfWeek },
+                    { RepeatMode.Wathes, watches },
+                    { RepeatMode.DayOfMonth, dayOfMounth },
+                    { RepeatMode.DayOfYear, dayOfYear },
                 };
 
                 foreach (RepeatMode mode in dict.Keys)

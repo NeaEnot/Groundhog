@@ -21,22 +21,22 @@ namespace GroundhogMobile.Views.Tasks
 
         private Dictionary<RepeatMode, string> placeholders = new Dictionary<RepeatMode, string>()
         {
-            { RepeatMode.Нет, "" },
-            { RepeatMode.Дни, "Количество дней" },
-            { RepeatMode.ЧислоМесяца, "Число" },
-            { RepeatMode.ДеньГода, "мм.дд" },
-            { RepeatMode.ДниНедели, "Пн,Вт,..." },
-            { RepeatMode.Вахты, "'xx-xx', 'xx-xx-xx-xx' ..." },
+            { RepeatMode.None, "" },
+            { RepeatMode.Days, "Количество дней" },
+            { RepeatMode.DayOfMonth, "Число" },
+            { RepeatMode.DayOfYear, "мм.дд" },
+            { RepeatMode.DaysOfWeek, "Пн,Вт,..." },
+            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." },
         };
 
         private Dictionary<RepeatMode, string> buttonText = new Dictionary<RepeatMode, string>()
         {
-            { RepeatMode.Нет, "Нет" },
-            { RepeatMode.Дни, "Дни" },
-            { RepeatMode.ЧислоМесяца, "Число месяца" },
-            { RepeatMode.ДеньГода, "День года" },
-            { RepeatMode.ДниНедели, "Дни недели" },
-            { RepeatMode.Вахты, "Вахты" },
+            { RepeatMode.None, "Нет" },
+            { RepeatMode.Days, "Дни" },
+            { RepeatMode.DayOfMonth, "Число месяца" },
+            { RepeatMode.DayOfYear, "День года" },
+            { RepeatMode.DaysOfWeek, "Дни недели" },
+            { RepeatMode.Wathes, "Вахты" },
         };
 
         internal TaskPage(TaskViewModel model)
@@ -59,7 +59,7 @@ namespace GroundhogMobile.Views.Tasks
             try
             {
                 if (string.IsNullOrWhiteSpace(textEntry.Text) ||
-                    repeatMode != RepeatMode.Нет && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
+                    repeatMode != RepeatMode.None && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
                 {
                     throw new Exception("Поля должны быть заполнены.");
                 }
@@ -93,11 +93,11 @@ namespace GroundhogMobile.Views.Tasks
             {
                 repeatMode = (RepeatMode)obj;
                 buttonMode.Text = buttonText[repeatMode];
-                repeatValueEntry.IsVisible = repeatMode != RepeatMode.Нет;
+                repeatValueEntry.IsVisible = repeatMode != RepeatMode.None;
                 repeatValueEntry.Placeholder = placeholders[repeatMode];
 
-                planningRangeLabel.IsVisible = repeatMode != RepeatMode.Нет;
-                planningRangeEntry.IsVisible = repeatMode != RepeatMode.Нет;
+                planningRangeLabel.IsVisible = repeatMode != RepeatMode.None;
+                planningRangeEntry.IsVisible = repeatMode != RepeatMode.None;
                 planningRangeEntry.Text = GroundhogContext.Settings.PlanningRanges[repeatMode].ToString();
 
                 ChangeOffsetVisible();
@@ -111,7 +111,7 @@ namespace GroundhogMobile.Views.Tasks
 
         private void ChangeOffsetVisible()
         {
-            slOffset.IsVisible = chbToNextDay.IsChecked && repeatMode != RepeatMode.Нет;
+            slOffset.IsVisible = chbToNextDay.IsChecked && repeatMode != RepeatMode.None;
         }
     }
 }

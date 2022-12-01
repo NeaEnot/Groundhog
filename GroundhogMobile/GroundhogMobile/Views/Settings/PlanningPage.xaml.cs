@@ -17,11 +17,11 @@ namespace GroundhogMobile.Views.Settings
 
             PlanningSettings settings = new PlanningSettings
             {
-                Days = GroundhogContext.Settings.PlanningRanges[RepeatMode.Дни],
-                DaysOfWeek = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДниНедели],
-                Watches = GroundhogContext.Settings.PlanningRanges[RepeatMode.Вахты],
-                DayOfMounth = GroundhogContext.Settings.PlanningRanges[RepeatMode.ЧислоМесяца],
-                DayOfYear = GroundhogContext.Settings.PlanningRanges[RepeatMode.ДеньГода],
+                Days = GroundhogContext.Settings.PlanningRanges[RepeatMode.Days],
+                DaysOfWeek = GroundhogContext.Settings.PlanningRanges[RepeatMode.DaysOfWeek],
+                Watches = GroundhogContext.Settings.PlanningRanges[RepeatMode.Wathes],
+                DayOfMounth = GroundhogContext.Settings.PlanningRanges[RepeatMode.DayOfMonth],
+                DayOfYear = GroundhogContext.Settings.PlanningRanges[RepeatMode.DayOfYear],
                 Optimization = GroundhogContext.Settings.OptimizationRange,
             };
 
@@ -42,11 +42,11 @@ namespace GroundhogMobile.Views.Settings
 
                 Dictionary<RepeatMode, int> dict = new Dictionary<RepeatMode, int>()
                 {
-                    { RepeatMode.Дни, days },
-                    { RepeatMode.ДниНедели, daysOfWeek },
-                    { RepeatMode.Вахты, watches },
-                    { RepeatMode.ЧислоМесяца, dayOfMounth },
-                    { RepeatMode.ДеньГода, dayOfYear },
+                    { RepeatMode.Days, days },
+                    { RepeatMode.DaysOfWeek, daysOfWeek },
+                    { RepeatMode.Wathes, watches },
+                    { RepeatMode.DayOfMonth, dayOfMounth },
+                    { RepeatMode.DayOfYear, dayOfYear },
                 };
 
                 foreach (RepeatMode mode in dict.Keys)
