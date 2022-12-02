@@ -37,6 +37,7 @@ namespace Core.Models
         public string PlanningRange { get; set; }
         public string OptimizationRange { get; set; }
         // Planning modes and optimization
+        public string NonePlanning { get; set; }
         public string DaysPlanning { get; set; }
         public string DaysOfWeekPlanning { get; set; }
         public string WatchesPlanning { get; set; }

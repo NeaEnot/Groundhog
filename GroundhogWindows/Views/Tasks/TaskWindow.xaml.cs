@@ -4,6 +4,7 @@ using Core.Enums;
 using Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace GroundhogWindows.Views.Tasks
@@ -11,6 +12,16 @@ namespace GroundhogWindows.Views.Tasks
     public partial class TaskWindow : Window
     {
         public Task Task { get; private set; }
+
+        private Dictionary<string, RepeatMode> modes = new Dictionary<string, RepeatMode>()
+        {
+            { GroundhogContext.Settings.Language.NonePlanning, RepeatMode.None },
+            { GroundhogContext.Settings.Language.DaysPlanning, RepeatMode.Days },
+            { GroundhogContext.Settings.Language.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
+            { GroundhogContext.Settings.Language.DaysOfYearPlanning, RepeatMode.DayOfYear },
+            { GroundhogContext.Settings.Language.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
+            { GroundhogContext.Settings.Language.WatchesPlanning, RepeatMode.Wathes },
+        };
 
         private Dictionary<RepeatMode, string> toolTips = new Dictionary<RepeatMode, string>()
         {
@@ -26,14 +37,14 @@ namespace GroundhogWindows.Views.Tasks
         {
             InitializeComponent();
 
-            comboBox.ItemsSource = Enum.GetValues(typeof(RepeatMode));
+            comboBox.ItemsSource = modes.Keys;
 
             if (task != null)
             {
                 Task = task;
 
                 textBoxText.Text = task.Text;
-                comboBox.SelectedItem = task.RepeatMode;
+                comboBox.SelectedItem = modes.First(req => req.Value == task.RepeatMode).Key;
                 textBoxValue.Text = task.RepeatValue;
                 checkBoxToNextDay.IsChecked = task.ToNextDay;
                 checkBoxOffsetAll.IsEnabled = task.ToNextDay == true;
@@ -42,7 +53,7 @@ namespace GroundhogWindows.Views.Tasks
             }
             else
             {
-                comboBox.SelectedItem = RepeatMode.None;
+                comboBox.SelectedItem = GroundhogContext.Settings.Language.NonePlanning;
                 textBoxOptimizationRange.Text = GroundhogContext.Settings.OptimizationRange.ToString();
                 Task = new Task();
             }
@@ -54,20 +65,20 @@ namespace GroundhogWindows.Views.Tasks
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(textBoxText.Text) || 
-                    (RepeatMode)comboBox.SelectedItem != RepeatMode.None && string.IsNullOrWhiteSpace(textBoxValue.Text) ||
-                    (RepeatMode)comboBox.SelectedItem != RepeatMode.None && string.IsNullOrWhiteSpace(textBoxPlanningRange.Text) ||
+                if (string.IsNullOrWhiteSpace(textBoxText.Text) ||
+                    modes[comboBox.SelectedItem.ToString()] != RepeatMode.None &&
+                    (string.IsNullOrWhiteSpace(textBoxValue.Text) || string.IsNullOrWhiteSpace(textBoxPlanningRange.Text)) ||
                     string.IsNullOrWhiteSpace(textBoxOptimizationRange.Text))
                     throw new Exception("Поля должны быть заполнены.");
 
                 DateTimeHelper.CheckIsValueCorrect(textBoxValue.Text, (RepeatMode)comboBox.SelectedItem);
 
                 Task.Text = textBoxText.Text;
-                Task.RepeatMode = (RepeatMode)comboBox.SelectedItem;
+                Task.RepeatMode = modes[comboBox.SelectedItem.ToString()];
                 Task.RepeatValue = textBoxValue.Text;
                 Task.ToNextDay = checkBoxToNextDay.IsChecked.Value;
                 Task.OffsetAll = checkBoxOffsetAll.IsChecked.Value;
-                Task.PlanningRange = (RepeatMode)comboBox.SelectedItem == RepeatMode.None ? 0 : int.Parse(textBoxPlanningRange.Text);
+                Task.PlanningRange = modes[comboBox.SelectedItem.ToString()] == RepeatMode.None ? 0 : int.Parse(textBoxPlanningRange.Text);
                 Task.OptimizationRange = int.Parse(textBoxOptimizationRange.Text);
 
                 DialogResult = true;
@@ -80,7 +91,7 @@ namespace GroundhogWindows.Views.Tasks
 
         private void comboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            RepeatMode selected = (RepeatMode)comboBox.SelectedItem;
+            RepeatMode selected = modes[comboBox.SelectedItem.ToString()];
 
             textBoxValue.IsEnabled = selected != RepeatMode.None;
             textBoxValue.ToolTip = toolTips[selected];
@@ -101,7 +112,7 @@ namespace GroundhogWindows.Views.Tasks
 
         private void EnableOffset()
         {
-            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true && (RepeatMode)comboBox.SelectedItem != RepeatMode.None;
+            checkBoxOffsetAll.IsEnabled = checkBoxToNextDay.IsChecked == true && modes[comboBox.SelectedItem.ToString()] != RepeatMode.None;
             if (!checkBoxOffsetAll.IsEnabled)
                 checkBoxOffsetAll.IsChecked = false;
         }

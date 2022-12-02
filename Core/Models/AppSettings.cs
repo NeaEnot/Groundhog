@@ -10,6 +10,7 @@ namespace Core.Models
         public Dictionary<RepeatMode, int> PlanningRanges { get; set; }
         public int OptimizationRange { get; set; }
         public ColorSchema ColorSchema { get; set; }
+        public Language Language { get; set; }
 
         public AppSettings()
         {
@@ -27,5 +28,7 @@ namespace Core.Models
 
             ColorSchema = new ColorSchema();
         }
+
+
     }
 }
