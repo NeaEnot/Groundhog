@@ -6,6 +6,7 @@ using GroundhogMobile.Views.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,17 +27,17 @@ namespace GroundhogMobile.Views.Tasks
             { RepeatMode.DayOfMonth, "Число" },
             { RepeatMode.DayOfYear, "мм.дд" },
             { RepeatMode.DaysOfWeek, "Пн,Вт,..." },
-            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." },
+            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." }
         };
 
-        private Dictionary<RepeatMode, string> buttonText = new Dictionary<RepeatMode, string>()
+        private Dictionary<string, RepeatMode> modes = new Dictionary<string, RepeatMode>()
         {
-            { RepeatMode.None, "Нет" },
-            { RepeatMode.Days, "Дни" },
-            { RepeatMode.DayOfMonth, "Число месяца" },
-            { RepeatMode.DayOfYear, "День года" },
-            { RepeatMode.DaysOfWeek, "Дни недели" },
-            { RepeatMode.Wathes, "Вахты" },
+            { GroundhogContext.Settings.Language.NonePlanning, RepeatMode.None },
+            { GroundhogContext.Settings.Language.DaysPlanning, RepeatMode.Days },
+            { GroundhogContext.Settings.Language.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
+            { GroundhogContext.Settings.Language.DaysOfYearPlanning, RepeatMode.DayOfYear },
+            { GroundhogContext.Settings.Language.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
+            { GroundhogContext.Settings.Language.WatchesPlanning, RepeatMode.Wathes }
         };
 
         internal TaskPage(TaskViewModel model)
@@ -51,7 +52,7 @@ namespace GroundhogMobile.Views.Tasks
 
             repeatMode = model.RepeatMode;
 
-            buttonMode.Text = buttonText[Model.RepeatMode];
+            buttonMode.Text = modes.First(req => req.Value == model.RepeatMode).Key;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -85,14 +86,16 @@ namespace GroundhogMobile.Views.Tasks
 
         private async void buttonMode_Clicked(object sender, EventArgs e)
         {
-            CommandPage page = new CommandPage("Режим повторения", Enum.GetValues(typeof(RepeatMode)));
+            CommandPage page = new CommandPage("Режим повторения", modes.Keys);
             Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
 
             object obj = await page.Result;
             if (obj != null)
             {
-                repeatMode = (RepeatMode)obj;
-                buttonMode.Text = buttonText[repeatMode];
+                string result = obj as string;
+
+                repeatMode = modes[result];
+                buttonMode.Text = result;
                 repeatValueEntry.IsVisible = repeatMode != RepeatMode.None;
                 repeatValueEntry.Placeholder = placeholders[repeatMode];
 

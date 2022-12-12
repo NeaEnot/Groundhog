@@ -20,7 +20,7 @@ namespace GroundhogWindows.Views.Tasks
             { GroundhogContext.Settings.Language.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
             { GroundhogContext.Settings.Language.DaysOfYearPlanning, RepeatMode.DayOfYear },
             { GroundhogContext.Settings.Language.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
-            { GroundhogContext.Settings.Language.WatchesPlanning, RepeatMode.Wathes },
+            { GroundhogContext.Settings.Language.WatchesPlanning, RepeatMode.Wathes }
         };
 
         private Dictionary<RepeatMode, string> toolTips = new Dictionary<RepeatMode, string>()
