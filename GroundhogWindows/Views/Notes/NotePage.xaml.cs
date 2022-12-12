@@ -158,7 +158,7 @@ namespace GroundhogWindows.Views.Notes
             string find = tbFind.Text;
             string text = tbNote.Text;
 
-            int index = text.IndexOf(find, tbNote.CaretIndex + 1);
+            int index = tbNote.CaretIndex < text.Length - 1 ? text.IndexOf(find, tbNote.CaretIndex + 1) : -1;
 
             if (index == -1)
                 index = text.IndexOf(find);
