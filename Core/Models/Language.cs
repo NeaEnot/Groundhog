@@ -82,6 +82,21 @@ namespace Core.Models
         public string IncorrectDayOfTheWeek { get; set; }
         public string IncorrectFormat { get; set; }
         public string IncorrectNumberOfArguments { get; set; }
+        // Days of week
+        public string Monday { get; set; }
+        public string Tuesday { get; set; }
+        public string Wednes­day { get; set; }
+        public string Thursday { get; set; }
+        public string Friday { get; set; }
+        public string Saturday { get; set; }
+        public string Sunday { get; set; }
+        public string MondayAbbreviated { get; set; }
+        public string TuesdayAbbreviated { get; set; }
+        public string Wednes­dayAbbreviated { get; set; }
+        public string ThursdayAbbreviated { get; set; }
+        public string FridayAbbreviated { get; set; }
+        public string SaturdayAbbreviated { get; set; }
+        public string SundayAbbreviated { get; set; }
 
         internal static Language ReadFromFile(string path)
         {
@@ -164,6 +179,20 @@ namespace Core.Models
                 IncorrectDayOfTheWeek = dict["IncorrectDayOfTheWeek"],
                 IncorrectFormat = dict["IncorrectFormat"],
                 IncorrectNumberOfArguments = dict["IncorrectNumberOfArguments"],
+                Monday = dict["Monday"],
+                Tuesday = dict["Tuesday"],
+                Wednes­day = dict["Wednes­day"],
+                Thursday = dict["Thursday"],
+                Friday = dict["Friday"],
+                Saturday = dict["Saturday"],
+                Sunday = dict["Sunday"],
+                MondayAbbreviated = dict["MondayAbbreviated"],
+                TuesdayAbbreviated = dict["TuesdayAbbreviated"],
+                Wednes­dayAbbreviated = dict["Wednes­dayAbbreviated"],
+                ThursdayAbbreviated = dict["ThursdayAbbreviated"],
+                FridayAbbreviated = dict["FridayAbbreviated"],
+                SaturdayAbbreviated = dict["SaturdayAbbreviated"],
+                SundayAbbreviated = dict["SundayAbbreviated"]
             };
 
             return language;
