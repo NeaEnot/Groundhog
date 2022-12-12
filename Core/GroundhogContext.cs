@@ -4,6 +4,7 @@ using Core.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Core
 {
@@ -66,6 +67,21 @@ namespace Core
             }
         }
 
+        public static string[] Languages
+        {
+            get
+            {
+                DirectoryInfo langsDir = new DirectoryInfo($"{StoragePath}\\Languages");
+                if (!langsDir.Exists)
+                    langsDir.Create();
+
+                FileInfo[] files = langsDir.GetFiles("*.lng");
+                string[] languages = files.Select(req => req.Name.Replace("", "")).ToArray();
+
+                return languages;
+            }
+        }
+
         public static void SaveSettings()
         {
             using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
@@ -73,6 +89,11 @@ namespace Core
                 string json = JsonConvert.SerializeObject(Settings);
                 writer.Write(json);
             }
+        }
+
+        public static void LoadLanguage(string language)
+        {
+            settings.Language = Language.ReadFromFile($"{StoragePath}\\Languages\\{language}.lng");
         }
     }
 }
