@@ -53,6 +53,7 @@ namespace Core.Models
         public string Notes { get; set; }
         public string Note { get; set; }
         public string NoteName { get; set; }
+        public string SearchedTextNotFounded { get; set; }
         // Control commands
         public string Save { get; set; }
         public string Duplicate { get; set; }
@@ -60,6 +61,27 @@ namespace Core.Models
         public string Delete { get; set; }
         public string DeleteAllInstances { get; set; }
         public string Create { get; set; }
+        // Errors messages
+        public string Error { get; set; }
+        public string FieldMustBeFilled { get; set; }
+        public string FieldsMustBeFilled { get; set; }
+        public string CodeWasNotEntered { get; set; }
+        public string StringNotMatchColorHexFormat { get; set; }
+        public string ConnectionStringNotMatchFormat { get; set; }
+        public string CodeWasNotReceived { get; set; }
+        public string WhenCreatingMustPassNewObjectWithEmptyFields { get; set; }
+        public string EntityWithSameIdDontExist { get; set; }
+        public string CorrectValue { get; set; }
+        public string CorrectFormat { get; set; }
+        public string IncorrectValue { get; set; }
+        public string IncorrectNumberOfDays { get; set; }
+        public string IncorrectFormatOfDayOfMonth { get; set; }
+        public string IncorrectNumberOfMonth { get; set; }
+        public string IncorrectNumberOfDay { get; set; }
+        public string ThereAreFewerDaysInSpecifiedMonth { get; set; }
+        public string IncorrectDayOfTheWeek { get; set; }
+        public string IncorrectFormat { get; set; }
+        public string IncorrectNumberOfArguments { get; set; }
 
         internal static Language ReadFromFile(string path)
         {
@@ -120,7 +142,28 @@ namespace Core.Models
                 PurposesGroup = dict["PurposesGroup"],
                 GroupName = dict["GroupName"],
                 Note = dict["Note"],
-                NoteName = dict["NoteName"]
+                NoteName = dict["NoteName"],
+                SearchedTextNotFounded = dict["SearchedTextNotFounded"],
+                Error = dict["Error"],
+                FieldMustBeFilled = dict["FieldMustBeFilled"],
+                FieldsMustBeFilled = dict["FieldsMustBeFilled"],
+                CodeWasNotEntered = dict["CodeWasNotEntered"],
+                StringNotMatchColorHexFormat = dict["StringNotMatchColorHexFormat"],
+                ConnectionStringNotMatchFormat = dict["ConnectionStringNotMatchFormat"],
+                CodeWasNotReceived = dict["CodeWasNotReceived"],
+                WhenCreatingMustPassNewObjectWithEmptyFields = dict["WhenCreatingMustPassNewObjectWithEmptyFields"],
+                EntityWithSameIdDontExist = dict["EntityWithSameIdDontExist"],
+                CorrectValue = dict["CorrectValue"],
+                CorrectFormat = dict["CorrectFormat"],
+                IncorrectValue = dict["IncorrectValue"],
+                IncorrectNumberOfDays = dict["IncorrectNumberOfDays"],
+                IncorrectFormatOfDayOfMonth = dict["IncorrectFormatOfDayOfMonth"],
+                IncorrectNumberOfMonth = dict["IncorrectNumberOfMonth"],
+                IncorrectNumberOfDay = dict["IncorrectNumberOfDay"],
+                ThereAreFewerDaysInSpecifiedMonth = dict["ThereAreFewerDaysInSpecifiedMonth"],
+                IncorrectDayOfTheWeek = dict["IncorrectDayOfTheWeek"],
+                IncorrectFormat = dict["IncorrectFormat"],
+                IncorrectNumberOfArguments = dict["IncorrectNumberOfArguments"],
             };
 
             return language;

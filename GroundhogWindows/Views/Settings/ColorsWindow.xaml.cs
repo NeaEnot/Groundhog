@@ -85,17 +85,6 @@ namespace GroundhogWindows.Views.Settings
                     if (!reg.IsMatch(tb.Text))
                         throw new Exception($"Строка {tb.Text} не соответствует формату ColorHex.");
 
-                if (!reg.IsMatch(tbMainColor.Text) ||
-                    !reg.IsMatch(tbAdditionalColor.Text) ||
-                    !reg.IsMatch(tbMainText.Text) ||
-                    !reg.IsMatch(tbAdditionalText.Text) ||
-                    !reg.IsMatch(tbSelectedItem.Text) ||
-                    !reg.IsMatch(tbSelectedItemInactive.Text) ||
-                    !reg.IsMatch(tbSelectItem.Text))
-                {
-                    throw new Exception("Один из аргументов не соответствует формату ColorHex.");
-                }
-
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {
                     { "Main color", tbMainColor.Text.ToUpper() },

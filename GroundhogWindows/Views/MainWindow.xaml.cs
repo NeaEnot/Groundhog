@@ -38,7 +38,7 @@ namespace GroundhogWindows.Views
             sdPage = new SelectDatePage(this);
             tiPage = new TaskInstancesPage();
             sgPage = new SelectGroupPage(this);
-            pPage = new PurposesPage(this);
+            pPage = new PurposesPage();
             snPage = new SelectNotePage(this);
             nPage = new NotePage();
 

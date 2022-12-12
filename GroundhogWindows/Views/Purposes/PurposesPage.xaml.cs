@@ -10,14 +10,11 @@ namespace GroundhogWindows.Views.Purposes
 {
     public partial class PurposesPage : Page
     {
-        private MainWindow windowContext;
         private string groupId;
 
-        public PurposesPage(MainWindow windowContext)
+        public PurposesPage()
         {
             InitializeComponent();
-
-            this.windowContext = windowContext;
         }
 
         internal void LoadPurposes(string groupId)
