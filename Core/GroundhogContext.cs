@@ -76,6 +76,9 @@ namespace Core
                     langsDir.Create();
 
                 FileInfo[] files = langsDir.GetFiles("*.lng");
+                if (files.Length == 0)
+                { }
+
                 string[] languages = files.Select(req => req.Name.Replace("", "")).ToArray();
 
                 return languages;
@@ -94,6 +97,93 @@ namespace Core
         public static void LoadLanguage(string language)
         {
             settings.Language = Language.ReadFromFile($"{StoragePath}\\Languages\\{language}.lng");
+        }
+
+        private static void GenerateDefaultLanguage()
+        {
+            Language language = new Language
+            {
+                Settings = "Settings",
+                ConnectionString = "Connection string",
+                PlanningAndOptimizationRange = "Planning and optimization range",
+                ColorSchema = "Color schema",
+                Syncronization = "Syncronization",
+                Download = "Download",
+                Upload = "Upload",
+                Tasks = "Tasks",
+                Purposes = "Purposes",
+                Notes = "Notes",
+                Task = "Task",
+                RepeatMode = "Repeat mode",
+                TransferTaskToNextDay = "Transfer task to next day",
+                OffsetNextTasks = "Offset next tasks",
+                PlanningRange = "Planning range",
+                OptimizationRange = "Optimization range",
+                Save = "Save",
+                Duplicate = "Duplicate",
+                Update = "Update",
+                Delete = "Delete",
+                DeleteAllInstances = "Delete all instances",
+                List = "List",
+                Calendar = "Calendar",
+                DaysPlanning = "Days planning",
+                DaysOfWeekPlanning = "Days of week planning",
+                WatchesPlanning = "Watches planning",
+                DaysOfMonthPlanning = "Days of month planning",
+                DaysOfYearPlanning = "Days of year planning",
+                Optimization = "Optimization",
+                MainColor = "Main color",
+                AditionalColor = "Aditional color",
+                MainText = "Main text",
+                AditionalText = "Aditional text",
+                SelectedItem = "Selected item",
+                SelectedItemInactive = "Selected item inactive",
+                ChosenItem = "Chosen item",
+                StandartSchema = "Standart schema",
+                EnterCode = "Enter code",
+                Send = "Send",
+                Create = "Create",
+                Purpose = "Purpose",
+                PurposesGroup = "Purposes group",
+                GroupName = "Group name",
+                Note = "Note",
+                NoteName = "Note name",
+                SearchedTextNotFounded = "Searched text not founded",
+                Error = "Error",
+                FieldMustBeFilled = "Field must be filled",
+                FieldsMustBeFilled = "Fields must be filled",
+                CodeWasNotEntered = "Code was not entered",
+                StringNotMatchColorHexFormat = "String not match color hex format",
+                ConnectionStringNotMatchFormat = "ConnectionStringNotMatchFormat",
+                CodeWasNotReceived = "CodeWasNotReceived",
+                WhenCreatingMustPassNewObjectWithEmptyFields = "WhenCreatingMustPassNewObjectWithEmptyFields",
+                EntityWithSameIdDontExist = "EntityWithSameIdDontExist",
+                CorrectValue = "CorrectValue",
+                CorrectFormat = "CorrectFormat",
+                IncorrectValue = "IncorrectValue",
+                IncorrectNumberOfDays = "IncorrectNumberOfDays",
+                IncorrectFormatOfDayOfMonth = "IncorrectFormatOfDayOfMonth",
+                IncorrectNumberOfMonth = "IncorrectNumberOfMonth",
+                IncorrectNumberOfDay = "IncorrectNumberOfDay",
+                ThereAreFewerDaysInSpecifiedMonth = "ThereAreFewerDaysInSpecifiedMonth",
+                IncorrectDayOfTheWeek = "IncorrectDayOfTheWeek",
+                IncorrectFormat = "IncorrectFormat",
+                IncorrectNumberOfArguments = "IncorrectNumberOfArguments",
+                Monday = "Monday",
+                Tuesday = "Tuesday",
+                Wednes­day = "Wednes­day",
+                Thursday = "Thursday",
+                Friday = "Friday",
+                Saturday = "Saturday",
+                Sunday = "Sunday",
+                MondayAbbreviated = "MondayAbbreviated",
+                TuesdayAbbreviated = "TuesdayAbbreviated",
+                Wednes­dayAbbreviated = "Wednes­dayAbbreviated",
+                ThursdayAbbreviated = "ThursdayAbbreviated",
+                FridayAbbreviated = "FridayAbbreviated",
+                SaturdayAbbreviated = "SaturdayAbbreviated",
+                SundayAbbreviated = "SundayAbbreviated"
+            };
         }
     }
 }
