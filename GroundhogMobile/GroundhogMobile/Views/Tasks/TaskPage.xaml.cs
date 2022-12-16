@@ -43,7 +43,7 @@ namespace GroundhogMobile.Views.Tasks
         internal TaskPage(TaskViewModel model)
         {
             if (model == null)
-                throw new ArgumentNullException("При создании новой задачи необходимо передавать новый объект с пустыми полями.");
+                throw new ArgumentNullException("When creating must pass new object with empty fields.");
 
             InitializeComponent();
 

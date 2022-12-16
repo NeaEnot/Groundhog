@@ -69,7 +69,6 @@ namespace Core.Models
         public string StringNotMatchColorHexFormat { get; set; }
         public string ConnectionStringNotMatchFormat { get; set; }
         public string CodeWasNotReceived { get; set; }
-        public string WhenCreatingMustPassNewObjectWithEmptyFields { get; set; }
         public string EntityWithSameIdDontExist { get; set; }
         public string CorrectValue { get; set; }
         public string CorrectFormat { get; set; }
@@ -166,7 +165,6 @@ namespace Core.Models
                 StringNotMatchColorHexFormat = dict["StringNotMatchColorHexFormat"],
                 ConnectionStringNotMatchFormat = dict["ConnectionStringNotMatchFormat"],
                 CodeWasNotReceived = dict["CodeWasNotReceived"],
-                WhenCreatingMustPassNewObjectWithEmptyFields = dict["WhenCreatingMustPassNewObjectWithEmptyFields"],
                 EntityWithSameIdDontExist = dict["EntityWithSameIdDontExist"],
                 CorrectValue = dict["CorrectValue"],
                 CorrectFormat = dict["CorrectFormat"],
@@ -196,6 +194,122 @@ namespace Core.Models
             };
 
             return language;
+        }
+
+        internal void SaveToFile(string path)
+        {
+            string content = "";
+
+            content += $"# Settings" + '\n';
+            content += $"Settings={Settings}" + '\n';
+            content += $"ConnectionString={ConnectionString}" + '\n';
+            content += $"PlanningAndOptimizationRange={PlanningAndOptimizationRange}" + '\n';
+            content += '\n';
+
+            content += $"# Settings - Color schema" + '\n';
+            content += $"ColorSchema={ColorSchema}" + '\n';
+            content += $"StandartSchema={StandartSchema}" + '\n';
+            content += $"MainColor={MainColor}" + '\n';
+            content += $"AditionalColor={AditionalColor}" + '\n';
+            content += $"MainText={MainText}" + '\n';
+            content += $"AditionalText={AditionalText}" + '\n';
+            content += $"SelectedItem={SelectedItem}" + '\n';
+            content += $"SelectedItemInactive={SelectedItemInactive}" + '\n';
+            content += $"ChosenItem={ChosenItem}" + '\n';
+            content += '\n';
+
+            content += $"# Syncronization" + '\n';
+            content += $"Syncronization={Syncronization}" + '\n';
+            content += $"Download={Download}" + '\n';
+            content += $"Upload={Upload}" + '\n';
+            content += $"EnterCode={EnterCode}" + '\n';
+            content += $"Send={Send}" + '\n';
+            content += '\n';
+
+            content += $"# Tasks" + '\n';
+            content += $"List={List}" + '\n';
+            content += $"Calendar={Calendar}" + '\n';
+            content += $"Tasks={Tasks}" + '\n';
+            content += $"Task={Task}" + '\n';
+            content += $"RepeatMode={RepeatMode}" + '\n';
+            content += $"TransferTaskToNextDay={TransferTaskToNextDay}" + '\n';
+            content += $"OffsetNextTasks={OffsetNextTasks}" + '\n';
+            content += $"PlanningRange={PlanningRange}" + '\n';
+            content += $"OptimizationRange={OptimizationRange}" + '\n';
+            content += '\n';
+
+            content += $"# Planning modes and optimization" + '\n';
+            content += $"NonePlanning={NonePlanning}" + '\n';
+            content += $"DaysPlanning={DaysPlanning}" + '\n';
+            content += $"DaysOfWeekPlanning={DaysOfWeekPlanning}" + '\n';
+            content += $"WatchesPlanning={WatchesPlanning}" + '\n';
+            content += $"DaysOfMonthPlanning={DaysOfMonthPlanning}" + '\n';
+            content += $"DaysOfYearPlanning={DaysOfYearPlanning}" + '\n';
+            content += $"Optimization={Optimization}" + '\n';
+            content += '\n';
+
+            content += $"# Purposes" + '\n';
+            content += $"Purposes={Purposes}" + '\n';
+            content += $"Purpose={Purpose}" + '\n';
+            content += $"PurposesGroup={PurposesGroup}" + '\n';
+            content += $"GroupName={GroupName}" + '\n';
+            content += '\n';
+
+            content += $"# Notes" + '\n';
+            content += $"Notes={Notes}" + '\n';
+            content += $"Note={Note}" + '\n';
+            content += $"NoteName={NoteName}" + '\n';
+            content += $"SearchedTextNotFounded={SearchedTextNotFounded}" + '\n';
+            content += '\n';
+
+            content += $"# Control commands" + '\n';
+            content += $"Save={Save}" + '\n';
+            content += $"Duplicate={Duplicate}" + '\n';
+            content += $"Update={Update}" + '\n';
+            content += $"Delete={Delete}" + '\n';
+            content += $"DeleteAllInstances={DeleteAllInstances}" + '\n';
+            content += $"Create={Create}" + '\n';
+            content += '\n';
+
+            content += $"# Errors messages" + '\n';
+            content += $"Error={Error}" + '\n';
+            content += $"FieldMustBeFilled={FieldMustBeFilled}" + '\n';
+            content += $"FieldsMustBeFilled={FieldsMustBeFilled}" + '\n';
+            content += $"CodeWasNotEntered={CodeWasNotEntered}" + '\n';
+            content += $"StringNotMatchColorHexFormat={StringNotMatchColorHexFormat}" + '\n';
+            content += $"ConnectionStringNotMatchFormat={ConnectionStringNotMatchFormat}" + '\n';
+            content += $"CodeWasNotReceived={CodeWasNotReceived}" + '\n';
+            content += $"EntityWithSameIdDontExist={EntityWithSameIdDontExist}" + '\n';
+            content += $"CorrectValue={CorrectValue}" + '\n';
+            content += $"CorrectFormat={CorrectFormat}" + '\n';
+            content += $"IncorrectValue={IncorrectValue}" + '\n';
+            content += $"IncorrectNumberOfDays={IncorrectNumberOfDays}" + '\n';
+            content += $"IncorrectFormatOfDayOfMonth={IncorrectFormatOfDayOfMonth}" + '\n';
+            content += $"IncorrectNumberOfMonth={IncorrectNumberOfMonth}" + '\n';
+            content += $"IncorrectNumberOfDay={IncorrectNumberOfDay}" + '\n';
+            content += $"ThereAreFewerDaysInSpecifiedMonth={ThereAreFewerDaysInSpecifiedMonth}" + '\n';
+            content += $"IncorrectDayOfTheWeek={IncorrectDayOfTheWeek}" + '\n';
+            content += $"IncorrectFormat={IncorrectFormat}" + '\n';
+            content += $"IncorrectNumberOfArguments={IncorrectNumberOfArguments}" + '\n';
+            content += '\n';
+
+            content += $"# Days of week" + '\n';
+            content += $"Monday={Monday}" + '\n';
+            content += $"Tuesday={Tuesday}" + '\n';
+            content += $"Wednesday={Wednesday}" + '\n';
+            content += $"Thursday={Thursday}" + '\n';
+            content += $"Friday={Friday}" + '\n';
+            content += $"Saturday={Saturday}" + '\n';
+            content += $"Sunday={Sunday}" + '\n';
+            content += $"MondayAbbreviated={MondayAbbreviated}" + '\n';
+            content += $"TuesdayAbbreviated={TuesdayAbbreviated}" + '\n';
+            content += $"WednesdayAbbreviated={WednesdayAbbreviated}" + '\n';
+            content += $"ThursdayAbbreviated={ThursdayAbbreviated}" + '\n';
+            content += $"FridayAbbreviated={FridayAbbreviated}" + '\n';
+            content += $"SaturdayAbbreviated={SaturdayAbbreviated}" + '\n';
+            content += $"SundayAbbreviated={SundayAbbreviated}" + '\n';
+
+            File.WriteAllText(path, content);
         }
     }
 }

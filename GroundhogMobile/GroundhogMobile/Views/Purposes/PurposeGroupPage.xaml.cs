@@ -14,7 +14,7 @@ namespace GroundhogMobile.Views.Purposes
         internal PurposeGroupPage(PurposeGroup group)
         {
             if (group == null)
-                throw new ArgumentNullException("При создании новой группы целей необходимо передавать новый объект с пустыми полями.");
+                throw new ArgumentNullException("When creating must pass new object with empty fields.");
 
             InitializeComponent();
 

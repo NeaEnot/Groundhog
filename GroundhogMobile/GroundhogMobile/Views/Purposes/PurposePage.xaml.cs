@@ -14,7 +14,7 @@ namespace GroundhogMobile.Views.Purposes
         internal PurposePage(PurposeViewModel model)
         {
             if (model == null)
-                throw new ArgumentNullException("При создании новой цели необходимо передавать новый объект с пустыми полями.");
+                throw new ArgumentNullException("When creating must pass new object with empty fields.");
 
             InitializeComponent();
 
