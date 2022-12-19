@@ -1,6 +1,6 @@
 ﻿using Core;
 using Core.Interfaces;
-using Core.Models;
+using Core.Models.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -156,8 +156,8 @@ namespace NetworkTelegram
 
                     string json = System.Text.Encoding.UTF8.GetString(file.Bytes);
 
-                    (List<Core.Models.Task>, List<TaskInstance>) restored = 
-                        JsonConvert.DeserializeObject<(List<Core.Models.Task>, List<TaskInstance>)>(json);
+                    (List<Core.Models.Storage.Task>, List<TaskInstance>) restored = 
+                        JsonConvert.DeserializeObject<(List<Core.Models.Storage.Task>, List<TaskInstance>)>(json);
 
                     //GroundhogContext.AccauntLogic.Delete();
                     //context.Accaunts = restored.Item1;

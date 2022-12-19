@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Models;
+using Core.Models.Storage;
 using GroundhogMobile.Models;
 using GroundhogMobile.Views.Services;
 using Rg.Plugins.Popup.Services;

@@ -1,4 +1,4 @@
-﻿using Core.Models;
+﻿using Core.Models.Storage;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

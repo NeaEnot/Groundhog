@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.Models.Settings;
+using Core.Models.Storage;
 using System.Collections.Generic;
 
 namespace YandexDisk

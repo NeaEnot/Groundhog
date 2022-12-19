@@ -1,6 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Interfaces.Storage;
-using Core.Models;
+using Core.Models.Settings;
 using Newtonsoft.Json;
 using System;
 using System.IO;

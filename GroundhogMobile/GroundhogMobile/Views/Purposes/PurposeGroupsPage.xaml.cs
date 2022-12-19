@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Models;
+using Core.Models.Storage;
 using GroundhogMobile.Views.Settings;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using Core;
 using Core.Enums;
-using Core.Models;
+using Core.Models.Storage;
 
 namespace GroundhogMobile.Models
 {

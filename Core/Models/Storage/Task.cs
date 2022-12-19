@@ -1,6 +1,6 @@
 ﻿using Core.Enums;
 
-namespace Core.Models
+namespace Core.Models.Storage
 {
     public class Task
     {

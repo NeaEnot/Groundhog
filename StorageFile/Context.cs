@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Models;
+using Core.Models.Storage;
 using Newtonsoft.Json;
 using StorageFile.Extensions;
 using StorageFile.Migrations;

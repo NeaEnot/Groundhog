@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Core.Models
+namespace Core.Models.Settings
 {
     public class Language
     {
