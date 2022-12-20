@@ -32,12 +32,12 @@ namespace GroundhogMobile.Views.Tasks
 
         private Dictionary<string, RepeatMode> modes = new Dictionary<string, RepeatMode>()
         {
-            { GroundhogContext.Settings.Language.NonePlanning, RepeatMode.None },
-            { GroundhogContext.Settings.Language.DaysPlanning, RepeatMode.Days },
-            { GroundhogContext.Settings.Language.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
-            { GroundhogContext.Settings.Language.DaysOfYearPlanning, RepeatMode.DayOfYear },
-            { GroundhogContext.Settings.Language.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
-            { GroundhogContext.Settings.Language.WatchesPlanning, RepeatMode.Wathes }
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.NonePlanning, RepeatMode.None },
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysPlanning, RepeatMode.Days },
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfYearPlanning, RepeatMode.DayOfYear },
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
+            { GroundhogContext.Settings.Language.PlanningAndOptimization.WatchesPlanning, RepeatMode.Wathes }
         };
 
         internal TaskPage(TaskViewModel model)

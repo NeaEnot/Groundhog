@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using Core.Models.Settings.Lang;
 using System.Collections.Generic;
 
 namespace Core.Models.Settings
