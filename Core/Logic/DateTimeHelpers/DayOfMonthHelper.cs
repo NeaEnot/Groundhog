@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.DateTimeHelpers
+namespace Core.Logic.DateTimeHelpers
 {
     class DayOfMonthHelper : IDTHelper
     {

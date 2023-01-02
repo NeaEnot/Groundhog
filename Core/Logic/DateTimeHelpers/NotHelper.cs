@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Core.DateTimeHelpers
+namespace Core.Logic.DateTimeHelpers
 {
     internal class NotHelper : IDTHelper
     {

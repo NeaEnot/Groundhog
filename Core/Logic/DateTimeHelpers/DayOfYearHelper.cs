@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Core.DateTimeHelpers
+namespace Core.Logic.DateTimeHelpers
 {
     internal class DayOfYearHelper : IDTHelper
     {

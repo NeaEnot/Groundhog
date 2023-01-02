@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.DateTimeHelpers
+namespace Core.Logic.DateTimeHelpers
 {
-    internal class DaysHelper : IDTHelper
+    class DaysOfWeekHelper : IDTHelper
     {
+        private static List<string> daysOfWeek = new List<string>(new string[] { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" });
+
         public void CheckIsValueCorrect(string text)
         {
-            int a;
+            string[] days = text.Split(',');
 
-            if (!int.TryParse(text, out a))
-                throw new Exception("Неверное значение.");
-
-            if (a < 1)
-                throw new Exception("Неверное число дней.");
+            foreach (string d in days)
+                if (!daysOfWeek.Contains(d))
+                    throw new Exception($"Неверный день недели: {d}.\nИли неверный формат; верный формат: Пн,Вт,Сб...");
         }
 
         public List<TaskInstance> FillRepeatedTasks(Task task)
@@ -28,8 +28,9 @@ namespace Core.DateTimeHelpers
 
             while ((currentDate - DateTime.Now).TotalDays <= task.PlanningRange)
             {
-                int days = int.Parse(task.RepeatValue);
-                currentDate = currentDate.AddDays(days);
+                do
+                    currentDate = currentDate.AddDays(1);
+                while (!task.RepeatValue.ToLower().Contains(currentDate.ToString("ddd").ToLower()));
 
                 TaskInstance model = new TaskInstance
                 {
@@ -46,12 +47,17 @@ namespace Core.DateTimeHelpers
 
         public DateTime GetDateForTask(Task task, DateTime selectedDate)
         {
-            return selectedDate;
+            DateTime date = selectedDate;
+
+            while (!task.RepeatValue.Contains(date.ToString("ddd")))
+                date = date.AddDays(1);
+
+            return date;
         }
 
         public int TaskRare(Task task)
         {
-            return int.Parse(task.RepeatValue);
+            return task.RepeatValue.Split(',').Length;
         }
     }
 }

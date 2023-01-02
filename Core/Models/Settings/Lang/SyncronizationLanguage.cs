@@ -24,7 +24,7 @@ namespace Core.Models.Settings.Lang
             return language;
         }
 
-        internal string Serrialize()
+        internal string Serialize()
         {
             string content = "";
 

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Core.Models.Settings.Lang
 {
@@ -16,19 +14,8 @@ namespace Core.Models.Settings.Lang
         public SyncronizationLanguage Syncronization { get; set; }
         public TasksLanguage Tasks { get; set; }
 
-        internal static Language ReadFromFile(string path)
+        internal static Language Parse(Dictionary<string, string> dict)
         {
-            string[] lines = File.ReadAllLines(path);
-
-            IEnumerable<KeyValuePair<string, string>> pairs =
-                lines
-                .Where(req => !req.StartsWith("#") && !string.IsNullOrWhiteSpace(req))
-                .Select(req => new KeyValuePair<string, string>(req.Split('=')[0], req.Split('=')[1]));
-
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            foreach (KeyValuePair<string, string> pair in pairs)
-                dict.Add(pair.Key, pair.Value);
-
             Language language = new Language
             {
                 ControlCommands = ControlCommandsLanguage.Parse(dict),
@@ -45,21 +32,21 @@ namespace Core.Models.Settings.Lang
             return language;
         }
 
-        internal void SaveToFile(string path)
+        internal string Serialize()
         {
             string content = "";
 
-            content += ControlCommands.Serrialize();
-            content += DaysOfWeek.Serrialize();
-            content += ErrorsMessages.Serrialize();
-            content += Notes.Serrialize();
-            content += PlanningAndOptimization.Serrialize();
-            content += Purposes.Serrialize();
-            content += Settings.Serrialize();
-            content += Syncronization.Serrialize();
-            content += Tasks.Serrialize();
+            content += ControlCommands.Serialize();
+            content += DaysOfWeek.Serialize();
+            content += ErrorsMessages.Serialize();
+            content += Notes.Serialize();
+            content += PlanningAndOptimization.Serialize();
+            content += Purposes.Serialize();
+            content += Settings.Serialize();
+            content += Syncronization.Serialize();
+            content += Tasks.Serialize();
 
-            File.WriteAllText(path, content);
+            return content;
         }
     }
 }
