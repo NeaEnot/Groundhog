@@ -32,7 +32,7 @@ namespace GroundhogMobile.Views.Settings
                 this.DisplayToastAsync("Данные загружены");
                 DownloadFinisfed();
 
-                App.LoadResources();
+                App.ApplyColorSchema();
             }
             catch (Exception ex)
             {
@@ -72,6 +72,12 @@ namespace GroundhogMobile.Views.Settings
         private async void ButtonColors_Clicked(object sender, EventArgs e)
         {
             ColorsPage page = new ColorsPage();
+            await Navigation.PushAsync(page);
+        }
+
+        private async void ButtonLanguage_Clicked(object sender, EventArgs e)
+        {
+            LanguagePage page = new LanguagePage();
             await Navigation.PushAsync(page);
         }
     }

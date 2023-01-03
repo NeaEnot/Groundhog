@@ -104,7 +104,7 @@ namespace GroundhogMobile.Views.Settings
 
             GroundhogContext.SaveSettings();
 
-            App.LoadResources();
+            App.ApplyColorSchema();
         }
     }
 }

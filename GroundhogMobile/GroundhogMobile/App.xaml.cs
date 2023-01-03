@@ -58,16 +58,21 @@ namespace GroundhogMobile
             if (isNeedSaveSettings)
                 GroundhogContext.SaveSettings();
 
-            LoadResources();
+            ApplyColorSchema();
         }
 
-        public static void LoadResources()
+        public static void ApplyColorSchema()
         {
             App.Current.Resources["Main color"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main color"]);
             App.Current.Resources["Additional color"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]);
             App.Current.Resources["Main text"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Main text"]);
             App.Current.Resources["Additional text"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Additional text"]);
             App.Current.Resources["Selected item"] = Color.FromHex(GroundhogContext.Settings.ColorSchema.Colors["Selected item"]);
+        }
+
+        public static void ApplyLanguage()
+        {
+
         }
 
         protected override void OnStart()
