@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.DateTimeHelpers;
+using Core.Logic.DateTimeHelpers;
 using Core.Enums;
 using GroundhogMobile.Models;
 using GroundhogMobile.Views.Services;
@@ -32,12 +32,12 @@ namespace GroundhogMobile.Views.Tasks
 
         private Dictionary<string, RepeatMode> modes = new Dictionary<string, RepeatMode>()
         {
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.NonePlanning, RepeatMode.None },
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysPlanning, RepeatMode.Days },
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfYearPlanning, RepeatMode.DayOfYear },
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
-            { GroundhogContext.Settings.Language.PlanningAndOptimization.WatchesPlanning, RepeatMode.Wathes }
+            { GroundhogContext.Language.PlanningAndOptimization.NonePlanning, RepeatMode.None },
+            { GroundhogContext.Language.PlanningAndOptimization.DaysPlanning, RepeatMode.Days },
+            { GroundhogContext.Language.PlanningAndOptimization.DaysOfMonthPlanning, RepeatMode.DayOfMonth },
+            { GroundhogContext.Language.PlanningAndOptimization.DaysOfYearPlanning, RepeatMode.DayOfYear },
+            { GroundhogContext.Language.PlanningAndOptimization.DaysOfWeekPlanning, RepeatMode.DaysOfWeek },
+            { GroundhogContext.Language.PlanningAndOptimization.WatchesPlanning, RepeatMode.Wathes }
         };
 
         internal TaskPage(TaskViewModel model)

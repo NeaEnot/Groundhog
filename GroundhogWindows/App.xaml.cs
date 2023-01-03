@@ -29,6 +29,8 @@ namespace GroundhogWindows
                 { "Select item", "#E5F3FB" }
             };
 
+            bool isNeedSaveSettings = false;
+
             List<string> absentColors = GroundhogContext.Settings.ColorSchema.ColorSchemaAbsent(colors.Keys.ToList());
 
             if (absentColors.Count > 0)
@@ -36,8 +38,22 @@ namespace GroundhogWindows
                 foreach (string key in absentColors)
                     GroundhogContext.Settings.ColorSchema.Colors.Add(key, colors[key]);
 
-                GroundhogContext.SaveSettings();
+                isNeedSaveSettings = true;
             }
+
+            List<string> languages = GroundhogContext.Languages.ToList();
+            if (languages.Contains(GroundhogContext.Settings.Language))
+            {
+                GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.Settings.Language);
+            }
+            else
+            {
+                GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.DefaultLanguage);
+                isNeedSaveSettings = true;
+            }
+
+            if (isNeedSaveSettings)
+                GroundhogContext.SaveSettings();
         }
     }
 }

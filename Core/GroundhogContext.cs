@@ -2,6 +2,7 @@
 using Core.Interfaces.Storage;
 using Core.Logic;
 using Core.Models.Settings;
+using Core.Models.Settings.Lang;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -18,6 +19,9 @@ namespace Core
         public static INoteLogic NoteLogic { get; set; }
 
         public static INetworkLogic NetworkLogic { get; set; }
+
+        public static Language Language { get; set; }
+        public static readonly string DefaultLanguage = "English";
 
         private static AppSettings settings;
         public static AppSettings Settings { 
@@ -80,7 +84,7 @@ namespace Core
                 if (files.Length == 0)
                     LanguageLogic.CreateDefault();
 
-                string[] languages = files.Select(req => req.Name.Replace("", "")).ToArray();
+                string[] languages = files.Select(req => req.Name.Replace(".lng", "")).ToArray();
 
                 return languages;
             }
@@ -95,9 +99,12 @@ namespace Core
             }
         }
 
-        public static void LoadLanguage(string language)
+        public static Language LoadLanguage(string language)
         {
-            settings.Language = LanguageLogic.Load($"{StoragePath}\\Languages\\{language}.lng");
+            Language lang = LanguageLogic.Load($"{StoragePath}\\Languages\\{language}.lng");
+            settings.Language = language;
+
+            return lang;
         }
     }
 }

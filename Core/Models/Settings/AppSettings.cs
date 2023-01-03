@@ -1,5 +1,4 @@
 ﻿using Core.Enums;
-using Core.Models.Settings.Lang;
 using System.Collections.Generic;
 
 namespace Core.Models.Settings
@@ -11,7 +10,7 @@ namespace Core.Models.Settings
         public Dictionary<RepeatMode, int> PlanningRanges { get; set; }
         public int OptimizationRange { get; set; }
         public ColorSchema ColorSchema { get; set; }
-        public Language Language { get; set; }
+        public string Language { get; set; }
 
         public AppSettings()
         {
