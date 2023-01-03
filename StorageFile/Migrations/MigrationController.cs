@@ -5,7 +5,8 @@
         private static IMigration[] migrations =
             new IMigration[]
             {
-                new MigrationV6to7()
+                new MigrationV6to7(),
+                new MigrationV7to9()
             };
 
         public static bool DoMigrationIfNeed()
