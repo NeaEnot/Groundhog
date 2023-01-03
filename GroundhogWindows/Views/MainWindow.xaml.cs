@@ -33,8 +33,6 @@ namespace GroundhogWindows.Views
         {
             InitializeComponent();
 
-            LoadResources();
-
             sdPage = new SelectDatePage(this);
             tiPage = new TaskInstancesPage();
             sgPage = new SelectGroupPage(this);
@@ -68,17 +66,6 @@ namespace GroundhogWindows.Views
             timer.Start();
         }
 
-        private void LoadResources()
-        {
-            App.Current.Resources["Main color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Main color"]));
-            App.Current.Resources["Additional color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Additional color"]));
-            App.Current.Resources["Main text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Main text"]));
-            App.Current.Resources["Additional text"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Additional text"]));
-            App.Current.Resources["Selected item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Selected item"]));
-            App.Current.Resources["Selected item inactive"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Selected item inactive"]));
-            App.Current.Resources["Select item"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(GroundhogContext.Settings.ColorSchema.Colors["Select item"]));
-        }
-
         private void RestartWindow()
         {
             MainWindow mainWindow = new MainWindow();
@@ -102,7 +89,20 @@ namespace GroundhogWindows.Views
         {
             ColorsWindow colorsWindow = new ColorsWindow();
             if (colorsWindow.ShowDialog() == true)
+            {
+                App.ApplyColorSchema();
                 RestartWindow();
+            }
+        }
+
+        private void MenuItemLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            LanguageWindow lanaguageWindow = new LanguageWindow();
+            if (lanaguageWindow.ShowDialog() == true)
+            {
+                App.ApplyLanguage();
+                RestartWindow();
+            }
         }
 
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)

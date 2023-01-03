@@ -6,7 +6,7 @@ namespace Core.Models.Settings.Lang
     {
         public string Monday { get; set; }
         public string Tuesday { get; set; }
-        public string Wednes­day { get; set; }
+        public string Wednesday { get; set; }
         public string Thursday { get; set; }
         public string Friday { get; set; }
         public string Saturday { get; set; }
@@ -25,14 +25,14 @@ namespace Core.Models.Settings.Lang
             {
                 Monday = dict["Monday"],
                 Tuesday = dict["Tuesday"],
-                Wednes­day = dict["Wednes­day"],
+                Wednesday = dict["Wednesday"],
                 Thursday = dict["Thursday"],
                 Friday = dict["Friday"],
                 Saturday = dict["Saturday"],
                 Sunday = dict["Sunday"],
                 MondayAbbreviated = dict["MondayAbbreviated"],
                 TuesdayAbbreviated = dict["TuesdayAbbreviated"],
-                Wednes­dayAbbreviated = dict["Wednes­dayAbbreviated"],
+                Wednes­dayAbbreviated = dict["WednesdayAbbreviated"],
                 ThursdayAbbreviated = dict["ThursdayAbbreviated"],
                 FridayAbbreviated = dict["FridayAbbreviated"],
                 SaturdayAbbreviated = dict["SaturdayAbbreviated"],

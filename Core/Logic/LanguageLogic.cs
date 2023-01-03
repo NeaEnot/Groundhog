@@ -24,7 +24,7 @@ namespace Core.Logic
                 {
                     Monday = "Monday",
                     Tuesday = "Tuesday",
-                    Wednes­day = "Wednes­day",
+                    Wednesday = "Wednesday",
                     Thursday = "Thursday",
                     Friday = "Friday",
                     Saturday = "Saturday",
