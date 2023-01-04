@@ -13,20 +13,20 @@ namespace Core.Logic.DateTimeHelpers
         public void CheckIsValueCorrect(string text)
         {
             if (!dayOfYearReg.IsMatch(text))
-                throw new Exception("Неверный формат дня месяца: 'MM.dd'.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectFormatOfDayOfMonth}: 'MM.dd'.");
 
             GroupCollection groups = dayOfYearReg.Match(text).Groups;
             int mounth;
             int day;
 
             if (!int.TryParse(groups["mounth"].Value, out mounth))
-                throw new Exception("Неверный номер месяца.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectNumberOfMonth}.");
 
             if (!int.TryParse(groups["day"].Value, out day))
-                throw new Exception("Неверный день.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectFormatOfDayOfMonth}.");
 
             if (day > DateTime.DaysInMonth(2020, mounth))
-                throw new Exception("В указанном месяце меньше дней.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ThereAreFewerDaysInSpecifiedMonth}.");
         }
 
         public List<TaskInstance> FillRepeatedTasks(Task task)
@@ -41,7 +41,7 @@ namespace Core.Logic.DateTimeHelpers
             {
                 currentDate = currentDate.AddYears(1);
 
-                // Обработка задачи на 29 февраля
+                // Processing the task for February 29
                 if (task.RepeatValue == "02.29" && currentDate.Month == 3 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
                     currentDate = new DateTime(currentDate.Year, 2, 29);
 

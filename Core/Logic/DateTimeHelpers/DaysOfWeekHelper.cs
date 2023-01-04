@@ -7,7 +7,17 @@ namespace Core.Logic.DateTimeHelpers
 {
     class DaysOfWeekHelper : IDTHelper
     {
-        private static List<string> daysOfWeek = new List<string>(new string[] { "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" });
+        private static List<string> daysOfWeek =
+            new List<string>
+            {
+                GroundhogContext.Language.DaysOfWeek.MondayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.TuesdayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.Wednes­dayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.ThursdayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.FridayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.SaturdayAbbreviated,
+                GroundhogContext.Language.DaysOfWeek.SundayAbbreviated
+            };
 
         public void CheckIsValueCorrect(string text)
         {
@@ -15,7 +25,9 @@ namespace Core.Logic.DateTimeHelpers
 
             foreach (string d in days)
                 if (!daysOfWeek.Contains(d))
-                    throw new Exception($"Неверный день недели: {d}.\nИли неверный формат; верный формат: Пн,Вт,Сб...");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectDayOfTheWeek}: {d}.\n" +
+                        $"{GroundhogContext.Language.ErrorsMessages.Or} {GroundhogContext.Language.ErrorsMessages.IncorrectFormat}; " +
+                        $"{GroundhogContext.Language.ErrorsMessages.CorrectFormat}: {daysOfWeek[0]},{daysOfWeek[1]},{daysOfWeek[5]}...");
         }
 
         public List<TaskInstance> FillRepeatedTasks(Task task)

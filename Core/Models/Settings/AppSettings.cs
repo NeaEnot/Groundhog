@@ -28,7 +28,5 @@ namespace Core.Models.Settings
 
             ColorSchema = new ColorSchema();
         }
-
-
     }
 }

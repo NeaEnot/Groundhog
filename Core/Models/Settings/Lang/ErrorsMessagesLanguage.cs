@@ -23,6 +23,7 @@ namespace Core.Models.Settings.Lang
         public string IncorrectDayOfTheWeek { get; set; }
         public string IncorrectFormat { get; set; }
         public string IncorrectNumberOfArguments { get; set; }
+        public string Or { get; set; }
 
         internal static ErrorsMessagesLanguage Parse(Dictionary<string, string> dict)
         {
@@ -46,7 +47,8 @@ namespace Core.Models.Settings.Lang
                 ThereAreFewerDaysInSpecifiedMonth = dict["ThereAreFewerDaysInSpecifiedMonth"],
                 IncorrectDayOfTheWeek = dict["IncorrectDayOfTheWeek"],
                 IncorrectFormat = dict["IncorrectFormat"],
-                IncorrectNumberOfArguments = dict["IncorrectNumberOfArguments"]
+                IncorrectNumberOfArguments = dict["IncorrectNumberOfArguments"],
+                Or = dict["Or"],
             };
 
             return language;
@@ -76,6 +78,7 @@ namespace Core.Models.Settings.Lang
             content += $"IncorrectDayOfTheWeek={IncorrectDayOfTheWeek}" + '\n';
             content += $"IncorrectFormat={IncorrectFormat}" + '\n';
             content += $"IncorrectNumberOfArguments={IncorrectNumberOfArguments}" + '\n';
+            content += $"Or={Or}" + '\n';
             content += '\n';
 
             return content;

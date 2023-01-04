@@ -12,17 +12,18 @@ namespace Core.Logic.DateTimeHelpers
             string[] strs = text.Split('-');
 
             if (strs.Length % 2 == 1)
-                throw new Exception("Неверный формат: 'xx-xx'; 'xx-xx-xx-xx' ...\nИли неверное количество аргументов: должно быть чётное количество аргументов.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectFormat}: 'xx-xx'; 'xx-xx-xx-xx' ...\n" + 
+                                    $"{GroundhogContext.Language.ErrorsMessages.Or} {GroundhogContext.Language.ErrorsMessages.IncorrectNumberOfArguments}");
 
             foreach (string str in strs)
             {
                 int a;
 
                 if (!int.TryParse(str, out a))
-                    throw new Exception($"Неверное значение: {str}.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectValue}: {str}.");
 
                 if (a < 1)
-                    throw new Exception($"Неверное значение количества дней: {str}.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectNumberOfDays}: {str}.");
             }
         }
 

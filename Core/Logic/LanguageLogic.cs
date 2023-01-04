@@ -57,7 +57,8 @@ namespace Core.Logic
                     ThereAreFewerDaysInSpecifiedMonth = "There are fewer days in specified month",
                     IncorrectDayOfTheWeek = "Incorrect day of the week",
                     IncorrectFormat = "Incorrect format",
-                    IncorrectNumberOfArguments = "Incorrect number of arguments"
+                    IncorrectNumberOfArguments = "Incorrect number of arguments",
+                    Or = "Or"
                 },
                 Notes = new NotesLanguage
                 {

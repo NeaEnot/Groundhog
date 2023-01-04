@@ -12,10 +12,10 @@ namespace Core.Logic.DateTimeHelpers
             int b;
 
             if (!int.TryParse(text, out b))
-                throw new Exception("Неверное значение.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectValue}.");
 
-            if (b < 1)
-                throw new Exception("Неверное число дней.");
+            if (b < 1 || b > 31)
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectNumberOfDay}.");
         }
 
         public List<TaskInstance> FillRepeatedTasks(Task task)
