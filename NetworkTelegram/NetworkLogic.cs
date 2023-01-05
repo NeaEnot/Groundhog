@@ -58,7 +58,7 @@ namespace NetworkTelegram
                         TLRequestCreateChannel request = new TLRequestCreateChannel
                         {
                             Title = channelName,
-                            About = "Частный канал для облачного хранения данных приложения Groundhog.",
+                            About = "Private channel for cloud storage of application data Groundhog.",
                             Broadcast = false,
                             Megagroup = false
                         };
@@ -101,7 +101,7 @@ namespace NetworkTelegram
             }
             catch (Exception ex)
             {
-                throw new Exception("Не получилось подключиться: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToConnect}: " + ex.Message);
             }
         }
 
@@ -115,7 +115,7 @@ namespace NetworkTelegram
             try
             {
                 if (client == null)
-                    throw new Exception("Не было выполнено подключение.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionFailed}.");
 
                 TLMessage msg = null;
 
@@ -170,7 +170,7 @@ namespace NetworkTelegram
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось загрузить данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToDownloadData}: " + ex.Message);
             }
         }
 
@@ -179,7 +179,7 @@ namespace NetworkTelegram
             try
             {
                 if (client == null)
-                    throw new Exception("Не было выполнено подключение.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionFailed}.");
 
                 TLAbsInputFile file = null;
 
@@ -209,7 +209,7 @@ namespace NetworkTelegram
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось отправить данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToUploadData}: " + ex.Message);
             }
         }
     }

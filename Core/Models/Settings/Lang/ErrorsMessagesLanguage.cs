@@ -7,10 +7,14 @@ namespace Core.Models.Settings.Lang
         public string Error { get; set; }
         public string FieldMustBeFilled { get; set; }
         public string FieldsMustBeFilled { get; set; }
-        public string CodeWasNotEntered { get; set; }
         public string StringNotMatchColorHexFormat { get; set; }
+        public string CodeWasNotEntered { get; set; }
         public string ConnectionStringNotMatchFormat { get; set; }
         public string CodeWasNotReceived { get; set; }
+        public string FailedToConnect { get; set; }
+        public string ConnectionFailed { get; set; }
+        public string FailedToDownloadData { get; set; }
+        public string FailedToUploadData { get; set; }
         public string EntityWithSameIdDontExist { get; set; }
         public string CorrectValue { get; set; }
         public string CorrectFormat { get; set; }
@@ -32,10 +36,14 @@ namespace Core.Models.Settings.Lang
                 Error = dict["Error"],
                 FieldMustBeFilled = dict["FieldMustBeFilled"],
                 FieldsMustBeFilled = dict["FieldsMustBeFilled"],
-                CodeWasNotEntered = dict["CodeWasNotEntered"],
                 StringNotMatchColorHexFormat = dict["StringNotMatchColorHexFormat"],
+                CodeWasNotEntered = dict["CodeWasNotEntered"],
                 ConnectionStringNotMatchFormat = dict["ConnectionStringNotMatchFormat"],
                 CodeWasNotReceived = dict["CodeWasNotReceived"],
+                FailedToConnect = dict["FailedToConnect"],
+                ConnectionFailed = dict["ConnectionFailed"],
+                FailedToDownloadData = dict["FailedToDownloadData"],
+                FailedToUploadData = dict["FailedToUploadData"],
                 EntityWithSameIdDontExist = dict["EntityWithSameIdDontExist"],
                 CorrectValue = dict["CorrectValue"],
                 CorrectFormat = dict["CorrectFormat"],
@@ -62,10 +70,14 @@ namespace Core.Models.Settings.Lang
             content += $"Error={Error}" + '\n';
             content += $"FieldMustBeFilled={FieldMustBeFilled}" + '\n';
             content += $"FieldsMustBeFilled={FieldsMustBeFilled}" + '\n';
-            content += $"CodeWasNotEntered={CodeWasNotEntered}" + '\n';
             content += $"StringNotMatchColorHexFormat={StringNotMatchColorHexFormat}" + '\n';
+            content += $"CodeWasNotEntered={CodeWasNotEntered}" + '\n';
             content += $"ConnectionStringNotMatchFormat={ConnectionStringNotMatchFormat}" + '\n';
             content += $"CodeWasNotReceived={CodeWasNotReceived}" + '\n';
+            content += $"FailedToConnect={FailedToConnect}" + '\n';
+            content += $"ConnectionFailed={ConnectionFailed}" + '\n';
+            content += $"FailedToDownloadData={FailedToDownloadData}" + '\n';
+            content += $"FailedToUploadData={FailedToUploadData}" + '\n';
             content += $"EntityWithSameIdDontExist={EntityWithSameIdDontExist}" + '\n';
             content += $"CorrectValue={CorrectValue}" + '\n';
             content += $"CorrectFormat={CorrectFormat}" + '\n';

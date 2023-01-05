@@ -46,7 +46,7 @@ namespace NetworkVk
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Не получилось подключиться: " + ex.Message);
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToConnect}: " + ex.Message);
                 }
                 finally
                 {
@@ -69,7 +69,7 @@ namespace NetworkVk
                 lock (locker)
                 {
                     if (vk == null)
-                        throw new Exception("Не было выполнено подключение.");
+                        throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionFailed}.");
 
                     WallGetObject wall = null;
                     ulong offset = 0;
@@ -84,7 +84,7 @@ namespace NetworkVk
                         Thread.Sleep(SleepTime);
 
                         if (wall.WallPosts.Count == 0)
-                            throw new Exception("Данных нет");
+                            throw new Exception("No data available");
 
                         foreach (Post post in wall.WallPosts)
                         {
@@ -141,7 +141,7 @@ namespace NetworkVk
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось загрузить данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToDownloadData}: " + ex.Message);
             }
             finally
             {
@@ -158,7 +158,7 @@ namespace NetworkVk
                 lock (locker)
                 {
                     if (vk == null)
-                        throw new Exception("Не было выполнено подключение.");
+                        throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionFailed}.");
 
                     List<Task> tasks = GroundhogContext.TaskLogic.Read();
 
@@ -185,7 +185,7 @@ namespace NetworkVk
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось загрузить данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToUploadData}: " + ex.Message);
             }
             finally
             {

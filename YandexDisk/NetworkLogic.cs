@@ -64,7 +64,7 @@ namespace YandexDisk
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось скачать данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToDownloadData}: " + ex.Message);
             }
         }
 
@@ -102,7 +102,7 @@ namespace YandexDisk
             }
             catch (Exception ex)
             {
-                throw new Exception("Не удалось загрузить данные: " + ex.Message);
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToUploadData}: " + ex.Message);
             }
         }
     }
