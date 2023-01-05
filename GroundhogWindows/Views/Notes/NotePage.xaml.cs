@@ -171,7 +171,7 @@ namespace GroundhogWindows.Views.Notes
             }
             else
             {
-                MessageBox.Show("Указанный текст не найден");
+                MessageBox.Show($"{GroundhogContext.Language.Notes.SearchedTextNotFounded}.");
             }
         }
     }

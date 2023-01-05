@@ -13,8 +13,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox Name="tbFind" IsEnabled="False" Margin="10,0,66,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="17"/>
-        <Button Name="btnFind" IsEnabled="False" Content="Найти" HorizontalAlignment="Right" VerticalAlignment="Center" Height="17" Width="51" Margin="0,0,10,0" Click="btnFind_Click"/>
+        <TextBox Name="tbFind" IsEnabled="False" Margin="10,0,88,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="17"/>
+        <Button Name="btnFind" IsEnabled="False" Content="{DynamicResource ResourceKey=Lang.Notes.Find}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="17" Width="73" Margin="0,0,10,0" Click="btnFind_Click"/>
 
         <ScrollViewer Grid.Row="1">
             <Grid>
@@ -31,6 +31,6 @@
             </Grid>
         </ScrollViewer>
 
-        <Button Name="btnSave" Content="Сохранить" IsEnabled="False" Click="btnSave_Click" HorizontalAlignment="Right" Margin="0,0,25,25" VerticalAlignment="Bottom" Height="35" Width="84" Grid.Row="1"/>
+        <Button Name="btnSave" Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" IsEnabled="False" Click="btnSave_Click" HorizontalAlignment="Right" Margin="0,0,25,25" VerticalAlignment="Bottom" Height="35" Width="84" Grid.Row="1"/>
     </Grid>
 </Page>

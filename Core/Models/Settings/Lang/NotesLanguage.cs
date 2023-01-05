@@ -7,6 +7,7 @@ namespace Core.Models.Settings.Lang
         public string Notes { get; set; }
         public string Note { get; set; }
         public string NoteName { get; set; }
+        public string Find { get; set; }
         public string SearchedTextNotFounded { get; set; }
 
         internal static NotesLanguage Parse(Dictionary<string, string> dict)
@@ -16,7 +17,8 @@ namespace Core.Models.Settings.Lang
                 Notes = dict["Notes"],
                 Note = dict["Note"],
                 NoteName = dict["NoteName"],
-                SearchedTextNotFounded = dict["SearchedTextNotFounded"],
+                Find = dict["Find"],
+                SearchedTextNotFounded = dict["SearchedTextNotFounded"]
             };
 
             return language;
@@ -30,6 +32,7 @@ namespace Core.Models.Settings.Lang
             content += $"Notes={Notes}" + '\n';
             content += $"Note={Note}" + '\n';
             content += $"NoteName={NoteName}" + '\n';
+            content += $"Find={Find}" + '\n';
             content += $"SearchedTextNotFounded={SearchedTextNotFounded}" + '\n';
             content += '\n';
 

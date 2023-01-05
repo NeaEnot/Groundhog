@@ -70,7 +70,9 @@ namespace GroundhogWindows
 
         public static void ApplyLanguage()
         {
+            App.Current.Resources["Lang.ControlCommands.Save"] = GroundhogContext.Language.ControlCommands.Save;
 
+            App.Current.Resources["Lang.Notes.Find"] = GroundhogContext.Language.Notes.Find;
         }
     }
 }

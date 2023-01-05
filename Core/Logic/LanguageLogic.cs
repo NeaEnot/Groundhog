@@ -69,6 +69,7 @@ namespace Core.Logic
                     Notes = "Notes",
                     Note = "Note",
                     NoteName = "Note name",
+                    Find = "Find",
                     SearchedTextNotFounded = "Searched text not founded"
                 },
                 PlanningAndOptimization = new PlanningAndOptimizationLanguage

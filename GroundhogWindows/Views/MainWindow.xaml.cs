@@ -33,6 +33,9 @@ namespace GroundhogWindows.Views
         {
             InitializeComponent();
 
+            App.ApplyColorSchema();
+            App.ApplyLanguage();
+
             sdPage = new SelectDatePage(this);
             tiPage = new TaskInstancesPage();
             sgPage = new SelectGroupPage(this);

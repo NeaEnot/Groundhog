@@ -7,6 +7,9 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
 
+        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Save">Save</sys:String>
+
         <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
         <Brush x:Key="Main text">#000000</Brush>
