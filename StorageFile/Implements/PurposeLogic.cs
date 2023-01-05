@@ -1,4 +1,5 @@
-﻿using Core.Interfaces.Storage;
+﻿using Core;
+using Core.Interfaces.Storage;
 using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace StorageFile.Implements
             Purpose purpose = context.Purposes.FirstOrDefault(req => req.Id == model.Id);
 
             if (purpose == null)
-                throw new Exception("Цели с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {model.Id}.");
 
             purpose.GroupId = model.GroupId;
             purpose.Text = model.Text;
@@ -84,7 +85,7 @@ namespace StorageFile.Implements
             Purpose purpose = context.Purposes.FirstOrDefault(req => req.Id == id);
 
             if (purpose == null)
-                throw new Exception("Цели с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {id}.");
 
             context.Purposes.Remove(purpose);
 

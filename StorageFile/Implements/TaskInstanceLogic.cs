@@ -1,4 +1,5 @@
-﻿using Core.Interfaces.Storage;
+﻿using Core;
+using Core.Interfaces.Storage;
 using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace StorageFile.Implements
             TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == model.Id);
 
             if (instance == null)
-                throw new Exception("Экземпляра задачи с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {model.Id}.");
 
             instance.Date = model.Date;
             instance.TaskId = model.TaskId;
@@ -96,7 +97,7 @@ namespace StorageFile.Implements
                 TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == model.Id);
 
                 if (instance == null)
-                    throw new Exception("Экземпляра задачи с данным Id не существует.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {instance.Id}.");
 
                 instance.Date = model.Date;
                 instance.TaskId = model.TaskId;
@@ -117,7 +118,7 @@ namespace StorageFile.Implements
             TaskInstance instance = context.TaskInstances.FirstOrDefault(req => req.Id == id);
 
             if (instance == null)
-                throw new Exception("Экземпляра задачи с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {id}.");
 
             context.TaskInstances.Remove(instance);
 

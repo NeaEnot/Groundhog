@@ -1,4 +1,5 @@
-﻿using Core.Interfaces.Storage;
+﻿using Core;
+using Core.Interfaces.Storage;
 using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace StorageFile.Implements
             PurposeGroup group = context.PurposeGroups.FirstOrDefault(req => req.Id == model.Id);
 
             if (group == null)
-                throw new Exception("Группы с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {model.Id}.");
 
             group.Name = model.Name;
 
@@ -75,7 +76,7 @@ namespace StorageFile.Implements
                 PurposeGroup group = context.PurposeGroups.FirstOrDefault(req => req.Id == id);
 
                 if (group == null)
-                    throw new Exception("Группы с данным Id не существует.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {id}.");
 
                 context.PurposeGroups.Remove(group);
             }

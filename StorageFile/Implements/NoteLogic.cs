@@ -1,4 +1,5 @@
-﻿using Core.Interfaces.Storage;
+﻿using Core;
+using Core.Interfaces.Storage;
 using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace StorageFile.Implements
             Note note = context.Notes.FirstOrDefault(req => req.Id == model.Id);
 
             if (note == null)
-                throw new Exception("Заметки с данным Id не существует.");
+                throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {model.Id}.");
 
             note.Name = model.Name;
             note.Text = model.Text;
@@ -79,7 +80,7 @@ namespace StorageFile.Implements
                 Note note = context.Notes.FirstOrDefault(req => req.Id == id);
 
                 if (note == null)
-                    throw new Exception("Заметки с данным Id не существует.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {id}.");
 
                 context.Notes.Remove(note);
             }
