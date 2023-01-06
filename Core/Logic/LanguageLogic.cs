@@ -15,7 +15,7 @@ namespace Core.Logic
                 {
                     Save = "Save",
                     Duplicate = "Duplicate",
-                    Update = "Update",
+                    Edit = "Edit",
                     Delete = "Delete",
                     DeleteAllInstances = "Delete all instances",
                     Create = "Create"

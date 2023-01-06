@@ -70,7 +70,10 @@ namespace GroundhogWindows
 
         public static void ApplyLanguage()
         {
+            App.Current.Resources["Lang.ControlCommands.Create"] = GroundhogContext.Language.ControlCommands.Create;
             App.Current.Resources["Lang.ControlCommands.Save"] = GroundhogContext.Language.ControlCommands.Save;
+            App.Current.Resources["Lang.ControlCommands.Edit"] = GroundhogContext.Language.ControlCommands.Edit;
+            App.Current.Resources["Lang.ControlCommands.Delete"] = GroundhogContext.Language.ControlCommands.Delete;
 
             App.Current.Resources["Lang.Notes.Find"] = GroundhogContext.Language.Notes.Find;
             App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;

@@ -6,7 +6,7 @@ namespace Core.Models.Settings.Lang
     {
         public string Save { get; set; }
         public string Duplicate { get; set; }
-        public string Update { get; set; }
+        public string Edit { get; set; }
         public string Delete { get; set; }
         public string DeleteAllInstances { get; set; }
         public string Create { get; set; }
@@ -17,7 +17,7 @@ namespace Core.Models.Settings.Lang
             {
                 Save = dict["Save"],
                 Duplicate = dict["Duplicate"],
-                Update = dict["Update"],
+                Edit = dict["Edit"],
                 Delete = dict["Delete"],
                 DeleteAllInstances = dict["DeleteAllInstances"]
             };
@@ -32,7 +32,7 @@ namespace Core.Models.Settings.Lang
             content += $"# Control commands" + '\n';
             content += $"Save={Save}" + '\n';
             content += $"Duplicate={Duplicate}" + '\n';
-            content += $"Update={Update}" + '\n';
+            content += $"Edit={Edit}" + '\n';
             content += $"Delete={Delete}" + '\n';
             content += $"DeleteAllInstances={DeleteAllInstances}" + '\n';
             content += $"Create={Create}" + '\n';

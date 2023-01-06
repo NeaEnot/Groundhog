@@ -7,7 +7,10 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
 
+        <sys:String x:Key="Lang.ControlCommands.Create">Create</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Save">Save</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Edit">Edit</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
         
         <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
