@@ -9,6 +9,7 @@
 
         <sys:String x:Key="Lang.ControlCommands.Create">Create</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Save">Save</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Duplicate">Duplicate</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Edit">Edit</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
         

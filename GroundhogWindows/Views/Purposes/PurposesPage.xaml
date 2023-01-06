@@ -21,9 +21,9 @@
                                                 <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
                                                 <CheckBox.ContextMenu>
                                                     <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                                                        <MenuItem Header="Дублировать" Click="ContextMenuClone_Click"/>
-                                                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                                                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Duplicate}" Click="ContextMenuClone_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="ContextMenuUpdate_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
                                                 </CheckBox.ContextMenu>
                                             </CheckBox>
@@ -44,6 +44,6 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
         </ScrollViewer>
-        <Button Name="btnCreate" Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" HorizontalAlignment="Right" IsEnabled="False"/>
+        <Button Name="btnCreate" Content="{DynamicResource ResourceKey=Lang.ControlCommands.Create}" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" HorizontalAlignment="Right" IsEnabled="False"/>
     </Grid>
 </Page>
