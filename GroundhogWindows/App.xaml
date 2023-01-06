@@ -7,9 +7,13 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
 
-        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Save">Save</sys:String>
+        
+        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
+        <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
+        <sys:String x:Key="Lang.Notes.NoteName">Note name</sys:String>
 
+        
         <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
         <Brush x:Key="Main text">#000000</Brush>
@@ -18,6 +22,7 @@
         <Brush x:Key="Selected item inactive">#f6f6f6</Brush>
         <Brush x:Key="Select item">#e5f3fb</Brush>
 
+        
         <Color x:Key="at">#818282</Color>
 
         <Style TargetType="{x:Type Label}">

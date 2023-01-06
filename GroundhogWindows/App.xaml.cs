@@ -73,6 +73,8 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.ControlCommands.Save"] = GroundhogContext.Language.ControlCommands.Save;
 
             App.Current.Resources["Lang.Notes.Find"] = GroundhogContext.Language.Notes.Find;
+            App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;
+            App.Current.Resources["Lang.Notes.NoteName"] = GroundhogContext.Language.Notes.NoteName;
         }
     }
 }

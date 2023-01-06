@@ -296,3 +296,4 @@ WPF: Вынести логику работы с выбором даты в от
 Применение языка в модуле Storage
 Применение языка в модулях Network
 Применение языка в GroundhogWindows.NotePage
+Применение языка в GroundhogWindows.NoteWindow
