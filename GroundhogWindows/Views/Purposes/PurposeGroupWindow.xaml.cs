@@ -1,4 +1,5 @@
-﻿using Core.Models.Storage;
+﻿using Core;
+using Core.Models.Storage;
 using System;
 using System.Windows;
 
@@ -30,7 +31,7 @@ namespace GroundhogWindows.Views.Purposes
             try
             {
                 if (string.IsNullOrWhiteSpace(textBoxName.Text))
-                    throw new Exception("Поле должно быть заполнено.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FieldMustBeFilled}.");
 
                 Group.Name = textBoxName.Text;
 
@@ -38,7 +39,7 @@ namespace GroundhogWindows.Views.Purposes
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -298,3 +298,4 @@ WPF: Вынести логику работы с выбором даты в от
 Применение языка в GroundhogWindows.NotePage
 Применение языка в GroundhogWindows.NoteWindow
 Применение языка в GroundhogWindows.SelectNotePage
+Применение языка в GroundhogWindows.PurposeGroupWindow
