@@ -83,6 +83,9 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.Purposes.Purpose"] = GroundhogContext.Language.Purposes.Purpose;
             App.Current.Resources["Lang.Purposes.PurposesGroup"] = GroundhogContext.Language.Purposes.PurposesGroup;
             App.Current.Resources["Lang.Purposes.GroupName"] = GroundhogContext.Language.Purposes.GroupName;
+
+            App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
+            App.Current.Resources["Lang.Syncronization.Send"] = GroundhogContext.Language.Syncronization.Send;
         }
     }
 }

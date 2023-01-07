@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Windows;
 
 namespace GroundhogWindows.Views.Settings
@@ -19,7 +20,7 @@ namespace GroundhogWindows.Views.Settings
             try
             {
                 if (string.IsNullOrWhiteSpace(textBox.Text))
-                    throw new Exception("Код не был введён.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.CodeWasNotEntered}.");
 
                 Code = textBox.Text;
 
@@ -27,7 +28,7 @@ namespace GroundhogWindows.Views.Settings
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

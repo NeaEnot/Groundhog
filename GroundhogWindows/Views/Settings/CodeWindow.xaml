@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Введите код" Height="0" MinHeight="100" Width="0" MinWidth="280">
+        Title="{DynamicResource ResourceKey=Lang.Syncronization.EnterCode}"
+        Height="0" MinHeight="100" Width="0" MinWidth="280">
     <Grid>
         <TextBox Name="textBox" Margin="10,10,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button Content="Отправить" Margin="0,33,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="82" Click="Button_Click" Height="35"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.Syncronization.Send}" Margin="0,33,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="82" Click="Button_Click" Height="35"/>
 
     </Grid>
 </Window>
