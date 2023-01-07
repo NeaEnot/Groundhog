@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Цель" Height="130" Width="312" MinHeight="130" MinWidth="312">
+        Title="{DynamicResource ResourceKey=Lang.Purposes.Purpose}"
+        Height="130" Width="312" MinHeight="130" MinWidth="312">
     <Grid>
-        <TextBox Name="textBox" Margin="53,14,10,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
-        <Label Content="Цель" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,19" VerticalAlignment="Bottom" Height="35" Width="80" Click="Button_Click"/>
+        <TextBox Name="textBox" Margin="68,14,10,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.Purposes.Purpose}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Center" Margin="0,0,0,19" VerticalAlignment="Bottom" Height="35" Width="80" Click="Button_Click"/>
     </Grid>
 </Window>

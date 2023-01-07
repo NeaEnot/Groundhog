@@ -80,6 +80,7 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;
             App.Current.Resources["Lang.Notes.NoteName"] = GroundhogContext.Language.Notes.NoteName;
 
+            App.Current.Resources["Lang.Purposes.Purpose"] = GroundhogContext.Language.Purposes.Purpose;
             App.Current.Resources["Lang.Purposes.PurposesGroup"] = GroundhogContext.Language.Purposes.PurposesGroup;
             App.Current.Resources["Lang.Purposes.GroupName"] = GroundhogContext.Language.Purposes.GroupName;
         }

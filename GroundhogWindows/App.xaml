@@ -17,6 +17,7 @@
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
         <sys:String x:Key="Lang.Notes.NoteName">Note name</sys:String>
 
+        <sys:String x:Key="Lang.Purposes.Purpose">Purpose</sys:String>
         <sys:String x:Key="Lang.Purposes.PurposesGroup">Purposes group</sys:String>
         <sys:String x:Key="Lang.Purposes.GroupName">Group name</sys:String>
 
