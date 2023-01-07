@@ -20,8 +20,8 @@
                                             <StackPanel Margin="5">
                                                 <StackPanel.ContextMenu>
                                                     <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                                                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                                                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="ContextMenuUpdate_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
                                                 </StackPanel.ContextMenu>
                                                 <Label Content="{Binding Name}" FontSize="18" Foreground="{DynamicResource ResourceKey='Main text'}"/>
@@ -45,6 +45,6 @@
             </ListBox>
         </ScrollViewer>
 
-        <Button Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Create}" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonAdd_Click" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"/>
     </Grid>
 </Page>
