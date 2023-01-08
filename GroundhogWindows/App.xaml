@@ -25,6 +25,7 @@
         <sys:String x:Key="Lang.Syncronization.Send">Send</sys:String>
 
         <sys:String x:Key="Lang.Settings.ConnectionString">Connection string</sys:String>
+        <sys:String x:Key="Lang.Settings.SelectLanguage">Select language</sys:String>
         <sys:String x:Key="Lang.Settings.ColorSchema">Color schema</sys:String>
         <sys:String x:Key="Lang.Settings.StandartSchema">Standart schema</sys:String>
         <sys:String x:Key="Lang.Settings.MainColor">Main color</sys:String>

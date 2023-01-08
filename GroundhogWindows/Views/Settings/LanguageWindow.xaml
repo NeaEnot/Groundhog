@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows.Views.Settings"
         mc:Ignorable="d"
-        Title="Выбор языка" Height="140" Width="400" MinWidth="400" MinHeight="140">
+        Title="{DynamicResource ResourceKey=Lang.Settings.SelectLanguage}"
+        Height="140" Width="400" MinWidth="400" MinHeight="140">
     <Grid>
         <ComboBox Name="cbLanguage" Margin="10,10,10,0" FontSize="16" VerticalAlignment="Top"/>
-        <Button Content="Сохранить" HorizontalAlignment="Center" Height="35" Width="94" FontSize="16" VerticalAlignment="Top" Margin="0,59,0,0" Click="Button_Click"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Center" Height="35" Width="94" FontSize="16" VerticalAlignment="Top" Margin="0,59,0,0" Click="Button_Click"/>
     </Grid>
 </Window>

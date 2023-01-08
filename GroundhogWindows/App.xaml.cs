@@ -88,6 +88,7 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.Syncronization.Send"] = GroundhogContext.Language.Syncronization.Send;
 
             App.Current.Resources["Lang.Settings.ConnectionString"] = GroundhogContext.Language.Settings.ConnectionString;
+            App.Current.Resources["Lang.Settings.SelectLanguage"] = GroundhogContext.Language.Settings.SelectLanguage;
             App.Current.Resources["Lang.Settings.ColorSchema"] = GroundhogContext.Language.Settings.ColorSchema;
             App.Current.Resources["Lang.Settings.StandartSchema"] = GroundhogContext.Language.Settings.StandartSchema;
             App.Current.Resources["Lang.Settings.MainColor"] = GroundhogContext.Language.Settings.MainColor;

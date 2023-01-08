@@ -6,6 +6,7 @@ namespace Core.Models.Settings.Lang
     {
         public string Settings { get; set; }
         public string ConnectionString { get; set; }
+        public string SelectLanguage { get; set; }
         public string PlanningAndOptimizationRange { get; set; }
         // Color schema
         public string ColorSchema { get; set; }
@@ -25,6 +26,7 @@ namespace Core.Models.Settings.Lang
                 Settings = dict["Settings"],
                 ConnectionString = dict["ConnectionString"],
                 PlanningAndOptimizationRange = dict["PlanningAndOptimizationRange"],
+                SelectLanguage = dict["SelectLanguage"],
                 ColorSchema = dict["ColorSchema"],
                 MainColor = dict["MainColor"],
                 AditionalColor = dict["AditionalColor"],
@@ -46,6 +48,7 @@ namespace Core.Models.Settings.Lang
             content += $"# Settings" + '\n';
             content += $"Settings={Settings}" + '\n';
             content += $"ConnectionString={ConnectionString}" + '\n';
+            content += $"SelectLanguage={SelectLanguage}" + '\n';
             content += $"PlanningAndOptimizationRange={PlanningAndOptimizationRange}" + '\n';
             content += '\n';
 

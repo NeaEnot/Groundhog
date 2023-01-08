@@ -21,7 +21,7 @@ namespace Core
         public static INetworkLogic NetworkLogic { get; set; }
 
         public static Language Language { get; set; }
-        public static readonly string DefaultLanguage = "English";
+        public static string DefaultLanguage => LanguageLogic.DefaultLanguage;
 
         private static AppSettings settings;
         public static AppSettings Settings { 

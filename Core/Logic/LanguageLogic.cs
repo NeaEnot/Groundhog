@@ -7,6 +7,8 @@ namespace Core.Logic
 {
     internal static class LanguageLogic
     {
+        internal static readonly string DefaultLanguage = "English";
+
         internal static void CreateDefault()
         {
             Language language = new Language
@@ -93,6 +95,7 @@ namespace Core.Logic
                 {
                     Settings = "Settings",
                     ConnectionString = "Connection string",
+                    SelectLanguage = "Select language",
                     PlanningAndOptimizationRange = "Planning and optimization range",
                     ColorSchema = "Color schema",
                     MainColor = "Main color",
@@ -126,7 +129,7 @@ namespace Core.Logic
                 }
             };
 
-            Save(language, $"{GroundhogContext.StoragePath}\\Languages\\{GroundhogContext.DefaultLanguage}.lng");
+            Save(language, $"{GroundhogContext.StoragePath}\\Languages\\{DefaultLanguage}.lng");
         }
 
         internal static void Save(Language language, string path)
