@@ -24,6 +24,16 @@
         <sys:String x:Key="Lang.Syncronization.EnterCode">Enter code</sys:String>
         <sys:String x:Key="Lang.Syncronization.Send">Send</sys:String>
 
+        <sys:String x:Key="Lang.Settings.ColorSchema">Color schema</sys:String>
+        <sys:String x:Key="Lang.Settings.StandartSchema">Standart schema</sys:String>
+        <sys:String x:Key="Lang.Settings.MainColor">Main color</sys:String>
+        <sys:String x:Key="Lang.Settings.AditionalColor">Aditional color</sys:String>
+        <sys:String x:Key="Lang.Settings.MainText">Main text</sys:String>
+        <sys:String x:Key="Lang.Settings.AditionalText">Aditional text</sys:String>
+        <sys:String x:Key="Lang.Settings.SelectedItem">Selected item</sys:String>
+        <sys:String x:Key="Lang.Settings.SelectedItemInactive">Selected item (inactive)</sys:String>
+        <sys:String x:Key="Lang.Settings.ChosenItem">Chosen item</sys:String>
+
 
         <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>

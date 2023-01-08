@@ -86,6 +86,16 @@ namespace GroundhogWindows
 
             App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
             App.Current.Resources["Lang.Syncronization.Send"] = GroundhogContext.Language.Syncronization.Send;
+
+            App.Current.Resources["Lang.Settings.ColorSchema"] = GroundhogContext.Language.Settings.ColorSchema;
+            App.Current.Resources["Lang.Settings.StandartSchema"] = GroundhogContext.Language.Settings.StandartSchema;
+            App.Current.Resources["Lang.Settings.MainColor"] = GroundhogContext.Language.Settings.MainColor;
+            App.Current.Resources["Lang.Settings.AditionalColor"] = GroundhogContext.Language.Settings.AditionalColor;
+            App.Current.Resources["Lang.Settings.MainText"] = GroundhogContext.Language.Settings.MainText;
+            App.Current.Resources["Lang.Settings.AditionalText"] = GroundhogContext.Language.Settings.AditionalText;
+            App.Current.Resources["Lang.Settings.SelectedItem"] = GroundhogContext.Language.Settings.SelectedItem;
+            App.Current.Resources["Lang.Settings.SelectedItemInactive"] = GroundhogContext.Language.Settings.SelectedItemInactive;
+            App.Current.Resources["Lang.Settings.ChosenItem"] = GroundhogContext.Language.Settings.ChosenItem;
         }
     }
 }

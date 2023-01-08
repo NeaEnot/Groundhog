@@ -83,7 +83,7 @@ namespace GroundhogWindows.Views.Settings
 
                 foreach (TextBox tb in tbs)
                     if (!reg.IsMatch(tb.Text))
-                        throw new Exception($"Строка {tb.Text} не соответствует формату ColorHex.");
+                        throw new Exception($"{GroundhogContext.Language.ErrorsMessages.StringNotMatchColorHexFormat}: {tb.Text}");
 
                 Dictionary<string, string> colors = new Dictionary<string, string>()
                 {
@@ -110,7 +110,7 @@ namespace GroundhogWindows.Views.Settings
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -7,20 +7,21 @@
         xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Цветовыя схема" MinHeight="410" MinWidth="611" Height="410" Width="775">
+        Title="{DynamicResource ResourceKey=Lang.Settings.ColorSchema}"
+        MinHeight="410" MinWidth="611" Height="410" Width="775">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Content="Основной цвет" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-        <Label Grid.Column="0" Content="Дополнительный цвет" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="134"/>
-        <Label Grid.Column="0" Content="Основной текст" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
-        <Label Grid.Column="0" Content="Дополнительный текст" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="136"/>
-        <Label Grid.Column="0" Content="Выделенный элемент" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
-        <Label Grid.Column="0" Content="Выделенный элемент (неактивный)" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Height="26" Width="205"/>
-        <Label Grid.Column="0" Content="Выбор элемента" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.MainColor}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.AditionalColor}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="134"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.MainText}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.AditionalText}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="136"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.SelectedItem}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.SelectedItemInactive}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Height="26" Width="205"/>
+        <Label Grid.Column="0" Content="{DynamicResource ResourceKey=Lang.Settings.ChosenItem}" Foreground="{DynamicResource Main text}" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
 
         <TextBox Name="tbMainColor" Grid.Column="0" Margin="220,14,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
         <TextBox Name="tbAdditionalColor" Grid.Column="0" Margin="220,45,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
@@ -30,8 +31,8 @@
         <TextBox Name="tbSelectedItemInactive" Grid.Column="0" Margin="220,169,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
         <TextBox Name="tbSelectItem" Grid.Column="0" Margin="220,200,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" GotFocus="tb_GotFocus" TextChanged="tb_TextChanged"/>
 
-        <Button Content="Стандартная схема" HorizontalAlignment="Left" Height="35" Width="128" Margin="10,0,0,19" VerticalAlignment="Bottom" Click="ButtonStandart_Click"/>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Height="35" Width="84" Margin="255,0,0,19" VerticalAlignment="Bottom" Click="ButtonSave_Click"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.Settings.StandartSchema}" HorizontalAlignment="Left" Height="35" Width="128" Margin="10,0,0,19" VerticalAlignment="Bottom" Click="ButtonStandart_Click"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Left" Height="35" Width="84" Margin="255,0,0,19" VerticalAlignment="Bottom" Click="ButtonSave_Click"/>
 
         <colorpicker:StandardColorPicker Name="colorPicker" ShowAlpha="False" Margin="0,0,-2,5" ColorChanged="colorPicker_ColorChanged" Grid.Column="1"/>
 
