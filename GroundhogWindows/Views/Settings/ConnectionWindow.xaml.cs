@@ -21,7 +21,7 @@ namespace GroundhogWindows.Views.Settings
             try
             {
                 if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(textBoxConnection.Text))
-                    throw new Exception("Строка подключения не соответствует формату.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
 
                 GroundhogContext.Settings.ConnectionString = textBoxConnection.Text;
                 GroundhogContext.SaveSettings();
@@ -30,7 +30,7 @@ namespace GroundhogWindows.Views.Settings
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
