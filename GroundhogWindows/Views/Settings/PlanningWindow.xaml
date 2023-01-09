@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:GroundhogWindows"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="Дальность планирования и оптимизации" Height="229" Width="241" MinHeight="317" MinWidth="418">
+        Title="{DynamicResource ResourceKey=Lang.Settings.PlanningAndOptimizationRange}"
+        Height="229" Width="241" MinHeight="317" MinWidth="418">
     <Grid>
-        <Label Content="Планирование Дни" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Планирование ДниНедели" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <Label Content="Планирование Вахты" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-        <Label Content="Планирование ЧислоМесяца" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <Label Content="Планирование ДеньГода" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-        <Label Content="Оптимизация" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.DaysPlanning}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.DaysOfWeekPlanning}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.WatchesPlanning}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.DaysOfMonthPlanning}" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.DaysOfYearPlanning}" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <Label Content="{DynamicResource ResourceKey=Lang.PlanningAndOptimization.Optimization}" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
 
         <TextBox Name="tbDays" Margin="235,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox Name="tbDaysOfWeek" Margin="235,45,11,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
@@ -22,7 +23,7 @@
         <TextBox Name="tbDayOfYear" Margin="235,138,11,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox Name="tbOptimization" Margin="236,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <Button Content="Сохранить" HorizontalAlignment="Center" Margin="0,0,0,19" Height="35" Width="94" FontSize="16" Click="Button_Click" VerticalAlignment="Bottom"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Center" Margin="0,0,0,19" Height="35" Width="94" FontSize="16" Click="Button_Click" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

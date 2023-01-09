@@ -26,6 +26,7 @@
 
         <sys:String x:Key="Lang.Settings.ConnectionString">Connection string</sys:String>
         <sys:String x:Key="Lang.Settings.SelectLanguage">Select language</sys:String>
+        <sys:String x:Key="Lang.Settings.PlanningAndOptimizationRange">Planning and optimization range</sys:String>
         <sys:String x:Key="Lang.Settings.ColorSchema">Color schema</sys:String>
         <sys:String x:Key="Lang.Settings.StandartSchema">Standart schema</sys:String>
         <sys:String x:Key="Lang.Settings.MainColor">Main color</sys:String>
@@ -35,6 +36,13 @@
         <sys:String x:Key="Lang.Settings.SelectedItem">Selected item</sys:String>
         <sys:String x:Key="Lang.Settings.SelectedItemInactive">Selected item (inactive)</sys:String>
         <sys:String x:Key="Lang.Settings.ChosenItem">Chosen item</sys:String>
+
+        <sys:String x:Key="Lang.PlanningAndOptimization.DaysPlanning">Days planning</sys:String>
+        <sys:String x:Key="Lang.PlanningAndOptimization.DaysOfWeekPlanning">Days of week planning</sys:String>
+        <sys:String x:Key="Lang.PlanningAndOptimization.WatchesPlanning">Watches planning</sys:String>
+        <sys:String x:Key="Lang.PlanningAndOptimization.DaysOfMonthPlanning">Days of month planning</sys:String>
+        <sys:String x:Key="Lang.PlanningAndOptimization.DaysOfYearPlanning">Days of year planning</sys:String>
+        <sys:String x:Key="Lang.PlanningAndOptimization.Optimization">Optimization</sys:String>
 
 
         <Brush x:Key="Main color">#ffffff</Brush>

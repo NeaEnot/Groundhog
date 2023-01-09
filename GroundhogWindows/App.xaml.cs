@@ -98,6 +98,13 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.Settings.SelectedItem"] = GroundhogContext.Language.Settings.SelectedItem;
             App.Current.Resources["Lang.Settings.SelectedItemInactive"] = GroundhogContext.Language.Settings.SelectedItemInactive;
             App.Current.Resources["Lang.Settings.ChosenItem"] = GroundhogContext.Language.Settings.ChosenItem;
+
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfWeekPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfWeekPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.WatchesPlanning"] = GroundhogContext.Language.PlanningAndOptimization.WatchesPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfMonthPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfMonthPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfYearPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfYearPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.Optimization"] = GroundhogContext.Language.PlanningAndOptimization.Optimization;
         }
     }
 }
