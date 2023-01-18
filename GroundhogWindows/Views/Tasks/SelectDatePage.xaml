@@ -14,7 +14,7 @@
 
     <Grid>
         <TabControl Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
-            <TabItem Header="Список">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Tasks.List}">
                 <ScrollViewer>
                     <ListBox Name="listBoxDates" SelectionChanged="DateSelected" Margin="-1">
                         <ListBox.ItemContainerStyle>
@@ -46,7 +46,7 @@
                     </ListBox>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Календарь">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Tasks.Calendar}">
                 <Viewbox>
                     <Calendar Name="calendar" SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
                 </Viewbox>

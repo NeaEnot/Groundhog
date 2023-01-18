@@ -105,6 +105,9 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.PlanningAndOptimization.DaysOfMonthPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfMonthPlanning;
             App.Current.Resources["Lang.PlanningAndOptimization.DaysOfYearPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfYearPlanning;
             App.Current.Resources["Lang.PlanningAndOptimization.Optimization"] = GroundhogContext.Language.PlanningAndOptimization.Optimization;
+
+            App.Current.Resources["Lang.Tasks.List"] = GroundhogContext.Language.Tasks.List;
+            App.Current.Resources["Lang.Tasks.Calendar"] = GroundhogContext.Language.Tasks.Calendar;
         }
     }
 }

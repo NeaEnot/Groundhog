@@ -44,6 +44,9 @@
         <sys:String x:Key="Lang.PlanningAndOptimization.DaysOfYearPlanning">Days of year planning</sys:String>
         <sys:String x:Key="Lang.PlanningAndOptimization.Optimization">Optimization</sys:String>
 
+        <sys:String x:Key="Lang.Tasks.List">List</sys:String>
+        <sys:String x:Key="Lang.Tasks.Calendar">Calendar</sys:String>
+
 
         <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>
