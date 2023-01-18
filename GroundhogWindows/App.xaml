@@ -12,6 +12,7 @@
         <sys:String x:Key="Lang.ControlCommands.Duplicate">Duplicate</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Edit">Edit</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.DeleteAllInstances">Delete all instances</sys:String>
         
         <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>

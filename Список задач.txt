@@ -308,3 +308,4 @@ WPF: Вынести логику работы с выбором даты в от
 Применение языка в GroundhogWindows.LanguageWindow
 Применение языка в GroundhogWindows.PlanningWindow
 Применение языка в GroundhogWindows.SelectDatePage
+Применение языка в GroundhogWindows.TaskInstancesPage

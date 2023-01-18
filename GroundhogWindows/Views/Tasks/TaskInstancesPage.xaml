@@ -21,10 +21,10 @@
                                                 <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
                                                 <CheckBox.ContextMenu>
                                                     <ContextMenu Margin="0">
-                                                        <MenuItem Header="Дублировать" Click="ContextMenuClone_Click"/>
-                                                        <MenuItem Header="Изменить" Click="ContextMenuUpdate_Click"/>
-                                                        <MenuItem Header="Удалить" Click="ContextMenuDelete_Click"/>
-                                                        <MenuItem Header="Удалить все подобные задачи" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=Repeated}"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Duplicate}" Click="ContextMenuClone_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="ContextMenuUpdate_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.DeleteAllInstances}" Click="ContextMenuDeleteAll_Click" IsEnabled="{Binding Path=Repeated}"/>
                                                     </ContextMenu>
                                                 </CheckBox.ContextMenu>
                                             </CheckBox>
@@ -45,6 +45,6 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
         </ScrollViewer>
-        <Button Content="Создать" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Click="ButtonAdd_Click" HorizontalAlignment="Right" Width="84"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Create}" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Click="ButtonAdd_Click" HorizontalAlignment="Right" Width="84"/>
     </Grid>
 </Page>
