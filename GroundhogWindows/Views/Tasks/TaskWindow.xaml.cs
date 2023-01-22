@@ -26,10 +26,10 @@ namespace GroundhogWindows.Views.Tasks
         private Dictionary<RepeatMode, string> toolTips = new Dictionary<RepeatMode, string>()
         {
             { RepeatMode.None, "" },
-            { RepeatMode.Days, "Число" },
-            { RepeatMode.DayOfMonth, "Число" },
-            { RepeatMode.DayOfYear, "мм.дд" },
-            { RepeatMode.DaysOfWeek, "Пн,Вт,..." },
+            { RepeatMode.Days, GroundhogContext.Language.PlanningAndOptimization.DaysToolTip },
+            { RepeatMode.DayOfMonth, GroundhogContext.Language.PlanningAndOptimization.DayOfMonthToolTip },
+            { RepeatMode.DayOfYear, GroundhogContext.Language.PlanningAndOptimization.DayOfYearToolTip },
+            { RepeatMode.DaysOfWeek, GroundhogContext.Language.PlanningAndOptimization.DaysOfWeekToolTip },
             { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." },
         };
 
@@ -69,7 +69,7 @@ namespace GroundhogWindows.Views.Tasks
                     modes[comboBox.SelectedItem.ToString()] != RepeatMode.None &&
                     (string.IsNullOrWhiteSpace(textBoxValue.Text) || string.IsNullOrWhiteSpace(textBoxPlanningRange.Text)) ||
                     string.IsNullOrWhiteSpace(textBoxOptimizationRange.Text))
-                    throw new Exception("Поля должны быть заполнены.");
+                    throw new Exception(GroundhogContext.Language.ErrorsMessages.FieldsMustBeFilled);
 
                 DateTimeHelper.CheckIsValueCorrect(textBoxValue.Text, (RepeatMode)comboBox.SelectedItem);
 
@@ -85,7 +85,7 @@ namespace GroundhogWindows.Views.Tasks
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

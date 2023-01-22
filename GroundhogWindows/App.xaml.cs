@@ -109,6 +109,12 @@ namespace GroundhogWindows
 
             App.Current.Resources["Lang.Tasks.List"] = GroundhogContext.Language.Tasks.List;
             App.Current.Resources["Lang.Tasks.Calendar"] = GroundhogContext.Language.Tasks.Calendar;
+            App.Current.Resources["Lang.Tasks.Task"] = GroundhogContext.Language.Tasks.Task;
+            App.Current.Resources["Lang.Tasks.RepeatMode"] = GroundhogContext.Language.Tasks.RepeatMode;
+            App.Current.Resources["Lang.Tasks.TransferTaskToNextDay"] = GroundhogContext.Language.Tasks.TransferTaskToNextDay;
+            App.Current.Resources["Lang.Tasks.OffsetNextTasks"] = GroundhogContext.Language.Tasks.OffsetNextTasks;
+            App.Current.Resources["Lang.Tasks.PlanningRange"] = GroundhogContext.Language.Tasks.PlanningRange;
+            App.Current.Resources["Lang.Tasks.OptimizationRange"] = GroundhogContext.Language.Tasks.OptimizationRange;
         }
     }
 }

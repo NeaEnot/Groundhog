@@ -47,6 +47,12 @@
 
         <sys:String x:Key="Lang.Tasks.List">List</sys:String>
         <sys:String x:Key="Lang.Tasks.Calendar">Calendar</sys:String>
+        <sys:String x:Key="Lang.Tasks.Task">Task</sys:String>
+        <sys:String x:Key="Lang.Tasks.RepeatMode">Repeat mode</sys:String>
+        <sys:String x:Key="Lang.Tasks.TransferTaskToNextDay">Transfer task to next day</sys:String>
+        <sys:String x:Key="Lang.Tasks.OffsetNextTasks">Offset next tasks</sys:String>
+        <sys:String x:Key="Lang.Tasks.PlanningRange">Planning range</sys:String>
+        <sys:String x:Key="Lang.Tasks.OptimizationRange">Optimization range</sys:String>
 
 
         <Brush x:Key="Main color">#ffffff</Brush>

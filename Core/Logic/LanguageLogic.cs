@@ -82,7 +82,11 @@ namespace Core.Logic
                     WatchesPlanning = "Watches planning",
                     DaysOfMonthPlanning = "Days of month planning",
                     DaysOfYearPlanning = "Days of year planning",
-                    Optimization = "Optimization"
+                    Optimization = "Optimization",
+                    DaysToolTip = "Number",
+                    DayOfMonthToolTip = "Number",
+                    DayOfYearToolTip = "mm.dd",
+                    DaysOfWeekToolTip = "Mon,Wed,..."
                 },
                 Purposes = new PurposesLanguage
                 {
