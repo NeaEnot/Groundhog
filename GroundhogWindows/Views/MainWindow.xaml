@@ -18,20 +18,20 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0">
-            <MenuItem Header="Настройки">
-                <MenuItem Header="Строка подключения" Click="MenuItemConnection_Click"/>
-                <MenuItem Header="Дальность планирования и оптимизации" Click="MenuItemPlanning_Click"/>
-                <MenuItem Header="Цветовая схема" Click="MenuItemColorSchema_Click"/>
-                <MenuItem Header="Язык" Click="MenuItemLanguage_Click"/>
+            <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.Settings}">
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.ConnectionString}" Click="MenuItemConnection_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.PlanningAndOptimizationRange}" Click="MenuItemPlanning_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.ColorSchema}" Click="MenuItemColorSchema_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.SelectLanguage}" Click="MenuItemLanguage_Click"/>
             </MenuItem>
-            <MenuItem Header="Синхронизация">
-                <MenuItem Header="Загрузить" Click="MenuItemLoad_Click"/>
-                <MenuItem Header="Отправить" Click="MenuItemUpload_Click"/>
+            <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Syncronization}">
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Download}" Click="MenuItemLoad_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Upload}" Click="MenuItemUpload_Click"/>
             </MenuItem>
         </Menu>
 
         <TabControl Name="tc" Grid.Row="1">
-            <TabItem Header="Задачи">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Tasks.Tasks}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -42,7 +42,7 @@
                     <Frame Name="fInstances" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Цели">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Purposes.Purposes}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -53,7 +53,7 @@
                     <Frame Name="fPurposes" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Заметки">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Notes.Notes}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>

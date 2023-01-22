@@ -7,7 +7,6 @@ using GroundhogWindows.Views.Tasks;
 using System;
 using System.Timers;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace GroundhogWindows.Views
@@ -119,7 +118,7 @@ namespace GroundhogWindows.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -132,7 +131,7 @@ namespace GroundhogWindows.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -145,7 +144,7 @@ namespace GroundhogWindows.Views
                     CodeWindow window = new CodeWindow();
                     if (window.ShowDialog() == true)
                         return window.Code;
-                    throw new Exception("Код не получен.");
+                    throw new Exception(GroundhogContext.Language.ErrorsMessages.CodeWasNotReceived);
                 };
 
                 GroundhogContext.NetworkLogic.Connect(f);

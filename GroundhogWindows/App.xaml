@@ -14,17 +14,23 @@
         <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
         <sys:String x:Key="Lang.ControlCommands.DeleteAllInstances">Delete all instances</sys:String>
         
-        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
+        <sys:String x:Key="Lang.Notes.Notes">Notes</sys:String>
         <sys:String x:Key="Lang.Notes.NoteName">Note name</sys:String>
+        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
 
+        <sys:String x:Key="Lang.Purposes.Purposes">Purposes</sys:String>
         <sys:String x:Key="Lang.Purposes.Purpose">Purpose</sys:String>
         <sys:String x:Key="Lang.Purposes.PurposesGroup">Purposes group</sys:String>
         <sys:String x:Key="Lang.Purposes.GroupName">Group name</sys:String>
 
+        <sys:String x:Key="Lang.Syncronization.Syncronization">Syncronization</sys:String>
+        <sys:String x:Key="Lang.Syncronization.Download">Download</sys:String>
+        <sys:String x:Key="Lang.Syncronization.Upload">Upload</sys:String>
         <sys:String x:Key="Lang.Syncronization.EnterCode">Enter code</sys:String>
         <sys:String x:Key="Lang.Syncronization.Send">Send</sys:String>
 
+        <sys:String x:Key="Lang.Settings.Settings">Settings</sys:String>
         <sys:String x:Key="Lang.Settings.ConnectionString">Connection string</sys:String>
         <sys:String x:Key="Lang.Settings.SelectLanguage">Select language</sys:String>
         <sys:String x:Key="Lang.Settings.PlanningAndOptimizationRange">Planning and optimization range</sys:String>
@@ -47,6 +53,7 @@
 
         <sys:String x:Key="Lang.Tasks.List">List</sys:String>
         <sys:String x:Key="Lang.Tasks.Calendar">Calendar</sys:String>
+        <sys:String x:Key="Lang.Tasks.Tasks">Tasks</sys:String>
         <sys:String x:Key="Lang.Tasks.Task">Task</sys:String>
         <sys:String x:Key="Lang.Tasks.RepeatMode">Repeat mode</sys:String>
         <sys:String x:Key="Lang.Tasks.TransferTaskToNextDay">Transfer task to next day</sys:String>
