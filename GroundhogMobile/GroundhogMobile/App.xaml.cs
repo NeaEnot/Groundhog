@@ -59,6 +59,7 @@ namespace GroundhogMobile
                 GroundhogContext.SaveSettings();
 
             ApplyColorSchema();
+            ApplyLanguage();
         }
 
         public static void ApplyColorSchema()
@@ -72,7 +73,59 @@ namespace GroundhogMobile
 
         public static void ApplyLanguage()
         {
+            App.Current.Resources["Lang.ControlCommands.Create"] = GroundhogContext.Language.ControlCommands.Create;
+            App.Current.Resources["Lang.ControlCommands.Save"] = GroundhogContext.Language.ControlCommands.Save;
+            App.Current.Resources["Lang.ControlCommands.Duplicate"] = GroundhogContext.Language.ControlCommands.Duplicate;
+            App.Current.Resources["Lang.ControlCommands.Edit"] = GroundhogContext.Language.ControlCommands.Edit;
+            App.Current.Resources["Lang.ControlCommands.Delete"] = GroundhogContext.Language.ControlCommands.Delete;
+            App.Current.Resources["Lang.ControlCommands.DeleteAllInstances"] = GroundhogContext.Language.ControlCommands.DeleteAllInstances;
 
+            App.Current.Resources["Lang.Notes.Notes"] = GroundhogContext.Language.Notes.Notes;
+            App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;
+            App.Current.Resources["Lang.Notes.NoteName"] = GroundhogContext.Language.Notes.NoteName;
+            App.Current.Resources["Lang.Notes.Find"] = GroundhogContext.Language.Notes.Find;
+
+            App.Current.Resources["Lang.Purposes.Purposes"] = GroundhogContext.Language.Purposes.Purposes;
+            App.Current.Resources["Lang.Purposes.Purpose"] = GroundhogContext.Language.Purposes.Purpose;
+            App.Current.Resources["Lang.Purposes.PurposesGroup"] = GroundhogContext.Language.Purposes.PurposesGroup;
+            App.Current.Resources["Lang.Purposes.GroupName"] = GroundhogContext.Language.Purposes.GroupName;
+
+            App.Current.Resources["Lang.Syncronization.Syncronization"] = GroundhogContext.Language.Syncronization.EnterCode;
+            App.Current.Resources["Lang.Syncronization.Download"] = GroundhogContext.Language.Syncronization.Download;
+            App.Current.Resources["Lang.Syncronization.Upload"] = GroundhogContext.Language.Syncronization.Upload;
+            App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
+            App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
+            App.Current.Resources["Lang.Syncronization.Send"] = GroundhogContext.Language.Syncronization.Send;
+
+            App.Current.Resources["Lang.Settings.Settings"] = GroundhogContext.Language.Settings.Settings;
+            App.Current.Resources["Lang.Settings.ConnectionString"] = GroundhogContext.Language.Settings.ConnectionString;
+            App.Current.Resources["Lang.Settings.SelectLanguage"] = GroundhogContext.Language.Settings.SelectLanguage;
+            App.Current.Resources["Lang.Settings.ColorSchema"] = GroundhogContext.Language.Settings.ColorSchema;
+            App.Current.Resources["Lang.Settings.StandartSchema"] = GroundhogContext.Language.Settings.StandartSchema;
+            App.Current.Resources["Lang.Settings.MainColor"] = GroundhogContext.Language.Settings.MainColor;
+            App.Current.Resources["Lang.Settings.AditionalColor"] = GroundhogContext.Language.Settings.AditionalColor;
+            App.Current.Resources["Lang.Settings.MainText"] = GroundhogContext.Language.Settings.MainText;
+            App.Current.Resources["Lang.Settings.AditionalText"] = GroundhogContext.Language.Settings.AditionalText;
+            App.Current.Resources["Lang.Settings.SelectedItem"] = GroundhogContext.Language.Settings.SelectedItem;
+            App.Current.Resources["Lang.Settings.SelectedItemInactive"] = GroundhogContext.Language.Settings.SelectedItemInactive;
+            App.Current.Resources["Lang.Settings.ChosenItem"] = GroundhogContext.Language.Settings.ChosenItem;
+
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfWeekPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfWeekPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.WatchesPlanning"] = GroundhogContext.Language.PlanningAndOptimization.WatchesPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfMonthPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfMonthPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.DaysOfYearPlanning"] = GroundhogContext.Language.PlanningAndOptimization.DaysOfYearPlanning;
+            App.Current.Resources["Lang.PlanningAndOptimization.Optimization"] = GroundhogContext.Language.PlanningAndOptimization.Optimization;
+
+            App.Current.Resources["Lang.Tasks.List"] = GroundhogContext.Language.Tasks.List;
+            App.Current.Resources["Lang.Tasks.Calendar"] = GroundhogContext.Language.Tasks.Calendar;
+            App.Current.Resources["Lang.Tasks.Tasks"] = GroundhogContext.Language.Tasks.Tasks;
+            App.Current.Resources["Lang.Tasks.Task"] = GroundhogContext.Language.Tasks.Task;
+            App.Current.Resources["Lang.Tasks.RepeatMode"] = GroundhogContext.Language.Tasks.RepeatMode;
+            App.Current.Resources["Lang.Tasks.TransferTaskToNextDay"] = GroundhogContext.Language.Tasks.TransferTaskToNextDay;
+            App.Current.Resources["Lang.Tasks.OffsetNextTasks"] = GroundhogContext.Language.Tasks.OffsetNextTasks;
+            App.Current.Resources["Lang.Tasks.PlanningRange"] = GroundhogContext.Language.Tasks.PlanningRange;
+            App.Current.Resources["Lang.Tasks.OptimizationRange"] = GroundhogContext.Language.Tasks.OptimizationRange;
         }
 
         protected override void OnStart()
