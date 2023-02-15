@@ -45,7 +45,7 @@ namespace GroundhogMobile.Views.Notes
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            Note note = new Note { Name = "!Новая заметка" };
+            Note note = new Note { Name = "!New note" };
             GroundhogContext.NoteLogic.Create(note);
             LoadData();
 

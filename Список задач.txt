@@ -313,3 +313,4 @@ WPF: Вынести логику работы с выбором даты в от
 Применение языка в GroundhogWindows.MainWindow
 Применение языка в GroundhogMobile.DayOfWeek2CaractersFormatter
 Применение языка в GroundhogMobile.NotePage
+Применение языка в GroundhogMobile.NotesPage
