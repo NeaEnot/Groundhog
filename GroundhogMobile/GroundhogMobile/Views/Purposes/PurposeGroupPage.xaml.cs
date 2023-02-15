@@ -1,4 +1,5 @@
-﻿using Core.Models.Storage;
+﻿using Core;
+using Core.Models.Storage;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +28,7 @@ namespace GroundhogMobile.Views.Purposes
             try
             {
                 if (string.IsNullOrWhiteSpace(textEntryGroup.Text))
-                    throw new Exception("Поле должно быть заполнено.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FieldMustBeFilled}.");
 
                 Group.Name = textEntryGroup.Text;
                 IsSuccess = true;
@@ -36,7 +37,7 @@ namespace GroundhogMobile.Views.Purposes
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ок");
             }
         }
     }
