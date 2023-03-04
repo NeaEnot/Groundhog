@@ -8,8 +8,8 @@
     <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{DynamicResource Additional color}" Margin="20" Padding="20">
         
         <StackLayout>
-            <Entry x:Name="textEntry" Placeholder="Введите код" FontSize="20" Text="" Margin="10, 20"/>
-            <Button Text="Отправить" Clicked="Button_Clicked"/>
+            <Entry x:Name="textEntry" Placeholder="{DynamicResource Key=Lang.Syncronization.EnterCode}" FontSize="20" Text="" Margin="10, 20"/>
+            <Button Text="{DynamicResource Key=Lang.Syncronization.Send}" Clicked="Button_Clicked"/>
         </StackLayout>
         
     </Frame>
