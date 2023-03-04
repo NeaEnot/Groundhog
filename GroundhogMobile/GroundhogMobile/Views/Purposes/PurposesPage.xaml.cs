@@ -107,9 +107,9 @@ namespace GroundhogMobile.Views.Purposes
             Dictionary<string, ICommand> commands =
                 new Dictionary<string, ICommand>
                 {
-                    { "Изменить", MenuItemUpdate },
-                    { "Удалить", MenuItemDelete },
-                    { "Дублировать", MenuItemClone }
+                    { GroundhogContext.Language.ControlCommands.Edit, MenuItemUpdate },
+                    { GroundhogContext.Language.ControlCommands.Delete, MenuItemDelete },
+                    { GroundhogContext.Language.ControlCommands.Duplicate, MenuItemClone }
                 };
 
             CommandPage page = new CommandPage((e.Item as PurposeViewModel).Text, commands.Keys);
