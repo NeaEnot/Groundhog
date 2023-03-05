@@ -25,7 +25,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-            <Button Text="Отмена" FontSize="20" FlexLayout.Basis="10%" Clicked="Button_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.ControlCommands.Cancel}" FontSize="20" FlexLayout.Basis="10%" Clicked="Button_Clicked"/>
         </FlexLayout>
 
     </Frame>

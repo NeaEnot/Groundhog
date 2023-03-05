@@ -79,6 +79,7 @@ namespace GroundhogMobile
             App.Current.Resources["Lang.ControlCommands.Edit"] = GroundhogContext.Language.ControlCommands.Edit;
             App.Current.Resources["Lang.ControlCommands.Delete"] = GroundhogContext.Language.ControlCommands.Delete;
             App.Current.Resources["Lang.ControlCommands.DeleteAllInstances"] = GroundhogContext.Language.ControlCommands.DeleteAllInstances;
+            App.Current.Resources["Lang.ControlCommands.Cancel"] = GroundhogContext.Language.ControlCommands.Cancel;
 
             App.Current.Resources["Lang.Notes.Notes"] = GroundhogContext.Language.Notes.Notes;
             App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;
