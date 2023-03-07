@@ -18,14 +18,14 @@
     <ContentPage.Content>
         <StackLayout x:Name="stc" Orientation="Vertical">
 
-            <Button x:Name="btnMainColor" Text="Основной цвет" BorderWidth="5" BorderColor="{DynamicResource Main color page}" Clicked="ButtonColor_Clicked"/>
-            <Button x:Name="btnAdditionalColor" Text="Дополнительный цвет" BorderWidth="5" BorderColor="{DynamicResource Additional color page}" Clicked="ButtonColor_Clicked"/>
-            <Button x:Name="btnMainText" Text="Основной текст" BorderWidth="5" BorderColor="{DynamicResource Main text page}" Clicked="ButtonColor_Clicked"/>
-            <Button x:Name="btnAdditionalText" Text="Дополнительный текст" BorderWidth="5" BorderColor="{DynamicResource Additional text page}" Clicked="ButtonColor_Clicked"/>
-            <Button x:Name="btnSelectedItem" Text="Выделенный элемент" BorderWidth="5" BorderColor="{DynamicResource Selected item page}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnMainColor" Text="{DynamicResource Key=Lang.Settings.MainColor}" BorderWidth="5" BorderColor="{DynamicResource Main color page}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnAdditionalColor" Text="{DynamicResource Key=Lang.Settings.AditionalColor}" BorderWidth="5" BorderColor="{DynamicResource Additional color page}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnMainText" Text="{DynamicResource Key=Lang.Settings.MainText}" BorderWidth="5" BorderColor="{DynamicResource Main text page}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnAdditionalText" Text="{DynamicResource Key=Lang.Settings.AditionalText}" BorderWidth="5" BorderColor="{DynamicResource Additional text page}" Clicked="ButtonColor_Clicked"/>
+            <Button x:Name="btnSelectedItem" Text="{DynamicResource Key=Lang.Settings.SelectedItem}" BorderWidth="5" BorderColor="{DynamicResource Selected item page}" Clicked="ButtonColor_Clicked"/>
 
-            <Button Text="Стандартная схема" Margin="0,30" Clicked="ButtonStandart_Clicked"/>
-            <Button Text="Сохранить" Margin="0,30" Clicked="ButtonSave_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Settings.StandartSchema}" Margin="0,30" Clicked="ButtonStandart_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.ControlCommands.Save}" Margin="0,30" Clicked="ButtonSave_Clicked"/>
             
         </StackLayout>
     </ContentPage.Content>

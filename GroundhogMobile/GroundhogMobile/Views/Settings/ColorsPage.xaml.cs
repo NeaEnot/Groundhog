@@ -34,11 +34,11 @@ namespace GroundhogMobile.Views.Settings
 
             names = new Dictionary<string, string>
             {
-                { "Main color", "Основной цвет" },
-                { "Additional color", "Дополнительный цвет" },
-                { "Main text", "Основной текст" },
-                { "Additional text", "Дополнительный текст" },
-                { "Selected item", "Выделенный элемент" }
+                { "Main color", GroundhogContext.Language.Settings.MainColor },
+                { "Additional color", GroundhogContext.Language.Settings.AditionalColor },
+                { "Main text", GroundhogContext.Language.Settings.MainText },
+                { "Additional text", GroundhogContext.Language.Settings.AditionalText },
+                { "Selected item", GroundhogContext.Language.Settings.SelectedItem }
             };
         }
 
