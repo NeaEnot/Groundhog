@@ -21,7 +21,7 @@ namespace GroundhogMobile.Views.Settings
             try
             {
                 if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(editor.Text))
-                    throw new Exception("Строка подключения не соответствует формату.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
 
                 GroundhogContext.Settings.ConnectionString = editor.Text;
                 GroundhogContext.SaveSettings();
@@ -30,7 +30,7 @@ namespace GroundhogMobile.Views.Settings
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ok");
             }
         }
     }
