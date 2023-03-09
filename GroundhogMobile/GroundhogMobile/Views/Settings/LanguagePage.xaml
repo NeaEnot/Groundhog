@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button x:Name="btnLanguage" Clicked="btnLanguage_Clicked"/>
-            <Button x:Name="btnSave" Clicked="btnSave_Clicked"/>
+            <Button x:Name="btnSave" Text="{DynamicResource Key=Lang.ControlCommands.Save}" Clicked="btnSave_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

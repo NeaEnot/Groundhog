@@ -21,7 +21,7 @@ namespace GroundhogMobile.Views.Settings
 
         private async void btnLanguage_Clicked(object sender, EventArgs e)
         {
-            CommandPage page = new CommandPage("Язык", GroundhogContext.Languages);
+            CommandPage page = new CommandPage(GroundhogContext.Language.Settings.SelectLanguage, GroundhogContext.Languages);
             Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
 
             object obj = await page.Result;

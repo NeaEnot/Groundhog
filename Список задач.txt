@@ -322,3 +322,4 @@ WPF: Вынести логику работы с выбором даты в от
 Применение языка в GroundhogMobile.CommandPage
 Применение языка в GroundhogMobile.ColorsPage
 Применение языка в GroundhogMobile.ConnectionPage
+Применение языка в GroundhogMobile.LanguagePage
