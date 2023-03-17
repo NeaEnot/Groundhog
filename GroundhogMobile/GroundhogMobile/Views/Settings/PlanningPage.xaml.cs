@@ -58,7 +58,7 @@ namespace GroundhogMobile.Views.Settings
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ok");
             }
         }
     }
