@@ -9,6 +9,8 @@ namespace Core.Models.Settings.Lang
         public string Upload { get; set; }
         public string EnterCode { get; set; }
         public string Send { get; set; }
+        public string DataHasDownladed { get; set; }
+        public string DataHasUpladed { get; set; }
 
         internal static SyncronizationLanguage Parse(Dictionary<string, string> dict)
         {
@@ -18,7 +20,9 @@ namespace Core.Models.Settings.Lang
                 Download = dict["Download"],
                 Upload = dict["Upload"],
                 EnterCode = dict["EnterCode"],
-                Send = dict["Send"]
+                Send = dict["Send"],
+                DataHasDownladed = dict["DataHasDownladed"],
+                DataHasUpladed = dict["DataHasUpladed"]
             };
 
             return language;
@@ -34,6 +38,8 @@ namespace Core.Models.Settings.Lang
             content += $"Upload={Upload}" + '\n';
             content += $"EnterCode={EnterCode}" + '\n';
             content += $"Send={Send}" + '\n';
+            content += $"DataHasDownladed={DataHasDownladed}" + '\n';
+            content += $"DataHasUpladed={DataHasUpladed}" + '\n';
             content += '\n';
 
             return content;

@@ -6,12 +6,12 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout x:Name="layout" VerticalOptions="Center">
-            <Button Text="Строка подключения" FontSize="20" Clicked="ButtonConnectString_Clicked"/>
-            <Button Text="Планирование" FontSize="20" Clicked="ButtonPlanning_Clicked"/>
-            <Button Text="Цветовая схема" FontSize="20" Clicked="ButtonColors_Clicked"/>
-            <Button Text="Язык" FontSize="20" Clicked="ButtonLanguage_Clicked"/>
-            <Button Text="Загрузить" FontSize="20" Clicked="ButtonLoad_Clicked"/>
-            <Button Text="Отправить" FontSize="20" Clicked="ButtonSend_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Settings.ConnectionString}" FontSize="20" Clicked="ButtonConnectString_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Settings.PlanningAndOptimizationRange}" FontSize="20" Clicked="ButtonPlanning_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Settings.ColorSchema}" FontSize="20" Clicked="ButtonColors_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Settings.SelectLanguage}" FontSize="20" Clicked="ButtonLanguage_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Syncronization.Download}" FontSize="20" Clicked="ButtonLoad_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Syncronization.Upload}" FontSize="20" Clicked="ButtonSend_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -29,14 +29,14 @@ namespace GroundhogMobile.Views.Settings
             {
                 ConnectIfNot();
                 GroundhogContext.NetworkLogic.Load();
-                this.DisplayToastAsync("Данные загружены");
+                this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasDownladed);
                 DownloadFinisfed();
 
                 App.ApplyColorSchema();
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ok");
             }
         }
 
@@ -48,12 +48,12 @@ namespace GroundhogMobile.Views.Settings
                 {
                     ConnectIfNot();
                     GroundhogContext.NetworkLogic.Upload();
-                    this.DisplayToastAsync("Данные отправлены");
+                    this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasUpladed);
                 });
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ok");
             }
         }
 

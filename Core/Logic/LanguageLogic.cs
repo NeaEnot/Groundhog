@@ -119,6 +119,8 @@ namespace Core.Logic
                     Upload = "Upload",
                     EnterCode = "Enter code",
                     Send = "Send",
+                    DataHasDownladed = "Data has downladed",
+                    DataHasUpladed = "Data has upladed"
                 },
                 Tasks = new TasksLanguage
                 {
