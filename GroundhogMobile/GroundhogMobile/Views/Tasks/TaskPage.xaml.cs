@@ -23,11 +23,11 @@ namespace GroundhogMobile.Views.Tasks
         private Dictionary<RepeatMode, string> placeholders = new Dictionary<RepeatMode, string>()
         {
             { RepeatMode.None, "" },
-            { RepeatMode.Days, "Количество дней" },
-            { RepeatMode.DayOfMonth, "Число" },
-            { RepeatMode.DayOfYear, "мм.дд" },
-            { RepeatMode.DaysOfWeek, "Пн,Вт,..." },
-            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." }
+            { RepeatMode.Days, GroundhogContext.Language.PlanningAndOptimization.DaysToolTip },
+            { RepeatMode.DayOfMonth, GroundhogContext.Language.PlanningAndOptimization.DayOfMonthToolTip },
+            { RepeatMode.DayOfYear, GroundhogContext.Language.PlanningAndOptimization.DayOfYearToolTip },
+            { RepeatMode.DaysOfWeek, GroundhogContext.Language.PlanningAndOptimization.DaysOfWeekToolTip },
+            { RepeatMode.Wathes, "'xx-xx', 'xx-xx-xx-xx' ..." },
         };
 
         private Dictionary<string, RepeatMode> modes = new Dictionary<string, RepeatMode>()
@@ -62,7 +62,7 @@ namespace GroundhogMobile.Views.Tasks
                 if (string.IsNullOrWhiteSpace(textEntry.Text) ||
                     repeatMode != RepeatMode.None && string.IsNullOrWhiteSpace(repeatValueEntry.Text))
                 {
-                    throw new Exception("Поля должны быть заполнены.");
+                    throw new Exception(GroundhogContext.Language.ErrorsMessages.FieldsMustBeFilled);
                 }
 
                 DateTimeHelper.CheckIsValueCorrect(repeatValueEntry.Text, repeatMode);
@@ -80,13 +80,13 @@ namespace GroundhogMobile.Views.Tasks
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Ошибка", ex.Message, "Ок");
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, ex.Message, "Ok");
             }
         }
 
         private async void buttonMode_Clicked(object sender, EventArgs e)
         {
-            CommandPage page = new CommandPage("Режим повторения", modes.Keys);
+            CommandPage page = new CommandPage(GroundhogContext.Language.Tasks.RepeatMode, modes.Keys);
             Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
 
             object obj = await page.Result;
