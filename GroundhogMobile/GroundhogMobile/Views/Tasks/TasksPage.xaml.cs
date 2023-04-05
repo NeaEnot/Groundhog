@@ -177,9 +177,9 @@ namespace GroundhogMobile.Views.Tasks
             Dictionary<string, ICommand> commands =
                 new Dictionary<string, ICommand>
                 {
-                    { "Изменить", MenuItemUpdate },
-                    { "Удалить", MenuItemDelete },
-                    { "Удалить все подобные задачи", MenuItemDeleteAll }
+                    { GroundhogContext.Language.ControlCommands.Edit, MenuItemUpdate },
+                    { GroundhogContext.Language.ControlCommands.Delete, MenuItemDelete },
+                    { GroundhogContext.Language.ControlCommands.DeleteAllInstances, MenuItemDeleteAll }
                 };
 
             CommandPage page = new CommandPage((e.Item as TaskInstanceViewModel).Text, commands.Keys);
