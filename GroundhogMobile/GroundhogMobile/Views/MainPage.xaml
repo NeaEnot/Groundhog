@@ -11,13 +11,13 @@
              BarTextColor="{DynamicResource Main text}">
 
     <TabbedPage.Children>
-        <TabbedPage Title="Задачи">
-            <tasks:DatesListPage Title="Список дат"/>
-            <tasks:CalendarPage Title="Календарь"/>
+        <TabbedPage Title="{DynamicResource Key=Lang.Tasks.Tasks}">
+            <tasks:DatesListPage Title="{DynamicResource Key=Lang.Tasks.List}"/>
+            <tasks:CalendarPage Title="{DynamicResource Key=Lang.Tasks.Calendar}"/>
         </TabbedPage>
-        <purposes:PurposeGroupsPage Title="Цели"/>
-        <notes:NotesPage Title="Заметки"/>
-        <settings:SettingsPage Title="Настройки"/>
+        <purposes:PurposeGroupsPage Title="{DynamicResource Key=Lang.Purposes.Purposes}"/>
+        <notes:NotesPage Title="{DynamicResource Key=Lang.Notes.Notes}"/>
+        <settings:SettingsPage Title="{DynamicResource Key=Lang.Settings.Settings}"/>
     </TabbedPage.Children>
 
 </TabbedPage>
