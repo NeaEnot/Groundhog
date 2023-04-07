@@ -41,11 +41,10 @@ namespace Core.Logic.DateTimeHelpers
                 List<TaskInstance> instances = 
                     GroundhogContext.TaskInstanceLogic
                     .Read(task.Id)
-                    .Where(req => (DateTime.Now - req.Date).Days >= task.OptimizationRange)
                     .ToList();
-                models.AddRange(instances);
+                models.AddRange(instances.Where(req => (DateTime.Now - req.Date).Days >= task.OptimizationRange));
 
-                if (task.RepeatMode == RepeatMode.None && instances.Count == 1)
+                if (task.RepeatMode == RepeatMode.None && instances.Count == 1 || instances.Count == 0)
                     tasksToDelete.Add(task);
             }
 

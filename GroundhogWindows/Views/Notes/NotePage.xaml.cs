@@ -13,6 +13,7 @@ namespace GroundhogWindows.Views.Notes
         private Dictionary<string, NoteCell> buffer;
 
         private bool doundo = false;
+        private bool isLoaded = false;
 
         internal NotePage()
         {
@@ -83,7 +84,9 @@ namespace GroundhogWindows.Views.Notes
 
         internal void LoadText(NoteViewModel note)
         {
-            if (this.note != null)
+            isLoaded = true;
+
+            if (this.note != null && buffer.ContainsKey(this.note.Id))
             {
                 if (buffer[this.note.Id].IsSaved)
                     buffer.Remove(this.note.Id);
@@ -129,6 +132,8 @@ namespace GroundhogWindows.Views.Notes
 
                 btnSave.IsEnabled = false;
             }
+
+            isLoaded = false;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -144,9 +149,12 @@ namespace GroundhogWindows.Views.Notes
 
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (isLoaded)
+                return;
+
             (frNumbers.Content as LineNumberingPage).GenerateNumbering(tbNote.Text.Split('\n').Length);
 
-            if (!doundo)
+            if (!doundo && buffer.ContainsKey(note.Id))
                 buffer[note.Id].CurrentText = tbNote.Text;
 
             btnSave.IsEnabled = !buffer[note.Id].IsSaved;

@@ -105,6 +105,12 @@ namespace GroundhogWindows.Views.Notes
             {
                 GroundhogContext.NoteLogic.Delete(model.Id);
 
+                if (selectedNote.Id == model.Id)
+                {
+                    selectedNote = null;
+                    windowContext.LoadNote(null);
+                }
+
                 LoadNotes();
             }
         }

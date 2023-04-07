@@ -27,9 +27,9 @@ namespace GroundhogWindows.Views.Tasks
         {
             selectedDate = date;
 
-            DateTimeHelper.FillRepeatedTasks();
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
+            DateTimeHelper.FillRepeatedTasks();
 
             List<Task> tasks =
                 GroundhogContext.TaskLogic
