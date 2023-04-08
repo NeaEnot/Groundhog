@@ -133,6 +133,8 @@ namespace GroundhogWindows.Views.Notes
                 btnSave.IsEnabled = false;
             }
 
+            (frNumbers.Content as LineNumberingPage).GenerateNumbering(tbNote.Text.Split('\n').Length);
+
             isLoaded = false;
         }
 

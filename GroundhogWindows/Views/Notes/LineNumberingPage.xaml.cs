@@ -47,7 +47,7 @@ namespace GroundhogWindows.Views.Notes
             for (int i = count; i > 0; i /= 10)
                 n++;
 
-            Width = n > 1 ? n * 8 : 16;
+            Width = n > 1 ? n * 10 : 20;
         }
 
         private Label CreateLabel()
@@ -56,8 +56,8 @@ namespace GroundhogWindows.Views.Notes
             {
                 Content = labels.Count + 1,
                 HorizontalAlignment = HorizontalAlignment.Right,
-                Padding = new Thickness(0, 0.66335, 4, 0),
-                FontSize = 11.5
+                Padding = new Thickness(0, 0, 4, 0), //0.66335
+                FontSize = 13
             };
         }
     }
