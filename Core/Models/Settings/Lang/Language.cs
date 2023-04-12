@@ -4,6 +4,7 @@ namespace Core.Models.Settings.Lang
 {
     public class Language
     {
+        public string Culture { get; set; }
         public ControlCommandsLanguage ControlCommands { get; set; }
         public DaysOfWeekLanguage DaysOfWeek { get; set; }
         public ErrorsMessagesLanguage ErrorsMessages { get; set; }
@@ -18,6 +19,7 @@ namespace Core.Models.Settings.Lang
         {
             Language language = new Language
             {
+                Culture = dict["Culture"],
                 ControlCommands = ControlCommandsLanguage.Parse(dict),
                 DaysOfWeek = DaysOfWeekLanguage.Parse(dict),
                 ErrorsMessages = ErrorsMessagesLanguage.Parse(dict),
@@ -36,6 +38,8 @@ namespace Core.Models.Settings.Lang
         {
             string content = "";
 
+            content += $"Culture={Culture}" + '\n';
+            content += '\n';
             content += ControlCommands.Serialize();
             content += DaysOfWeek.Serialize();
             content += ErrorsMessages.Serialize();

@@ -129,9 +129,9 @@
         </Style>
 
         <ContextMenu x:Key="TextBoxContextMenu" Style="{StaticResource AppContextMenu}">
-            <MenuItem Command="ApplicationCommands.Copy" />
-            <MenuItem Command="ApplicationCommands.Cut" />
-            <MenuItem Command="ApplicationCommands.Paste" />
+            <MenuItem Command="ApplicationCommands.Copy"/>
+            <MenuItem Command="ApplicationCommands.Cut"/>
+            <MenuItem Command="ApplicationCommands.Paste"/>
         </ContextMenu>
 
         <Style TargetType="MenuItem" >

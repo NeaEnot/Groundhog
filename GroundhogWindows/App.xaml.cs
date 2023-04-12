@@ -5,6 +5,7 @@ using YandexDisk;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
+using System.Globalization;
 
 namespace GroundhogWindows
 {
@@ -52,6 +53,8 @@ namespace GroundhogWindows
                 GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.DefaultLanguage);
                 isNeedSaveSettings = true;
             }
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(GroundhogContext.Language.Culture);
 
             if (isNeedSaveSettings)
                 GroundhogContext.SaveSettings();

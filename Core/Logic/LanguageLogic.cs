@@ -13,6 +13,7 @@ namespace Core.Logic
         {
             Language language = new Language
             {
+                Culture = "en-EN",
                 ControlCommands = new ControlCommandsLanguage
                 {
                     Save = "Save",

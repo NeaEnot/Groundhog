@@ -2,6 +2,7 @@
 using GroundhogMobile.Views;
 using StorageFile.Implements;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 using YandexDisk;
@@ -54,6 +55,8 @@ namespace GroundhogMobile
                 GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.DefaultLanguage);
                 isNeedSaveSettings = true;
             }
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(GroundhogContext.Language.Culture);
 
             if (isNeedSaveSettings)
                 GroundhogContext.SaveSettings();
