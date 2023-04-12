@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="{DynamicResource ResourceKey=Lang.Tasks.Task}" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="textBoxText" Margin="165,10,28,0" Text="" TextWrapping="NoWrap"  VerticalAlignment="Top"/>
+        <TextBox Name="textBoxText" Margin="165,10,28,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top"/>
 
         <Label Content="{DynamicResource ResourceKey=Lang.Tasks.RepeatMode}" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="comboBox" Margin="165,33,0,0" VerticalAlignment="Top" SelectionChanged="comboBox_SelectionChanged" HorizontalAlignment="Left" Width="141"/>

@@ -121,12 +121,18 @@
             <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}"/>
         </Style>
 
-        <Style TargetType="{x:Type ContextMenu}">
+        <Style TargetType="{x:Type ContextMenu}" x:Key="AppContextMenu">
             <Setter Property="Padding" Value="-1"/>
             <Setter Property="Margin" Value="-1"/>
             <Setter Property="Background" Value="{DynamicResource Additional color}"/>
             <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
+
+        <ContextMenu x:Key="TextBoxContextMenu" Style="{StaticResource AppContextMenu}">
+            <MenuItem Command="ApplicationCommands.Copy" />
+            <MenuItem Command="ApplicationCommands.Cut" />
+            <MenuItem Command="ApplicationCommands.Paste" />
+        </ContextMenu>
 
         <Style TargetType="MenuItem" >
             <Setter Property="Template">
@@ -177,6 +183,7 @@
                 </Setter.Value>
             </Setter>
 
+            <Setter Property="ContextMenu" Value="{StaticResource TextBoxContextMenu}"/>
             <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
             <Setter Property="SelectionBrush" Value="{DynamicResource Select item}"/>
             <Setter Property="CaretBrush" Value="{DynamicResource Main text}"/>
