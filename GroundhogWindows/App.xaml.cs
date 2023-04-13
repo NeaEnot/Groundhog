@@ -90,14 +90,14 @@ namespace GroundhogWindows
             App.Current.Resources["Lang.Purposes.PurposesGroup"] = GroundhogContext.Language.Purposes.PurposesGroup;
             App.Current.Resources["Lang.Purposes.GroupName"] = GroundhogContext.Language.Purposes.GroupName;
 
-            App.Current.Resources["Lang.Syncronization.Syncronization"] = GroundhogContext.Language.Syncronization.EnterCode;
+            App.Current.Resources["Lang.Syncronization.Syncronization"] = GroundhogContext.Language.Syncronization.Syncronization;
             App.Current.Resources["Lang.Syncronization.Download"] = GroundhogContext.Language.Syncronization.Download;
             App.Current.Resources["Lang.Syncronization.Upload"] = GroundhogContext.Language.Syncronization.Upload;
-            App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
             App.Current.Resources["Lang.Syncronization.EnterCode"] = GroundhogContext.Language.Syncronization.EnterCode;
             App.Current.Resources["Lang.Syncronization.Send"] = GroundhogContext.Language.Syncronization.Send;
 
             App.Current.Resources["Lang.Settings.Settings"] = GroundhogContext.Language.Settings.Settings;
+            App.Current.Resources["Lang.Settings.PlanningAndOptimizationRange"] = GroundhogContext.Language.Settings.PlanningAndOptimizationRange;
             App.Current.Resources["Lang.Settings.ConnectionString"] = GroundhogContext.Language.Settings.ConnectionString;
             App.Current.Resources["Lang.Settings.SelectLanguage"] = GroundhogContext.Language.Settings.SelectLanguage;
             App.Current.Resources["Lang.Settings.ColorSchema"] = GroundhogContext.Language.Settings.ColorSchema;

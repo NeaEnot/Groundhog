@@ -13,7 +13,7 @@ namespace Core.Logic
         {
             Language language = new Language
             {
-                Culture = "en-EN",
+                Culture = "en-US",
                 ControlCommands = new ControlCommandsLanguage
                 {
                     Save = "Save",
@@ -26,13 +26,6 @@ namespace Core.Logic
                 },
                 DaysOfWeek = new DaysOfWeekLanguage
                 {
-                    Monday = "Monday",
-                    Tuesday = "Tuesday",
-                    Wednesday = "Wednesday",
-                    Thursday = "Thursday",
-                    Friday = "Friday",
-                    Saturday = "Saturday",
-                    Sunday = "Sunday",
                     MondayAbbreviated = "Mon.",
                     TuesdayAbbreviated = "Tue.",
                     Wednes­dayAbbreviated = "Wed.",
@@ -55,7 +48,6 @@ namespace Core.Logic
                     FailedToDownloadData = "Failed to download data",
                     FailedToUploadData = "Failed to upload data",
                     EntityWithSameIdDontExist = "Entity with same id dont exist",
-                    CorrectValue = "Correct value",
                     CorrectFormat = "Correct format",
                     IncorrectValue = "Incorrect value",
                     IncorrectNumberOfDays = "Incorrect number of days",

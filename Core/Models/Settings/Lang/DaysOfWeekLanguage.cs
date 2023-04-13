@@ -4,13 +4,6 @@ namespace Core.Models.Settings.Lang
 {
     public class DaysOfWeekLanguage
     {
-        public string Monday { get; set; }
-        public string Tuesday { get; set; }
-        public string Wednesday { get; set; }
-        public string Thursday { get; set; }
-        public string Friday { get; set; }
-        public string Saturday { get; set; }
-        public string Sunday { get; set; }
         public string MondayAbbreviated { get; set; }
         public string TuesdayAbbreviated { get; set; }
         public string Wednes­dayAbbreviated { get; set; }
@@ -23,13 +16,6 @@ namespace Core.Models.Settings.Lang
         {
             DaysOfWeekLanguage language = new DaysOfWeekLanguage
             {
-                Monday = dict["Monday"],
-                Tuesday = dict["Tuesday"],
-                Wednesday = dict["Wednesday"],
-                Thursday = dict["Thursday"],
-                Friday = dict["Friday"],
-                Saturday = dict["Saturday"],
-                Sunday = dict["Sunday"],
                 MondayAbbreviated = dict["MondayAbbreviated"],
                 TuesdayAbbreviated = dict["TuesdayAbbreviated"],
                 Wednes­dayAbbreviated = dict["WednesdayAbbreviated"],
@@ -47,13 +33,6 @@ namespace Core.Models.Settings.Lang
             string content = "";
 
             content += $"# Days of week" + '\n';
-            content += $"Monday={Monday}" + '\n';
-            content += $"Tuesday={Tuesday}" + '\n';
-            content += $"Wednesday={Wednesday}" + '\n';
-            content += $"Thursday={Thursday}" + '\n';
-            content += $"Friday={Friday}" + '\n';
-            content += $"Saturday={Saturday}" + '\n';
-            content += $"Sunday={Sunday}" + '\n';
             content += $"MondayAbbreviated={MondayAbbreviated}" + '\n';
             content += $"TuesdayAbbreviated={TuesdayAbbreviated}" + '\n';
             content += $"WednesdayAbbreviated={WednesdayAbbreviated}" + '\n';

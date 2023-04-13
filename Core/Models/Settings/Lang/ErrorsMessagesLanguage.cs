@@ -16,7 +16,6 @@ namespace Core.Models.Settings.Lang
         public string FailedToDownloadData { get; set; }
         public string FailedToUploadData { get; set; }
         public string EntityWithSameIdDontExist { get; set; }
-        public string CorrectValue { get; set; }
         public string CorrectFormat { get; set; }
         public string IncorrectValue { get; set; }
         public string IncorrectNumberOfDays { get; set; }
@@ -45,7 +44,6 @@ namespace Core.Models.Settings.Lang
                 FailedToDownloadData = dict["FailedToDownloadData"],
                 FailedToUploadData = dict["FailedToUploadData"],
                 EntityWithSameIdDontExist = dict["EntityWithSameIdDontExist"],
-                CorrectValue = dict["CorrectValue"],
                 CorrectFormat = dict["CorrectFormat"],
                 IncorrectValue = dict["IncorrectValue"],
                 IncorrectNumberOfDays = dict["IncorrectNumberOfDays"],
@@ -79,7 +77,6 @@ namespace Core.Models.Settings.Lang
             content += $"FailedToDownloadData={FailedToDownloadData}" + '\n';
             content += $"FailedToUploadData={FailedToUploadData}" + '\n';
             content += $"EntityWithSameIdDontExist={EntityWithSameIdDontExist}" + '\n';
-            content += $"CorrectValue={CorrectValue}" + '\n';
             content += $"CorrectFormat={CorrectFormat}" + '\n';
             content += $"IncorrectValue={IncorrectValue}" + '\n';
             content += $"IncorrectNumberOfDays={IncorrectNumberOfDays}" + '\n';
