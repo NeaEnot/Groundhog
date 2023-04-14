@@ -6,7 +6,7 @@ namespace YandexDisk.Language
     {
         public Dictionary<string, string> Langs { get; set; }
 
-        public LaguagesList()
+        internal LaguagesList()
         {
             Langs = new Dictionary<string, string>();
         }
