@@ -72,11 +72,31 @@ namespace Core
             }
         }
 
+        public static string LanguagesPath
+        {
+            get
+            {
+                string system = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+                string storagePath;
+
+                if (system.Contains("Microsoft Windows"))
+                    storagePath = $"{StoragePath}\\Languages";
+                else
+                    storagePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalizedResources);
+
+                DirectoryInfo storage = new DirectoryInfo(storagePath);
+                if (!storage.Exists)
+                    storage.Create();
+
+                return storagePath;
+            }
+        }
+
         public static string[] Languages
         {
             get
             {
-                DirectoryInfo langsDir = new DirectoryInfo($"{StoragePath}\\Languages");
+                DirectoryInfo langsDir = new DirectoryInfo(LanguagesPath);
                 if (!langsDir.Exists)
                     langsDir.Create();
 
