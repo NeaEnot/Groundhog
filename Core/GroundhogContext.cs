@@ -1,4 +1,4 @@
-﻿using Core.Interfaces;
+﻿using Core.Interfaces.Network;
 using Core.Interfaces.Storage;
 using Core.Logic;
 using Core.Models.Settings;
@@ -18,7 +18,7 @@ namespace Core
         public static IPurposeGroupLogic PurposeGroupLogic { get; set; }
         public static INoteLogic NoteLogic { get; set; }
 
-        public static INetworkLogic NetworkLogic { get; set; }
+        public static INetworkLogic NetworkStorageLogic { get; set; }
 
         public static Language Language { get; set; }
         public static string DefaultLanguage => LanguageLogic.DefaultLanguage;

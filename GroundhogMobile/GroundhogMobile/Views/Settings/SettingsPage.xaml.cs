@@ -28,7 +28,7 @@ namespace GroundhogMobile.Views.Settings
             try
             {
                 ConnectIfNot();
-                GroundhogContext.NetworkLogic.Load();
+                GroundhogContext.NetworkStorageLogic.Load();
                 this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasDownladed);
                 DownloadFinisfed();
 
@@ -47,7 +47,7 @@ namespace GroundhogMobile.Views.Settings
                 await System.Threading.Tasks.Task.Run(() =>
                 {
                     ConnectIfNot();
-                    GroundhogContext.NetworkLogic.Upload();
+                    GroundhogContext.NetworkStorageLogic.Upload();
                     this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasUpladed);
                 });
             }
@@ -59,8 +59,8 @@ namespace GroundhogMobile.Views.Settings
 
         private void ConnectIfNot()
         {
-            if (!GroundhogContext.NetworkLogic.IsConnected())
-                GroundhogContext.NetworkLogic.Connect(() => "");
+            if (!GroundhogContext.NetworkStorageLogic.IsConnected())
+                GroundhogContext.NetworkStorageLogic.Connect(() => "");
         }
 
         private async void ButtonPlanning_Clicked(object sender, EventArgs e)

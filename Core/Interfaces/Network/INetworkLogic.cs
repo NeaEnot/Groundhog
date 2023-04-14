@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Core.Interfaces
+namespace Core.Interfaces.Network
 {
     public interface INetworkLogic
     {

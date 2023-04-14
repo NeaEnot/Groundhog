@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Interfaces;
+using Core.Interfaces.Network;
 using Core.Models.Storage;
 using Newtonsoft.Json;
 using System;
@@ -18,7 +18,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace NetworkTelegram
 {
-    public class NetworkLogic : INetworkLogic
+    public class NetworkStorageLogic : INetworkLogic
     {
         private static Regex connectionStringExpr = new Regex(@"^phone=(?<phone>\d{11});api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");
 

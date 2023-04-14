@@ -1,11 +1,11 @@
 ﻿using Core;
 using System.Windows;
 using StorageFile.Implements;
-using YandexDisk;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Globalization;
+using YandexDisk.Storage;
 
 namespace GroundhogWindows
 {
@@ -18,7 +18,7 @@ namespace GroundhogWindows
             GroundhogContext.PurposeLogic = new PurposeLogic();
             GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
             GroundhogContext.NoteLogic = new NoteLogic();
-            GroundhogContext.NetworkLogic = new NetworkLogic();
+            GroundhogContext.NetworkStorageLogic = new NetworkStorageLogic();
 
             Dictionary<string, string> colors = new Dictionary<string, string>()
             {

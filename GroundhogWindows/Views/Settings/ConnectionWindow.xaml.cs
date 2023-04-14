@@ -11,7 +11,7 @@ namespace GroundhogWindows.Views.Settings
             InitializeComponent();
 
             textBoxConnection.Text = GroundhogContext.Settings.ConnectionString;
-            textBoxConnection.ToolTip = GroundhogContext.NetworkLogic.ConnectionStringFormat;
+            textBoxConnection.ToolTip = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
 
             textBoxConnection.Focus();
         }
@@ -20,7 +20,7 @@ namespace GroundhogWindows.Views.Settings
         {
             try
             {
-                if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(textBoxConnection.Text))
+                if (!GroundhogContext.NetworkStorageLogic.ConnectionStringExpr.IsMatch(textBoxConnection.Text))
                     throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
 
                 GroundhogContext.Settings.ConnectionString = textBoxConnection.Text;

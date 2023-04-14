@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Interfaces;
+using Core.Interfaces.Network;
 using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using VkNet.Model.RequestParams;
 
 namespace NetworkVk
 {
-    public class NetworkLogic : INetworkLogic
+    public class NetworkStorageLogic : INetworkLogic
     {
         private static Regex connectionStringExpr = new Regex(@"^access_token=(?<access_token>[0-9a-f]+);group_id=(?<group_id>\d+)$");
         private static object locker = new object();

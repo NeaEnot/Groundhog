@@ -12,7 +12,7 @@ namespace GroundhogMobile.Views.Settings
         {
             InitializeComponent();
 
-            editor.Placeholder = GroundhogContext.NetworkLogic.ConnectionStringFormat;
+            editor.Placeholder = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
             editor.Text = GroundhogContext.Settings.ConnectionString;
         }
 
@@ -20,7 +20,7 @@ namespace GroundhogMobile.Views.Settings
         {
             try
             {
-                if (!GroundhogContext.NetworkLogic.ConnectionStringExpr.IsMatch(editor.Text))
+                if (!GroundhogContext.NetworkStorageLogic.ConnectionStringExpr.IsMatch(editor.Text))
                     throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
 
                 GroundhogContext.Settings.ConnectionString = editor.Text;

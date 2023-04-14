@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Interfaces;
+using Core.Interfaces.Network;
 using Core.Models.Storage;
 using Newtonsoft.Json;
 using System;
@@ -11,9 +11,9 @@ using YandexDisk.Client;
 using YandexDisk.Client.Clients;
 using YandexDisk.Client.Http;
 
-namespace YandexDisk
+namespace YandexDisk.Storage
 {
-    public class NetworkLogic : INetworkLogic
+    public class NetworkStorageLogic : INetworkLogic
     {
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";

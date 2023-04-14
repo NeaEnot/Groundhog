@@ -2,7 +2,7 @@
 using Core.Models.Storage;
 using System.Collections.Generic;
 
-namespace YandexDisk
+namespace YandexDisk.Storage
 {
     internal class StorageModel
     {
