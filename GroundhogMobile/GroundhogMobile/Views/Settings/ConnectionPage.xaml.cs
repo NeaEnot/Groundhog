@@ -12,18 +12,24 @@ namespace GroundhogMobile.Views.Settings
         {
             InitializeComponent();
 
-            editor.Placeholder = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
-            editor.Text = GroundhogContext.Settings.ConnectionStringStorage;
+            editorStorage.Placeholder = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
+            editorStorage.Text = GroundhogContext.Settings.ConnectionStringStorage;
+
+            editorStorage.Placeholder = GroundhogContext.NetworkLanguageLogic.ConnectionStringFormat;
+            editorStorage.Text = GroundhogContext.Settings.ConnectionStringLanguage;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             try
             {
-                if (!GroundhogContext.NetworkStorageLogic.ConnectionStringExpr.IsMatch(editor.Text))
+                if (!GroundhogContext.NetworkStorageLogic.ConnectionStringExpr.IsMatch(editorStorage.Text))
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
+                if (!GroundhogContext.NetworkLanguageLogic.ConnectionStringExpr.IsMatch(editorLanguage.Text))
                     throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ConnectionStringNotMatchFormat}.");
 
-                GroundhogContext.Settings.ConnectionStringStorage = editor.Text;
+                GroundhogContext.Settings.ConnectionStringStorage = editorStorage.Text;
+                GroundhogContext.Settings.ConnectionStringLanguage = editorLanguage.Text;
                 GroundhogContext.SaveSettings();
 
                 await Navigation.PopAsync();
