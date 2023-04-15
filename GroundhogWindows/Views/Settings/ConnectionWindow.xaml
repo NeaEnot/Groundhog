@@ -7,9 +7,15 @@
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
         Title="{DynamicResource ResourceKey=Lang.Settings.ConnectionString}"
-        Height="240" Width="519" MinHeight="150" MinWidth="200">
+        Height="300" Width="519" MinHeight="300" MinWidth="200">
     <Grid>
-        <TextBox Name="textBoxConnection" Margin="10,10,10,69" TextWrapping="Wrap"/>
-        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Center" Margin="0,0,0,19" Height="35" Width="94" FontSize="16" Click="Button_Click" VerticalAlignment="Bottom"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBox Name="textBoxConnectionStorage" Margin="10,10,10,10" TextWrapping="Wrap" Grid.Row="0"/>
+        <TextBox Name="textBoxConnectionLanguage" Margin="10,10,10,10" TextWrapping="Wrap" Grid.Row="1"/>
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" HorizontalAlignment="Center" Margin="0,7,0,0" Height="35" Width="94" FontSize="16" Click="Button_Click" VerticalAlignment="Top" Grid.Row="2"/>
     </Grid>
 </Window>

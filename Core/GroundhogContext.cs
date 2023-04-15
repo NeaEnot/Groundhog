@@ -19,6 +19,7 @@ namespace Core
         public static INoteLogic NoteLogic { get; set; }
 
         public static INetworkLogic NetworkStorageLogic { get; set; }
+        public static INetworkLogic NetworkLanguageLogic { get; set; }
 
         public static Language Language { get; set; }
         public static string DefaultLanguage => LanguageLogic.DefaultLanguage;

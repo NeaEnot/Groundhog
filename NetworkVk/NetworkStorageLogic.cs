@@ -35,14 +35,14 @@ namespace NetworkVk
                         vk = new VkApi();
                     if (!vk.IsAuthorized)
                     {
-                        GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.Settings.ConnectionString).Groups;
+                        GroupCollection groups = ConnectionStringExpr.Match(GroundhogContext.Settings.ConnectionStringStorage).Groups;
                         vk.Authorize(new ApiAuthParams
                         {
                             AccessToken = groups["access_token"].Value
                         });
                     }
 
-                    currentConnectionString = GroundhogContext.Settings.ConnectionString;
+                    currentConnectionString = GroundhogContext.Settings.ConnectionStringStorage;
                 }
                 catch (Exception ex)
                 {
@@ -57,7 +57,7 @@ namespace NetworkVk
 
         public bool IsConnected()
         {
-            return vk != null && vk.IsAuthorized && currentConnectionString == GroundhogContext.Settings.ConnectionString;
+            return vk != null && vk.IsAuthorized && currentConnectionString == GroundhogContext.Settings.ConnectionStringStorage;
         }
 
         public void Load()

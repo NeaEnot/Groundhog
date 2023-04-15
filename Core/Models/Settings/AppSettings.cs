@@ -5,7 +5,8 @@ namespace Core.Models.Settings
 {
     public class AppSettings
     {
-        public string ConnectionString { get; set; }
+        public string ConnectionStringStorage { get; set; }
+        public string ConnectionStringLanguage { get; set; }
 
         public Dictionary<RepeatMode, int> PlanningRanges { get; set; }
         public int OptimizationRange { get; set; }

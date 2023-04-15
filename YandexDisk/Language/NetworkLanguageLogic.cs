@@ -10,7 +10,7 @@ using YandexDisk.Client.Http;
 
 namespace YandexDisk.Language
 {
-    internal class NetworkLanguageLogic : INetworkLogic
+    public class NetworkLanguageLogic : INetworkLogic
     {
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";

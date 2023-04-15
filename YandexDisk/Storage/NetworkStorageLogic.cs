@@ -58,8 +58,8 @@ namespace YandexDisk.Storage
                 GroundhogContext.NoteLogic.Delete(null);
                 GroundhogContext.NoteLogic.Create(model.Notes);
 
-                if (model.AppSettings.ConnectionString != GroundhogContext.Settings.ConnectionString)
-                    model.AppSettings.ConnectionString = GroundhogContext.Settings.ConnectionString;
+                if (model.AppSettings.ConnectionStringStorage != GroundhogContext.Settings.ConnectionStringStorage)
+                    model.AppSettings.ConnectionStringStorage = GroundhogContext.Settings.ConnectionStringStorage;
                 GroundhogContext.Settings = model.AppSettings;
             }
             catch (Exception ex)
