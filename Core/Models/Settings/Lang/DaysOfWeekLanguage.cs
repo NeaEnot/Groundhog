@@ -40,6 +40,7 @@ namespace Core.Models.Settings.Lang
             content += $"FridayAbbreviated={FridayAbbreviated}" + '\n';
             content += $"SaturdayAbbreviated={SaturdayAbbreviated}" + '\n';
             content += $"SundayAbbreviated={SundayAbbreviated}" + '\n';
+            content += '\n';
 
             return content;
         }
