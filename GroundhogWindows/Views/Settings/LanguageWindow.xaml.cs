@@ -17,6 +17,7 @@ namespace GroundhogWindows.Views.Settings
         {
             string lang = cbLanguage.SelectedItem as string;
             GroundhogContext.Language = GroundhogContext.LoadLanguage(lang);
+            GroundhogContext.SaveSettings();
             DialogResult = true;
         }
     }

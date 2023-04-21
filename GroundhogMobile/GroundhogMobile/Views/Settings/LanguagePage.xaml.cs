@@ -38,6 +38,7 @@ namespace GroundhogMobile.Views.Settings
         {
             GroundhogContext.Settings.Language = language;
             GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.Settings.Language);
+            GroundhogContext.SaveSettings();
 
             await Navigation.PopAsync();
         }
