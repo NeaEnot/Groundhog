@@ -30,10 +30,10 @@ namespace GroundhogWindows.Views
 
         public MainWindow()
         {
-            InitializeComponent();
-
             App.ApplyColorSchema();
             App.ApplyLanguage();
+
+            InitializeComponent();
 
             sdPage = new SelectDatePage(this);
             tiPage = new TaskInstancesPage();
