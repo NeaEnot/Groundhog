@@ -57,8 +57,6 @@ namespace GroundhogWindows
                 isNeedSaveSettings = true;
             }
 
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(GroundhogContext.Language.Culture);
-
             if (isNeedSaveSettings)
                 GroundhogContext.SaveSettings();
         }
@@ -76,6 +74,8 @@ namespace GroundhogWindows
 
         public static void ApplyLanguage()
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(GroundhogContext.Language.Culture);
+
             App.Current.Resources["Lang.ControlCommands.Create"] = GroundhogContext.Language.ControlCommands.Create;
             App.Current.Resources["Lang.ControlCommands.Save"] = GroundhogContext.Language.ControlCommands.Save;
             App.Current.Resources["Lang.ControlCommands.Duplicate"] = GroundhogContext.Language.ControlCommands.Duplicate;

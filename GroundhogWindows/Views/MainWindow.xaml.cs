@@ -102,7 +102,6 @@ namespace GroundhogWindows.Views
             LanguageWindow lanaguageWindow = new LanguageWindow();
             if (lanaguageWindow.ShowDialog() == true)
             {
-                App.ApplyLanguage();
                 RestartWindow();
             }
         }

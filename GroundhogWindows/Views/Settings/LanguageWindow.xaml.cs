@@ -16,7 +16,7 @@ namespace GroundhogWindows.Views.Settings
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string lang = cbLanguage.SelectedItem as string;
-            GroundhogContext.LoadLanguage(lang);
+            GroundhogContext.Language = GroundhogContext.LoadLanguage(lang);
             DialogResult = true;
         }
     }
