@@ -36,16 +36,20 @@ namespace GroundhogWindows.Views.Tasks
                 .Read()
                 .ToList();
 
-            List<TaskInstanceViewModel> taskInstances =
-                GroundhogContext.TaskInstanceLogic
-                .Read(date)
-                .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
-                .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
-                .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
-                .ToList();
-
             listBoxTasks.ItemsSource = null;
-            listBoxTasks.ItemsSource = taskInstances;
+
+            if (tasks != null && tasks.Count > 0)
+            {
+                List<TaskInstanceViewModel> taskInstances =
+                    GroundhogContext.TaskInstanceLogic
+                    .Read(date)
+                    .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
+                    .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
+                    .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
+                    .ToList();
+
+                listBoxTasks.ItemsSource = taskInstances;
+            }
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

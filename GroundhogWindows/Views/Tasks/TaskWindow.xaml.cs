@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GroundhogWindows.Views.Tasks
 {
@@ -71,7 +72,7 @@ namespace GroundhogWindows.Views.Tasks
                     string.IsNullOrWhiteSpace(textBoxOptimizationRange.Text))
                     throw new Exception(GroundhogContext.Language.ErrorsMessages.FieldsMustBeFilled);
 
-                DateTimeHelper.CheckIsValueCorrect(textBoxValue.Text, (RepeatMode)comboBox.SelectedItem);
+                DateTimeHelper.CheckIsValueCorrect(textBoxValue.Text, modes[comboBox.SelectedItem.ToString()]);
 
                 Task.Text = textBoxText.Text;
                 Task.RepeatMode = modes[comboBox.SelectedItem.ToString()];

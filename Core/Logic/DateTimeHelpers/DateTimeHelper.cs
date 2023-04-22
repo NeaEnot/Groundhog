@@ -44,7 +44,7 @@ namespace Core.Logic.DateTimeHelpers
                     .ToList();
                 models.AddRange(instances.Where(req => (DateTime.Now - req.Date).Days >= task.OptimizationRange));
 
-                if (task.RepeatMode == RepeatMode.None && instances.Count == 1 || instances.Count == 0)
+                if (task.RepeatMode == RepeatMode.None && instances.Count == 1 && models.Count == 1 || instances.Count == 0)
                     tasksToDelete.Add(task);
             }
 
@@ -105,7 +105,7 @@ namespace Core.Logic.DateTimeHelpers
 
         public static int TaskRare(Task task)
         {
-            return helpers[task.RepeatMode].TaskRare(task);
+            return task != null ? helpers[task.RepeatMode].TaskRare(task) : 0;
         }
 
         public static void CheckIsValueCorrect(string text, RepeatMode mode)
