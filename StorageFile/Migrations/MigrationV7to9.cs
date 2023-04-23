@@ -36,9 +36,6 @@ namespace StorageFile.Migrations
         public void DoMigration()
         {
             List<Task> tasks = new List<Task>();
-            List<TaskInstance> taskInstances = new List<TaskInstance>();
-            List<Purpose> purposes = new List<Purpose>();
-            List<PurposeGroup> purposeGroups = new List<PurposeGroup>();
 
             Dictionary<OldRepeatMode, RepeatMode> dict = new Dictionary<OldRepeatMode, RepeatMode>
             {
@@ -52,17 +49,13 @@ namespace StorageFile.Migrations
 
             try
             {
-                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\storage.json"))
+                using (StreamReader reader = new StreamReader($@"{GroundhogContext.StoragePath}\Tasks.json"))
                 {
                     string json = reader.ReadToEnd();
-                    OldStorageModel restored = JsonConvert.DeserializeObject<OldStorageModel>(json);
-
-                    taskInstances = restored.TaskInstances;
-                    purposes = restored.Purposes;
-                    purposeGroups = restored.PurposeGroups;
+                    List<OldTask> restored = JsonConvert.DeserializeObject<List<OldTask>>(json);
 
                     tasks =
-                        restored.Tasks
+                        restored
                         .Select(req => new Task
                         {
                             Id = req.Id,
@@ -82,12 +75,6 @@ namespace StorageFile.Migrations
 
             Context.Instanse.Tasks.Clear();
             Context.Instanse.Tasks.AddRange(tasks);
-            Context.Instanse.TaskInstances.Clear();
-            Context.Instanse.TaskInstances.AddRange(taskInstances);
-            Context.Instanse.PurposeGroups.Clear();
-            Context.Instanse.PurposeGroups.AddRange(purposeGroups);
-            Context.Instanse.Purposes.Clear();
-            Context.Instanse.Purposes.AddRange(purposes);
 
             using (StreamWriter writer = new StreamWriter($@"{GroundhogContext.StoragePath}\storageVersion.dat"))
                 writer.Write("9.0");
@@ -113,14 +100,6 @@ namespace StorageFile.Migrations
             public bool OffsetAll { get; set; }
             public int PlanningRange { get; set; }
             public int OptimizationRange { get; set; }
-        }
-
-        private class OldStorageModel
-        {
-            public List<OldTask> Tasks { get; set; }
-            public List<TaskInstance> TaskInstances { get; set; }
-            public List<Purpose> Purposes { get; set; }
-            public List<PurposeGroup> PurposeGroups { get; set; }
         }
     }
 }
