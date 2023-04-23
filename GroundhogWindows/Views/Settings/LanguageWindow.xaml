@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroundhogWindows.Views.Settings"
         mc:Ignorable="d"
+        Style="{DynamicResource ResourceKey='Window style'}"
         Title="{DynamicResource ResourceKey=Lang.Settings.SelectLanguage}"
         Height="140" Width="400" MinWidth="400" MinHeight="140">
     <Grid>

@@ -112,6 +112,7 @@ namespace GroundhogWindows.Views
             {
                 ConnectIfNot();
                 GroundhogContext.NetworkStorageLogic.Load();
+                GroundhogContext.NetworkLanguageLogic.Load();
 
                 RestartWindow();
             }
@@ -127,6 +128,7 @@ namespace GroundhogWindows.Views
             {
                 ConnectIfNot();
                 GroundhogContext.NetworkStorageLogic.Upload();
+                GroundhogContext.NetworkLanguageLogic.Upload();
             }
             catch (Exception ex)
             {
@@ -136,18 +138,19 @@ namespace GroundhogWindows.Views
 
         private void ConnectIfNot()
         {
-            if (!GroundhogContext.NetworkStorageLogic.IsConnected())
+            Func<string> f = () =>
             {
-                Func<string> f = () =>
-                {
-                    CodeWindow window = new CodeWindow();
-                    if (window.ShowDialog() == true)
-                        return window.Code;
-                    throw new Exception(GroundhogContext.Language.ErrorsMessages.CodeWasNotReceived);
-                };
+                CodeWindow window = new CodeWindow();
+                if (window.ShowDialog() == true)
+                    return window.Code;
+                throw new Exception(GroundhogContext.Language.ErrorsMessages.CodeWasNotReceived);
+            };
 
+            if (!GroundhogContext.NetworkStorageLogic.IsConnected())
                 GroundhogContext.NetworkStorageLogic.Connect(f);
-            }
+
+            if (!GroundhogContext.NetworkLanguageLogic.IsConnected())
+                GroundhogContext.NetworkLanguageLogic.Connect(f);
         }
     }
 }
