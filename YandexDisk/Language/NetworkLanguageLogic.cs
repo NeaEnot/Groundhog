@@ -4,9 +4,7 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
-using YandexDisk.Client;
 using YandexDisk.Client.Clients;
-using YandexDisk.Client.Http;
 
 namespace YandexDisk.Language
 {
@@ -15,15 +13,15 @@ namespace YandexDisk.Language
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
 
-        private IDiskApi diskApi;
-        private string cloudLanguagesFile = $@"{GroundhogContext.StoragePath}\cloudLanguagesFile.json";
+        private ConnectionString connectionString = new ConnectionString(GroundhogContext.Settings.ConnectionStringLanguage);
+        private string cloudLanguagesFile = $@"{GroundhogContext.StoragePath}\cloudLanguages.json";
 
         public void Connect(Func<string> getCode)
         {
-            diskApi = new DiskHttpApi(ConnectionString.Token);
+            DiskApiHandler.Connect(getCode, connectionString.Token);
         }
 
-        public bool IsConnected() => diskApi != null;
+        public bool IsConnected() => DiskApiHandler.DiskApi != null;
 
         public void Load()
         {
@@ -33,7 +31,7 @@ namespace YandexDisk.Language
                 if (file.Exists)
                     file.Delete();
 
-                System.Threading.Tasks.Task threadTask = diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudLanguagesFile);
+                System.Threading.Tasks.Task threadTask = DiskApiHandler.DiskApi.Files.DownloadFileAsync(connectionString.Path, cloudLanguagesFile);
                 threadTask.Wait();
 
                 LanguagesSerializer.Deserialize(new DirectoryInfo(GroundhogContext.LanguagesPath), File.ReadAllText(cloudLanguagesFile));
@@ -54,7 +52,7 @@ namespace YandexDisk.Language
 
             try
             {
-                diskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
+                DiskApiHandler.DiskApi.Files.UploadFileAsync(connectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {
