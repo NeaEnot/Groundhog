@@ -22,7 +22,10 @@ namespace Core.Logic
                     Delete = "Delete",
                     DeleteAllInstances = "Delete all instances",
                     Create = "Create",
-                    Cancel = "Cancel"
+                    Cancel = "Cancel",
+                    Copy = "Copy",
+                    Cut = "Cut",
+                    Paste = "Paste"
                 },
                 DaysOfWeek = new DaysOfWeekLanguage
                 {

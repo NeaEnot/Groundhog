@@ -11,6 +11,9 @@ namespace Core.Models.Settings.Lang
         public string DeleteAllInstances { get; set; }
         public string Create { get; set; }
         public string Cancel { get; set; }
+        public string Copy { get; set; }
+        public string Cut { get; set; }
+        public string Paste { get; set; }
 
         internal static ControlCommandsLanguage Parse(Dictionary<string, string> dict)
         {
@@ -22,7 +25,10 @@ namespace Core.Models.Settings.Lang
                 Delete = dict["Delete"],
                 DeleteAllInstances = dict["DeleteAllInstances"],
                 Create = dict["Create"],
-                Cancel = dict["Cancel"]
+                Cancel = dict["Cancel"],
+                Copy = dict["Copy"],
+                Cut = dict["Cut"],
+                Paste = dict["Paste"]
             };
 
             return language;
@@ -40,6 +46,9 @@ namespace Core.Models.Settings.Lang
             content += $"DeleteAllInstances={DeleteAllInstances}" + '\n';
             content += $"Create={Create}" + '\n';
             content += $"Cancel={Cancel}" + '\n';
+            content += $"Copy={Copy}" + '\n';
+            content += $"Cut={Cut}" + '\n';
+            content += $"Paste={Paste}" + '\n';
             content += '\n';
 
             return content;

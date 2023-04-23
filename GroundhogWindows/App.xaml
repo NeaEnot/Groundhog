@@ -13,6 +13,9 @@
         <sys:String x:Key="Lang.ControlCommands.Edit">Edit</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
         <sys:String x:Key="Lang.ControlCommands.DeleteAllInstances">Delete all instances</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Copy">Copy</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Cut">Cut</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Paste">Paste</sys:String>
         
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
         <sys:String x:Key="Lang.Notes.Notes">Notes</sys:String>
@@ -116,9 +119,9 @@
             </Setter>
         </Style>
 
-        <Style TargetType="Menu">
-            <Setter Property="Foreground" Value="{DynamicResource ResourceKey='Main text'}"/>
-            <Setter Property="Background" Value="{DynamicResource ResourceKey='Additional color'}"/>
+        <Style TargetType="{x:Type Menu}">
+            <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
+            <Setter Property="Background" Value="{DynamicResource Additional color}"/>
         </Style>
 
         <Style TargetType="{x:Type ContextMenu}" x:Key="AppContextMenu">
@@ -128,13 +131,13 @@
             <Setter Property="Foreground" Value="{DynamicResource Main text}"/>
         </Style>
 
-        <ContextMenu x:Key="TextBoxContextMenu" Style="{StaticResource AppContextMenu}">
-            <MenuItem Command="ApplicationCommands.Copy"/>
-            <MenuItem Command="ApplicationCommands.Cut"/>
-            <MenuItem Command="ApplicationCommands.Paste"/>
+        <ContextMenu x:Key="TextBoxContextMenu" Style="{DynamicResource AppContextMenu}">
+            <MenuItem Command="ApplicationCommands.Copy" Header="{DynamicResource Lang.ControlCommands.Copy}"/>
+            <MenuItem Command="ApplicationCommands.Cut" Header="{DynamicResource Lang.ControlCommands.Cut}"/>
+            <MenuItem Command="ApplicationCommands.Paste" Header="{DynamicResource Lang.ControlCommands.Paste}"/>
         </ContextMenu>
 
-        <Style TargetType="MenuItem" >
+        <Style TargetType="{x:Type MenuItem}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="MenuItem">
