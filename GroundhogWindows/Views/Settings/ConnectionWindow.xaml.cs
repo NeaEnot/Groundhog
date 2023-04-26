@@ -13,8 +13,8 @@ namespace GroundhogWindows.Views.Settings
             textBoxConnectionStorage.Text = GroundhogContext.Settings.ConnectionStringStorage;
             textBoxConnectionStorage.ToolTip = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
 
-            textBoxConnectionStorage.Text = GroundhogContext.Settings.ConnectionStringLanguage;
-            textBoxConnectionStorage.ToolTip = GroundhogContext.NetworkLanguageLogic.ConnectionStringFormat;
+            textBoxConnectionLanguage.Text = GroundhogContext.Settings.ConnectionStringLanguage;
+            textBoxConnectionLanguage.ToolTip = GroundhogContext.NetworkLanguageLogic.ConnectionStringFormat;
 
             textBoxConnectionStorage.Focus();
         }

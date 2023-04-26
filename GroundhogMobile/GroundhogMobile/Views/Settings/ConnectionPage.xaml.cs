@@ -15,8 +15,8 @@ namespace GroundhogMobile.Views.Settings
             editorStorage.Placeholder = GroundhogContext.NetworkStorageLogic.ConnectionStringFormat;
             editorStorage.Text = GroundhogContext.Settings.ConnectionStringStorage;
 
-            editorStorage.Placeholder = GroundhogContext.NetworkLanguageLogic.ConnectionStringFormat;
-            editorStorage.Text = GroundhogContext.Settings.ConnectionStringLanguage;
+            editorLanguage.Placeholder = GroundhogContext.NetworkLanguageLogic.ConnectionStringFormat;
+            editorLanguage.Text = GroundhogContext.Settings.ConnectionStringLanguage;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

@@ -78,12 +78,7 @@ namespace Core
             get
             {
                 string system = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
-                string storagePath;
-
-                if (system.Contains("Microsoft Windows"))
-                    storagePath = $"{StoragePath}\\Languages";
-                else
-                    storagePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalizedResources);
+                string storagePath = $"{StoragePath}\\Languages";
 
                 DirectoryInfo storage = new DirectoryInfo(storagePath);
                 if (!storage.Exists)
