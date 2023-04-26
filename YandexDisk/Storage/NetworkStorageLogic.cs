@@ -58,6 +58,9 @@ namespace YandexDisk.Storage
 
                 if (model.AppSettings.ConnectionStringStorage != GroundhogContext.Settings.ConnectionStringStorage)
                     model.AppSettings.ConnectionStringStorage = GroundhogContext.Settings.ConnectionStringStorage;
+                if (model.AppSettings.ConnectionStringLanguage != GroundhogContext.Settings.ConnectionStringLanguage)
+                    model.AppSettings.ConnectionStringLanguage = GroundhogContext.Settings.ConnectionStringLanguage;
+
                 GroundhogContext.Settings = model.AppSettings;
             }
             catch (Exception ex)

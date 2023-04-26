@@ -114,6 +114,8 @@ namespace GroundhogWindows.Views
                 GroundhogContext.NetworkStorageLogic.Load();
                 GroundhogContext.NetworkLanguageLogic.Load();
 
+                GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.Settings.Language);
+
                 RestartWindow();
             }
             catch (Exception ex)
