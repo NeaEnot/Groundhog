@@ -16,7 +16,7 @@ namespace YandexDisk.Storage
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
 
-        private ConnectionString connectionString = new ConnectionString(GroundhogContext.Settings.ConnectionStringStorage);
+        private ConnectionString connectionString = new ConnectionString(() => GroundhogContext.Settings.ConnectionStringStorage);
         private string cloudStorageFile = $@"{GroundhogContext.StoragePath}\cloudStorage.json";
 
         public void Connect(Func<string> getCode)

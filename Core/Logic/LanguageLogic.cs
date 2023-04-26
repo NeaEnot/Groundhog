@@ -132,7 +132,7 @@ namespace Core.Logic
                 }
             };
 
-            Save(language, $"{GroundhogContext.StoragePath}\\Languages\\{DefaultLanguage}.lng");
+            Save(language, $"{GroundhogContext.LanguagesPath}{GroundhogContext.Split}{DefaultLanguage}.lng");
         }
 
         internal static void Save(Language language, string path)

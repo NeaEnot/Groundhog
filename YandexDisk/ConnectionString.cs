@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace YandexDisk
 {
@@ -6,12 +7,12 @@ namespace YandexDisk
     {
         internal static Regex connectionStringExpr = new Regex(@"^token=(?<token>.+);path=(?<path>[/.a-zA-Z0-9]+)$");
 
-        internal string Token => connectionStringExpr.Match(connectionString).Groups["token"].Value;
-        internal string Path => connectionStringExpr.Match(connectionString).Groups["path"].Value;
+        internal string Token => connectionStringExpr.Match(connectionString()).Groups["token"].Value;
+        internal string Path => connectionStringExpr.Match(connectionString()).Groups["path"].Value;
 
-        private string connectionString;
+        private Func<string> connectionString;
 
-        internal ConnectionString(string connectionString)
+        internal ConnectionString(Func<string> connectionString)
         {
             this.connectionString = connectionString;
         }

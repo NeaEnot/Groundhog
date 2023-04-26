@@ -32,7 +32,7 @@ namespace Core
                 {
                     try
                     {
-                        using (StreamReader reader = new StreamReader($"{StoragePath}\\AppSettings.json"))
+                        using (StreamReader reader = new StreamReader($"{StoragePath}{Split}AppSettings.json"))
                         {
                             string json = reader.ReadToEnd();
                             settings = JsonConvert.DeserializeObject<AppSettings>(json);
@@ -50,6 +50,22 @@ namespace Core
             {
                 settings = value;
                 SaveSettings();
+            }
+        }
+
+        internal static char Split
+        {
+            get
+            {
+                string system = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+                char split;
+
+                if (system.Contains("Microsoft Windows"))
+                    split = '\\';
+                else
+                    split = '/';
+
+                return split;
             }
         }
 
@@ -78,7 +94,12 @@ namespace Core
             get
             {
                 string system = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
-                string storagePath = $"{StoragePath}\\Languages";
+                string storagePath;
+
+                if (system.Contains("Microsoft Windows"))
+                    storagePath = $"{StoragePath}{Split}Languages";
+                else
+                    storagePath = StoragePath;
 
                 DirectoryInfo storage = new DirectoryInfo(storagePath);
                 if (!storage.Exists)
@@ -108,7 +129,7 @@ namespace Core
 
         public static void SaveSettings()
         {
-            using (StreamWriter writer = new StreamWriter($"{StoragePath}\\AppSettings.json"))
+            using (StreamWriter writer = new StreamWriter($"{StoragePath}{Split}AppSettings.json"))
             {
                 string json = JsonConvert.SerializeObject(Settings);
                 writer.Write(json);
@@ -117,7 +138,7 @@ namespace Core
 
         public static Language LoadLanguage(string language)
         {
-            Language lang = LanguageLogic.Load($"{StoragePath}\\Languages\\{language}.lng");
+            Language lang = LanguageLogic.Load($"{LanguagesPath}{Split}{language}.lng");
             settings.Language = language;
 
             return lang;

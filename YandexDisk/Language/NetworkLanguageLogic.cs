@@ -13,7 +13,7 @@ namespace YandexDisk.Language
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
 
-        private ConnectionString connectionString = new ConnectionString(GroundhogContext.Settings.ConnectionStringLanguage);
+        private ConnectionString connectionString = new ConnectionString(() => GroundhogContext.Settings.ConnectionStringLanguage);
         private string cloudLanguagesFile = $@"{GroundhogContext.StoragePath}\cloudLanguages.json";
 
         public void Connect(Func<string> getCode)
