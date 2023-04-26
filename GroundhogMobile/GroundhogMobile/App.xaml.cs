@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
-using YandexDisk;
+using YandexDisk.Language;
 using YandexDisk.Storage;
 
 namespace GroundhogMobile
@@ -21,7 +21,9 @@ namespace GroundhogMobile
             GroundhogContext.PurposeLogic = new PurposeLogic();
             GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
             GroundhogContext.NoteLogic = new NoteLogic();
+
             GroundhogContext.NetworkStorageLogic = new NetworkStorageLogic();
+            GroundhogContext.NetworkLanguageLogic = new NetworkLanguageLogic();
 
             MainPage = new NavigationPage(new MainPage());
 

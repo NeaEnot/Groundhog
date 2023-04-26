@@ -28,11 +28,17 @@ namespace GroundhogMobile.Views.Settings
             try
             {
                 ConnectIfNot();
+
                 GroundhogContext.NetworkStorageLogic.Load();
+                GroundhogContext.NetworkLanguageLogic.Load();
+
                 this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasDownladed);
                 DownloadFinisfed();
 
+                GroundhogContext.Language = GroundhogContext.LoadLanguage(GroundhogContext.Settings.Language);
+
                 App.ApplyColorSchema();
+                App.ApplyLanguage();
             }
             catch (Exception ex)
             {
@@ -47,7 +53,10 @@ namespace GroundhogMobile.Views.Settings
                 await System.Threading.Tasks.Task.Run(() =>
                 {
                     ConnectIfNot();
+
                     GroundhogContext.NetworkStorageLogic.Upload();
+                    GroundhogContext.NetworkLanguageLogic.Upload();
+
                     this.DisplayToastAsync(GroundhogContext.Language.Syncronization.DataHasUpladed);
                 });
             }
@@ -61,6 +70,9 @@ namespace GroundhogMobile.Views.Settings
         {
             if (!GroundhogContext.NetworkStorageLogic.IsConnected())
                 GroundhogContext.NetworkStorageLogic.Connect(() => "");
+
+            if (!GroundhogContext.NetworkLanguageLogic.IsConnected())
+                GroundhogContext.NetworkLanguageLogic.Connect(() => "");
         }
 
         private async void ButtonPlanning_Clicked(object sender, EventArgs e)
