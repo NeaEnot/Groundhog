@@ -1,32 +1,20 @@
 ﻿using Core;
-using Core.Interfaces.Network;
 using Core.Models.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading;
 using YandexDisk.Client.Clients;
 
 namespace YandexDisk.Storage
 {
-    public class NetworkStorageLogic : INetworkLogic
+    public class NetworkStorageLogic : YandexDiskNetworkLogic
     {
-        public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
-        public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
-
-        private ConnectionString connectionString = new ConnectionString(() => GroundhogContext.Settings.ConnectionStringStorage);
+        private protected override ConnectionString ConnectionString => new ConnectionString(() => GroundhogContext.Settings.ConnectionStringStorage);
         private string cloudStorageFile = $@"{GroundhogContext.StoragePath}\cloudStorage.json";
 
-        public void Connect(Func<string> getCode)
-        {
-            DiskApiHandler.Connect(getCode, connectionString.Token);
-        }
-
-        public bool IsConnected() => DiskApiHandler.DiskApi != null;
-
-        public void Load()
+        public override void Load()
         {
             try
             {
@@ -34,7 +22,7 @@ namespace YandexDisk.Storage
                 if (file.Exists)
                     file.Delete();
 
-                System.Threading.Tasks.Task threadTask = DiskApiHandler.DiskApi.Files.DownloadFileAsync(connectionString.Path, cloudStorageFile);
+                System.Threading.Tasks.Task threadTask = DiskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile);
                 threadTask.Wait();
 
                 StorageModel model = null;
@@ -69,7 +57,7 @@ namespace YandexDisk.Storage
             }
         }
 
-        public void Upload()
+        public override void Upload()
         {
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
             List<TaskInstance> taskInstances = new List<TaskInstance>();
@@ -99,7 +87,7 @@ namespace YandexDisk.Storage
 
             try
             {
-                DiskApiHandler.DiskApi.Files.UploadFileAsync(connectionString.Path, true, cloudStorageFile, CancellationToken.None).Wait();
+                DiskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudStorageFile, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {

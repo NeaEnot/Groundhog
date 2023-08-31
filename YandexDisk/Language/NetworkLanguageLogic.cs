@@ -1,29 +1,17 @@
 ﻿using Core;
-using Core.Interfaces.Network;
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading;
 using YandexDisk.Client.Clients;
 
 namespace YandexDisk.Language
 {
-    public class NetworkLanguageLogic : INetworkLogic
+    public class NetworkLanguageLogic : YandexDiskNetworkLogic
     {
-        public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
-        public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
-
-        private ConnectionString connectionString = new ConnectionString(() => GroundhogContext.Settings.ConnectionStringLanguage);
+        private protected override ConnectionString ConnectionString => new ConnectionString(() => GroundhogContext.Settings.ConnectionStringLanguage);
         private string cloudLanguagesFile = $@"{GroundhogContext.StoragePath}\cloudLanguages.json";
 
-        public void Connect(Func<string> getCode)
-        {
-            DiskApiHandler.Connect(getCode, connectionString.Token);
-        }
-
-        public bool IsConnected() => DiskApiHandler.DiskApi != null;
-
-        public void Load()
+        public override void Load()
         {
             try
             {
@@ -31,7 +19,7 @@ namespace YandexDisk.Language
                 if (file.Exists)
                     file.Delete();
 
-                System.Threading.Tasks.Task threadTask = DiskApiHandler.DiskApi.Files.DownloadFileAsync(connectionString.Path, cloudLanguagesFile);
+                System.Threading.Tasks.Task threadTask = DiskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudLanguagesFile);
                 threadTask.Wait();
 
                 LanguagesSerializer.Deserialize(new DirectoryInfo(GroundhogContext.LanguagesPath), File.ReadAllText(cloudLanguagesFile));
@@ -42,7 +30,7 @@ namespace YandexDisk.Language
             }
         }
 
-        public void Upload()
+        public override void Upload()
         {
             using (StreamWriter writer = new StreamWriter(cloudLanguagesFile))
             {
@@ -52,7 +40,7 @@ namespace YandexDisk.Language
 
             try
             {
-                DiskApiHandler.DiskApi.Files.UploadFileAsync(connectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
+                DiskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {
