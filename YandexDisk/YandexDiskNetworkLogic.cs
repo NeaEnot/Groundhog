@@ -15,12 +15,15 @@ namespace YandexDisk
 
         private protected abstract ConnectionString ConnectionString { get; }
 
+        private string lastToken;
+
         public void Connect(Func<string> getCode)
         {
+            lastToken = ConnectionString.Token;
             DiskApi = new DiskHttpApi(ConnectionString.Token);
         }
 
-        public bool IsConnected() => DiskApi != null;
+        public bool IsConnected() => DiskApi != null && ConnectionString.Token == lastToken;
 
         public abstract void Load();
 
