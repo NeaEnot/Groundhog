@@ -77,6 +77,18 @@ namespace Core.Logic.DateTimeHelpers
                 DateTime firstDate = oldTaskInstances.Min(req => req.Date);
                 int offsetDays = (day.Date - firstDate.Date).Days;
 
+                if (task.OffsetAll)
+                {
+                    foreach (TaskInstance instance in taskInstances.Where(req => req.Date >= day))
+                    {
+                        if (!instance.Completed)
+                        {
+                            instance.Date = instance.Date.AddDays(offsetDays);
+                            toUpdate.Add(instance);
+                        }
+                    }
+                }
+
                 foreach (TaskInstance instance in oldTaskInstances)
                 {
                     if (task.ToNextDay)
@@ -85,18 +97,6 @@ namespace Core.Logic.DateTimeHelpers
                         instance.Completed = true;
 
                     toUpdate.Add(instance);
-                }
-
-                if (task.OffsetAll)
-                {
-                    foreach (TaskInstance instance in taskInstances.Where(req => req.Date > day))
-                    {
-                        if (!instance.Completed)
-                        {
-                            instance.Date = instance.Date.AddDays(offsetDays);
-                            toUpdate.Add(instance);
-                        }
-                    }
                 }
             }
 
