@@ -1,5 +1,7 @@
 ﻿using Core;
 using Core.Models.Storage;
+using GroundhogWindows.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -32,10 +34,12 @@ namespace GroundhogWindows.Views.Purposes
                 .OrderBy(req => req.Name)
                 .ToList();
 
-            listBoxGroups.ItemsSource = null;
             listBoxGroups.ItemsSource = groups;
 
             loaded = false;
+
+            if (selectedGroupId != null)
+                listBoxGroups.SelectedItem = groups.First(req => req.Id == selectedGroupId);
         }
 
         private void GroupSelected(object sender, SelectionChangedEventArgs e)
@@ -43,7 +47,7 @@ namespace GroundhogWindows.Views.Purposes
             if (loaded)
                 return;
 
-            PurposeGroup selected = (PurposeGroup)((ListBox)e.Source).SelectedItem;
+            PurposeGroup selected = (PurposeGroup)e.AddedItems[0];
             selectedGroupId = selected.Id;
             windowContext.LoadPurposes(selectedGroupId);
         }
