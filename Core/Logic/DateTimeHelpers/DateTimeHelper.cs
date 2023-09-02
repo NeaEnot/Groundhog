@@ -44,7 +44,7 @@ namespace Core.Logic.DateTimeHelpers
                     .ToList();
                 models.AddRange(instances.Where(req => (DateTime.Now - req.Date).Days >= task.OptimizationRange));
 
-                if (task.RepeatMode == RepeatMode.None && instances.Count == 1 && models.Count == 1 || instances.Count == 0)
+                if (instances.Count == 0)
                     tasksToDelete.Add(task);
             }
 
