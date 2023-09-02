@@ -29,7 +29,7 @@ namespace GroundhogMobile.Views.Tasks
             LoadData();
         }
 
-        private void LoadData()
+        private async void LoadData()
         {
             DateTimeHelper.FillRepeatedTasks();
             DateTimeHelper.ToDay(DateTime.Now);
@@ -40,15 +40,31 @@ namespace GroundhogMobile.Views.Tasks
                 .Read()
                 .ToList();
 
-            List<TaskInstanceViewModel> list =
-                GroundhogContext.TaskInstanceLogic
-                .Read(date)
+            List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(date);
+
+            List<TaskInstance> errors = taskInstances.Where(req => tasks.FirstOrDefault(t => t.Id == req.TaskId) == null).ToList();
+
+            if (errors.Count > 0)
+            {
+                string errorMessage = $"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}:\n";
+
+                foreach (TaskInstance taskInstance in errors)
+                {
+                    errorMessage += taskInstance.TaskId + '\n';
+                    taskInstances.Remove(taskInstance);
+                }
+
+                await DisplayAlert(GroundhogContext.Language.ErrorsMessages.Error, errorMessage, "Ok");
+            }
+
+            List<TaskInstanceViewModel> models =
+                taskInstances
                 .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                 .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                 .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
                 .ToList();
 
-            tasksList.ItemsSource = list;
+            tasksList.ItemsSource = models;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
