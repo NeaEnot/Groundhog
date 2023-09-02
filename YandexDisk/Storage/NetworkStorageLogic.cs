@@ -33,7 +33,7 @@ namespace YandexDisk.Storage
                 return
                     threadTask.Result.Items
                     .Where(f => f.Path.StartsWith($@"disk:{path}") && f.Path != $@"disk:{path}")
-                    .Select(f => f.Name)
+                    .Select(f => f.Name.Replace(name, "").Replace(".backup", ""))
                     .ToList();
             }
         }
@@ -123,12 +123,34 @@ namespace YandexDisk.Storage
 
         public void MakeBackup(string key)
         {
-            throw new NotImplementedException();
+            if (!IsConnected())
+                Connect(() => "");
+
+            diskApi.Commands
+                .CopyAndWaitAsync(
+                    new CopyFileRequest
+                    {
+                        From = ConnectionString.Path,
+                        Path = $@"{ConnectionString.Path}.{key}.backup",
+                        Overwrite = true
+                })
+                .Wait();
         }
 
         public void RestoreBackup(string key)
         {
-            throw new NotImplementedException();
+            if (!IsConnected())
+                Connect(() => "");
+
+            diskApi.Commands
+                .CopyAndWaitAsync(
+                    new CopyFileRequest
+                    {
+                        From = $@"{ConnectionString.Path}.{key}.backup",
+                        Path = ConnectionString.Path,
+                        Overwrite = true
+                    })
+                .Wait();
         }
     }
 }
