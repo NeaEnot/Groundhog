@@ -32,7 +32,7 @@ namespace YandexDisk.Storage
 
                 return
                     threadTask.Result.Items
-                    .Where(f => f.Path.StartsWith($@"disk:{path}") && f.Path != $@"disk:{path}")
+                    .Where(f => f.Path.StartsWith($@"disk:{path}") && f.Path != $@"disk:{path}" && f.Name.EndsWith(".backup"))
                     .Select(f => f.Name.Replace(name, "").Replace(".backup", ""))
                     .ToList();
             }
