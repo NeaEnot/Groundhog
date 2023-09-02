@@ -19,7 +19,7 @@ namespace YandexDisk.Language
                 if (file.Exists)
                     file.Delete();
 
-                System.Threading.Tasks.Task threadTask = DiskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudLanguagesFile);
+                System.Threading.Tasks.Task threadTask = diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudLanguagesFile);
                 threadTask.Wait();
 
                 LanguagesSerializer.Deserialize(new DirectoryInfo(GroundhogContext.LanguagesPath), File.ReadAllText(cloudLanguagesFile));
@@ -40,7 +40,7 @@ namespace YandexDisk.Language
 
             try
             {
-                DiskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
+                diskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudLanguagesFile, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {

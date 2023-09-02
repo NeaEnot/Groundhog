@@ -1,17 +1,43 @@
 ﻿using Core;
+using Core.Interfaces.Network;
 using Core.Models.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using YandexDisk.Client.Clients;
+using YandexDisk.Client.Protocol;
 
 namespace YandexDisk.Storage
 {
-    public class NetworkStorageLogic : YandexDiskNetworkLogic
+    public class NetworkStorageLogic : YandexDiskNetworkLogic, IBackupLogic
     {
         private protected override ConnectionString ConnectionString => new ConnectionString(() => GroundhogContext.Settings.ConnectionStringStorage);
+
+        public List<string> Backups
+        {
+            get
+            {
+                if (!IsConnected())
+                    Connect(() => "");
+
+                System.Threading.Tasks.Task<FilesResourceList> threadTask = diskApi.MetaInfo.GetFilesInfoAsync(new FilesResourceRequest { Limit = int.MaxValue });
+                threadTask.Wait();
+
+                string path = ConnectionString.Path;
+                int index = ConnectionString.Path.LastIndexOf('/');
+                string name = path.Substring(index);
+
+                return
+                    threadTask.Result.Items
+                    .Where(f => f.Path.StartsWith($@"disk:{path}") && f.Path != $@"disk:{path}")
+                    .Select(f => f.Name)
+                    .ToList();
+            }
+        }
+
         private string cloudStorageFile = $@"{GroundhogContext.StoragePath}\cloudStorage.json";
 
         public override void Load()
@@ -22,7 +48,7 @@ namespace YandexDisk.Storage
                 if (file.Exists)
                     file.Delete();
 
-                System.Threading.Tasks.Task threadTask = DiskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile);
+                System.Threading.Tasks.Task threadTask = diskApi.Files.DownloadFileAsync(ConnectionString.Path, cloudStorageFile);
                 threadTask.Wait();
 
                 StorageModel model = null;
@@ -87,12 +113,22 @@ namespace YandexDisk.Storage
 
             try
             {
-                DiskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudStorageFile, CancellationToken.None).Wait();
+                diskApi.Files.UploadFileAsync(ConnectionString.Path, true, cloudStorageFile, CancellationToken.None).Wait();
             }
             catch (Exception ex)
             {
                 throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FailedToUploadData}: " + ex.Message);
             }
+        }
+
+        public void MakeBackup(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RestoreBackup(string key)
+        {
+            throw new NotImplementedException();
         }
     }
 }

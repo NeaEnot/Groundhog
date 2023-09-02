@@ -8,7 +8,7 @@ namespace YandexDisk
 {
     public abstract class YandexDiskNetworkLogic : INetworkLogic
     {
-        protected static IDiskApi DiskApi { get; private set; }
+        protected static IDiskApi diskApi;
 
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
@@ -20,10 +20,10 @@ namespace YandexDisk
         public void Connect(Func<string> getCode)
         {
             lastToken = ConnectionString.Token;
-            DiskApi = new DiskHttpApi(ConnectionString.Token);
+            diskApi = new DiskHttpApi(ConnectionString.Token);
         }
 
-        public bool IsConnected() => DiskApi != null && ConnectionString.Token == lastToken;
+        public bool IsConnected() => diskApi != null && ConnectionString.Token == lastToken;
 
         public abstract void Load();
 
