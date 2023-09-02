@@ -40,15 +40,31 @@ namespace GroundhogWindows.Views.Tasks
 
             if (tasks != null && tasks.Count > 0)
             {
-                List<TaskInstanceViewModel> taskInstances =
-                    GroundhogContext.TaskInstanceLogic
-                    .Read(date)
+                List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(date);
+
+                List<TaskInstance> errors = taskInstances.Where(req => tasks.FirstOrDefault(t => t.Id == req.TaskId) == null).ToList();
+
+                if (errors.Count > 0)
+                {
+                    string errorMessage = $"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}:\n";
+
+                    foreach (TaskInstance taskInstance in errors)
+                    {
+                        errorMessage += taskInstance.TaskId + '\n';
+                        taskInstances.Remove(taskInstance);
+                    }
+
+                    MessageBox.Show(errorMessage, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                List<TaskInstanceViewModel> models =
+                    taskInstances
                     .OrderByDescending(req => DateTimeHelper.TaskRare(tasks.First(t => t.Id == req.TaskId)))
                     .ThenBy(req => tasks.First(t => t.Id == req.TaskId).Text)
                     .Select(req => new TaskInstanceViewModel(req, tasks.First(t => t.Id == req.TaskId)))
                     .ToList();
 
-                listBoxTasks.ItemsSource = taskInstances;
+                listBoxTasks.ItemsSource = models;
             }
         }
 
