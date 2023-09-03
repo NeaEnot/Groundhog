@@ -38,7 +38,12 @@ namespace GroundhogWindows.Views.Backups
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateBackupWindow createBackupWindow = new CreateBackupWindow();
+            if (createBackupWindow.ShowDialog() == true)
+            {
+                backupLogic.MakeBackup(createBackupWindow.Key);
+                LoadBackups();
+            }
         }
     }
 }
