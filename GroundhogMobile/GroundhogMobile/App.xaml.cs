@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Logic;
 using GroundhogMobile.Views;
 using StorageFile.Implements;
 using System.Collections.Generic;
@@ -16,14 +17,19 @@ namespace GroundhogMobile
         {
             InitializeComponent();
 
+            NetworkStorageLogic networkStorageLogic = new NetworkStorageLogic();
+
             GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
             GroundhogContext.TaskLogic = new TaskLogic();
             GroundhogContext.PurposeLogic = new PurposeLogic();
             GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
             GroundhogContext.NoteLogic = new NoteLogic();
 
-            GroundhogContext.NetworkStorageLogic = new NetworkStorageLogic();
+            GroundhogContext.NetworkStorageLogic = networkStorageLogic;
             GroundhogContext.NetworkLanguageLogic = new NetworkLanguageLogic();
+
+            GroundhogContext.LocalBackupLogic = new LocalStorageBackupLogic();
+            GroundhogContext.CloudBackupLogic = networkStorageLogic;
 
             MainPage = new NavigationPage(new MainPage());
 

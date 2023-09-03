@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="GroundhogMobile.Views.Backups.CreateBackupPage"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 NavigationPage.HasNavigationBar="False">
+
+    <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="{DynamicResource Additional color}" Margin="20" Padding="20">
+
+        <StackLayout>
+            <Entry x:Name="textEntry" Placeholder="{DynamicResource Key=Lang.Syncronization.EnterCode}" FontSize="20" Text="" Margin="10, 20"/>
+            <Button Text="{DynamicResource Key=Lang.ControlCommands.Create}" Clicked="Button_Clicked"/>
+        </StackLayout>
+
+    </Frame>
+
+</pages:PopupPage>

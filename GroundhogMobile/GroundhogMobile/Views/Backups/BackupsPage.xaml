@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroundhogMobile.Views.Backups.BackupsPage"
+             BackgroundColor="{DynamicResource Main color}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <FlexLayout Direction="Column">
+            <ScrollView FlexLayout.Basis="90%">
+                <ListView x:Name="backupsList" RowHeight="80" SelectionMode="None" ItemTapped="backupsList_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label FlexLayout.Basis="70%" TextColor="{DynamicResource Main text}" FontSize="22" Text="{Binding}" Margin="10, 10"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <Button Text="{DynamicResource Lang.ControlCommands.Create}" FontSize="20" FlexLayout.Basis="9%" Clicked="Button_Clicked"/>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
