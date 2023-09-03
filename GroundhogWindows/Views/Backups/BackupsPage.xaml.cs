@@ -27,12 +27,13 @@ namespace GroundhogWindows.Views.Backups
         {
             string key = (string)listBoxBackups.SelectedItem;
             backupLogic.RestoreBackup(key);
-            LoadBackups();
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            string key = (string)listBoxBackups.SelectedItem;
+            backupLogic.DeleteBackup(key);
+            LoadBackups();
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)

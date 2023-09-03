@@ -152,5 +152,13 @@ namespace YandexDisk.Storage
                     })
                 .Wait();
         }
+
+        public void DeleteBackup(string key)
+        {
+            if (!IsConnected())
+                Connect(() => "");
+
+            diskApi.Commands.DeleteAndWaitAsync(new DeleteFileRequest { Path = $@"{ConnectionString.Path}.{key}.backup" });
+        }
     }
 }

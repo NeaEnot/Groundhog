@@ -8,5 +8,6 @@ namespace Core.Interfaces.Network
 
         void MakeBackup(string key);
         void RestoreBackup(string key);
+        void DeleteBackup(string key);
     }
 }

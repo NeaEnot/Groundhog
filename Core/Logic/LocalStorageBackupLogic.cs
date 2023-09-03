@@ -77,6 +77,12 @@ namespace Core.Logic
             GroundhogContext.Settings = model.AppSettings;
         }
 
+        public void DeleteBackup(string key)
+        {
+            string path = $@"{GroundhogContext.StoragePath}{GroundhogContext.Split}{key}.backup";
+            File.Delete(path);
+        }
+
         private class StorageModel
         {
             public List<Task> Tasks { get; set; }
