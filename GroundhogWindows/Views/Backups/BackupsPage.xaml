@@ -1,0 +1,49 @@
+﻿<Page x:Class="GroundhogWindows.Views.Backups.BackupsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GroundhogWindows.Views.Backups"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="320">
+
+    <Grid>
+        <ScrollViewer>
+            <ListBox Name="listBoxBackups"  Margin="-1,-0.5,-1,-0.5">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid>
+                                        <Border Name="border" Padding="7" Background="{DynamicResource ResourceKey='Main color'}">
+                                            <StackPanel Margin="5">
+                                                <StackPanel.ContextMenu>
+                                                    <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="MenuItemRestore_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
+                                                    </ContextMenu>
+                                                </StackPanel.ContextMenu>
+                                                <Label Content="{Binding}" FontSize="16" Foreground="{DynamicResource ResourceKey='Main text'}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey='Select item'}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ResourceKey='Selected item'}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </ScrollViewer>
+
+        <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Create}" Margin="0,0,25,8" VerticalAlignment="Bottom" Height="35" Width="84" Click="ButtonCreate_Click"  HorizontalAlignment="Right"/>
+    </Grid>
+</Page>

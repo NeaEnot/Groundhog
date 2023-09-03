@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Globalization;
 using YandexDisk.Language;
 using YandexDisk.Storage;
+using Core.Logic;
 
 namespace GroundhogWindows
 {
@@ -14,14 +15,19 @@ namespace GroundhogWindows
     {
         public App()
         {
+            NetworkStorageLogic networkStorageLogic = new NetworkStorageLogic();
+
             GroundhogContext.TaskInstanceLogic = new TaskInstanceLogic();
             GroundhogContext.TaskLogic = new TaskLogic();
             GroundhogContext.PurposeLogic = new PurposeLogic();
             GroundhogContext.PurposeGroupLogic = new PurposeGroupLogic();
             GroundhogContext.NoteLogic = new NoteLogic();
 
-            GroundhogContext.NetworkStorageLogic = new NetworkStorageLogic();
+            GroundhogContext.NetworkStorageLogic = networkStorageLogic;
             GroundhogContext.NetworkLanguageLogic = new NetworkLanguageLogic();
+
+            GroundhogContext.LocalBackupLogic = new LocalStorageBackupLogic();
+            GroundhogContext.CloudBackupLogic = networkStorageLogic;
 
             Dictionary<string, string> colors = new Dictionary<string, string>()
             {

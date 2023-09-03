@@ -27,6 +27,7 @@
             <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Syncronization}">
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Download}" Click="MenuItemLoad_Click"/>
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Upload}" Click="MenuItemUpload_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Upload}" Click="MenuItemBackups_Click"/>
             </MenuItem>
         </Menu>
 

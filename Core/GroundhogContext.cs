@@ -21,6 +21,9 @@ namespace Core
         public static INetworkLogic NetworkStorageLogic { get; set; }
         public static INetworkLogic NetworkLanguageLogic { get; set; }
 
+        public static IBackupLogic LocalBackupLogic { get; set; }
+        public static IBackupLogic CloudBackupLogic { get; set; }
+
         public static Language Language { get; set; }
         public static string DefaultLanguage => LanguageLogic.DefaultLanguage;
 

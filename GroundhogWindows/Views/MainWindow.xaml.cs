@@ -1,5 +1,6 @@
 ﻿using Core;
 using GroundhogWindows.Models;
+using GroundhogWindows.Views.Backups;
 using GroundhogWindows.Views.Notes;
 using GroundhogWindows.Views.Purposes;
 using GroundhogWindows.Views.Settings;
@@ -136,6 +137,12 @@ namespace GroundhogWindows.Views
             {
                 MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void MenuItemBackups_Click(object sender, RoutedEventArgs e)
+        {
+            BackupsWindow backupsWindow = new BackupsWindow();
+            backupsWindow.ShowDialog();
         }
 
         private void ConnectIfNot()
