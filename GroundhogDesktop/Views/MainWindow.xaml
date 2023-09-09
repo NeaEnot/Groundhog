@@ -23,6 +23,7 @@
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.PlanningAndOptimizationRange}" Click="MenuItemPlanning_Click"/>
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.ColorSchema}" Click="MenuItemColorSchema_Click"/>
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.SelectLanguage}" Click="MenuItemLanguage_Click"/>
+                <MenuItem Header="{DynamicResource ResourceKey=Lang.Settings.SelectLanguage}" Click="MenuItemBackupSettings_Click"/>
             </MenuItem>
             <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Syncronization}">
                 <MenuItem Header="{DynamicResource ResourceKey=Lang.Syncronization.Download}" Click="MenuItemLoad_Click"/>

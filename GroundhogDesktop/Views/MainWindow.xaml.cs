@@ -9,6 +9,7 @@ using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
+using GroundhogDesktop.Views.Settings;
 
 namespace WindowsDesktop.Views
 {
@@ -107,10 +108,19 @@ namespace WindowsDesktop.Views
             }
         }
 
+        private void MenuItemBackupSettings_Click(object sender, RoutedEventArgs e)
+        {
+            BackupSettingsWindow backupSettingsWindow = new BackupSettingsWindow();
+            backupSettingsWindow.ShowDialog();
+        }
+
         private void MenuItemLoad_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (GroundhogContext.Settings.BackupSettings.AutoLocalBackup)
+                    GroundhogContext.LocalBackupLogic.MakeBackup(DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+
                 ConnectIfNot();
                 GroundhogContext.NetworkStorageLogic.Load();
                 GroundhogContext.NetworkLanguageLogic.Load();
@@ -130,6 +140,10 @@ namespace WindowsDesktop.Views
             try
             {
                 ConnectIfNot();
+
+                if (GroundhogContext.Settings.BackupSettings.AutoCloudBackup)
+                    GroundhogContext.CloudBackupLogic.MakeBackup(DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+
                 GroundhogContext.NetworkStorageLogic.Upload();
                 GroundhogContext.NetworkLanguageLogic.Upload();
             }

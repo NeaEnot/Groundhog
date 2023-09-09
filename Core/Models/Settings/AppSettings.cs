@@ -31,6 +31,7 @@ namespace Core.Models.Settings
             OptimizationRange = 50;
 
             ColorSchema = new ColorSchema();
+            BackupSettings = new BackupSettings();
         }
     }
 }
