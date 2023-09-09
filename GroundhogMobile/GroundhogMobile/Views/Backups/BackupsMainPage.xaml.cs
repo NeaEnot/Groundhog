@@ -1,4 +1,5 @@
 ﻿using Core;
+using GroundhogMobile.Views.Settings;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,9 +20,11 @@ namespace GroundhogMobile.Views.Backups
 
             Children.Add(localBackupsPage);
             Children.Add(cloudBackupsPage);
+            Children.Add(new BackupSettingsPage());
 
             Children[0].Title = "Home";
             Children[1].Title = "Home";
+            Children[2].Title = "Home";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core;
+using GroundhogMobile.Views.Backups;
 using System;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
@@ -27,6 +28,9 @@ namespace GroundhogMobile.Views.Settings
         {
             try
             {
+                if (GroundhogContext.Settings.BackupSettings.AutoLocalBackup)
+                    GroundhogContext.LocalBackupLogic.MakeBackup(DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+
                 ConnectIfNot();
 
                 GroundhogContext.NetworkStorageLogic.Load();
@@ -53,6 +57,9 @@ namespace GroundhogMobile.Views.Settings
                 await System.Threading.Tasks.Task.Run(() =>
                 {
                     ConnectIfNot();
+
+                    if (GroundhogContext.Settings.BackupSettings.AutoCloudBackup)
+                        GroundhogContext.CloudBackupLogic.MakeBackup(DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
 
                     GroundhogContext.NetworkStorageLogic.Upload();
                     GroundhogContext.NetworkLanguageLogic.Upload();
@@ -90,6 +97,12 @@ namespace GroundhogMobile.Views.Settings
         private async void ButtonLanguage_Clicked(object sender, EventArgs e)
         {
             LanguagePage page = new LanguagePage();
+            await Navigation.PushAsync(page);
+        }
+
+        private async void ButtonBackup_Clicked(object sender, EventArgs e)
+        {
+            BackupsMainPage page = new BackupsMainPage();
             await Navigation.PushAsync(page);
         }
     }

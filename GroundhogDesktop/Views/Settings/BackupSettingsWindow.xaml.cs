@@ -8,6 +8,9 @@ namespace GroundhogDesktop.Views.Settings
         public BackupSettingsWindow()
         {
             InitializeComponent();
+
+            chbAutoCloudBackup.IsChecked = GroundhogContext.Settings.BackupSettings.AutoCloudBackup;
+            chbAutoLocalBackup.IsChecked = GroundhogContext.Settings.BackupSettings.AutoLocalBackup;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

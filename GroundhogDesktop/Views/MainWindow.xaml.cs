@@ -122,6 +122,7 @@ namespace WindowsDesktop.Views
                     GroundhogContext.LocalBackupLogic.MakeBackup(DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
 
                 ConnectIfNot();
+
                 GroundhogContext.NetworkStorageLogic.Load();
                 GroundhogContext.NetworkLanguageLogic.Load();
 
