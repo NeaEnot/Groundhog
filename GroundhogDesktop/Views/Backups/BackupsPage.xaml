@@ -20,7 +20,7 @@
                                             <StackPanel Margin="5">
                                                 <StackPanel.ContextMenu>
                                                     <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
-                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="MenuItemRestore_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.Backup.Restore}" Click="ContextMenuRestore_Click"/>
                                                         <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
                                                 </StackPanel.ContextMenu>

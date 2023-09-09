@@ -128,7 +128,17 @@ namespace Core.Logic
                     PlanningRange = "Planning range",
                     OptimizationRange = "Optimization range",
                     List = "List",
-                    Calendar = "Calendar",
+                    Calendar = "Calendar"
+                },
+                Backup = new BackupsLanguage
+                {
+                    Backup = "Backup",
+                    Cloud = "Cloud",
+                    Local = "Local",
+                    Restore = "Restore",
+                    BackupName = "Backup name",
+                    AutoCloudBackup = "Auto cloud backup",
+                    AutoLocalBackup = "Auto local backup"
                 }
             };
 

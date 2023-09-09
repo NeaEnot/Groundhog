@@ -14,6 +14,7 @@ namespace Core.Models.Settings.Lang
         public SettingsLanguage Settings { get; set; }
         public SyncronizationLanguage Syncronization { get; set; }
         public TasksLanguage Tasks { get; set; }
+        public BackupsLanguage Backup { get; set; }
 
         internal static Language Parse(Dictionary<string, string> dict)
         {
@@ -29,6 +30,7 @@ namespace Core.Models.Settings.Lang
                 Settings = SettingsLanguage.Parse(dict),
                 Syncronization = SyncronizationLanguage.Parse(dict),
                 Tasks = TasksLanguage.Parse(dict),
+                Backup = BackupsLanguage.Parse(dict)
             };
 
             return language;
@@ -49,6 +51,7 @@ namespace Core.Models.Settings.Lang
             content += Settings.Serialize();
             content += Syncronization.Serialize();
             content += Tasks.Serialize();
+            content += Backup.Serialize();
 
             return content;
         }

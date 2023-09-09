@@ -10,7 +10,7 @@
             <Button Text="{DynamicResource Key=Lang.Settings.PlanningAndOptimizationRange}" FontSize="20" Clicked="ButtonPlanning_Clicked"/>
             <Button Text="{DynamicResource Key=Lang.Settings.ColorSchema}" FontSize="20" Clicked="ButtonColors_Clicked"/>
             <Button Text="{DynamicResource Key=Lang.Settings.SelectLanguage}" FontSize="20" Clicked="ButtonLanguage_Clicked"/>
-            <Button Text="{DynamicResource Key=Lang.Settings.SelectLanguage}" FontSize="20" Clicked="ButtonBackup_Clicked"/>
+            <Button Text="{DynamicResource Key=Lang.Backup.Backup}" FontSize="20" Clicked="ButtonBackup_Clicked"/>
             <Button Text="{DynamicResource Key=Lang.Syncronization.Download}" FontSize="20" Clicked="ButtonLoad_Clicked"/>
             <Button Text="{DynamicResource Key=Lang.Syncronization.Upload}" FontSize="20" Clicked="ButtonSend_Clicked"/>
         </StackLayout>

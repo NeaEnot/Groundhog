@@ -64,6 +64,14 @@
         <sys:String x:Key="Lang.Tasks.PlanningRange">Planning range</sys:String>
         <sys:String x:Key="Lang.Tasks.OptimizationRange">Optimization range</sys:String>
 
+        <sys:String x:Key="Lang.Backup.Backup">Backup</sys:String>
+        <sys:String x:Key="Lang.Backup.Cloud">Cloud</sys:String>
+        <sys:String x:Key="Lang.Backup.Local">Local</sys:String>
+        <sys:String x:Key="Lang.Backup.Restore">Restore</sys:String>
+        <sys:String x:Key="Lang.Backup.BackupName">Backup name</sys:String>
+        <sys:String x:Key="Lang.Backup.AutoCloudBackup">Auto cloud backup</sys:String>
+        <sys:String x:Key="Lang.Backup.AutoLocalBackup">Auto local backup</sys:String>
+
 
         <Brush x:Key="Main color">#ffffff</Brush>
         <Brush x:Key="Additional color">#f0f0f0</Brush>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WindowsDesktop.Views.Backups"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="{DynamicResource ResourceKey=Lang.Syncronization.EnterCode}"
+        Title="{DynamicResource ResourceKey=Lang.Backup.BackupName}"
         Height="0" MinHeight="100" Width="0" MinWidth="280">
     <Grid>
         <TextBox Name="textBox" Margin="10,10,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>

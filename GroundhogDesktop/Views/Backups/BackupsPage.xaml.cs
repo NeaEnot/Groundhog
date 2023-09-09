@@ -23,7 +23,7 @@ namespace WindowsDesktop.Views.Backups
             listBoxBackups.ItemsSource = backups;
         }
 
-        private void MenuItemRestore_Click(object sender, RoutedEventArgs e)
+        private void ContextMenuRestore_Click(object sender, RoutedEventArgs e)
         {
             string key = (string)listBoxBackups.SelectedItem;
             backupLogic.RestoreBackup(key);

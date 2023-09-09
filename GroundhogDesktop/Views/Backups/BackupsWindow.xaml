@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="{DynamicResource ResourceKey=Lang.Settings.ColorSchema}"
+        Title="{DynamicResource ResourceKey=Lang.Backup.Backup}"
         MinHeight="410" MinWidth="611" Height="410" Width="611">
     <Grid>
         <TabControl Name="tc" Grid.Row="1">
-            <TabItem Header="{DynamicResource ResourceKey=Lang.Tasks.Tasks}">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Backup.Local}">
                 <Frame Name="fLocalBackups"/>
             </TabItem>
-            <TabItem Header="{DynamicResource ResourceKey=Lang.Purposes.Purposes}">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.Backup.Cloud}">
                 <Frame Name="fCloudBackups"/>
             </TabItem>
         </TabControl>

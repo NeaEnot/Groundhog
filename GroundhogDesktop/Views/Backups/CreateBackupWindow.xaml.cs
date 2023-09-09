@@ -18,7 +18,7 @@ namespace WindowsDesktop.Views.Backups
             try
             {
                 if (string.IsNullOrWhiteSpace(textBox.Text))
-                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.CodeWasNotEntered}.");
+                    throw new Exception($"{GroundhogContext.Language.ErrorsMessages.FieldMustBeFilled}.");
 
                 Key = textBox.Text;
 

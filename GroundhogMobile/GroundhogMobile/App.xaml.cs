@@ -139,6 +139,14 @@ namespace GroundhogMobile
             App.Current.Resources["Lang.Tasks.OffsetNextTasks"] = GroundhogContext.Language.Tasks.OffsetNextTasks;
             App.Current.Resources["Lang.Tasks.PlanningRange"] = GroundhogContext.Language.Tasks.PlanningRange;
             App.Current.Resources["Lang.Tasks.OptimizationRange"] = GroundhogContext.Language.Tasks.OptimizationRange;
+
+            App.Current.Resources["Lang.Backup.Backup"] = GroundhogContext.Language.Backup.Backup;
+            App.Current.Resources["Lang.Backup.Cloud"] = GroundhogContext.Language.Backup.Cloud;
+            App.Current.Resources["Lang.Backup.Local"] = GroundhogContext.Language.Backup.Local;
+            App.Current.Resources["Lang.Backup.Restore"] = GroundhogContext.Language.Backup.Restore;
+            App.Current.Resources["Lang.Backup.BackupName"] = GroundhogContext.Language.Backup.BackupName;
+            App.Current.Resources["Lang.Backup.AutoCloudBackup"] = GroundhogContext.Language.Backup.AutoCloudBackup;
+            App.Current.Resources["Lang.Backup.AutoLocalBackup"] = GroundhogContext.Language.Backup.AutoLocalBackup;
         }
 
         protected override void OnStart()
