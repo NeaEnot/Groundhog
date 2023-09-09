@@ -10,8 +10,11 @@ namespace Core.Models.Settings
 
         public Dictionary<RepeatMode, int> PlanningRanges { get; set; }
         public int OptimizationRange { get; set; }
+
         public ColorSchema ColorSchema { get; set; }
+        public BackupSettings BackupSettings { get; set; }
         public string Language { get; set; }
+
 
         public AppSettings()
         {
