@@ -1,17 +1,17 @@
 ﻿using Core;
-using WindowsDesktop.Models;
-using WindowsDesktop.Views.Backups;
-using WindowsDesktop.Views.Notes;
-using WindowsDesktop.Views.Purposes;
-using WindowsDesktop.Views.Settings;
-using WindowsDesktop.Views.Tasks;
+using GroundhogDesktop.Models;
+using GroundhogDesktop.Views.Backups;
+using GroundhogDesktop.Views.Notes;
+using GroundhogDesktop.Views.Purposes;
+using GroundhogDesktop.Views.Settings;
+using GroundhogDesktop.Views.Tasks;
 using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using GroundhogDesktop.Views.Settings;
 
-namespace WindowsDesktop.Views
+namespace GroundhogDesktop.Views
 {
     public partial class MainWindow : Window
     {

@@ -1,6 +1,6 @@
 ﻿using Core.Models.Storage;
 
-namespace WindowsDesktop.Models
+namespace GroundhogDesktop.Models
 {
     internal class PurposeViewModel
     {

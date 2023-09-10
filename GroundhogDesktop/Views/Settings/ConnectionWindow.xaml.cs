@@ -2,7 +2,7 @@
 using System;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Settings
+namespace GroundhogDesktop.Views.Settings
 {
     public partial class ConnectionWindow : Window
     {

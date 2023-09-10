@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace WindowsDesktop.Views.Notes
+namespace GroundhogDesktop.Views.Notes
 {
     public partial class LineNumberingPage : Page
     {

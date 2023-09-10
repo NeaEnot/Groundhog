@@ -1,7 +1,7 @@
 ﻿using Core;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Settings
+namespace GroundhogDesktop.Views.Settings
 {
     public partial class LanguageWindow : Window
     {

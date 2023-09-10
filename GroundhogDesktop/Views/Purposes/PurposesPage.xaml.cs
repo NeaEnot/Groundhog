@@ -1,12 +1,12 @@
 ﻿using Core;
 using Core.Models.Storage;
-using WindowsDesktop.Models;
+using GroundhogDesktop.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WindowsDesktop.Views.Purposes
+namespace GroundhogDesktop.Views.Purposes
 {
     public partial class PurposesPage : Page
     {

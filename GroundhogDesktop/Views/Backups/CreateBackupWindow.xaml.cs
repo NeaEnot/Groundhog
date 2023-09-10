@@ -2,7 +2,7 @@
 using System;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Backups
+namespace GroundhogDesktop.Views.Backups
 {
     public partial class CreateBackupWindow : Window
     {

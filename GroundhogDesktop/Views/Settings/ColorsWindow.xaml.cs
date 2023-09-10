@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WindowsDesktop.Views.Settings
+namespace GroundhogDesktop.Views.Settings
 {
     public partial class ColorsWindow : Window
     {

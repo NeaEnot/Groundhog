@@ -2,14 +2,14 @@
 using Core.Logic.DateTimeHelpers;
 using Core.Enums;
 using Core.Models.Storage;
-using WindowsDesktop.Models;
+using GroundhogDesktop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WindowsDesktop.Views.Tasks
+namespace GroundhogDesktop.Views.Tasks
 {
     public partial class TaskInstancesPage : Page
     {

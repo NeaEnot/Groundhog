@@ -9,7 +9,7 @@ using YandexDisk.Language;
 using YandexDisk.Storage;
 using Core.Logic;
 
-namespace WindowsDesktop
+namespace GroundhogDesktop
 {
     public partial class App : Application
     {

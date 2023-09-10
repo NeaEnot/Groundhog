@@ -2,7 +2,7 @@
 using Core.Models.Storage;
 using System;
 
-namespace WindowsDesktop.Models
+namespace GroundhogDesktop.Models
 {
     internal class TaskInstanceViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WindowsDesktop.Models
+namespace GroundhogDesktop.Models
 {
     internal class NoteCell
     {

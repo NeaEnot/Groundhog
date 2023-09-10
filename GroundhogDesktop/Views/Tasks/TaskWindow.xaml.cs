@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WindowsDesktop.Views.Tasks
+namespace GroundhogDesktop.Views.Tasks
 {
     public partial class TaskWindow : Window
     {

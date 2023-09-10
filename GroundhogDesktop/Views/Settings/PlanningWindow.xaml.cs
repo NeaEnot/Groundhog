@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Settings
+namespace GroundhogDesktop.Views.Settings
 {
     public partial class PlanningWindow : Window
     {

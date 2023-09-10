@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WindowsDesktop.Models
+namespace GroundhogDesktop.Models
 {
     internal class NoteViewModel : INotifyPropertyChanged
     {

@@ -1,12 +1,12 @@
 ﻿using Core;
-using WindowsDesktop.Models;
+using GroundhogDesktop.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WindowsDesktop.Views.Notes
+namespace GroundhogDesktop.Views.Notes
 {
     public partial class SelectNotePage : Page
     {

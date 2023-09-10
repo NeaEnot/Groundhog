@@ -3,7 +3,7 @@ using Core.Models.Storage;
 using System;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Notes
+namespace GroundhogDesktop.Views.Notes
 {
     public partial class NoteWindow : Window
     {

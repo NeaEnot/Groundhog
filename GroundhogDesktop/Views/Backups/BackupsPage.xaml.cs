@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WindowsDesktop.Views.Backups
+namespace GroundhogDesktop.Views.Backups
 {
     public partial class BackupsPage : Page
     {

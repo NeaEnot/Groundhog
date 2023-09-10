@@ -1,4 +1,5 @@
-﻿using Core.Interfaces.Network;
+﻿using Core;
+using Core.Interfaces.Network;
 using GroundhogMobile.Views.Services;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -42,7 +43,7 @@ namespace GroundhogMobile.Views.Backups
 
         private async void backupsList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            CommandPage page = new CommandPage((string)e.Item, new List<string> { "", "" });
+            CommandPage page = new CommandPage((string)e.Item, new List<string> { GroundhogContext.Language.Backup.Restore, GroundhogContext.Language.ControlCommands.Delete });
             Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PushAsync(page));
 
             object obj = await page.Result;
@@ -50,9 +51,9 @@ namespace GroundhogMobile.Views.Backups
 
             if (cmd == null)
                 return;
-            if (cmd == "")
+            if (cmd == GroundhogContext.Language.Backup.Restore)
                 backupLogic.RestoreBackup((string)e.Item);
-            if (cmd == "")
+            if (cmd == GroundhogContext.Language.ControlCommands.Delete)
                 backupLogic.DeleteBackup((string)e.Item);
         }
     }

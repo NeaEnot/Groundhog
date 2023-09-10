@@ -3,7 +3,7 @@ using Core.Models.Storage;
 using System;
 using System.Windows;
 
-namespace WindowsDesktop.Views.Purposes
+namespace GroundhogDesktop.Views.Purposes
 {
     public partial class PurposeWindow : Window
     {

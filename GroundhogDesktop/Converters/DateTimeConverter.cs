@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace WindowsDesktop.Converters
+namespace GroundhogDesktop.Converters
 {
     internal class DateTimeConverter : IValueConverter
     {

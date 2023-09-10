@@ -22,9 +22,9 @@ namespace GroundhogMobile.Views.Backups
             Children.Add(cloudBackupsPage);
             Children.Add(new BackupSettingsPage());
 
-            Children[0].Title = "Home";
-            Children[1].Title = "Home";
-            Children[2].Title = "Home";
+            Children[0].Title = GroundhogContext.Language.Backup.Local;
+            Children[1].Title = GroundhogContext.Language.Backup.Cloud;
+            Children[2].Title = GroundhogContext.Language.Settings.Settings;
         }
     }
 }
