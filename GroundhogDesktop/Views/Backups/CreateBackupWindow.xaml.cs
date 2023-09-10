@@ -11,6 +11,7 @@ namespace WindowsDesktop.Views.Backups
         public CreateBackupWindow()
         {
             InitializeComponent();
+            textBox.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
         Title="{DynamicResource ResourceKey=Lang.Backup.BackupName}"
-        Height="0" MinHeight="100" Width="0" MinWidth="280">
+        Height="0" MinHeight="115" MaxHeight="115" Width="0" MinWidth="280">
     <Grid>
         <TextBox Name="textBox" Margin="10,10,10,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Create}" Margin="0,33,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="82" Click="Button_Click"  Height="35"/>

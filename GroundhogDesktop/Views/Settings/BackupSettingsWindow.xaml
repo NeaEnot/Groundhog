@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
         Title="{DynamicResource ResourceKey=Lang.Backup.Backup}"
-        Height="0" MinHeight="120" Width="0" MinWidth="280">
+        Height="0" MinHeight="140" MaxHeight="140" Width="0" MinWidth="280">
     <Grid>
         <CheckBox Name="chbAutoCloudBackup" Content="{DynamicResource ResourceKey=Lang.Backup.AutoCloudBackup}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <CheckBox Name="chbAutoLocalBackup" Content="{DynamicResource ResourceKey=Lang.Backup.AutoLocalBackup}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
