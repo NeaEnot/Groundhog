@@ -52,9 +52,15 @@ namespace GroundhogMobile.Views.Backups
             if (cmd == null)
                 return;
             if (cmd == GroundhogContext.Language.Backup.Restore)
+            {
                 backupLogic.RestoreBackup((string)e.Item);
+                LoadBackups();
+            }
             if (cmd == GroundhogContext.Language.ControlCommands.Delete)
+            {
                 backupLogic.DeleteBackup((string)e.Item);
+                LoadBackups();
+            }
         }
     }
 }
