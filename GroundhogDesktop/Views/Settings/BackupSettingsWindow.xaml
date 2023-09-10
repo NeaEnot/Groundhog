@@ -9,7 +9,7 @@
         Title="{DynamicResource ResourceKey=Lang.Backup.Backup}"
         Height="0" MinHeight="120" Width="0" MinWidth="280">
     <Grid>
-        <CheckBox Name="chbAutoCloudBackup" Content="{DynamicResource ResourceKey=Lang.Backup.AutoCloudBackup}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="checkBoxToNextDay_Checked" Unchecked="checkBoxToNextDay_Checked"/>
+        <CheckBox Name="chbAutoCloudBackup" Content="{DynamicResource ResourceKey=Lang.Backup.AutoCloudBackup}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <CheckBox Name="chbAutoLocalBackup" Content="{DynamicResource ResourceKey=Lang.Backup.AutoLocalBackup}" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top"/>
         <Button Content="{DynamicResource ResourceKey=Lang.ControlCommands.Save}" Margin="0,55,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="82" Click="Button_Click"  Height="35"/>
     </Grid>

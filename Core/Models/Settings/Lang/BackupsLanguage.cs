@@ -37,9 +37,9 @@ namespace Core.Models.Settings.Lang
             content += $"Cloud={Cloud}" + '\n';
             content += $"Local={Local}" + '\n';
             content += $"Restore={Restore}" + '\n';
-            content += $"Backup name={BackupName}" + '\n';
-            content += $"Auto cloud backup={AutoCloudBackup}" + '\n';
-            content += $"Auto local backup={AutoLocalBackup}" + '\n';
+            content += $"BackupName={BackupName}" + '\n';
+            content += $"AutoCloudBackup={AutoCloudBackup}" + '\n';
+            content += $"AutoLocalBackup={AutoLocalBackup}" + '\n';
             content += '\n';
 
             return content;

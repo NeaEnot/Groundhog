@@ -28,12 +28,12 @@ namespace YandexDisk.Storage
 
                 string path = ConnectionString.Path;
                 int index = ConnectionString.Path.LastIndexOf('/');
-                string name = path.Substring(index);
+                string name = path.Substring(index + 1);
 
                 return
                     threadTask.Result.Items
                     .Where(f => f.Path.StartsWith($@"disk:{path}") && f.Path != $@"disk:{path}" && f.Name.EndsWith(".backup"))
-                    .Select(f => f.Name.Replace(name, "").Replace(".backup", ""))
+                    .Select(f => f.Name.Replace($"{name}.", "").Replace(".backup", ""))
                     .ToList();
             }
         }

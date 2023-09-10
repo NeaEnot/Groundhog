@@ -14,7 +14,7 @@ namespace Core.Logic
             Directory
             .GetFiles(GroundhogContext.StoragePath)
             .Where(f => f.EndsWith(".backup"))
-            .Select(f => f.Replace(".backup", ""))
+            .Select(f => f.Replace(".backup", "").Replace(GroundhogContext.StoragePath + GroundhogContext.Split, ""))
             .ToList();
 
         public void MakeBackup(string key)

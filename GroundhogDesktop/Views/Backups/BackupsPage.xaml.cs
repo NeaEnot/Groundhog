@@ -15,6 +15,8 @@ namespace WindowsDesktop.Views.Backups
             InitializeComponent();
 
             this.backupLogic = backupLogic;
+
+            LoadBackups();
         }
 
         public void LoadBackups()

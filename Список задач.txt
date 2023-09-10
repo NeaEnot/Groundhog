@@ -1,3 +1,6 @@
+Подправить размер CreateBackupWindow
+В CreateBackupWindow сразу фокуситься на TextBox
+Обновлять задачи/списки/заметки после восстановления из локального бэкапа
 ***
 Readme рус
 Readme анг
