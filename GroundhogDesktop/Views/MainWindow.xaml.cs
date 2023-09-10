@@ -9,7 +9,6 @@ using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
-using GroundhogDesktop.Views.Settings;
 
 namespace GroundhogDesktop.Views
 {
