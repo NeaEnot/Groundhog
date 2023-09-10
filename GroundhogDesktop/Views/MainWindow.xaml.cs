@@ -156,7 +156,7 @@ namespace WindowsDesktop.Views
 
         private void MenuItemBackups_Click(object sender, RoutedEventArgs e)
         {
-            BackupsWindow backupsWindow = new BackupsWindow();
+            BackupsWindow backupsWindow = new BackupsWindow(this);
             backupsWindow.ShowDialog();
         }
 

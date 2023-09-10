@@ -3,6 +3,7 @@ using GroundhogMobile.Views.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +19,14 @@ namespace GroundhogMobile.Views.Backups
             InitializeComponent();
 
             this.backupLogic = backupLogic;
+
+            LoadBackups();
+        }
+
+        public void LoadBackups()
+        {
+            List<string> backups = backupLogic.Backups.OrderBy(req => req).ToList();
+            backupsList.ItemsSource = backups;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
