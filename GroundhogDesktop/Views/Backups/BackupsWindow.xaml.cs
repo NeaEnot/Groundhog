@@ -8,15 +8,25 @@ namespace WindowsDesktop.Views.Backups
         private BackupsPage localBackupsPage;
         private BackupsPage cloudBackupsPage;
 
-        public BackupsWindow()
+        private MainWindow mainWindow;
+
+        public BackupsWindow(MainWindow mainWindow)
         {
             InitializeComponent();
 
-            localBackupsPage = new BackupsPage(GroundhogContext.LocalBackupLogic);
-            cloudBackupsPage = new BackupsPage(GroundhogContext.CloudBackupLogic);
+            this.mainWindow = mainWindow;
+
+            localBackupsPage = new BackupsPage(GroundhogContext.LocalBackupLogic, this);
+            cloudBackupsPage = new BackupsPage(GroundhogContext.CloudBackupLogic, this);
 
             fLocalBackups.Content = localBackupsPage;
             fCloudBackups.Content = cloudBackupsPage;
+        }
+
+        internal void LoadAfterRestore()
+        {
+            mainWindow.LoadPurposeGroups();
+            mainWindow.LoadNotes();
         }
     }
 }

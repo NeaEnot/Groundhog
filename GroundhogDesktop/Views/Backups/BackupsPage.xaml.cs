@@ -8,13 +8,15 @@ namespace WindowsDesktop.Views.Backups
 {
     public partial class BackupsPage : Page
     {
-        IBackupLogic backupLogic;
+        private IBackupLogic backupLogic;
+        private BackupsWindow backupsWindow;
 
-        public BackupsPage(IBackupLogic backupLogic)
+        public BackupsPage(IBackupLogic backupLogic, BackupsWindow backupsWindow)
         {
             InitializeComponent();
 
             this.backupLogic = backupLogic;
+            this.backupsWindow = backupsWindow;
 
             LoadBackups();
         }
@@ -29,6 +31,7 @@ namespace WindowsDesktop.Views.Backups
         {
             string key = (string)listBoxBackups.SelectedItem;
             backupLogic.RestoreBackup(key);
+            backupsWindow.LoadAfterRestore();
         }
 
         private void ContextMenuDelete_Click(object sender, RoutedEventArgs e)
