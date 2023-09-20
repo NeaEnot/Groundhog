@@ -15,7 +15,7 @@ namespace GroundhogDesktop.Views
     public partial class MainWindow : Window
     {
         private TaskInstancesPage tiPage;
-        private SelectDatePage sdPage;
+        private SelectTaskGroupPage stgPage;
 
         private SelectGroupPage sgPage;
         private PurposesPage pPage;
@@ -36,14 +36,14 @@ namespace GroundhogDesktop.Views
 
             InitializeComponent();
 
-            sdPage = new SelectDatePage(this);
+            stgPage = new SelectTaskGroupPage(this);
             tiPage = new TaskInstancesPage();
             sgPage = new SelectGroupPage(this);
             pPage = new PurposesPage();
             snPage = new SelectNotePage(this);
             nPage = new NotePage();
 
-            fDates.Content = sdPage;
+            fDates.Content = stgPage;
             fInstances.Content = tiPage;
             fGroups.Content = sgPage;
             fPurposes.Content = pPage;

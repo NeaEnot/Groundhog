@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Core;
+using Core.Models.Storage;
+using GroundhogDesktop.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace GroundhogDesktop.Views.Tasks
 {
-    public partial class SelectDatePage : Page
+    public partial class SelectTaskGroupPage : Page
     {
         internal DateTime selectedDate;
 
         private MainWindow contextWindow;
 
-        public SelectDatePage(MainWindow contextWindow)
+        public SelectTaskGroupPage(MainWindow contextWindow)
         {
             InitializeComponent();
 
@@ -53,6 +57,35 @@ namespace GroundhogDesktop.Views.Tasks
             contextWindow.LoadTasks(selectedDate);
 
             selectionChanged = false;
+        }
+
+        private void listBoxFindedTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (loaded)
+            //    return;
+
+            //string selected = ((Task)e.AddedItems[0]).Text;
+
+            //if (selected != null)
+            //    selectedId = selected;
+
+            //windowContext.LoadFindedTaksInstances(selectedId);
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            string find = tbFind.Text.ToLower();
+
+            List<Task> tasks = GroundhogContext.TaskLogic.Read();
+
+            if (!string.IsNullOrEmpty(find))
+                tasks =
+                    tasks
+                    .Where(req => req.Text.ToLower().Contains(find))
+                    .OrderBy(req => req.Text)
+                    .ToList();
+
+            listBoxFindedTasks.ItemsSource = tasks;
         }
     }
 }
