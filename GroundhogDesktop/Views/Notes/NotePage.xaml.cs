@@ -165,8 +165,8 @@ namespace GroundhogDesktop.Views.Notes
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
-            string find = tbFind.Text;
-            string text = tbNote.Text;
+            string find = tbFind.Text.ToLower();
+            string text = tbNote.Text.ToLower();
 
             int index = tbNote.CaretIndex < text.Length - 1 ? text.IndexOf(find, tbNote.CaretIndex + 1) : -1;
 
