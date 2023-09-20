@@ -103,10 +103,13 @@ namespace GroundhogDesktop.Views.Purposes
 
                 GroundhogContext.PurposeLogic.Delete(purposesIds);
 
-                LoadGroups();
-
                 if (group.Id == selectedGroupId)
+                {
                     windowContext.LoadPurposes("");
+                    selectedGroupId = null;
+                }
+
+                LoadGroups();
             }
         }
     }
