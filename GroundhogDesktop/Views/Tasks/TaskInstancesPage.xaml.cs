@@ -13,7 +13,9 @@ namespace GroundhogDesktop.Views.Tasks
 {
     public partial class TaskInstancesPage : Page
     {
+        private SelectedTaskGroupType selectedTaskGroupType;
         private DateTime selectedDate;
+        private string selectedTaskId;
 
         public TaskInstancesPage()
         {
@@ -21,11 +23,22 @@ namespace GroundhogDesktop.Views.Tasks
         }
 
         internal void LoadTasksInstances()
-            => LoadTasksInstances(selectedDate);
+        {
+            switch (selectedTaskGroupType)
+            {
+                case SelectedTaskGroupType.Date:
+                    LoadTasksInstances(selectedDate);
+                    break;
+                case SelectedTaskGroupType.TaskId:
+                    LoadTasksInstances(selectedTaskId);
+                    break;
+            }
+        }
 
         internal void LoadTasksInstances(DateTime date)
         {
             selectedDate = date;
+            selectedTaskGroupType = SelectedTaskGroupType.Date;
 
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
@@ -68,6 +81,37 @@ namespace GroundhogDesktop.Views.Tasks
             }
         }
 
+        internal void LoadTasksInstances(string taskId)
+        {
+            selectedTaskId = taskId;
+            selectedTaskGroupType = SelectedTaskGroupType.TaskId;
+
+            DateTimeHelper.ToDay(DateTime.Now);
+            DateTimeHelper.DeleteOldTasks();
+            DateTimeHelper.FillRepeatedTasks();
+
+            try
+            {
+                Task task = GroundhogContext.TaskLogic.Read(taskId);
+
+                listBoxTasks.ItemsSource = null;
+
+                List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
+
+                List<FindedTaskInstanceViewModel> models =
+                taskInstances
+                    .OrderBy(req => req.Date)
+                    .Select(req => new FindedTaskInstanceViewModel(req, task))
+                    .ToList();
+
+                listBoxTasks.ItemsSource = models;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, GroundhogContext.Language.ErrorsMessages.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             TaskInstanceViewModel viewModel = (TaskInstanceViewModel)((CheckBox)sender).DataContext;
@@ -75,7 +119,7 @@ namespace GroundhogDesktop.Views.Tasks
 
             GroundhogContext.TaskInstanceLogic.Update(model);
 
-            LoadTasksInstances(selectedDate);
+            LoadTasksInstances();
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -92,7 +136,7 @@ namespace GroundhogDesktop.Views.Tasks
                             Completed = false,
                             Date = DateTimeHelper.GetDateForTask(window.Task, selectedDate)
                         });
-                LoadTasksInstances(selectedDate);
+                LoadTasksInstances();
             }
         }
 
@@ -124,7 +168,7 @@ namespace GroundhogDesktop.Views.Tasks
                             Completed = false,
                             Date = viewModel.Date
                         });
-                LoadTasksInstances(selectedDate);
+                LoadTasksInstances();
             }
         }
 
@@ -169,7 +213,7 @@ namespace GroundhogDesktop.Views.Tasks
 
                     GroundhogContext.TaskLogic.Update(window.Task);
 
-                    LoadTasksInstances(selectedDate);
+                    LoadTasksInstances();
                 }
             }
         }
@@ -181,7 +225,7 @@ namespace GroundhogDesktop.Views.Tasks
             if (viewModel != null)
             {
                 GroundhogContext.TaskInstanceLogic.Delete(viewModel.Id);
-                LoadTasksInstances(selectedDate);
+                LoadTasksInstances();
             }
         }
 
@@ -194,8 +238,14 @@ namespace GroundhogDesktop.Views.Tasks
                 List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(viewModel.TaskId);
                 GroundhogContext.TaskInstanceLogic.Delete(instances.Select(req => req.Id).ToList());
                 GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
-                LoadTasksInstances(selectedDate);
+                LoadTasksInstances();
             }
+        }
+
+        private enum SelectedTaskGroupType
+        {
+            Date,
+            TaskId
         }
     }
 }
