@@ -196,7 +196,7 @@ namespace GroundhogDesktop.Views.Tasks
 
                         DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate);
 
-                        if (window.Task.RepeatMode == RepeatMode.DayOfMonth &&
+                        if ((window.Task.RepeatMode == RepeatMode.DayOfMonth || window.Task.RepeatMode == RepeatMode.DayOfYear) &&
                             instances[0].Date.Date != date.Date)
                         {
                             GroundhogContext.TaskInstanceLogic.Delete(instances[0].Id);
