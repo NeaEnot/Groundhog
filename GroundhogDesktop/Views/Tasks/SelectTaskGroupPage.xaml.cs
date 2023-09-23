@@ -1,6 +1,5 @@
 ﻿using Core;
 using Core.Models.Storage;
-using GroundhogDesktop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +10,16 @@ namespace GroundhogDesktop.Views.Tasks
 {
     public partial class SelectTaskGroupPage : Page
     {
-        internal DateTime selectedDate;
+        private DateTime selectedDate;
+        private string selectedTaskId;
 
-        private MainWindow contextWindow;
+        private MainWindow windowContext;
 
-        public SelectTaskGroupPage(MainWindow contextWindow)
+        public SelectTaskGroupPage(MainWindow windowContext)
         {
             InitializeComponent();
 
-            this.contextWindow = contextWindow;
+            this.windowContext = windowContext;
             selectedDate = DateTime.Now;
 
             LoadDates();
@@ -54,22 +54,19 @@ namespace GroundhogDesktop.Views.Tasks
                 listBoxDates.SelectedIndex = -1;
             }
 
-            contextWindow.LoadTasks(selectedDate);
+            windowContext.LoadTasks(selectedDate);
 
             selectionChanged = false;
         }
 
         private void listBoxFindedTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (loaded)
-            //    return;
+            string selected = ((Task)e.AddedItems[0]).Text;
 
-            //string selected = ((Task)e.AddedItems[0]).Text;
+            if (selected != null)
+                selectedTaskId = selected;
 
-            //if (selected != null)
-            //    selectedId = selected;
-
-            //windowContext.LoadFindedTaksInstances(selectedId);
+            windowContext.LoadFindedTasks(selectedTaskId);
         }
 
         private void btnFind_Click(object sender, RoutedEventArgs e)

@@ -24,6 +24,7 @@ namespace GroundhogDesktop.Views
         private NotePage nPage;
 
         internal Action<DateTime> LoadTasks;
+        internal Action<string> LoadFindedTasks;
         internal Action LoadPurposeGroups;
         internal Action<string> LoadPurposes;
         internal Action LoadNotes;
@@ -51,6 +52,7 @@ namespace GroundhogDesktop.Views
             fNote.Content = nPage;
 
             LoadTasks = tiPage.LoadTasksInstances;
+            LoadFindedTasks = tiPage.LoadTasksInstances;
             LoadPurposeGroups = sgPage.LoadGroups;
             LoadPurposes = pPage.LoadPurposes;
             LoadNotes = snPage.LoadNotes;
