@@ -58,8 +58,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBox Name="tbFind" IsEnabled="False" Margin="10,0,88,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="17"/>
-                    <Button Name="btnFind" Content="{DynamicResource ResourceKey=Lang.ControlCommands.Find}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="17" Width="73" Margin="311,0,0,4" Click="btnFind_Click"/>
+                    <TextBox Name="tbFind" Margin="10,0,88,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="17"/>
+                    <Button Name="btnFind" Content="{DynamicResource ResourceKey=Lang.ControlCommands.Find}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="17" Width="73" Margin="0,0,10,0" Click="btnFind_Click"/>
 
                     <ScrollViewer Grid.Row="1">
                         <ListBox Name="listBoxFindedTasks" SelectionChanged="listBoxFindedTasks_SelectionChanged" Margin="-1">

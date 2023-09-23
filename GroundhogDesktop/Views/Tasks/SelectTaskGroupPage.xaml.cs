@@ -61,7 +61,7 @@ namespace GroundhogDesktop.Views.Tasks
 
         private void listBoxFindedTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selected = ((Task)e.AddedItems[0]).Text;
+            string selected = ((Task)e.AddedItems[0]).Id;
 
             if (selected != null)
                 selectedTaskId = selected;

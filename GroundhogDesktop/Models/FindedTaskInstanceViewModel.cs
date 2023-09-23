@@ -16,7 +16,7 @@ namespace GroundhogDesktop.Models
         public string TaskId { get; set; }
         public bool Completed { get; set; }
 
-        public string Text => $"{converter.Convert(Date, null, "1", null)}, {converter.Convert(Date, null, "0", null)}";
+        public string Text => $"{converter.Convert(Date, null, "1", null)}, ({converter.Convert(Date, null, "0", null)})";
         public bool Repeated => task.RepeatMode != RepeatMode.None;
 
         public string TextColor => Completed ? App.Current.Resources["Additional text"].ToString() : App.Current.Resources["Main text"].ToString();
