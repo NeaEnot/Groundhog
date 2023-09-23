@@ -13,7 +13,7 @@ namespace GroundhogDesktop.Models
         public string TaskId { get; set; }
         public bool Completed { get; set; }
 
-        public string Text => task.Text;
+        public virtual string Text => task.Text;
         public bool Repeated => task.RepeatMode != RepeatMode.None;
 
         public string TextColor => Completed ? App.Current.Resources["Additional text"].ToString() : App.Current.Resources["Main text"].ToString();
