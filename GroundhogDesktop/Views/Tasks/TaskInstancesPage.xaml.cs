@@ -13,12 +13,15 @@ namespace GroundhogDesktop.Views.Tasks
 {
     public partial class TaskInstancesPage : Page
     {
+        private MainWindow windowContext;
+
         private SelectedTaskGroupType selectedTaskGroupType;
         private DateTime selectedDate;
         private string selectedTaskId;
 
-        public TaskInstancesPage()
+        public TaskInstancesPage(MainWindow windowContext)
         {
+            this.windowContext = windowContext;
             InitializeComponent();
         }
 
@@ -238,7 +241,16 @@ namespace GroundhogDesktop.Views.Tasks
                 List<TaskInstance> instances = GroundhogContext.TaskInstanceLogic.Read(viewModel.TaskId);
                 GroundhogContext.TaskInstanceLogic.Delete(instances.Select(req => req.Id).ToList());
                 GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
-                LoadTasksInstances();
+
+                if (selectedTaskGroupType == SelectedTaskGroupType.Date)
+                {
+                    LoadTasksInstances();
+                }
+                else
+                {
+                    listBoxTasks.ItemsSource = null;
+                    windowContext.LoadFindedTasks();
+                }
             }
         }
 

@@ -13,6 +13,8 @@ namespace GroundhogDesktop.Views.Tasks
         private DateTime selectedDate;
         private string selectedTaskId;
 
+        private bool selectionChanged = false;
+
         private MainWindow windowContext;
 
         public SelectTaskGroupPage(MainWindow windowContext)
@@ -35,7 +37,6 @@ namespace GroundhogDesktop.Views.Tasks
             listBoxDates.ItemsSource = dates;
         }
 
-        private bool selectionChanged = false;
         private void DateSelected(object sender, RoutedEventArgs e)
         {
             if (selectionChanged)
@@ -54,23 +55,32 @@ namespace GroundhogDesktop.Views.Tasks
                 listBoxDates.SelectedIndex = -1;
             }
 
-            windowContext.LoadTasks(selectedDate);
+            windowContext.LoadTasksInstances(selectedDate);
 
             selectionChanged = false;
         }
 
         private void listBoxFindedTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (selectionChanged)
+                return;
+
+            selectionChanged = true;
+
             string selected = ((Task)e.AddedItems[0]).Id;
 
             if (selected != null)
                 selectedTaskId = selected;
 
-            windowContext.LoadFindedTasks(selectedTaskId);
+            windowContext.LoadFindedTasksInstances(selectedTaskId);
+
+            selectionChanged = false;
         }
 
-        private void btnFind_Click(object sender, RoutedEventArgs e)
+        internal void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            selectionChanged = true;
+
             string find = tbFind.Text.ToLower();
 
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
@@ -83,6 +93,8 @@ namespace GroundhogDesktop.Views.Tasks
                     .ToList();
 
             listBoxFindedTasks.ItemsSource = tasks;
+
+            selectionChanged = false;
         }
     }
 }

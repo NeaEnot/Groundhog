@@ -23,8 +23,9 @@ namespace GroundhogDesktop.Views
         private SelectNotePage snPage;
         private NotePage nPage;
 
-        internal Action<DateTime> LoadTasks;
-        internal Action<string> LoadFindedTasks;
+        internal Action LoadFindedTasks;
+        internal Action<DateTime> LoadTasksInstances;
+        internal Action<string> LoadFindedTasksInstances;
         internal Action LoadPurposeGroups;
         internal Action<string> LoadPurposes;
         internal Action LoadNotes;
@@ -38,7 +39,7 @@ namespace GroundhogDesktop.Views
             InitializeComponent();
 
             stgPage = new SelectTaskGroupPage(this);
-            tiPage = new TaskInstancesPage();
+            tiPage = new TaskInstancesPage(this);
             sgPage = new SelectGroupPage(this);
             pPage = new PurposesPage();
             snPage = new SelectNotePage(this);
@@ -51,8 +52,9 @@ namespace GroundhogDesktop.Views
             fNotes.Content = snPage;
             fNote.Content = nPage;
 
-            LoadTasks = tiPage.LoadTasksInstances;
-            LoadFindedTasks = tiPage.LoadTasksInstances;
+            LoadFindedTasks = () => stgPage.btnFind_Click(null, null);
+            LoadTasksInstances = tiPage.LoadTasksInstances;
+            LoadFindedTasksInstances = tiPage.LoadTasksInstances;
             LoadPurposeGroups = sgPage.LoadGroups;
             LoadPurposes = pPage.LoadPurposes;
             LoadNotes = snPage.LoadNotes;
