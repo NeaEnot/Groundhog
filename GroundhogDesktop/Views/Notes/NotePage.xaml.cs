@@ -181,7 +181,7 @@ namespace GroundhogDesktop.Views.Notes
             }
             else
             {
-                MessageBox.Show($"{GroundhogContext.Language.Notes.SearchedTextNotFounded}.");
+                MessageBox.Show($"{GroundhogContext.Language.ErrorsMessages.SearchedTextNotFounded}.");
             }
         }
     }

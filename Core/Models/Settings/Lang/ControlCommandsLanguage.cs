@@ -14,6 +14,7 @@ namespace Core.Models.Settings.Lang
         public string Copy { get; set; }
         public string Cut { get; set; }
         public string Paste { get; set; }
+        public string Find { get; set; }
 
         internal static ControlCommandsLanguage Parse(Dictionary<string, string> dict)
         {
@@ -28,7 +29,8 @@ namespace Core.Models.Settings.Lang
                 Cancel = dict["Cancel"],
                 Copy = dict["Copy"],
                 Cut = dict["Cut"],
-                Paste = dict["Paste"]
+                Paste = dict["Paste"],
+                Find = dict["Find"]
             };
 
             return language;
@@ -49,6 +51,7 @@ namespace Core.Models.Settings.Lang
             content += $"Copy={Copy}" + '\n';
             content += $"Cut={Cut}" + '\n';
             content += $"Paste={Paste}" + '\n';
+            content += $"Find={Find}" + '\n';
             content += '\n';
 
             return content;

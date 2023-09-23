@@ -12,11 +12,11 @@
         <sys:String x:Key="Lang.ControlCommands.Delete">Delete</sys:String>
         <sys:String x:Key="Lang.ControlCommands.DeleteAllInstances">Delete all instances</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Cancel">Cancel</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Find">Find</sys:String>
 
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
         <sys:String x:Key="Lang.Notes.Notes">Notes</sys:String>
         <sys:String x:Key="Lang.Notes.NoteName">Note name</sys:String>
-        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
 
         <sys:String x:Key="Lang.Purposes.Purposes">Purposes</sys:String>
         <sys:String x:Key="Lang.Purposes.Purpose">Purpose</sys:String>

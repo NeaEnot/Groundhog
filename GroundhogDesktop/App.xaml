@@ -16,11 +16,11 @@
         <sys:String x:Key="Lang.ControlCommands.Copy">Copy</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Cut">Cut</sys:String>
         <sys:String x:Key="Lang.ControlCommands.Paste">Paste</sys:String>
+        <sys:String x:Key="Lang.ControlCommands.Find">Find</sys:String>
         
         <sys:String x:Key="Lang.Notes.Note">Note</sys:String>
         <sys:String x:Key="Lang.Notes.Notes">Notes</sys:String>
         <sys:String x:Key="Lang.Notes.NoteName">Note name</sys:String>
-        <sys:String x:Key="Lang.Notes.Find">Find</sys:String>
 
         <sys:String x:Key="Lang.Purposes.Purposes">Purposes</sys:String>
         <sys:String x:Key="Lang.Purposes.Purpose">Purpose</sys:String>

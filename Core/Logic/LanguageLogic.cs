@@ -25,7 +25,8 @@ namespace Core.Logic
                     Cancel = "Cancel",
                     Copy = "Copy",
                     Cut = "Cut",
-                    Paste = "Paste"
+                    Paste = "Paste",
+                    Find = "Find"
                 },
                 DaysOfWeek = new DaysOfWeekLanguage
                 {
@@ -61,15 +62,14 @@ namespace Core.Logic
                     IncorrectDayOfTheWeek = "Incorrect day of the week",
                     IncorrectFormat = "Incorrect format",
                     IncorrectNumberOfArguments = "Incorrect number of arguments",
-                    Or = "Or"
+                    Or = "Or",
+                    SearchedTextNotFounded = "Searched text not founded"
                 },
                 Notes = new NotesLanguage
                 {
                     Notes = "Notes",
                     Note = "Note",
-                    NoteName = "Note name",
-                    Find = "Find",
-                    SearchedTextNotFounded = "Searched text not founded"
+                    NoteName = "Note name"
                 },
                 PlanningAndOptimization = new PlanningAndOptimizationLanguage
                 {

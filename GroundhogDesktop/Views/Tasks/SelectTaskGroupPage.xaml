@@ -51,7 +51,7 @@
                     <Calendar Name="calendar" SelectedDatesChanged="DateSelected" SelectionMode="SingleDate"/>
                 </Viewbox>
             </TabItem>
-            <TabItem Header="tmpFindTasks">
+            <TabItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Find}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
@@ -59,7 +59,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Name="tbFind" IsEnabled="False" Margin="10,0,88,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="17"/>
-                    <Button Name="btnFind" IsEnabled="False" Content="{DynamicResource ResourceKey=Lang.Notes.Find}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="17" Width="73" Margin="311,0,0,4" Click="btnFind_Click"/>
+                    <Button Name="btnFind" Content="{DynamicResource ResourceKey=Lang.ControlCommands.Find}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="17" Width="73" Margin="311,0,0,4" Click="btnFind_Click"/>
 
                     <ScrollViewer Grid.Row="1">
                         <ListBox Name="listBoxFindedTasks" SelectionChanged="listBoxFindedTasks_SelectionChanged" Margin="-1">

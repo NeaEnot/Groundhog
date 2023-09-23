@@ -27,6 +27,7 @@ namespace Core.Models.Settings.Lang
         public string IncorrectFormat { get; set; }
         public string IncorrectNumberOfArguments { get; set; }
         public string Or { get; set; }
+        public string SearchedTextNotFounded { get; set; }
 
         internal static ErrorsMessagesLanguage Parse(Dictionary<string, string> dict)
         {
@@ -55,6 +56,7 @@ namespace Core.Models.Settings.Lang
                 IncorrectFormat = dict["IncorrectFormat"],
                 IncorrectNumberOfArguments = dict["IncorrectNumberOfArguments"],
                 Or = dict["Or"],
+                SearchedTextNotFounded = dict["SearchedTextNotFounded"]
             };
 
             return language;
@@ -88,6 +90,7 @@ namespace Core.Models.Settings.Lang
             content += $"IncorrectFormat={IncorrectFormat}" + '\n';
             content += $"IncorrectNumberOfArguments={IncorrectNumberOfArguments}" + '\n';
             content += $"Or={Or}" + '\n';
+            content += $"SearchedTextNotFounded={SearchedTextNotFounded}" + '\n';
             content += '\n';
 
             return content;
