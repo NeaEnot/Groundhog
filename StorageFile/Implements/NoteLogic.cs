@@ -19,7 +19,8 @@ namespace StorageFile.Implements
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    Text = model.Text
+                    Text = model.Text,
+                    Comment = model.Comment,
                 });
 
             context.Save();
@@ -37,7 +38,8 @@ namespace StorageFile.Implements
                     {
                         Id = model.Id,
                         Name = model.Name,
-                        Text = model.Text
+                        Text = model.Text,
+                        Comment = model.Comment,
                     });
             }
 
@@ -51,7 +53,8 @@ namespace StorageFile.Implements
                 {
                     Id = req.Id,
                     Name = req.Name,
-                    Text = req.Text
+                    Text = req.Text,
+                    Comment = req.Comment,
                 })
                 .ToList();
         }
@@ -65,6 +68,7 @@ namespace StorageFile.Implements
 
             note.Name = model.Name;
             note.Text = model.Text;
+            note.Comment = model.Comment;
 
             context.Save();
         }

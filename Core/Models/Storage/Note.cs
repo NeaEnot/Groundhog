@@ -8,7 +8,7 @@
 
         public override int GetHashCode()
         {
-            return (Id + Name + Text).GetHashCode();
+            return (Id + Name + Text + Comment).GetHashCode();
         }
     }
 }

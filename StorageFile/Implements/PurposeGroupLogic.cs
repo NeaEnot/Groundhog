@@ -18,7 +18,8 @@ namespace StorageFile.Implements
                 .Add(new PurposeGroup
                 {
                     Id = model.Id,
-                    Name = model.Name
+                    Name = model.Name,
+                    Comment = model.Comment
                 });
 
             context.Save();
@@ -35,7 +36,8 @@ namespace StorageFile.Implements
                     .Add(new PurposeGroup
                     {
                         Id = model.Id,
-                        Name = model.Name
+                        Name = model.Name,
+                        Comment = model.Comment
                     });
             }
 
@@ -48,7 +50,8 @@ namespace StorageFile.Implements
                 .Select(req => new PurposeGroup
                 {
                     Id = req.Id,
-                    Name = req.Name
+                    Name = req.Name,
+                    Comment = req.Comment
                 })
                 .ToList();
         }
@@ -61,6 +64,7 @@ namespace StorageFile.Implements
                 throw new Exception($"{GroundhogContext.Language.ErrorsMessages.EntityWithSameIdDontExist}: {model.Id}.");
 
             group.Name = model.Name;
+            group.Comment = model.Comment;
 
             context.Save();
         }

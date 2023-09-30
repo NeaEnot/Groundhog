@@ -20,7 +20,8 @@ namespace StorageFile.Implements
                     Id = model.Id,
                     Date = model.Date,
                     TaskId = model.TaskId,
-                    Completed = model.Completed
+                    Completed = model.Completed,
+                    Comment = model.Comment
                 });
 
             context.Save();
@@ -39,7 +40,8 @@ namespace StorageFile.Implements
                         Id = model.Id,
                         Date = model.Date,
                         TaskId = model.TaskId,
-                        Completed = model.Completed
+                        Completed = model.Completed,
+                        Comment = model.Comment
                     });
             }
 
@@ -55,7 +57,8 @@ namespace StorageFile.Implements
                     Id = req.Id,
                     Date = req.Date,
                     TaskId = req.TaskId,
-                    Completed = req.Completed
+                    Completed = req.Completed,
+                    Comment = req.Comment
                 })
                 .ToList();
 
@@ -71,7 +74,8 @@ namespace StorageFile.Implements
                     Id = req.Id,
                     Date = req.Date,
                     TaskId = req.TaskId,
-                    Completed = req.Completed
+                    Completed = req.Completed,
+                    Comment = req.Comment
                 })
                 .ToList();
         }
@@ -86,6 +90,7 @@ namespace StorageFile.Implements
             instance.Date = model.Date;
             instance.TaskId = model.TaskId;
             instance.Completed = model.Completed;
+            instance.Comment = model.Comment;
 
             context.Save();
         }
@@ -102,6 +107,7 @@ namespace StorageFile.Implements
                 instance.Date = model.Date;
                 instance.TaskId = model.TaskId;
                 instance.Completed = model.Completed;
+                instance.Comment = model.Comment;
             }
 
             context.Save();

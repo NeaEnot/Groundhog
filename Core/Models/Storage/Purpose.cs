@@ -9,7 +9,7 @@
 
         public override int GetHashCode()
         {
-            return (Id + GroupId + Text + Completed).GetHashCode();
+            return (Id + GroupId + Text + Completed + Comment).GetHashCode();
         }
     }
 }

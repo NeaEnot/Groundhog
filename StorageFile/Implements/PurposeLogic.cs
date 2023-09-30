@@ -20,7 +20,8 @@ namespace StorageFile.Implements
                     Id = model.Id,
                     GroupId = model.GroupId,
                     Text = model.Text,
-                    Completed = model.Completed
+                    Completed = model.Completed,
+                    Comment= model.Comment
                 });
 
             context.Save();
@@ -39,7 +40,8 @@ namespace StorageFile.Implements
                         Id = model.Id,
                         GroupId = model.GroupId,
                         Text = model.Text,
-                        Completed = model.Completed
+                        Completed = model.Completed,
+                        Comment= model.Comment
                     });
             }
 
@@ -55,7 +57,8 @@ namespace StorageFile.Implements
                     Id = req.Id,
                     GroupId = req.GroupId,
                     Text = req.Text,
-                    Completed = req.Completed
+                    Completed = req.Completed,
+                    Comment = req.Comment
                 })
                 .ToList();
         }
@@ -70,6 +73,7 @@ namespace StorageFile.Implements
             purpose.GroupId = model.GroupId;
             purpose.Text = model.Text;
             purpose.Completed = model.Completed;
+            purpose.Comment = model.Comment;
 
             context.Save();
         }

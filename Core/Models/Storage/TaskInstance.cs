@@ -11,7 +11,7 @@ namespace Core.Models.Storage
 
         public override int GetHashCode()
         {
-            return (Id + TaskId + Date + Completed).GetHashCode();
+            return (Id + TaskId + Date + Completed + Comment).GetHashCode();
         }
     }
 }
