@@ -6,5 +6,68 @@
 				List of possible repetition modes for task instances.
 			</summary>
 		</RepeatMode>
+		<None>
+			<summary>
+				The task is not repeated and has a single instance.
+			</summary>
+		</None>
+		<Days>
+			<summary>
+				The task is repeated every specified number of days.
+			</summary>
+		</Days>
+		<DayOfMonth>
+			<summary>
+				The task is repeated on the specified date of each month.
+			</summary>
+		</DayOfMonth>
+		<DayOfYear>
+			<summary>
+				The task is repeated on the specified day of each year.
+			</summary>
+		</DayOfYear>
+		<DaysOfWeek>
+			<summary>
+				The task is repeated on the specified days of the week.
+			</summary>
+		</DaysOfWeek>
+		<Wathes>
+			<summary>
+				The task repeats the specified number of days, then skips the specified number of days, etc.
+			</summary>
+			<example>
+				<code>
+					Task = new Task { RepeatMode = RepeatMode.Wathes, RepeatValue = "5-2" }; // repeat 5 days, skip 2, repeat 5 days again, skip 2 etc.
+					Task = new Task { RepeatMode = RepeatMode.Wathes, RepeatValue = "3-2-2-3" }; // repeat 3 days, skip 2, repeat 2, skip 3, and again.
+				</code>
+			</example>
+		</Wathes>
+	</members>
+	<members name="IBackupLogic">
+		<IBackupLogic>
+			<summary>
+				Interface declaring methods for working with backups.
+			</summary>
+		</IBackupLogic>
+		<Backups>
+			<summary>
+				Property that returns a list of created backups.
+			</summary>
+		</Backups>
+		<MakeBackup>
+			<summary>
+				The method that creates a backup with the specified key.
+			</summary>
+		</MakeBackup>
+		<RestoreBackup>
+			<summary>
+				A method that restores the storage state from a backup with the specified key.
+			</summary>
+		</RestoreBackup>
+		<DeleteBackup>
+			<summary>
+				The method that deletes the backup with the specified key.
+			</summary>
+		</DeleteBackup>
 	</members>
 </CoreDoc>
