@@ -70,4 +70,44 @@
 			</summary>
 		</DeleteBackup>
 	</members>
+	<members name="INetworkLogic">
+		<INetworkLogic>
+			<summary>
+				Interface declaring methods for sending and downloading application data from remote storage.
+			</summary>
+		</INetworkLogic>
+		<ConnectionStringExpr>
+			<summary>
+				A regular expression used to check the correctness of the connection string.
+			</summary>
+		</ConnectionStringExpr>
+		<ConnectionStringFormat>
+			<summary>
+				Hint about the format of the connection string.
+			</summary>
+		</ConnectionStringFormat>
+		<Connect>
+			<summary>
+				Method for connecting to remote storage.
+			</summary>
+			<param name="getCode">
+				Some services require an identification code to connect, in which case this function should be called.
+			</param>
+		</Connect>
+		<IsConnected>
+			<summary>
+				A method that reports whether a connection has been established and whether it is active now.
+			</summary>
+		</IsConnected>
+		<Load>
+			<summary>
+				A method that loads data from remote storage to local one.
+			</summary>
+		</Load>
+		<Upload>
+			<summary>
+				A method that loads data from local storage to remote one.
+			</summary>
+		</Upload>
+	</members>
 </CoreDoc>

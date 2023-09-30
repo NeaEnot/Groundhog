@@ -383,3 +383,4 @@ ToolTip для вывода примечаний
 Документация для RepeatMode
 Документация для IBackupLogic
 Доработка документации для RepeatMode
+Документация для INetworkLogic
