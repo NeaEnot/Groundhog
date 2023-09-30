@@ -216,4 +216,56 @@
 			</summary>
 		</DeleteList>
 	</members>
+	<members name="ITaskInstanceLogic">
+		<ITaskInstanceLogic>
+			<summary>
+				An interface that declares methods for processing tasks instances in the storage.
+			</summary>
+		</ITaskInstanceLogic>
+		<Create>
+			<summary>
+				A method for creating a task instance in the storage.
+			</summary>
+		</Create>
+		<CreateList>
+			<summary>
+				A method for creating multiple task instances in the storage.
+			</summary>
+		</CreateList>
+		<ReadDate>
+			<summary>
+				The method of getting a tasks instances from the storage by Date.
+			</summary>
+		</ReadDate>
+		<ReadTaskId>
+			<summary>
+				The method of getting a task instances from the storage by id of the task.
+			</summary>
+		</ReadTaskId>
+		<Update>
+			<summary>
+				A method for updating a task instance in the storage.
+			</summary>
+		</Update>
+		<UpdateList>
+			<summary>
+				A method for updating a tasks instances in the storage.
+			</summary>
+		</UpdateList>
+		<DeleteAll>
+			<summary>
+				A method for deleting all tasks instances from storage.
+			</summary>
+		</DeleteAll>
+		<Delete>
+			<summary>
+				A method for deleting a task instance from storage by its id.
+			</summary>
+		</Delete>
+		<DeleteList>
+			<summary>
+				A method for deleting a tasks instances from storage by its ids.
+			</summary>
+		</DeleteList>
+	</members>
 </CoreDoc>
