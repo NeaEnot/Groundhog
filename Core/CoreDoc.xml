@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CoreDoc>
+	<members name="RepeatMode">
+		<RepeatMode>
+			<summary>
+				List of possible repetition modes for task instances.
+			</summary>
+		</RepeatMode>
+	</members>
+</CoreDoc>
