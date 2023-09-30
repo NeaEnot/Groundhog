@@ -2,6 +2,11 @@
 {
     public abstract class CommentedElemet
     {
-        public string Comment { get; set; }
+        private string comment;
+        public string Comment
+        {
+            get => string.IsNullOrEmpty(comment) ? null : comment;
+            set => comment = value;
+        }
     }
 }
