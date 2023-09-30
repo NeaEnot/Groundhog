@@ -42,8 +42,10 @@ namespace Core.Logic.DateTimeHelpers
                 currentDate = currentDate.AddYears(1);
 
                 // Processing the task for February 29
-                if (task.RepeatValue == "02.29" && currentDate.Month == 3 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
+                if (task.RepeatValue == "02.29" && currentDate.Month == 2 && DateTime.DaysInMonth(currentDate.Year, 2) == 29)
                     currentDate = new DateTime(currentDate.Year, 2, 29);
+                else
+                    currentDate = new DateTime(currentDate.Year, int.Parse(task.RepeatValue.Split('.')[0]), int.Parse(task.RepeatValue.Split('.')[1]));
 
                 TaskInstance model = new TaskInstance
                 {
