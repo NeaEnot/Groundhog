@@ -388,3 +388,4 @@ ToolTip для вывода примечаний
 Документация для IPurposeGroupLogic
 Документация для IPurposeLogic
 Документация для ITaskInstanceLogic
+Документация для ITaskLogic

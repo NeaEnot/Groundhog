@@ -268,4 +268,41 @@
 			</summary>
 		</DeleteList>
 	</members>
+	<members name="ITaskLogic">
+		<ITaskLogic>
+			<summary>
+				An interface that declares methods for processing tasks in the storage.
+			</summary>
+		</ITaskLogic>
+		<Create>
+			<summary>
+				A method for creating a tasks in the storage.
+			</summary>
+		</Create>
+		<CreateList>
+			<summary>
+				A method for creating multiple tasks in the storage.
+			</summary>
+		</CreateList>
+		<Read>
+			<summary>
+				The method of getting a tasks from the storage.
+			</summary>
+		</Read>
+		<ReadOne>
+			<summary>
+				The method of getting a task from the storage by its id.
+			</summary>
+		</ReadOne>
+		<Update>
+			<summary>
+				A method for updating a task in the storage.
+			</summary>
+		</Update>
+		<Delete>
+			<summary>
+				A method for deleting a task from storage by its id.
+			</summary>
+		</Delete>
+	</members>
 </CoreDoc>
