@@ -266,7 +266,10 @@ namespace GroundhogDesktop.Views.Tasks
                 window.ShowDialog();
 
                 if (window.IsChanged)
+                {
                     GroundhogContext.TaskInstanceLogic.Update(model);
+                    LoadTasksInstances();
+                }
             }
         }
 

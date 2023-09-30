@@ -25,7 +25,7 @@
                                                         <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
                                                 </StackPanel.ContextMenu>
-                                                <Label Content="{Binding Name}" FontSize="16" Foreground="{DynamicResource ResourceKey='Main text'}"/>
+                                                <Label Content="{Binding Name}" FontSize="16" Foreground="{DynamicResource ResourceKey='Main text'}" ToolTip="{Binding Path=Comment}"/>
                                             </StackPanel>
                                         </Border>
                                     </Grid>

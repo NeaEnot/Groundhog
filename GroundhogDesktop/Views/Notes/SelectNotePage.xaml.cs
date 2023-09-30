@@ -128,7 +128,10 @@ namespace GroundhogDesktop.Views.Notes
                 window.ShowDialog();
 
                 if (window.IsChanged)
+                {
                     GroundhogContext.NoteLogic.Update(model);
+                    LoadNotes();
+                }
             }
         }
     }

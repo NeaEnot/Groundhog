@@ -116,7 +116,10 @@ namespace GroundhogDesktop.Views.Purposes
                 window.ShowDialog();
 
                 if (window.IsChanged)
+                {
                     GroundhogContext.PurposeLogic.Update(model);
+                    LoadPurposes(groupId);
+                }
             }
         }
     }

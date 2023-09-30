@@ -124,7 +124,10 @@ namespace GroundhogDesktop.Views.Purposes
                 window.ShowDialog();
 
                 if (window.IsChanged)
+                {
                     GroundhogContext.PurposeGroupLogic.Update(group);
+                    LoadGroups();
+                }
             }
         }
     }

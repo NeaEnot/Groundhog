@@ -17,7 +17,7 @@
                                 <ControlTemplate TargetType="ListBoxItem">
                                     <Grid>
                                         <Border Name="border" Padding="7" Background="{DynamicResource ResourceKey='Main color'}">
-                                            <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked">
+                                            <CheckBox IsChecked="{Binding Path=Completed}" Unchecked="CheckBox_Checked" Checked="CheckBox_Checked" ToolTip="{Binding Path=Comment}">
                                                 <TextBlock FontSize="16" Text="{Binding Path=Text}" Foreground="{Binding Path=TextColor}" TextDecorations="{Binding Path=TextDecorations}"/>
                                                 <CheckBox.ContextMenu>
                                                     <ContextMenu Margin="0">
