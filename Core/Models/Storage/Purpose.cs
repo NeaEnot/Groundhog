@@ -1,6 +1,6 @@
 ﻿namespace Core.Models.Storage
 {
-    public class Purpose
+    public class Purpose : CommentedElemet
     {
         public string Id { get; set; }
         public string GroupId { get; set; }

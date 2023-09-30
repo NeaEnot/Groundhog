@@ -1,6 +1,6 @@
 ﻿namespace Core.Models.Storage
 {
-    public class Note
+    public class Note : CommentedElemet
     {
         public string Id { get; set; }
         public string Name { get; set; }

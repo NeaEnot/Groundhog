@@ -2,7 +2,7 @@
 
 namespace Core.Models.Storage
 {
-    public class TaskInstance
+    public class TaskInstance : CommentedElemet
     {
         public string Id { get; set; }
         public string TaskId { get; set; }
