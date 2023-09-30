@@ -386,3 +386,4 @@ ToolTip для вывода примечаний
 Документация для INetworkLogic
 Документация для INoteLogic
 Документация для IPurposeGroupLogic
+Документация для IPurposeLogic

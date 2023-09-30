@@ -145,33 +145,75 @@
 	<members name="IPurposeGroupLogic">
 		<IPurposeGroupLogic>
 			<summary>
-				An interface that declares methods for processing purpose groups in the storage.
+				An interface that declares methods for processing purposes groups in the storage.
 			</summary>
 		</IPurposeGroupLogic>
 		<Create>
 			<summary>
-				A method for creating a purpose group in the storage.
+				A method for creating a purposes group in the storage.
 			</summary>
 		</Create>
 		<CreateList>
 			<summary>
-				A method for creating multiple purpose groups in the storage.
+				A method for creating multiple purposes groups in the storage.
 			</summary>
 		</CreateList>
 		<Read>
 			<summary>
-				Method for getting all purpose group from the storage.
+				Method for getting all purposes group from the storage.
 			</summary>
 		</Read>
 		<Update>
 			<summary>
-				A method for updating a purpose group in the storage.
+				A method for updating a purposes group in the storage.
 			</summary>
 		</Update>
 		<Delete>
 			<summary>
-				A method for deleting a purpose group from storage by its id.
+				A method for deleting a purposes group from storage by its id.
 			</summary>
 		</Delete>
+	</members>
+	<members name="IPurposeLogic">
+		<IPurposeLogic>
+			<summary>
+				An interface that declares methods for processing purposes in the storage.
+			</summary>
+		</IPurposeLogic>
+		<Create>
+			<summary>
+				A method for creating a purpose in the storage.
+			</summary>
+		</Create>
+		<CreateList>
+			<summary>
+				A method for creating multiple purposes in the storage.
+			</summary>
+		</CreateList>
+		<Read>
+			<summary>
+				The method of getting a purposes from the storage by the id of the purposes group.
+			</summary>
+		</Read>
+		<Update>
+			<summary>
+				A method for updating a purpose in the storage.
+			</summary>
+		</Update>
+		<DeleteAll>
+			<summary>
+				A method for deleting all purposes from storage.
+			</summary>
+		</DeleteAll>
+		<Delete>
+			<summary>
+				A method for deleting a purpose from storage by its id.
+			</summary>
+		</Delete>
+		<DeleteList>
+			<summary>
+				A method for deleting a purposes from storage by its ids.
+			</summary>
+		</DeleteList>
 	</members>
 </CoreDoc>
