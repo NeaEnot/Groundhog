@@ -142,4 +142,36 @@
 			</summary>
 		</Delete>
 	</members>
+	<members name="IPurposeGroupLogic">
+		<IPurposeGroupLogic>
+			<summary>
+				An interface that declares methods for processing purpose groups in the storage.
+			</summary>
+		</IPurposeGroupLogic>
+		<Create>
+			<summary>
+				A method for creating a purpose group in the storage.
+			</summary>
+		</Create>
+		<CreateList>
+			<summary>
+				A method for creating multiple purpose groups in the storage.
+			</summary>
+		</CreateList>
+		<Read>
+			<summary>
+				Method for getting all purpose group from the storage.
+			</summary>
+		</Read>
+		<Update>
+			<summary>
+				A method for updating a purpose group in the storage.
+			</summary>
+		</Update>
+		<Delete>
+			<summary>
+				A method for deleting a purpose group from storage by its id.
+			</summary>
+		</Delete>
+	</members>
 </CoreDoc>

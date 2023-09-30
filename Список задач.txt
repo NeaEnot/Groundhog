@@ -385,3 +385,4 @@ ToolTip для вывода примечаний
 Доработка документации для RepeatMode
 Документация для INetworkLogic
 Документация для INoteLogic
+Документация для IPurposeGroupLogic
