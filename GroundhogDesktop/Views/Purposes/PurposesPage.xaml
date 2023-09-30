@@ -23,7 +23,7 @@
                                                     <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget}">
                                                         <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Duplicate}" Click="ContextMenuClone_Click"/>
                                                         <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Edit}" Click="ContextMenuUpdate_Click"/>
-                                                        <MenuItem Header="NEED LANG" Click="ContextMenuComment_Click"/>
+                                                        <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Comment}" Click="ContextMenuComment_Click"/>
                                                         <MenuItem Header="{DynamicResource ResourceKey=Lang.ControlCommands.Delete}" Click="ContextMenuDelete_Click"/>
                                                     </ContextMenu>
                                                 </CheckBox.ContextMenu>

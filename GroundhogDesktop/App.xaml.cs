@@ -92,6 +92,7 @@ namespace GroundhogDesktop
             App.Current.Resources["Lang.ControlCommands.Cut"] = GroundhogContext.Language.ControlCommands.Cut;
             App.Current.Resources["Lang.ControlCommands.Paste"] = GroundhogContext.Language.ControlCommands.Paste;
             App.Current.Resources["Lang.ControlCommands.Find"] = GroundhogContext.Language.ControlCommands.Find;
+            App.Current.Resources["Lang.ControlCommands.Comment"] = GroundhogContext.Language.ControlCommands.Comment;
 
             App.Current.Resources["Lang.Notes.Notes"] = GroundhogContext.Language.Notes.Notes;
             App.Current.Resources["Lang.Notes.Note"] = GroundhogContext.Language.Notes.Note;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Style="{DynamicResource ResourceKey='Window style'}"
-        Title="NEED LANG"
+        Title="{DynamicResource ResourceKey=Lang.ControlCommands.Comment}"
         Height="450" Width="800">
     <Grid>
         <TextBox Text="{Binding Comment}" AcceptsReturn="True" Margin="10,10,10,10"/>

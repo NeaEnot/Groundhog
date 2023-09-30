@@ -26,7 +26,8 @@ namespace Core.Logic
                     Copy = "Copy",
                     Cut = "Cut",
                     Paste = "Paste",
-                    Find = "Find"
+                    Find = "Find",
+                    Comment = "Comment"
                 },
                 DaysOfWeek = new DaysOfWeekLanguage
                 {
