@@ -254,6 +254,22 @@ namespace GroundhogDesktop.Views.Tasks
             }
         }
 
+        private void ContextMenuComment_Click(object sender, RoutedEventArgs e)
+        {
+            TaskInstanceViewModel viewModel = (TaskInstanceViewModel)listBoxTasks.SelectedItem;
+
+            if (viewModel != null)
+            {
+                TaskInstance model = viewModel.Convert();
+                CommentWindow window = new CommentWindow(model);
+
+                window.ShowDialog();
+
+                if (window.IsChanged)
+                    GroundhogContext.TaskInstanceLogic.Update(model);
+            }
+        }
+
         private enum SelectedTaskGroupType
         {
             Date,

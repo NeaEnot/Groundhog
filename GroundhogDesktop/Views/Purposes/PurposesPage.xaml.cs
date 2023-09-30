@@ -103,5 +103,21 @@ namespace GroundhogDesktop.Views.Purposes
                 LoadPurposes(groupId);
             }
         }
+
+        private void ContextMenuComment_Click(object sender, RoutedEventArgs e)
+        {
+            PurposeViewModel viewModel = (PurposeViewModel)listBoxPurposes.SelectedItem;
+
+            if (viewModel != null)
+            {
+                Purpose model = viewModel.Convert();
+                CommentWindow window = new CommentWindow(model);
+
+                window.ShowDialog();
+
+                if (window.IsChanged)
+                    GroundhogContext.PurposeLogic.Update(model);
+            }
+        }
     }
 }

@@ -112,5 +112,20 @@ namespace GroundhogDesktop.Views.Purposes
                 LoadGroups();
             }
         }
+
+        private void ContextMenuComment_Click(object sender, RoutedEventArgs e)
+        {
+            PurposeGroup group = (PurposeGroup)listBoxGroups.SelectedItem;
+
+            if (group != null)
+            {
+                CommentWindow window = new CommentWindow(group);
+
+                window.ShowDialog();
+
+                if (window.IsChanged)
+                    GroundhogContext.PurposeGroupLogic.Update(group);
+            }
+        }
     }
 }

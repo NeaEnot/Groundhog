@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Models.Storage;
 using GroundhogDesktop.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,6 +113,22 @@ namespace GroundhogDesktop.Views.Notes
                 }
 
                 LoadNotes();
+            }
+        }
+
+        private void ContextMenuComment_Click(object sender, RoutedEventArgs e)
+        {
+            NoteViewModel viewModel = (NoteViewModel)listBoxNotes.SelectedItem;
+
+            if (viewModel != null)
+            {
+                Note model = viewModel.Source;
+                CommentWindow window = new CommentWindow(model);
+
+                window.ShowDialog();
+
+                if (window.IsChanged)
+                    GroundhogContext.NoteLogic.Update(model);
             }
         }
     }
