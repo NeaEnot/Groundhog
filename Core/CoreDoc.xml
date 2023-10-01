@@ -485,4 +485,21 @@
 			</summary>
 		</AutoLocalBackup>
 	</members>
+	<members name="ColorSchema">
+		<ColorSchema>
+			<summary>
+				Model of color scheme settings.
+			</summary>
+		</ColorSchema>
+		<Colors>
+			<summary>
+				Dictionary of colors. The color name is used as the key, and the RGB color code in hex is used as the value.
+			</summary>
+		</Colors>
+		<ColorSchemaAbsent>
+			<summary>
+				A method that returns the missing names in the list of colors.
+			</summary>
+		</ColorSchemaAbsent>
+	</members>
 </CoreDoc>

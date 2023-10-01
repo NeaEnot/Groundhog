@@ -404,3 +404,4 @@ ToolTip для вывода примечаний
 Документация для TasksLanguage
 Документация для AppSettings
 Документация для BackupSettings
+Документация для ColorSchema
