@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DaysOfWeekLanguage"]/DaysOfWeekLanguage/*'/>
     public class DaysOfWeekLanguage
     {
         public string MondayAbbreviated { get; set; }

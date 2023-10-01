@@ -363,4 +363,11 @@
 			</summary>
 		</ControlCommandsLanguage>
 	</members>
+	<members name="DaysOfWeekLanguage">
+		<DaysOfWeekLanguage>
+			<summary>
+				A model with language data associated with the days of the week.
+			</summary>
+		</DaysOfWeekLanguage>
+	</members>
 </CoreDoc>

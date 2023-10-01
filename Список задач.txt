@@ -393,3 +393,4 @@ ToolTip для вывода примечаний
 Документация для LocalStorageBackupLogic
 Документация для BackupsLanguage
 Документация для ControlCommandsLanguage
+Документация для DaysOfWeekLanguage
