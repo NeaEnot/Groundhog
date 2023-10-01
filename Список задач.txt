@@ -389,3 +389,4 @@ ToolTip для вывода примечаний
 Документация для IPurposeLogic
 Документация для ITaskInstanceLogic
 Документация для ITaskLogic
+Документация для DateTimeHelper

@@ -305,4 +305,41 @@
 			</summary>
 		</Delete>
 	</members>
+	<members name="DateTimeHelper">
+		<DateTimeHelper>
+			<summary>
+				A static class with a set of methods that simplify operations with task dates.
+			</summary>
+		</DateTimeHelper>
+		<FillRepeatedTasks>
+			<summary>
+				A method that creates instances of repeated tasks according to their repeating mode and planning range.
+			</summary>
+		</FillRepeatedTasks>
+		<DeleteOldTasks>
+			<summary>
+				A method that removes old instances of tasks according to the optimization range.
+			</summary>
+		</DeleteOldTasks>
+		<GetDateForTask>
+			<summary>
+				A method that returns the most appropriate date for the first instance of the task being created.
+			</summary>
+		</GetDateForTask>
+		<ToDay>
+			<summary>
+				A method that transfers task instances to a specified date and shift subsequent instances. To transfer an instance, the <c>ToNextDay</c> property of the task must be set as true. To shift subsequent instances, the <c>OffsetAll</c> property of the task must be set as true.
+			</summary>
+		</ToDay>
+		<TaskRare>
+			<summary>
+				A method that calculates the rarity of the task. Used for sorting.
+			</summary>
+		</TaskRare>
+		<CheckIsValueCorrect>
+			<summary>
+				A method validating the repeat value according to the repeating mode. Generates an exception in case of failure.
+			</summary>
+		</CheckIsValueCorrect>
+	</members>
 </CoreDoc>

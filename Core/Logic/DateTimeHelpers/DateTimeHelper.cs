@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Core.Logic.DateTimeHelpers
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/DateTimeHelper/*'/>
     public static class DateTimeHelper
     {
         private static readonly Dictionary<RepeatMode, IDTHelper> helpers = new Dictionary<RepeatMode, IDTHelper>()
@@ -18,6 +19,7 @@ namespace Core.Logic.DateTimeHelpers
             { RepeatMode.Wathes, new WatchesHelper() }
         };
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/FillRepeatedTasks/*'/>
         public static void FillRepeatedTasks()
         {
             List<TaskInstance> models = new List<TaskInstance>();
@@ -30,6 +32,7 @@ namespace Core.Logic.DateTimeHelpers
                 GroundhogContext.TaskInstanceLogic.Create(models);
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/DeleteOldTasks/*'/>
         public static void DeleteOldTasks()
         {
             List<TaskInstance> models = new List<TaskInstance>();
@@ -56,11 +59,13 @@ namespace Core.Logic.DateTimeHelpers
                 GroundhogContext.TaskLogic.Delete(task.Id);
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/GetDateForTask/*'/>
         public static DateTime GetDateForTask(Task task, DateTime selectedDate)
         {
             return helpers[task.RepeatMode].GetDateForTask(task, selectedDate);
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/ToDay/*'/>
         public static void ToDay(DateTime day)
         {
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
@@ -103,11 +108,13 @@ namespace Core.Logic.DateTimeHelpers
             GroundhogContext.TaskInstanceLogic.Update(toUpdate.ToList());
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/TaskRare/*'/>
         public static int TaskRare(Task task)
         {
             return task != null ? helpers[task.RepeatMode].TaskRare(task) : 0;
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/CheckIsValueCorrect/*'/>
         public static void CheckIsValueCorrect(string text, RepeatMode mode)
         {
             helpers[mode].CheckIsValueCorrect(text);
