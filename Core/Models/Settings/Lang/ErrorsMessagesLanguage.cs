@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="ErrorsMessagesLanguage"]/ErrorsMessagesLanguage/*'/>
     public class ErrorsMessagesLanguage
     {
         public string Error { get; set; }

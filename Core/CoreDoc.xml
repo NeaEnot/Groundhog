@@ -370,4 +370,11 @@
 			</summary>
 		</DaysOfWeekLanguage>
 	</members>
+	<members name="ErrorsMessagesLanguage">
+		<ErrorsMessagesLanguage>
+			<summary>
+				A model with language data associated with the errors messages.
+			</summary>
+		</ErrorsMessagesLanguage>
+	</members>
 </CoreDoc>
