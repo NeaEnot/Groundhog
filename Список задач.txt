@@ -402,3 +402,4 @@ ToolTip для вывода примечаний
 Документация для SettingsLanguage
 Документация для SyncronizationLanguage
 Документация для TasksLanguage
+Документация для AppSettings

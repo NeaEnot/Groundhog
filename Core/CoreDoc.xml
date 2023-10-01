@@ -426,4 +426,46 @@
 			</summary>
 		</TasksLanguage>
 	</members>
+	<members name="AppSettings">
+		<AppSettings>
+			<summary>
+				The model of the application settings.
+			</summary>
+		</AppSettings>
+		<ConnectionStringStorage>
+			<summary>
+				The connection string to the remote entity store.
+			</summary>
+		</ConnectionStringStorage>
+		<ConnectionStringLanguage>
+			<summary>
+				The connection string to the remote language settings storage.
+			</summary>
+		</ConnectionStringLanguage>
+		<PlanningRanges>
+			<summary>
+				A set of default range settings for each of the repeat modes.
+			</summary>
+		</PlanningRanges>
+		<OptimizationRange>
+			<summary>
+				Default settings for optimization range.
+			</summary>
+		</OptimizationRange>
+		<ColorSchema>
+			<summary>
+				Color scheme settings.
+			</summary>
+		</ColorSchema>
+		<BackupSettings>
+			<summary>
+				Backup settings.
+			</summary>
+		</BackupSettings>
+		<Language>
+			<summary>
+				The selected language.
+			</summary>
+		</Language>
+	</members>
 </CoreDoc>
