@@ -468,4 +468,21 @@
 			</summary>
 		</Language>
 	</members>
+	<members name="BackupSettings">
+		<BackupSettings>
+			<summary>
+				The model of settings for backup.
+			</summary>
+		</BackupSettings>
+		<AutoCloudBackup>
+			<summary>
+				Should create a backup in the cloud storage before uploading data?
+			</summary>
+		</AutoCloudBackup>
+		<AutoLocalBackup>
+			<summary>
+				Should create a backup in the local storage before downloading data?
+			</summary>
+		</AutoLocalBackup>
+	</members>
 </CoreDoc>

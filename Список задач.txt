@@ -403,3 +403,4 @@ ToolTip для вывода примечаний
 Документация для SyncronizationLanguage
 Документация для TasksLanguage
 Документация для AppSettings
+Документация для BackupSettings
