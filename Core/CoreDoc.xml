@@ -580,4 +580,51 @@
 			</summary>
 		</Name>
 	</members>
+	<members name="Task">
+		<Task>
+			<summary>
+				Model of the task.
+			</summary>
+		</Task>
+		<Id>
+			<summary>
+				Model ID.
+			</summary>
+		</Id>
+		<Text>
+			<summary>
+				The text of the task.
+			</summary>
+		</Text>
+		<RepeatMode>
+			<summary>
+				Task repeat mode. Responsible for how the task instances will be created.
+			</summary>
+		</RepeatMode>
+		<RepeatValue>
+			<summary>
+				A value that adjusts the repeat mode.
+			</summary>
+		</RepeatValue>
+		<ToNextDay>
+			<summary>
+				Should move an unfulfilled instance of a task to the next day?
+			</summary>
+		</ToNextDay>
+		<OffsetAll>
+			<summary>
+				If an instance of a task is moved to the next day, is it worth moving subsequent instances?
+			</summary>
+		</OffsetAll>
+		<PlanningRange>
+			<summary>
+				How many days in ahead the task instances are created.
+			</summary>
+		</PlanningRange>
+		<OptimizationRange>
+			<summary>
+				How many days after the task instance is completed, it needs to be deleted.
+			</summary>
+		</OptimizationRange>
+	</members>
 </CoreDoc>
