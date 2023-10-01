@@ -398,4 +398,11 @@
 			</summary>
 		</PlanningAndOptimizationLanguage>
 	</members>
+	<members name="PurposesLanguage">
+		<PurposesLanguage>
+			<summary>
+				A model with language data associated with the purposes.
+			</summary>
+		</PurposesLanguage>
+	</members>
 </CoreDoc>

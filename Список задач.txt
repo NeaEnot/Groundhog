@@ -398,3 +398,4 @@ ToolTip для вывода примечаний
 Документация для Language
 Документация для NotesLanguage
 Документация для PlanningAndOptimizationLanguage
+Документация для PurposesLanguage

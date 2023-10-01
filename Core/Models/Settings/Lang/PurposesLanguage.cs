@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="PurposesLanguage"]/PurposesLanguage/*'/>
     public class PurposesLanguage
     {
         public string Purposes { get; set; }
