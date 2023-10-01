@@ -401,3 +401,4 @@ ToolTip для вывода примечаний
 Документация для PurposesLanguage
 Документация для SettingsLanguage
 Документация для SyncronizationLanguage
+Документация для TasksLanguage

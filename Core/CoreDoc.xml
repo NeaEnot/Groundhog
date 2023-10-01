@@ -419,4 +419,11 @@
 			</summary>
 		</SyncronizationLanguage>
 	</members>
+	<members name="TasksLanguage">
+		<TasksLanguage>
+			<summary>
+				A model with language data associated with the tasks.
+			</summary>
+		</TasksLanguage>
+	</members>
 </CoreDoc>
