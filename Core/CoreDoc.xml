@@ -391,4 +391,11 @@
 			</summary>
 		</NotesLanguage>
 	</members>
+	<members name="PlanningAndOptimizationLanguage">
+		<PlanningAndOptimizationLanguage>
+			<summary>
+				A model with language data associated with the planning and optimization.
+			</summary>
+		</PlanningAndOptimizationLanguage>
+	</members>
 </CoreDoc>

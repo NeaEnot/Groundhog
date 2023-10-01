@@ -397,3 +397,4 @@ ToolTip для вывода примечаний
 Документация для ErrorsMessagesLanguage
 Документация для Language
 Документация для NotesLanguage
+Документация для PlanningAndOptimizationLanguage
