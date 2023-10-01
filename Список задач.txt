@@ -405,3 +405,4 @@ ToolTip для вывода примечаний
 Документация для AppSettings
 Документация для BackupSettings
 Документация для ColorSchema
+Документация для CommentedElemet

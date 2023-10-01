@@ -502,4 +502,16 @@
 			</summary>
 		</ColorSchemaAbsent>
 	</members>
+	<members name="CommentedElemet">
+		<CommentedElemet>
+			<summary>
+				An abstract model of an entity to which you can write a comment.
+			</summary>
+		</CommentedElemet>
+		<Comment>
+			<summary>
+				Comment to the entity.
+			</summary>
+		</Comment>
+	</members>
 </CoreDoc>
