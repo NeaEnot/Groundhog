@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace Core.Logic
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="LocalStorageBackupLogic"]/LocalStorageBackupLogic/*'/>
     public class LocalStorageBackupLogic : IBackupLogic
     {
         public List<string> Backups =>

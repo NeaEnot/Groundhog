@@ -342,4 +342,11 @@
 			</summary>
 		</CheckIsValueCorrect>
 	</members>
+	<members name="LocalStorageBackupLogic">
+		<LocalStorageBackupLogic>
+			<summary>
+				<c>IBackupLogic</c> implementation for local storage.
+			</summary>
+		</LocalStorageBackupLogic>
+	</members>
 </CoreDoc>
