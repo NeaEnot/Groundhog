@@ -536,4 +536,31 @@
 			</summary>
 		</Text>
 	</members>
+	<members name="Purpose">
+		<Purpose>
+			<summary>
+				Model of the purpose. Each purpose belongs to a group of purposes.
+			</summary>
+		</Purpose>
+		<Id>
+			<summary>
+				Model ID.
+			</summary>
+		</Id>
+		<GroupId>
+			<summary>
+				Id of the purposes group to which this purpose belongs.
+			</summary>
+		</GroupId>
+		<Text>
+			<summary>
+				The text of the purpose.
+			</summary>
+		</Text>
+		<Completed>
+			<summary>
+				Is the purpose completed?
+			</summary>
+		</Completed>
+	</members>
 </CoreDoc>

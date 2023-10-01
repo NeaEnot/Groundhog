@@ -407,3 +407,4 @@ ToolTip для вывода примечаний
 Документация для ColorSchema
 Документация для CommentedElemet
 Документация для Note
+Документация для Purpose
