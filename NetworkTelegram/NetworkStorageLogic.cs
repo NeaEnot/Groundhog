@@ -18,6 +18,9 @@ using Task = System.Threading.Tasks.Task;
 
 namespace NetworkTelegram
 {
+    /// <summary>
+    /// Implementation of I Network Logic, which uses a private channel in Telegram as a cloud storage. Outdated.
+    /// </summary>
     public class NetworkStorageLogic : INetworkLogic
     {
         private static Regex connectionStringExpr = new Regex(@"^phone=(?<phone>\d{11});api_id=(?<api_id>\d+);api_hash=(?<api_hash>\w+);channel=(?<channel>.+)$");

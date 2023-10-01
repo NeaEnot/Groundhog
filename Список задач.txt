@@ -412,3 +412,4 @@ ToolTip для вывода примечаний
 Документация для Task
 Документация для TaskInstance
 Документация для GroundhogContext
+Документация для NetworkTelegram
