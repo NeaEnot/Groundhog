@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="Language"]/Language/*'/>
     public class Language
     {
         public string Culture { get; set; }

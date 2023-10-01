@@ -377,4 +377,11 @@
 			</summary>
 		</ErrorsMessagesLanguage>
 	</members>
+	<members name="Language">
+		<Language>
+			<summary>
+				A model containing all the language data. For convenience, the language data is distributed across submodels.
+			</summary>
+		</Language>
+	</members>
 </CoreDoc>

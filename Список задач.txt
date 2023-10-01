@@ -395,3 +395,4 @@ ToolTip для вывода примечаний
 Документация для ControlCommandsLanguage
 Документация для DaysOfWeekLanguage
 Документация для ErrorsMessagesLanguage
+Документация для Language
