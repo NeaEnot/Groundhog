@@ -627,4 +627,31 @@
 			</summary>
 		</OptimizationRange>
 	</members>
+	<members name="TaskInstance">
+		<TaskInstance>
+			<summary>
+				Model of the task instance. Each task instance belongs to a task.
+			</summary>
+		</TaskInstance>
+		<Id>
+			<summary>
+				Model ID.
+			</summary>
+		</Id>
+		<TaskId>
+			<summary>
+				Id of the task to which this task instance belongs.
+			</summary>
+		</TaskId>
+		<Date>
+			<summary>
+				The date on which this task instance is started.
+			</summary>
+		</Date>
+		<Completed>
+			<summary>
+				Is the task instance completed?
+			</summary>
+		</Completed>
+	</members>
 </CoreDoc>
