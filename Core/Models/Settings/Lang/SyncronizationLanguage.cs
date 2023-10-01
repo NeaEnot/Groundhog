@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="SyncronizationLanguage"]/SyncronizationLanguage/*'/>
     public class SyncronizationLanguage
     {
         public string Syncronization { get; set; }

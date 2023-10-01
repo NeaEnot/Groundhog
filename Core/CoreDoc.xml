@@ -412,4 +412,11 @@
 			</summary>
 		</SettingsLanguage>
 	</members>
+	<members name="SyncronizationLanguage">
+		<SyncronizationLanguage>
+			<summary>
+				A model with language data associated with the syncronization.
+			</summary>
+		</SyncronizationLanguage>
+	</members>
 </CoreDoc>

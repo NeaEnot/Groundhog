@@ -400,3 +400,4 @@ ToolTip для вывода примечаний
 Документация для PlanningAndOptimizationLanguage
 Документация для PurposesLanguage
 Документация для SettingsLanguage
+Документация для SyncronizationLanguage
