@@ -12,6 +12,9 @@ using VkNet.Model.RequestParams;
 
 namespace NetworkVk
 {
+    /// <summary>
+    /// Implementation of I Network Logic, which uses a private group in Vk as a cloud storage. Outdated.
+    /// </summary>
     public class NetworkStorageLogic : INetworkLogic
     {
         private static Regex connectionStringExpr = new Regex(@"^access_token=(?<access_token>[0-9a-f]+);group_id=(?<group_id>\d+)$");
