@@ -384,4 +384,11 @@
 			</summary>
 		</Language>
 	</members>
+	<members name="NotesLanguage">
+		<NotesLanguage>
+			<summary>
+				A model with language data associated with the notes.
+			</summary>
+		</NotesLanguage>
+	</members>
 </CoreDoc>

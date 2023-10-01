@@ -396,3 +396,4 @@ ToolTip для вывода примечаний
 Документация для DaysOfWeekLanguage
 Документация для ErrorsMessagesLanguage
 Документация для Language
+Документация для NotesLanguage
