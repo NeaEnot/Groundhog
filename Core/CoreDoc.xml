@@ -514,4 +514,26 @@
 			</summary>
 		</Comment>
 	</members>
+	<members name="Note">
+		<Note>
+			<summary>
+				Model of the note.
+			</summary>
+		</Note>
+		<Id>
+			<summary>
+				Model ID.
+			</summary>
+		</Id>
+		<Name>
+			<summary>
+				The name of the note.
+			</summary>
+		</Name>
+		<Text>
+			<summary>
+				The text of the note.
+			</summary>
+		</Text>
+	</members>
 </CoreDoc>

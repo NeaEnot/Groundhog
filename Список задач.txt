@@ -406,3 +406,4 @@ ToolTip для вывода примечаний
 Документация для BackupSettings
 Документация для ColorSchema
 Документация для CommentedElemet
+Документация для Note
