@@ -10,24 +10,37 @@ using System.Linq;
 
 namespace Core
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/GroundhogContext/*'/>
     public static class GroundhogContext
     {
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/TaskInstanceLogic/*'/>
         public static ITaskInstanceLogic TaskInstanceLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/TaskLogic/*'/>
         public static ITaskLogic TaskLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/PurposeLogic/*'/>
         public static IPurposeLogic PurposeLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/PurposeGroupLogic/*'/>
         public static IPurposeGroupLogic PurposeGroupLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/NoteLogic/*'/>
         public static INoteLogic NoteLogic { get; set; }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/NetworkStorageLogic/*'/>
         public static INetworkLogic NetworkStorageLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/NetworkLanguageLogic/*'/>
         public static INetworkLogic NetworkLanguageLogic { get; set; }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/LocalBackupLogic/*'/>
         public static IBackupLogic LocalBackupLogic { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/CloudBackupLogic/*'/>
         public static IBackupLogic CloudBackupLogic { get; set; }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/Language/*'/>
         public static Language Language { get; set; }
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/DefaultLanguage/*'/>
         public static string DefaultLanguage => LanguageLogic.DefaultLanguage;
 
         private static AppSettings settings;
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/Settings/*'/>
         public static AppSettings Settings { 
             get
             {
@@ -72,6 +85,7 @@ namespace Core
             }
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/StoragePath/*'/>
         public static string StoragePath
         {
             get
@@ -92,6 +106,7 @@ namespace Core
             }
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/LanguagesPath/*'/>
         public static string LanguagesPath
         {
             get
@@ -112,6 +127,7 @@ namespace Core
             }
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/Languages/*'/>
         public static string[] Languages
         {
             get
@@ -130,6 +146,7 @@ namespace Core
             }
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/SaveSettings/*'/>
         public static void SaveSettings()
         {
             using (StreamWriter writer = new StreamWriter($"{StoragePath}{Split}AppSettings.json"))
@@ -139,6 +156,7 @@ namespace Core
             }
         }
 
+        /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="GroundhogContext"]/LoadLanguage/*'/>
         public static Language LoadLanguage(string language)
         {
             Language lang = LanguageLogic.Load($"{LanguagesPath}{Split}{language}.lng");

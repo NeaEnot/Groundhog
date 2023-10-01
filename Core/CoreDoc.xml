@@ -654,4 +654,96 @@
 			</summary>
 		</Completed>
 	</members>
+	<members name="GroundhogContext">
+		<GroundhogContext>
+			<summary>
+				A class containing implementations of interfaces for working with storage, network and backup, as well as settings and language.
+			</summary>
+		</GroundhogContext>
+		<TaskInstanceLogic>
+			<summary>
+				Implementation of <c>ITaskInstanceLogic</c>.
+			</summary>
+		</TaskInstanceLogic>
+		<TaskLogic>
+			<summary>
+				Implementation of <c>ITaskLogic</c>.
+			</summary>
+		</TaskLogic>
+		<PurposeLogic>
+			<summary>
+				Implementation of <c>IPurposeLogic</c>.
+			</summary>
+		</PurposeLogic>
+		<PurposeGroupLogic>
+			<summary>
+				Implementation of <c>IPurposeGroupLogic</c>.
+			</summary>
+		</PurposeGroupLogic>
+		<NoteLogic>
+			<summary>
+				Implementation of <c>INoteLogic</c>.
+			</summary>
+		</NoteLogic>
+		<NetworkStorageLogic>
+			<summary>
+				Implementation of <c>INetworkStorageLogic</c>.
+			</summary>
+		</NetworkStorageLogic>
+		<NetworkLanguageLogic>
+			<summary>
+				Implementation of <c>INetworkLanguageLogic</c>.
+			</summary>
+		</NetworkLanguageLogic>
+		<LocalBackupLogic>
+			<summary>
+				Implementation of <c>ILocalBackupLogic</c>.
+			</summary>
+		</LocalBackupLogic>
+		<CloudBackupLogic>
+			<summary>
+				Implementation of <c>ICloudBackupLogic</c>.
+			</summary>
+		</CloudBackupLogic>
+		<Language>
+			<summary>
+				The language model currently configured in the application.
+			</summary>
+		</Language>
+		<DefaultLanguage>
+			<summary>
+				The name of the default language.
+			</summary>
+		</DefaultLanguage>
+		<Settings>
+			<summary>
+				Application settings.
+			</summary>
+		</Settings>
+		<StoragePath>
+			<summary>
+				The path to the local entity storage.
+			</summary>
+		</StoragePath>
+		<LanguagesPath>
+			<summary>
+				The path to the local language storage.
+			</summary>
+		</LanguagesPath>
+		<Languages>
+			<summary>
+				A list of names of languages stored in the local storage.
+			</summary>
+		</Languages>
+		<SaveSettings>
+			<summary>
+				A method for saving the applied settings.
+			</summary>
+		</SaveSettings>
+		<LoadLanguage>
+			<summary>
+				The method for loading the language into the application.
+			</summary>
+		</LoadLanguage>
+	</members>
 </CoreDoc>
