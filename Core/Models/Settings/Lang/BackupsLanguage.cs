@@ -2,6 +2,7 @@
 
 namespace Core.Models.Settings.Lang
 {
+    /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="BackupsLanguage"]/BackupsLanguage/*'/>
     public class BackupsLanguage
     {
         public string Backup { get; set; }

@@ -349,4 +349,11 @@
 			</summary>
 		</LocalStorageBackupLogic>
 	</members>
+	<members name="BackupsLanguage">
+		<BackupsLanguage>
+			<summary>
+				A model with language data associated with backup.
+			</summary>
+		</BackupsLanguage>
+	</members>
 </CoreDoc>

@@ -391,3 +391,4 @@ ToolTip для вывода примечаний
 Документация для ITaskLogic
 Документация для DateTimeHelper
 Документация для LocalStorageBackupLogic
+Документация для BackupsLanguage
