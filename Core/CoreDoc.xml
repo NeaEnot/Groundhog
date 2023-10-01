@@ -356,4 +356,11 @@
 			</summary>
 		</BackupsLanguage>
 	</members>
+	<members name="ControlCommandsLanguage">
+		<ControlCommandsLanguage>
+			<summary>
+				A model with language data associated with control commands.
+			</summary>
+		</ControlCommandsLanguage>
+	</members>
 </CoreDoc>

@@ -392,3 +392,4 @@ ToolTip для вывода примечаний
 Документация для DateTimeHelper
 Документация для LocalStorageBackupLogic
 Документация для BackupsLanguage
+Документация для ControlCommandsLanguage
