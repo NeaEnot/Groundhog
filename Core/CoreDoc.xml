@@ -563,4 +563,21 @@
 			</summary>
 		</Completed>
 	</members>
+	<members name="PurposeGroup">
+		<PurposeGroup>
+			<summary>
+				Model of the purposes group.
+			</summary>
+		</PurposeGroup>
+		<Id>
+			<summary>
+				Model ID.
+			</summary>
+		</Id>
+		<Name>
+			<summary>
+				The name of the purposes group.
+			</summary>
+		</Name>
+	</members>
 </CoreDoc>

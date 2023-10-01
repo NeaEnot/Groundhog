@@ -408,3 +408,4 @@ ToolTip для вывода примечаний
 Документация для CommentedElemet
 Документация для Note
 Документация для Purpose
+Документация для PurposeGroup
