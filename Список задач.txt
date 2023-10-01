@@ -399,3 +399,4 @@ ToolTip для вывода примечаний
 Документация для NotesLanguage
 Документация для PlanningAndOptimizationLanguage
 Документация для PurposesLanguage
+Документация для SettingsLanguage

@@ -405,4 +405,11 @@
 			</summary>
 		</PurposesLanguage>
 	</members>
+	<members name="SettingsLanguage">
+		<SettingsLanguage>
+			<summary>
+				A model with language data associated with the settings.
+			</summary>
+		</SettingsLanguage>
+	</members>
 </CoreDoc>
