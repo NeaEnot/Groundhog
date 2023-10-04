@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<YaDiskDoc>
+	<members name="YandexDiskNetworkLogic">
+		<YandexDiskNetworkLogic>
+			<summary>
+				The basic abstract implementation of <c>INetworkLogic</c> that defines methods for connecting to the cloud.
+			</summary>
+		</YandexDiskNetworkLogic>
+	</members>
+	<members name="NetworkLanguageLogic">
+		<NetworkLanguageLogic>
+			<summary>
+				Implementation of <c>INetworkLogic</c> for languages.
+			</summary>
+		</NetworkLanguageLogic>
+	</members>
+	<members name="NetworkStorageLogic">
+		<NetworkStorageLogic>
+			<summary>
+				Implementation of <c>INetworkLogic</c> for entity storage. Also implements <c>IBackupLogic</c>.
+			</summary>
+		</NetworkStorageLogic>
+	</members>
+</YaDiskDoc>

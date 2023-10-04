@@ -13,7 +13,7 @@ using VkNet.Model.RequestParams;
 namespace NetworkVk
 {
     /// <summary>
-    /// Implementation of I Network Logic, which uses a private group in Vk as a cloud storage. Outdated.
+    /// Implementation of <c>INetworkLogic</c>, which uses a private group in Vk as a cloud storage. Outdated.
     /// </summary>
     public class NetworkStorageLogic : INetworkLogic
     {

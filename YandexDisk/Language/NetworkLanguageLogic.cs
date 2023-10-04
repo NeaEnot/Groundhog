@@ -6,6 +6,7 @@ using YandexDisk.Client.Clients;
 
 namespace YandexDisk.Language
 {
+    /// <include file='YaDiskDoc.xml' path='YaDiskDoc/members[@name="NetworkLanguageLogic"]/NetworkLanguageLogic/*'/>
     public class NetworkLanguageLogic : YandexDiskNetworkLogic
     {
         private protected override ConnectionString ConnectionString => new ConnectionString(() => GroundhogContext.Settings.ConnectionStringLanguage);

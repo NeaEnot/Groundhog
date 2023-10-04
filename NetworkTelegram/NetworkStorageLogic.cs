@@ -19,7 +19,7 @@ using Task = System.Threading.Tasks.Task;
 namespace NetworkTelegram
 {
     /// <summary>
-    /// Implementation of I Network Logic, which uses a private channel in Telegram as a cloud storage. Outdated.
+    /// Implementation of <c>INetworkLogic</c>, which uses a private channel in Telegram as a cloud storage. Outdated.
     /// </summary>
     public class NetworkStorageLogic : INetworkLogic
     {

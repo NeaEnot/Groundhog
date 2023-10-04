@@ -12,6 +12,7 @@ using YandexDisk.Client.Protocol;
 
 namespace YandexDisk.Storage
 {
+    /// <include file='YaDiskDoc.xml' path='YaDiskDoc/members[@name="NetworkStorageLogic"]/NetworkStorageLogic/*'/>
     public class NetworkStorageLogic : YandexDiskNetworkLogic, IBackupLogic
     {
         private protected override ConnectionString ConnectionString => new ConnectionString(() => GroundhogContext.Settings.ConnectionStringStorage);

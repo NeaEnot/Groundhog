@@ -6,9 +6,10 @@ using YandexDisk.Client.Http;
 
 namespace YandexDisk
 {
+    /// <include file='YaDiskDoc.xml' path='YaDiskDoc/members[@name="YandexDiskNetworkLogic"]/YandexDiskNetworkLogic/*'/>
     public abstract class YandexDiskNetworkLogic : INetworkLogic
     {
-        protected static IDiskApi diskApi;
+        private protected static IDiskApi diskApi;
 
         public string ConnectionStringFormat => "token=xxxxx;path=path/to/file.ext";
         public Regex ConnectionStringExpr => ConnectionString.connectionStringExpr;
