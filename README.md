@@ -21,19 +21,19 @@ The application is distributed in three versions:
 
 ##### Desktop
 
-Download the archive with the latest version [here](https://disk .yandex.ru/d/w 5_5KtJdNw-3 eA), then unpack the archive to a convenient location.
+Download the archive with the latest version [here](https://disk.yandex.ru/d/w5_5KtJdNw-3eA), then unpack the archive to a convenient location.
 
 ##### Android
 
-Download the latest version [here](https://disk .yandex.ru/d/m0OB8QGpbX0YYQ ), and install.
+Download the latest version [here](https://disk.yandex.ru/d/m0OB8QGpbX0YYQ), and install.
 
 ##### IOS
 
-Download the latest version [here](https://disk .yandex.ru/d/cDzWCXTWMZ3Obg).
+Download the latest version [here](https://disk.yandex.ru/d/cDzWCXTWMZ3Obg).
 
 ##### Localization
 
-Localization files are [here](https://disk .yandex.ru/d/k4XSRgv87jzt-Q ), you can read more about the localization of the application on the wiki.
+Localization files are [here](https://disk.yandex.ru/d/k4XSRgv87jzt-Q), you can read more about the localization of the application on the wiki.
 
 ## Ru
 
