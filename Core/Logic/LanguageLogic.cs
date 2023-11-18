@@ -1,4 +1,5 @@
 ﻿using Core.Models.Settings.Lang;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -154,18 +155,30 @@ namespace Core.Logic
 
         internal static Language Load(string path)
         {
-            string[] lines = File.ReadAllLines(path);
+            try
+            {
+                string[] lines = File.ReadAllLines(path);
 
-            IEnumerable<KeyValuePair<string, string>> pairs =
-                lines
-                .Where(req => !req.StartsWith("#") && !string.IsNullOrWhiteSpace(req))
-                .Select(req => new KeyValuePair<string, string>(req.Split('=')[0], req.Split('=')[1]));
+                IEnumerable<KeyValuePair<string, string>> pairs =
+                    lines
+                    .Where(req => !req.StartsWith("#") && !string.IsNullOrWhiteSpace(req))
+                    .Select(req => new KeyValuePair<string, string>(req.Split('=')[0], req.Split('=')[1]));
 
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            foreach (KeyValuePair<string, string> pair in pairs)
-                dict.Add(pair.Key, pair.Value);
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                foreach (KeyValuePair<string, string> pair in pairs)
+                    dict.Add(pair.Key, pair.Value);
 
-            return Language.Parse(dict);
+                return Language.Parse(dict);
+            }
+            catch (Exception ex)
+            {
+                string defaultPath = $"{GroundhogContext.LanguagesPath}{GroundhogContext.Split}{DefaultLanguage}.lng";
+
+                if (path == defaultPath)
+                    throw;
+
+                return Load(defaultPath);
+            }
         }
     }
 }
