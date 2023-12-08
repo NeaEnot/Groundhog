@@ -16,6 +16,7 @@ namespace GroundhogMobile.Models
         public string Id { get; set; }
         public DateTime Date { get; set; }
         public string TaskId { get; set; }
+        public string Comment { get; set; }
         public bool Completed
         {
             get => completed;
@@ -42,6 +43,7 @@ namespace GroundhogMobile.Models
                 Date = instance.Date;
                 TaskId = instance.TaskId;
                 completed = instance.Completed;
+                Comment = instance.Comment;
             }
 
             this.task = task;
@@ -54,7 +56,8 @@ namespace GroundhogMobile.Models
                 Id = Id,
                 Date = Date,
                 TaskId = TaskId,
-                Completed = Completed
+                Completed = Completed,
+                Comment = Comment
             };
         }
     }

@@ -12,6 +12,7 @@ namespace GroundhogDesktop.Models
         public DateTime Date { get; set; }
         public string TaskId { get; set; }
         public bool Completed { get; set; }
+        public string Comment { get; set; }
 
         public virtual string Text => task.Text;
         public bool Repeated => task.RepeatMode != RepeatMode.None;
@@ -27,6 +28,7 @@ namespace GroundhogDesktop.Models
                 Date = instance.Date;
                 TaskId = instance.TaskId;
                 Completed = instance.Completed;
+                Comment = instance.Comment;
             }
 
             this.task = task;
@@ -39,7 +41,8 @@ namespace GroundhogDesktop.Models
                 Id = Id,
                 Date = Date,
                 TaskId = TaskId,
-                Completed = Completed
+                Completed = Completed,
+                Comment = Comment
             };
         }
     }

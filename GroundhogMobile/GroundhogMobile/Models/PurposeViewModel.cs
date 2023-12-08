@@ -13,6 +13,7 @@ namespace GroundhogMobile.Models
         public string Id { get; set; }
         public string GroupId { get; set; }
         public string Text { get; set; }
+        public string Comment { get; set; }
         public bool Completed
         {
             get => completed;
@@ -36,6 +37,7 @@ namespace GroundhogMobile.Models
                 GroupId = purpose.GroupId;
                 Text = purpose.Text;
                 completed = purpose.Completed;
+                Comment = purpose.Comment;
             }
         }
 
@@ -46,7 +48,8 @@ namespace GroundhogMobile.Models
                 Id = Id,
                 GroupId = GroupId,
                 Text = Text,
-                Completed = Completed
+                Completed = Completed,
+                Comment = Comment
             };
         }
     }
