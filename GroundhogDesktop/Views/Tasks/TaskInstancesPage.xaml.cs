@@ -227,8 +227,25 @@ namespace GroundhogDesktop.Views.Tasks
 
             if (viewModel != null)
             {
+                bool needLoad = true;
+
                 GroundhogContext.TaskInstanceLogic.Delete(viewModel.Id);
-                LoadTasksInstances();
+
+                if (listBoxTasks.Items.Count == 1)
+                {
+                    if (selectedTaskGroupType == SelectedTaskGroupType.Date)
+                    {
+                        LoadTasksInstances();
+                    }
+                    else
+                    {
+                        GroundhogContext.TaskLogic.Delete(viewModel.TaskId);
+                        listBoxTasks.ItemsSource = null;
+                        windowContext.LoadFindedTasks();
+                    }
+                }
+                else
+                    LoadTasksInstances();
             }
         }
 
