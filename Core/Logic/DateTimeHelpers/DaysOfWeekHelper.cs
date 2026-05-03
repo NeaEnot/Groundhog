@@ -30,7 +30,7 @@ namespace Core.Logic.DateTimeHelpers
                         $"{GroundhogContext.Language.ErrorsMessages.CorrectFormat}: {daysOfWeek[0]},{daysOfWeek[1]},{daysOfWeek[5]}...");
         }
 
-        public List<TaskInstance> FillRepeatedTasks(Task task)
+        public List<TaskInstance> FillRepeatedTasks(Task task, DateTime startDate)
         {
             List<TaskInstance> models = new List<TaskInstance>();
 
@@ -38,7 +38,7 @@ namespace Core.Logic.DateTimeHelpers
             DateTime lastDate = taskInstances.Max(req => req.Date);
             DateTime currentDate = lastDate;
 
-            while ((currentDate - DateTime.Now).TotalDays <= task.PlanningRange)
+            while ((currentDate - startDate).TotalDays <= task.PlanningRange)
             {
                 do
                     currentDate = currentDate.AddDays(1);
@@ -57,7 +57,7 @@ namespace Core.Logic.DateTimeHelpers
             return models;
         }
 
-        public DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
             DateTime date = selectedDate;
 

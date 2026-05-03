@@ -3,6 +3,7 @@ using Core.Models.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Core.Logic.DateTimeHelpers
 {
@@ -20,13 +21,13 @@ namespace Core.Logic.DateTimeHelpers
         };
 
         /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/FillRepeatedTasks/*'/>
-        public static void FillRepeatedTasks()
+        public static void FillRepeatedTasks(DateTime startDate)
         {
             List<TaskInstance> models = new List<TaskInstance>();
 
             List<Task> tasks = GroundhogContext.TaskLogic.Read();
             foreach (Task task in tasks)
-                models.AddRange(helpers[task.RepeatMode].FillRepeatedTasks(task));
+                models.AddRange(helpers[task.RepeatMode].FillRepeatedTasks(task, startDate));
 
             if (models.Count > 0)
                 GroundhogContext.TaskInstanceLogic.Create(models);
@@ -60,9 +61,9 @@ namespace Core.Logic.DateTimeHelpers
         }
 
         /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/GetDateForTask/*'/>
-        public static DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public static DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
-            return helpers[task.RepeatMode].GetDateForTask(task, selectedDate);
+            return helpers[task.RepeatMode].GetDateForTask(task, selectedDate, nowDate);
         }
 
         /// <include file='CoreDoc.xml' path='CoreDoc/members[@name="DateTimeHelper"]/ToDay/*'/>

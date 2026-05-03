@@ -31,7 +31,7 @@ namespace GroundhogMobile.Views.Tasks
 
         private async void LoadData()
         {
-            DateTimeHelper.FillRepeatedTasks();
+            DateTimeHelper.FillRepeatedTasks(DateTime.Now);
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
 
@@ -81,7 +81,7 @@ namespace GroundhogMobile.Views.Tasks
                             {
                                 TaskId = task.Id,
                                 Completed = false,
-                                Date = DateTimeHelper.GetDateForTask(task, date)
+                                Date = DateTimeHelper.GetDateForTask(task, date, DateTime.Now)
                             });
                     LoadData();
                 }
@@ -139,7 +139,7 @@ namespace GroundhogMobile.Views.Tasks
                             GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
                             instances.RemoveAll(req => req.Date.Date > date.Date);
 
-                            DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Convert(), date);
+                            DateTime computedDate = DateTimeHelper.GetDateForTask(page.Model.Convert(), date, DateTime.Now);
 
                             if (page.Model.RepeatMode == RepeatMode.DayOfMonth &&
                                 instances[0].Date.Date != date.Date)

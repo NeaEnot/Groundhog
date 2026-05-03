@@ -45,7 +45,7 @@ namespace GroundhogDesktop.Views.Tasks
 
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
-            DateTimeHelper.FillRepeatedTasks();
+            DateTimeHelper.FillRepeatedTasks(DateTime.Now);
 
             List<Task> tasks =
                 GroundhogContext.TaskLogic
@@ -91,7 +91,7 @@ namespace GroundhogDesktop.Views.Tasks
 
             DateTimeHelper.ToDay(DateTime.Now);
             DateTimeHelper.DeleteOldTasks();
-            DateTimeHelper.FillRepeatedTasks();
+            DateTimeHelper.FillRepeatedTasks(DateTime.Now);
 
             try
             {
@@ -137,7 +137,7 @@ namespace GroundhogDesktop.Views.Tasks
                         {
                             TaskId = window.Task.Id,
                             Completed = false,
-                            Date = DateTimeHelper.GetDateForTask(window.Task, selectedDate)
+                            Date = DateTimeHelper.GetDateForTask(window.Task, selectedDate, DateTime.Now)
                         });
                 LoadTasksInstances();
             }
@@ -197,7 +197,7 @@ namespace GroundhogDesktop.Views.Tasks
                         GroundhogContext.TaskInstanceLogic.Delete(instancesToDelete.Select(req => req.Id).ToList());
                         instances.RemoveAll(req => req.Date.Date > selectedDate);
 
-                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate);
+                        DateTime date = DateTimeHelper.GetDateForTask(window.Task, selectedDate, DateTime.Now);
 
                         if ((window.Task.RepeatMode == RepeatMode.DayOfMonth || window.Task.RepeatMode == RepeatMode.DayOfYear) &&
                             instances[0].Date.Date != date.Date)

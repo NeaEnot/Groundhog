@@ -29,7 +29,7 @@ namespace Core.Logic.DateTimeHelpers
                 throw new Exception($"{GroundhogContext.Language.ErrorsMessages.ThereAreFewerDaysInSpecifiedMonth}.");
         }
 
-        public List<TaskInstance> FillRepeatedTasks(Task task)
+        public List<TaskInstance> FillRepeatedTasks(Task task, DateTime startDate)
         {
             List<TaskInstance> models = new List<TaskInstance>();
 
@@ -37,7 +37,7 @@ namespace Core.Logic.DateTimeHelpers
             DateTime lastDate = taskInstances.Max(req => req.Date);
             DateTime currentDate = lastDate;
 
-            while ((currentDate - DateTime.Now).TotalDays <= task.PlanningRange)
+            while ((currentDate - startDate).TotalDays <= task.PlanningRange)
             {
                 currentDate = currentDate.AddYears(1);
 
@@ -60,7 +60,7 @@ namespace Core.Logic.DateTimeHelpers
             return models;
         }
 
-        public DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
             int mounth = int.Parse(task.RepeatValue.Split('.')[0]);
             int day = int.Parse(task.RepeatValue.Split('.')[1]);

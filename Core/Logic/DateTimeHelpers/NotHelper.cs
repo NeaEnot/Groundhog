@@ -9,12 +9,12 @@ namespace Core.Logic.DateTimeHelpers
         public void CheckIsValueCorrect(string text)
         { }
 
-        public List<TaskInstance> FillRepeatedTasks(Task task)
+        public List<TaskInstance> FillRepeatedTasks(Task task, DateTime startDate)
         {
             return new List<TaskInstance>();
         }
 
-        public DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
             return selectedDate;
         }

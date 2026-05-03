@@ -18,21 +18,21 @@ namespace Core.Logic.DateTimeHelpers
                 throw new Exception($"{GroundhogContext.Language.ErrorsMessages.IncorrectNumberOfDay}.");
         }
 
-        public List<TaskInstance> FillRepeatedTasks(Task task)
+        public List<TaskInstance> FillRepeatedTasks(Task task, DateTime startDate)
         {
             List<TaskInstance> models = new List<TaskInstance>();
 
             List<TaskInstance> taskInstances = GroundhogContext.TaskInstanceLogic.Read(task.Id);
             DateTime lastDate = taskInstances.Max(req => req.Date);
             DateTime currentDate = lastDate;
+            int day = int.Parse(task.RepeatValue);
 
-            while ((currentDate - DateTime.Now).TotalDays <= task.PlanningRange)
+            while ((currentDate - startDate).TotalDays <= task.PlanningRange)
             {
-                int day = int.Parse(task.RepeatValue);
                 currentDate = currentDate.AddMonths(1);
 
-                if (day > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) > currentDate.Day)
-                    currentDate = new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month));
+                if (day > currentDate.Day && DateTime.DaysInMonth(currentDate.Year, currentDate.Month) >= day)
+                    currentDate = new DateTime(currentDate.Year, currentDate.Month, day);
 
                 TaskInstance model = new TaskInstance
                 {
@@ -47,25 +47,25 @@ namespace Core.Logic.DateTimeHelpers
             return models;
         }
 
-        public DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
             DateTime date = selectedDate;
             int value = int.Parse(task.RepeatValue);
 
-            int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            int days = DateTime.DaysInMonth(nowDate.Year, nowDate.Month);
             if (days < value)
-                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, days);
+                date = new DateTime(nowDate.Year, nowDate.Month, days);
             else
-                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, value);
+                date = new DateTime(nowDate.Year, nowDate.Month, value);
 
-            if (date < DateTime.Now.Date)
+            if (date < nowDate.Date)
                 date = date.AddMonths(1);
 
-            days = DateTime.DaysInMonth(DateTime.Now.Year, date.Month);
+            days = DateTime.DaysInMonth(nowDate.Year, date.Month);
             if (days < value)
-                date = new DateTime(DateTime.Now.Year, date.Month, days);
+                date = new DateTime(nowDate.Year, date.Month, days);
             else
-                date = new DateTime(DateTime.Now.Year, date.Month, value);
+                date = new DateTime(nowDate.Year, date.Month, value);
 
             return date;
         }

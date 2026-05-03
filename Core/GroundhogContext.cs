@@ -160,7 +160,7 @@ namespace Core
         public static Language LoadLanguage(string language)
         {
             Language lang = LanguageLogic.Load($"{LanguagesPath}{Split}{language}.lng");
-            settings.Language = language;
+            Settings.Language = language;
 
             return lang;
         }

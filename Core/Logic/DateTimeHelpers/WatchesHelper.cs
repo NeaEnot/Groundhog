@@ -27,7 +27,7 @@ namespace Core.Logic.DateTimeHelpers
             }
         }
 
-        public List<TaskInstance> FillRepeatedTasks(Task task)
+        public List<TaskInstance> FillRepeatedTasks(Task task, DateTime startDate)
         {
             List<TaskInstance> models = new List<TaskInstance>();
 
@@ -48,7 +48,7 @@ namespace Core.Logic.DateTimeHelpers
             foreach (string s in strs)
                 sum += int.Parse(s);
 
-            while ((currentDate - DateTime.Now).TotalDays + sum <= task.PlanningRange)
+            while ((currentDate - startDate).TotalDays + sum <= task.PlanningRange)
             {
                 for (int i = 0; i < strs.Length; i += 2)
                 {
@@ -82,7 +82,7 @@ namespace Core.Logic.DateTimeHelpers
             return models;
         }
 
-        public DateTime GetDateForTask(Task task, DateTime selectedDate)
+        public DateTime GetDateForTask(Task task, DateTime selectedDate, DateTime nowDate)
         {
             return selectedDate;
         }
